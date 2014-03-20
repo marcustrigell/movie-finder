@@ -1,0 +1,22 @@
+
+Betygskriterier:
+	Komplexitet, storlek, design
+
+Prioriteringsordning:
+	Tala med ett ytterligare API
+	Shake for Random movie!
+
+Design:
+	Följa designprinicper
+	Teknik
+	Coupling Cohesion
+	Struktur på koden
+
+Använda Maven för dependencies
+
+RAD
+	Börja på kap 1, 2, 3 denna veckan
+
+Nästa vecka:
+	Presentera analysmodell
+

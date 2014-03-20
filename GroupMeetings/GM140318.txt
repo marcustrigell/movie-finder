@@ -1,0 +1,55 @@
+Meeting Agenda
+
+  Date: 18 mar 2014
+
+  Facilitator: Marcus Trigell
+
+  Participants: Tobias Andersen, Axel Niklasson, David Bergström, Marcus Trigell
+
+1. Objectives (5 min) 
+
+  (a).Confirm initial project idea
+  (b).Ambition
+  (c).Rough work structure
+    Project "parts"?
+    Deadlines
+  (d).Individual responsibilities - near future
+  (e).This week's goals
+  (f).What IDE to use?
+
+2. Reports (-- min) 
+
+  none 
+
+3. Discussion items (45 min) 
+
+  (a).An Android application for presenting admission statistics for all programs at Chalmers the year 2014. If possible, extend to other schools or years of admission.
+
+  (b).High ambition
+
+  (c).Work structure
+    "Exploring phase", preparations
+      Backend Architecture (Tobias, Axel, Marcus)
+      Frontend (David)
+      with backend beeing the focuspoint
+
+  (d).A collective effort to start with
+
+  (e).This weeks goals
+    Investigate possibilities for project
+    Set Use Cases (next meeting)
+    Group climate discussion
+
+  (f).What IDE?
+    Preliminary choice is Eclipse
+
+4. Outcomes and assignments (5 min) 
+
+  Everyone checks the Course website
+  Learn more about JSoup, Android (GUI) and other necessities
+
+5. Wrap up 
+
+  Next meeting
+    Set Use Cases
+    Set meetings for every week
