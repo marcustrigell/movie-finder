@@ -1,0 +1,15 @@
+*.apk
+*.iml
+*.ipr
+*.iws
+.idea/
+local.properties
+
+# Generic Android ignores
+bin/
+target
+gen/
+
+out/
+project.properties
+local.properties
