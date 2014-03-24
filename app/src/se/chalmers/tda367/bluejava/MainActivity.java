@@ -15,6 +15,6 @@ public class MainActivity extends Activity {
     }
 
 	public void searchMovies(View view) {
-		
+
 	}
 }
