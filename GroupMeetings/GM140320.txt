@@ -61,7 +61,7 @@ David Bergstrom (Writer)
 4.  Outcomes and assignments (5 min) 
 
     e. Everyone gets comfortable with how to write RAD. Writing starts after lecture tomorrow Friday 140321.
-    f. Everyone gets comfortable with what Recuriement Elicitation is. Check Wikipedia.
+    f. Everyone gets comfortable with what Recuirement Elicitation is. Check Wikipedia.
     g. Set up 5 basic Use Cases after meeting before supervisor meeting.
     h. Determine a complete idea before bed time.
     i. Group rooms booked.
