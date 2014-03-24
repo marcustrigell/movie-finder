@@ -2,6 +2,7 @@ package se.chalmers.tda367.bluejava;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends Activity {
     /**
@@ -12,4 +13,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
     }
+
+	public void searchMovies(View view) {
+		
+	}
 }

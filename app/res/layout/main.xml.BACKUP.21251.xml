@@ -4,6 +4,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
         >
+<<<<<<< HEAD
+    <TextView
+            android:layout_width="fill_parent"
+=======
     <EditText android:id="@+id/search_field"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -12,6 +16,7 @@
 
     <Button
             android:layout_width="wrap_content"
+>>>>>>> eabad12210d5ed2c9e45f6ec2f7cf132e81c3deb
             android:layout_height="wrap_content"
             android:text="@string/search_button_text"
             android:onClick="searchMovies"
