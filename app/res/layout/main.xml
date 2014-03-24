@@ -16,5 +16,6 @@
             android:text="@string/search_button_text"
             android:onClick="searchMovies"
             />
+
 </LinearLayout>
 
