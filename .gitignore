@@ -1,15 +1,15 @@
-*.apk
-*.iml
-*.ipr
-*.iws
+app/*.apk
+app/*.iml
+app/*.ipr
+app/*.iws
 app/.idea/
-local.properties
+app/local.properties
 
 # Generic Android ignores
-bin/
-target
-gen/
+app/bin/
+app/target
+app/gen/
 
-out/
-project.properties
-local.properties
+app/out/
+app/project.properties
+app/local.properties
