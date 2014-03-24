@@ -2,7 +2,7 @@
 *.iml
 *.ipr
 *.iws
-.idea/
+app/.idea/
 local.properties
 
 # Generic Android ignores
