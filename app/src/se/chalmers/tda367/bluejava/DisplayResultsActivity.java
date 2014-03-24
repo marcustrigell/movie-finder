@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 public class DisplayResultsActivity extends Activity {
 
-    private static final String TAG = "GetMoviesActivity";
+    private static final String TAG = "DisplayResultsActivity";
 
     private AndroidHttpClient httpClient;
     private HttpHandler httpHandler;
