@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class DisplayResultsActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.display_results_activity);
 
         /**
          * Catching the intent and the search query passed along with it
@@ -51,8 +53,8 @@ public class DisplayResultsActivity extends Activity {
         /**
          * New view to display a list of movies
          */
-        listView = new ListView(this);
-        setContentView(listView);
+        listView = (ListView) findViewById(R.id.results_list);
+        //setContentView(listView);
 
         findMovies(query);
     }
@@ -71,7 +73,10 @@ public class DisplayResultsActivity extends Activity {
         /**
          * Give the user som feedback on their search
          */
-        showToast(movies.size());
+        String toastMessage = (movies.size() > 0) ? "Yeey! I found " + movies.size() + " movies."
+                : "Sorry! You must be a united fan.";
+        showToast(toastMessage);
+
 
         /**
          * Take our list with movies and display them on our listview
@@ -81,20 +86,19 @@ public class DisplayResultsActivity extends Activity {
         ArrayAdapter adapter = new ArrayAdapter<Movie>(this,
                 android.R.layout.simple_list_item_1, movies);
         listView.setAdapter(adapter);
+
     }
 
     public void findMovies(String title) {
         httpHandler.get(movieApi.createMovieQuery(title), this);
     }
 
-    private void showToast(int numberOfResults) {
-        String toastMessage = (numberOfResults > 0) ? "Yeey! I found " + numberOfResults + " movies."
-                : "Sorry! You must be a united fan.";
-
-        Toast.makeText(getBaseContext(), toastMessage, Toast.LENGTH_LONG).show();
+    private void showToast(String message) {
+        Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    public void changeOrder() {
-
+    public void sortMovies(View view) {
+        // Sortera
+        showToast("Sorterar!!!");
     }
 }
