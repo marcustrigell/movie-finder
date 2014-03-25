@@ -1,29 +1,22 @@
 package se.chalmers.tda367.bluejava;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
 
 
-public class DisplayResultsActivity extends Activity {
-
-    /**
-     * Used for some sweet filtering in the logcat
-     */
-    private static final String TAG = "DisplayResultsActivity";
+public class DisplayResultsActivity extends ListActivity {
 
     private AndroidHttpClient httpClient;
-    private HttpHandler httpHandler;
-    private ListView listView;
-    private MovieApi movieApi;
 
+    private HttpHandler httpHandler;
+
+    private MovieApi movieApi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,13 +42,6 @@ public class DisplayResultsActivity extends Activity {
         httpClient = HttpHandler.getAndroidHttpClient(this);
         httpHandler = new HttpHandler(httpClient);
 
-
-        /**
-         * New view to display a list of movies
-         */
-        listView = (ListView) findViewById(R.id.results_list);
-        //setContentView(listView);
-
         findMovies(query);
     }
 
@@ -73,20 +59,23 @@ public class DisplayResultsActivity extends Activity {
         /**
          * Give the user som feedback on their search
          */
-        String toastMessage = (movies.size() > 0) ? "Yeey! I found " + movies.size() + " movies."
+        String toastMessage = (movies.size() > 0)
+                ? "Yeey! I found " + movies.size() + " movies."
                 : "Sorry! You must be a united fan.";
         showToast(toastMessage);
 
+        displayMovies(movies);
+    }
 
-        /**
-         * Take our list with movies and display them on our listview
-         * Read more:
-         * https://github.com/thecodepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
-         */
-        ArrayAdapter adapter = new ArrayAdapter<Movie>(this,
-                android.R.layout.simple_list_item_1, movies);
-        listView.setAdapter(adapter);
-
+    /**
+     * Take our list with movies and display them on our listview
+     * Read more:
+     * https://github.com/thecodepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
+     */
+    public void displayMovies(List<Movie> movies) {
+        DisplayResultsArrayAdapter arrayAdapter = new DisplayResultsArrayAdapter(this,
+                R.layout.display_results_list_item, movies);
+        setListAdapter(arrayAdapter);
     }
 
     public void findMovies(String title) {
