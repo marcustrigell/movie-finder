@@ -4,4 +4,5 @@
     <string name="menu_button_text">Menu</string>
     <string name="search_button_text">Search</string>
     <string name="title_activity_display_results">Results</string>
+    <string name="title_activity_display_movie">Movie</string>
 </resources>
