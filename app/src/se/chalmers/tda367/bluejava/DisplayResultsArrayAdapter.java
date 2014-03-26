@@ -22,7 +22,6 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
         this.displayResultsActivity = displayResultsActivity;
         this.textViewResourceId = textViewResourceId;
         this.movies = movies;
-
     }
 
     @Override
@@ -38,19 +37,18 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
         if (convertView != null) {
             TextView textView = (TextView) convertView.findViewById(R.id.movie_text);
             textView.setText(movie.toString());
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
+                    String message = movie.getID();
+                    intent.putExtra("key1", message);
+                    displayResultsActivity.startActivity(intent);
+                }
+            });
         }
-
-        convertView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
-                String message = movie.getID();
-                intent.putExtra("key1", message);
-                displayResultsActivity.startActivity(intent);
-            }
-
-        });
 
         return convertView;
     }

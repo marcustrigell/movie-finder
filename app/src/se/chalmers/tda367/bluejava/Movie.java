@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Movie {
-    private static final String TAG = "Movie";
     private final String id, title, releaseDate, popularity, rating, voteCount;
 
     public Movie(JSONObject jsonObject) {
@@ -20,7 +19,7 @@ public class Movie {
             rating = jsonObject.getString("vote_average");
             voteCount = jsonObject.getString("vote_count");
         } catch (JSONException e) {
-            throw new RuntimeException("JSON parsing in Report.java error!!");
+            throw new RuntimeException("JSON parsing in Movie.java error!!");
         }
     }
 
