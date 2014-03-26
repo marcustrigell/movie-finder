@@ -1,5 +1,7 @@
 package se.chalmers.tda367.bluejava;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,8 +9,8 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Movie {
-    private final String id, title, releaseDate, popularity, rating, voteCount;
+public class Movie implements Parcelable {
+    private String id, title, releaseDate, popularity, rating, voteCount;
 
     public Movie(JSONObject jsonObject) {
         try {
@@ -26,6 +28,9 @@ public class Movie {
     public Movie(String json) throws JSONException {
         this(new JSONObject(json));
     }
+
+    /* Used when restoring object from parcel. */
+    public Movie(Parcel in) { readFromParcel(in); }
 
     @Override
     public String toString() {
@@ -66,4 +71,39 @@ public class Movie {
             throw new RuntimeException("Movie.java jsonToListOfMovies error");
         }
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(releaseDate);
+        dest.writeString(popularity);
+        dest.writeString(rating);
+        dest.writeString(voteCount);
+    }
+
+    private void readFromParcel(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        releaseDate = in.readString();
+        popularity = in.readString();
+        rating = in.readString();
+        voteCount = in.readString();
+    }
+
+    public static final Parcelable.Creator CREATOR =
+            new Parcelable.Creator() {
+                public Movie createFromParcel(Parcel in) {
+                    return new Movie(in);
+                }
+
+                public Movie[] newArray(int size) {
+                    return new Movie[size];
+                }
+            };
 }

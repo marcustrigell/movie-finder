@@ -15,7 +15,9 @@ public interface ISort {
 
     /**
      * Method for sorting a list of Movie-objects.
+     *
      * @param list The list to be sorted.
+     *
      */
     public void sort(List<Movie> list);
 
