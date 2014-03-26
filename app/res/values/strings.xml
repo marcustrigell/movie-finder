@@ -5,4 +5,5 @@
     <string name="search_button_text">Search</string>
     <string name="title_activity_display_results">Results</string>
     <string name="title_activity_display_movie">Movie</string>
+    <string name="movie_description">[Description of the movie] </string>
 </resources>
