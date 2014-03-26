@@ -5,4 +5,9 @@
     <string name="search_button_text">Search</string>
     <string name="title_activity_display_results">Results</string>
     <string name="title_activity_display_movie">Movie</string>
+    <string name="movie_title">[Title of the movie]</string>
+    <string name="movie_description">[Description of the movie] </string>
+    <string name="movie_release_year">[Release year]</string>
+    <string name="movie_rating">[Rating]</string>
+    <string name="movie_vote_count">[Vote count]</string>
 </resources>
