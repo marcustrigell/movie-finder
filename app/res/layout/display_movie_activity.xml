@@ -4,6 +4,11 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
         android:weightSum="1" android:orientation="vertical">
+    <TextView
+            android:layout_width="197dp"
+            android:layout_height="53dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center_vertical" android:text="@string/movie_title"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -24,28 +29,22 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" android:weightSum="1">
         <TextView
-                android:layout_width="132dp"
+                android:layout_width="211dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView" android:layout_weight="0.13" android:gravity="center_vertical"/>
+                android:text="@string/movie_release_year"
+                android:layout_weight="0.13" android:gravity="bottom"/>
         <TextView
-                android:layout_width="129dp"
+                android:layout_width="199dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView2" android:layout_weight="0.18" android:gravity="center_vertical"/>
+                android:text="@string/movie_rating"
+                android:layout_weight="0.18" android:gravity="bottom"/>
         <TextView
-                android:layout_width="120dp"
+                android:layout_width="198dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView3" android:layout_weight="0.21" android:gravity="center_vertical"/>
-        <TextView
-                android:layout_width="117dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView4" android:layout_weight="0.14" android:gravity="center_vertical"/>
+                android:text="@string/movie_vote_count"
+                android:layout_weight="0.21" android:gravity="bottom"/>
     </LinearLayout>
 </LinearLayout>
