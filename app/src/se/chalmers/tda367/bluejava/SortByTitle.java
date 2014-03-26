@@ -1,7 +1,9 @@
 package se.chalmers.tda367.bluejava;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -15,16 +17,19 @@ import java.util.TreeMap;
 public class SortByTitle implements ISort {
 
     /**
-     * Method for sorting.
-     * @param list
+     * Method for sorting a list of Movie-objects.
+     * The method sorts the objects in ascending alphabetical
+     * order by the movies title.
+     * @param list The list to be sorted.
      */
     public void sort(List<Movie> list) {
 
         if(list == null || list.size() == 0) {
-            return; // TODO exception?
+            throw new InvalidParameterException(); // TODO
         }
+
         /* Create a TreeMap for sorting the movies by title */
-        TreeMap<String, Movie> treemap = new TreeMap<String, Movie>();
+        Map<String, Movie> map = new TreeMap<String, Movie>();
 
         for (Movie movie : list) {
 
@@ -32,12 +37,14 @@ public class SortByTitle implements ISort {
 
             /*
             * Using the title as key will naturally sort
-            * the map by title.
+            * the following Collection by title when
+            * we call map.values later.
             */
-            treemap.put(title, movie);
+            map.put(title, movie);
         }
-        /* Convert the Map to a List */
-        list = new ArrayList<Movie>(treemap.values());
+
+        /* Convert the Map to a List (Collection) */
+        list = new ArrayList<Movie>(map.values());
     }
 
 }
