@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:weightSum="1" android:orientation="vertical">
+    <TextView
+            android:layout_width="197dp"
+            android:layout_height="53dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center_vertical" android:text="@string/movie_title"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="153dp" android:weightSum="1">
+        <ImageView
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView" android:layout_gravity="left" android:background="@drawable/ic_launcher"
+                android:adjustViewBounds="false" android:layout_weight="0.49"/>
+        <TextView
+                android:layout_width="230dp"
+                android:layout_height="match_parent"
+                android:text="@string/movie_description"
+                android:textSize="30dp" android:gravity="center_vertical|center_horizontal" android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:weightSum="1">
+        <TextView
+                android:layout_width="211dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/movie_release_year"
+                android:layout_weight="0.13" android:gravity="bottom"/>
+        <TextView
+                android:layout_width="199dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/movie_rating"
+                android:layout_weight="0.18" android:gravity="bottom"/>
+        <TextView
+                android:layout_width="198dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/movie_vote_count"
+                android:layout_weight="0.21" android:gravity="bottom"/>
+    </LinearLayout>
+</LinearLayout>
