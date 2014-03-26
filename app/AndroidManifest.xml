@@ -24,5 +24,12 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value="se.chalmers.tda367.bluejava.MainActivity" />
         </activity>
+
+        <activity android:name=".DisplayMovieActivity"
+                  android:label="@string/title_activity_display_movie"
+                  android:parentActivityName="se.chalmers.tda367.bluejava.DisplayMovieActivity" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value="se.chalmers.tda367.bluejava.MainActivity" />
+        </activity>
     </application>
 </manifest>
