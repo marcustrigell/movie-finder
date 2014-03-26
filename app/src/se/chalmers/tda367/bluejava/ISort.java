@@ -13,6 +13,10 @@ import java.util.List;
  */
 public interface ISort {
 
-    public List<Movie> sort(List<Movie> list);
+    /**
+     * Method for sorting a list of Movie-objects.
+     * @param list The list to be sorted.
+     */
+    public void sort(List<Movie> list);
 
 }

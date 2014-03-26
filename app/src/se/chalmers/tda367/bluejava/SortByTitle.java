@@ -17,12 +17,11 @@ import java.util.TreeMap;
 public class SortByTitle implements ISort {
 
     /**
-     * Method for sorting a list of Movie-objects.
      * The method sorts the objects in ascending alphabetical
      * order by the movies title.
      * @param list The list to be sorted.
      */
-    public List<Movie> sort(List<Movie> list) {
+    public void sort(List<Movie> list) {
 
         if(list == null || list.size() == 0) {
             throw new IllegalArgumentException();
@@ -46,7 +45,6 @@ public class SortByTitle implements ISort {
         /* Convert the Map to a List (Collection) */
         list = new ArrayList<Movie>(map.values());  //TODO
 
-        //return list;
     }
 
 }

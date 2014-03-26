@@ -16,16 +16,17 @@ import java.util.TreeMap;
 public class SortByYear implements ISort {
 
     /**
-     *
-     * @param list
-     * @return
+     * The method sorts the Movie-objects in ascending
+     * order by release-year.
+     * @param list The list to be sorted.
      */
-    public List<Movie> sort(List<Movie> list) {
+    public void sort(List<Movie> list) {
 
         if(list == null || list.size() == 0) {
             throw new IllegalArgumentException();
         }
 
+        // @see SortByTitle for more info about the following code.
         Map<Integer, Movie> map = new TreeMap<Integer, Movie>();
 
         for(Movie movie : list) {
