@@ -90,4 +90,10 @@ public class DisplayResultsActivity extends ListActivity {
         // Sortera
         showToast("Sorterar!!!");
     }
+
+    /*public void sortMovies(View view, ISort sortMethod, List<Movie> list) {
+        // Sortera
+        showToast("Sorterar!!!");
+        sortMethod.sort(list);
+    }*/
 }

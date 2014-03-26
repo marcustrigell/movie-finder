@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface ISort {
 
-    public void sort(List<Movie> list);
+    public List<Movie> sort(List<Movie> list);
 
 }
