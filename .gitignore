@@ -1,5 +1,7 @@
 .idea/
 
+.DS_Store
+
 app/*.apk
 app/*.iml
 app/*.ipr
