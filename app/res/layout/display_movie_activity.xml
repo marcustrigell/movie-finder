@@ -39,5 +39,10 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_weight="0.18" android:gravity="bottom" android:id="@+id/rating"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/popularity" android:layout_weight="0.27"/>
     </LinearLayout>
 </LinearLayout>

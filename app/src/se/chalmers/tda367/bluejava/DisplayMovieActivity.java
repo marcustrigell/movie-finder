@@ -24,10 +24,12 @@ public class DisplayMovieActivity extends Activity {
         TextView descriptionTextView = (TextView) findViewById(R.id.description);
         TextView releaseYearTextView = (TextView) findViewById(R.id.release_year);
         TextView ratingTextView = (TextView) findViewById(R.id.rating);
+        TextView popularityTextView = (TextView) findViewById(R.id.popularity);
 
         titleTextView.setText(movie.getTitle());
-        descriptionTextView.setText("[Description of the movie");
+        descriptionTextView.setText("[Description of the movie]");
         releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
         ratingTextView.setText("Rating: " + movie.getRating() + ", vote count: " + movie.getVoteCount());
+        releaseYearTextView.setText("Popularity: " + movie.getPopularity());
     }
 }
