@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -35,8 +36,13 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
         final Movie movie = movies.get(position);
 
         if (convertView != null) {
-            TextView textView = (TextView) convertView.findViewById(R.id.movie_text);
-            textView.setText(movie.toString());
+            ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+            TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
+            TextView taglineTextView = (TextView) convertView.findViewById(R.id.tagline);
+
+            coverImageView.setImageResource(R.drawable.ic_launcher);
+            titleTextView.setText(movie.toString());
+            taglineTextView.setText("This movie is so awesome.");
 
             convertView.setOnClickListener(new View.OnClickListener() {
 
