@@ -30,6 +30,6 @@ public class DisplayMovieActivity extends Activity {
         descriptionTextView.setText("[Description of the movie]");
         releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
         ratingTextView.setText("Rating: " + movie.getRating() + ", vote count: " + movie.getVoteCount());
-        releaseYearTextView.setText("Popularity: " + movie.getPopularity());
+        popularityTextView.setText("Popularity: " + movie.getPopularity());
     }
 }

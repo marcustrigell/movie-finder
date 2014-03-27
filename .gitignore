@@ -18,3 +18,5 @@ app/gen/
 app/out/
 app/project.properties
 app/local.properties
+
+/out
