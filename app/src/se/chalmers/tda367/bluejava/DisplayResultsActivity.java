@@ -18,6 +18,10 @@ public class DisplayResultsActivity extends ListActivity {
 
     private MovieApi movieApi;
 
+    private List<Movie> movies;
+
+    private ISort sortMethod;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,9 @@ public class DisplayResultsActivity extends ListActivity {
         httpClient = HttpHandler.getAndroidHttpClient(this);
         httpHandler = new HttpHandler(httpClient);
 
+        /* Set default sort method to sort by title in ascending order. */
+        sortMethod = new SortByTitle();
+
         findMovies(query);
     }
 
@@ -54,7 +61,7 @@ public class DisplayResultsActivity extends ListActivity {
         /**
          * Take the string and make a lot of movies from it
          */
-        final List<Movie> movies = Movie.jsonToListOfMovies(json);
+        movies = Movie.jsonToListOfMovies(json);
 
         /**
          * Give the user som feedback on their search
@@ -90,4 +97,11 @@ public class DisplayResultsActivity extends ListActivity {
         // Sortera
         showToast("Sorterar!!!");
     }
+
+    /*public void sortMovies(View view) {
+        // Sortera
+        showToast("Sorterar!");
+        sortMethod.sort(movies); // TODO change sortMethod-variable how?
+        displayMovies(movies);
+    }*/
 }
