@@ -93,15 +93,14 @@ public class DisplayResultsActivity extends ListActivity {
         Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    public void sortMovies(View view) {
-        // Sortera
-        showToast("Sorterar!!!");
-    }
-
     /*public void sortMovies(View view) {
         // Sortera
-        showToast("Sorterar!");
-        sortMethod.sort(movies); // TODO change sortMethod-variable how?
-        displayMovies(movies);
+        showToast("Sorterar!!!");
     }*/
+
+    public void sortMovies(View view) {
+        // Sortera
+        showToast("Sorterar!");
+        displayMovies(sortMethod.sort(movies));
+    }
 }

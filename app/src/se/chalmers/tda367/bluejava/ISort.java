@@ -19,6 +19,6 @@ public interface ISort {
      * @param list The list to be sorted.
      *
      */
-    public void sort(List<Movie> list);
+    public List<Movie> sort(List<Movie> list);
 
 }
