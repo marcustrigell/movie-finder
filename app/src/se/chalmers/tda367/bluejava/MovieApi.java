@@ -16,7 +16,6 @@ public class MovieApi {
         imageBaseUrl = "https://image.tmdb.org/t/p/";
 
         posterSizes = new String[]{"w92", "w154", "w185", "w342", "w500", "w780", "original"};
-
     }
 
     public String createMovieQuery(String title) {
@@ -24,8 +23,8 @@ public class MovieApi {
         return query;
     }
 
-    public String getThumbnailUrl(String posterPath) {
-        return imageBaseUrl + posterSizes[0] + posterPath;
+    public String getThumbnailURL(String posterPath) {
+        return imageBaseUrl + posterSizes[1] + posterPath;
     }
 
 }
