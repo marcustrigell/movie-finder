@@ -38,7 +38,7 @@ public class Movie implements Parcelable {
 
     @Override
     public String toString() {
-        return title + " (" + getReleaseYear() + ") - " + rating;
+        return title + " (" + getReleaseDate() + ") - " + rating;
     }
 
     public String getID() {
@@ -49,9 +49,15 @@ public class Movie implements Parcelable {
         return title;
     }
 
-    public String getReleaseYear() {
+    public String getReleaseDate() {
         return releaseDate.substring(0,4);
     }
+
+    public String getPopularity() { return popularity; }
+
+    public String getRating() { return rating; }
+
+    public String getVoteCount() { return voteCount; }
 
     public String getPoster() {
         return "hej";
