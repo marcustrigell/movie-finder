@@ -10,9 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Movie implements Parcelable {
-    private String id, title, releaseDate, popularity, rating, voteCount;
+    private String id, title, releaseDate, popularity, rating, voteCount, posterPath;
+    private MovieApi movieApi;
 
     public Movie(JSONObject jsonObject) {
+        movieApi = new MovieApi();
+
         try {
             id = jsonObject.getString("id");
             title = jsonObject.getString("title");
@@ -20,6 +23,7 @@ public class Movie implements Parcelable {
             popularity = jsonObject.getString("popularity");
             rating = jsonObject.getString("vote_average");
             voteCount = jsonObject.getString("vote_count");
+            posterPath = jsonObject.getString("poster_path");
         } catch (JSONException e) {
             throw new RuntimeException("JSON parsing in Movie.java error!!");
         }
@@ -47,6 +51,10 @@ public class Movie implements Parcelable {
 
     public String getReleaseYear() {
         return releaseDate.substring(0,4);
+    }
+
+    public String getPoster() {
+        return "hej";
     }
 
     public static List<Movie> jsonToListOfMovies(String json) {
