@@ -24,7 +24,8 @@ public class Movie implements Parcelable {
             rating = jsonObject.getString("vote_average");
             voteCount = jsonObject.getString("vote_count");
             posterPath = jsonObject.getString("poster_path");
-        } catch (JSONException e) {
+        }
+        catch (JSONException e) {
             throw new RuntimeException("JSON parsing in Movie.java error!!");
         }
     }

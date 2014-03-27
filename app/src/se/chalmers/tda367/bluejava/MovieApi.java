@@ -24,7 +24,7 @@ public class MovieApi {
         return query;
     }
 
-    public String getImagePath(String posterPath) {
+    public String getThumbnailUrl(String posterPath) {
         return imageBaseUrl + posterSizes[0] + posterPath;
     }
 

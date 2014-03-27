@@ -42,7 +42,7 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
 
             coverImageView.setImageResource(R.drawable.ic_launcher);
             titleTextView.setText(movie.toString());
-            taglineTextView.setText("This movie is so awesome.");
+            taglineTextView.setText("This movie is so awesome");
 
             convertView.setOnClickListener(new View.OnClickListener() {
 
