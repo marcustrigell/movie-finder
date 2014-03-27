@@ -22,8 +22,15 @@ public class MainActivity extends Activity {
 	public void searchMovies(View view) {
         Intent intent = new Intent(this, DisplayResultsActivity.class);
         EditText searchField = (EditText) findViewById(R.id.search_field);
-        String message = searchField.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+
+		try {
+			String message = searchField.getText().toString();
+			intent.putExtra(EXTRA_MESSAGE, message);
+
+		} catch (NullPointerException e) {
+
+		}
+
         startActivity(intent);
 	}
 }
