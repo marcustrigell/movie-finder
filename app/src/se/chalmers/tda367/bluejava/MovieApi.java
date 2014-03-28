@@ -24,7 +24,11 @@ public class MovieApi {
     }
 
     public String getThumbnailURL(String posterPath) {
-        return imageBaseUrl + posterSizes[1] + posterPath;
+        return imageBaseUrl + posterSizes[0] + posterPath;
+    }
+
+    public String getCoverURL(String posterPath) {
+        return imageBaseUrl + posterSizes[2] + posterPath;
     }
 
 }
