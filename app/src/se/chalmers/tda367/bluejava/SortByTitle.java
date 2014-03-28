@@ -21,7 +21,7 @@ public class SortByTitle implements ISort {
      * order by the movies title.
      * @param list The list to be sorted.
      */
-    public void sort(List<Movie> list) {
+    public List<Movie> sort(List<Movie> list) {
 
         if(list == null || list.size() == 0) {
             throw new IllegalArgumentException();
@@ -43,7 +43,7 @@ public class SortByTitle implements ISort {
         }
 
         /* Convert the Map to a List (Collection) */
-        list = new ArrayList<Movie>(map.values());  //TODO
+        return new ArrayList<Movie>(map.values());
 
     }
 

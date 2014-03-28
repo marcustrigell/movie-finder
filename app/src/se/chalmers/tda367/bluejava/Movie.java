@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Movie implements Parcelable {
-    private String id, title, releaseDate, popularity, rating, voteCount, posterPath;
+    private String id, title, releaseYear, popularity, rating, voteCount, posterPath;
     private MovieApi movieApi;
 
     public Movie(JSONObject jsonObject) {
@@ -19,12 +19,13 @@ public class Movie implements Parcelable {
         try {
             id = jsonObject.getString("id");
             title = jsonObject.getString("title");
-            releaseDate = jsonObject.getString("release_date");
+            releaseYear = jsonObject.getString("release_date");
             popularity = jsonObject.getString("popularity");
             rating = jsonObject.getString("vote_average");
             voteCount = jsonObject.getString("vote_count");
             posterPath = jsonObject.getString("poster_path");
-        } catch (JSONException e) {
+        }
+        catch (JSONException e) {
             throw new RuntimeException("JSON parsing in Movie.java error!!");
         }
     }
@@ -50,8 +51,14 @@ public class Movie implements Parcelable {
     }
 
     public String getReleaseYear() {
-        return releaseDate.substring(0,4);
+        return releaseYear.substring(0,4);
     }
+
+    public String getPopularity() { return popularity; }
+
+    public String getRating() { return rating; }
+
+    public String getVoteCount() { return voteCount; }
 
     public String getPoster() {
         return "hej";
@@ -89,7 +96,7 @@ public class Movie implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(title);
-        dest.writeString(releaseDate);
+        dest.writeString(releaseYear);
         dest.writeString(popularity);
         dest.writeString(rating);
         dest.writeString(voteCount);
@@ -98,7 +105,7 @@ public class Movie implements Parcelable {
     private void readFromParcel(Parcel in) {
         id = in.readString();
         title = in.readString();
-        releaseDate = in.readString();
+        releaseYear = in.readString();
         popularity = in.readString();
         rating = in.readString();
         voteCount = in.readString();
