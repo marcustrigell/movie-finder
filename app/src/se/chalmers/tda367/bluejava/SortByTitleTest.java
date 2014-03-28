@@ -79,10 +79,14 @@ public class SortByTitleTest extends TestCase {
                 "    \"total_results\": 5\n" +
                 "}";
         List<Movie> list = Movie.jsonToListOfMovies(json);
+        for(Movie movie : list) {
+            ; //stuff here
+        }
         ISort sortMethod = new SortByTitle();
-        // should be some tests here
         sortMethod.sort(list);
-        // should be some tests here too
+        for(Movie movie : list) {
+            ; //stuff here too
+        }
 
     }
 }
