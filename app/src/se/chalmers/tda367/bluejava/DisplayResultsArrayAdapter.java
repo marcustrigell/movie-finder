@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -16,13 +17,15 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
     private List<Movie> movies;
     private DisplayResultsActivity displayResultsActivity;
     private int textViewResourceId;
+    private MovieApi movieApi;
 
     public DisplayResultsArrayAdapter(DisplayResultsActivity displayResultsActivity,
-                                      int textViewResourceId, List<Movie> movies) {
+                                      int textViewResourceId, List<Movie> movies, MovieApi movieApi) {
         super(displayResultsActivity, textViewResourceId, movies);
         this.displayResultsActivity = displayResultsActivity;
         this.textViewResourceId = textViewResourceId;
         this.movies = movies;
+        this.movieApi = movieApi;
     }
 
     @Override
@@ -40,7 +43,9 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
             TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
             TextView taglineTextView = (TextView) convertView.findViewById(R.id.tagline);
 
-            coverImageView.setImageResource(R.drawable.ic_launcher);
+            String url = movieApi.getThumbnailURL(movie.getPosterPath());
+            Picasso.with(displayResultsActivity).load(url).into(coverImageView);
+
             titleTextView.setText(movie.toString());
             taglineTextView.setText("This movie is so awesome");
 

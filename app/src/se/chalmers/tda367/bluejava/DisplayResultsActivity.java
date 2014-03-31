@@ -81,7 +81,7 @@ public class DisplayResultsActivity extends ListActivity {
      */
     public void displayMovies(List<Movie> movies) {
         DisplayResultsArrayAdapter arrayAdapter = new DisplayResultsArrayAdapter(this,
-                R.layout.display_results_list_item, movies);
+                R.layout.display_results_list_item, movies, movieApi);
         setListAdapter(arrayAdapter);
     }
 

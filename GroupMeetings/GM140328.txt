@@ -1,0 +1,49 @@
+Meeting Agenda - YYMMDD
+
+Date:
+140328
+
+Facilitator:
+Tobias Andersen
+
+Participants:
+Name Tobias Andersen
+Name David Bergström (Supervisor)
+Name Axel Niklasson (Previous meeting agenda)
+Name Marcus Trigell (Writer)
+
+1.  Objectives (5 min) Resolve any issues preventing the team to 
+    continue (this should be possible to verify at next meeting, 
+    short clear description, use issues from project site). 
+
+	a. RAD - göra klart
+	b. UML - klassdiagram
+	c. UML - sekvensdiagram
+	d. Planering inför kommande vecka
+
+2.  Reports (15 min) From previous meetings, (un)solved issues, etc. , see also 4 
+
+	Inte gjort klart RAD:en än
+
+3.  Discussion items (35 min) 
+
+	a,b,c. Klara 2:a april med RAD UML-klass och UML-sekvens!
+		Prioritet: 1. Use Case 2. Use Case-overview  3. Analysmodell 4. Prel. GUI
+
+	d. Fredag kl. 15 är vi färdiga med allt kring prel. RAD
+		Mån & Tis går åt till schemalagda aktiviteter först och främst
+		Onsdag är möte och arbete med gruppen från kl.13
+		Torsdag är jobbar vi hela dagen bortsett från mötet med handledaren
+		kl.10-15 på fredag är har vi möte hemma hos Tobias
+
+	Utanför mötespunkterna:
+		Även göra klart Use Case diagram
+		Vi har kommit lite längre med koden än eventuellt nödvändigt
+
+4.  Outcomes and assignments (5 min) 
+
+	-Jobba med allt kring prel. RAD (Prio!!)
+
+5.  Wrap up 
+
+	-Vi behöver göra färdigt allt kring prel. RAD och kommer att lägga full fokus på detta framöver! Vi har bokat tider till gruppmöten och grupparbete.

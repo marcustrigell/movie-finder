@@ -11,11 +11,8 @@ import java.util.List;
 
 public class Movie implements Parcelable {
     private String id, title, releaseYear, popularity, rating, voteCount, posterPath;
-    private MovieApi movieApi;
 
     public Movie(JSONObject jsonObject) {
-        movieApi = new MovieApi();
-
         try {
             id = jsonObject.getString("id");
             title = jsonObject.getString("title");
@@ -60,8 +57,8 @@ public class Movie implements Parcelable {
 
     public String getVoteCount() { return voteCount; }
 
-    public String getPoster() {
-        return "hej";
+    public String getPosterPath() {
+        return posterPath;
     }
 
     public static List<Movie> jsonToListOfMovies(String json) {
@@ -96,6 +93,7 @@ public class Movie implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(title);
+        dest.writeString(posterPath);
         dest.writeString(releaseYear);
         dest.writeString(popularity);
         dest.writeString(rating);
@@ -105,6 +103,7 @@ public class Movie implements Parcelable {
     private void readFromParcel(Parcel in) {
         id = in.readString();
         title = in.readString();
+        posterPath = in.readString();
         releaseYear = in.readString();
         popularity = in.readString();
         rating = in.readString();
