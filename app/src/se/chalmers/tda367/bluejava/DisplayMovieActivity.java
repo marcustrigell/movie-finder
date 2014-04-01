@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
@@ -27,13 +28,16 @@ public class DisplayMovieActivity extends Activity {
         TextView titleTextView = (TextView) findViewById(R.id.title);
         TextView descriptionTextView = (TextView) findViewById(R.id.description);
         TextView releaseYearTextView = (TextView) findViewById(R.id.release_year);
-        TextView ratingTextView = (TextView) findViewById(R.id.rating);
         TextView popularityTextView = (TextView) findViewById(R.id.popularity);
 
         //Inserting the image in the poster image view
         ImageView posterImageView = (ImageView) findViewById(R.id.posterImageView);
         String url = movieApi.getThumbnailURL(movie.getPosterPath());
         Picasso.with(this).load(url).into(posterImageView);
+
+        //Setting the rating to the rating bar
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar.setRating(Float.parseFloat(movie.getRating()) / 2);
 
         //Rounding the popularity
         double popularityRounded = Double.parseDouble(movie.getPopularity());
@@ -42,7 +46,6 @@ public class DisplayMovieActivity extends Activity {
         titleTextView.setText(movie.getTitle());
         descriptionTextView.setText("[Description of the movie]");
         releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
-        ratingTextView.setText("Rating: " + movie.getRating() + ", vote count: " + movie.getVoteCount());
         popularityTextView.setText("Popularity: " + popularityRounded);
     }
 }

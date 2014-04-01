@@ -35,18 +35,17 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_weight="0.13" android:gravity="bottom" android:id="@+id/release_year"
-                android:text="Released in 2005"/>
-        <TextView
-                android:layout_width="319dp"
+                android:text="[Release year]"/>
+        <RatingBar
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_weight="0.18" android:gravity="bottom" android:id="@+id/rating"
-                android:text="Rating 8 /10"/>
+                android:id="@+id/ratingBar" android:layout_weight="0.13" android:numStars="5"
+                />
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/popularity" android:layout_weight="0.27" android:gravity="bottom"
-                android:text="Popularity 5.3"/>
+                android:text="[Popularity]"/>
     </LinearLayout>
 </LinearLayout>
