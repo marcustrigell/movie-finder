@@ -35,10 +35,14 @@ public class DisplayMovieActivity extends Activity {
         String url = movieApi.getThumbnailURL(movie.getPosterPath());
         Picasso.with(this).load(url).into(posterImageView);
 
+        //Rounding the popularity
+        double popularityRounded = Double.parseDouble(movie.getPopularity());
+        popularityRounded = Math.round(popularityRounded);
+
         titleTextView.setText(movie.getTitle());
         descriptionTextView.setText("[Description of the movie]");
         releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
         ratingTextView.setText("Rating: " + movie.getRating() + ", vote count: " + movie.getVoteCount());
-        popularityTextView.setText("Popularity: " + movie.getPopularity());
+        popularityTextView.setText("Popularity: " + popularityRounded);
     }
 }
