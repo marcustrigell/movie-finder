@@ -9,6 +9,11 @@ import java.util.List;
 
 /**
  * Created by marcus on 2014-03-27.
+ *
+ * Test-class for SortByTitle
+ *
+ * @author Marcus Trigell
+ *
  */
 public class SortByTitleTest extends TestCase {
 
