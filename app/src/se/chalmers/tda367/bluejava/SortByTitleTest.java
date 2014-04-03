@@ -19,21 +19,21 @@ public class SortByTitleTest extends TestCase {
 
     public void testSort() throws Exception {
 
-        Scanner in = new Scanner(new FileReader("json.txt"));
-        String json = in.nextLine();
+        //Scanner in = new Scanner(new FileReader("json.txt"));
+        //String json = in.nextLine();
 
-        List<Movie> list = Movie.jsonToListOfMovies(json);
+        //List<Movie> list = Movie.jsonToListOfMovies(json);
 
-        for(Movie movie : list) {
-            ; //stuff here
-        }
+        //for(Movie movie : list) {
+        //    ; //stuff here
+        //}
 
-        ISort sortMethod = new SortByTitle();
-        sortMethod.sort(list);
+        //ISort sortMethod = new SortByTitle();
+        //sortMethod.sort(list);
 
-        for(Movie movie : list) {
-            ; //stuff here too
-        }
+        //for(Movie movie : list) {
+        //    ; //stuff here too
+        //}
 
     }
 }

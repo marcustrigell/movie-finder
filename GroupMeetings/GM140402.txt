@@ -1,0 +1,41 @@
+Meeting Agenda - YYMMDD
+
+Date:
+140402
+
+Facilitator:
+David Bergström
+
+Participants:
+Name David Bergström
+Name Tobias Andersen (Supervisor)
+Name Marcus Trigell (Previous meeting agenda)
+Name Axel Niklasson (Writer)
+
+1.  Objectives (5 min) Resolve any issues preventing the team to 
+    continue (this should be possible to verify at next meeting, 
+    short clear description, use issues from project site). 
+
+    a. 1:a ”running version”
+    b. Rapportinlämning fredag
+    c. Design review?
+    d. Frågor till Olof
+
+2.  Reports (15 min) From previous meetings, (un)solved issues, etc. , see also 4 
+
+    Vi skulle göra klart allting med preliminär RAD. Det som inte har blivit klart är sekvensdiagram & finjusteringar i dokumentet. Allt måste läggas in. 
+
+3.  Discussion items (35 min) 
+
+    a. Ska arbeta imorgon med att se till att det går att visa på vår prototyp på handledarmötet.
+    b. Vet lite mer om hur man ska tänka. Imorgon och på fredag ska delinlämningen för fredag skrivas.
+    c. Skjuts upp till senare.
+    d. Taggar i GIT? OO och Android? Är vi lite fel ute? Tips på mer OO/avancerat?
+
+4.  Outcomes and assignments (5 min) 
+
+    - Göra klart inlämning till fredag. Se diskussionsavsnitt.
+
+5.  Wrap up 
+
+    NA
