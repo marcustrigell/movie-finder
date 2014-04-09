@@ -1,0 +1,53 @@
+Mötesagenda 140404
+
+Date:
+140404
+
+Facilitator:
+Tobias Andersen
+
+Participants:
+Tobias Andersen 
+David Bergström (Writer)
+Marcus Trigell (Supervisor)
+Axel Niklasson (Previous meeting agenda)
+
+1.  Mötespunkter
+
+    a.  Återblick på senaste handledarmötet
+    b.  Kolla Roadmap för kommande vecka
+    c.  Planering nästa vecka
+    d.  Prata lite om påskveckorna
+
+
+2.  Från förra mötet
+
+    *   Inlämning klar!
+    *   Design godkänd.
+    *   Det kvarstår ett UML Sequence Diagram
+
+
+3.  Diskussion
+
+    a.  *   Vi ska se till att tagga möten i Git. 
+        *   Vi kommer inte att tagga "nya versioner" av appen.
+    b.  *   Implementera fler Use Cases
+        *   Se över RAD
+        *   Börja med SDD
+        *   "Serious testing"
+    c.  *   Planerar in arbete i grupp under veckan med möten på onsdag efter lunch och torsdag efter handledarmötet
+        *   Prioriterad ordning:
+                - SDD (se till att vi har koll och gör det som måste göras)
+                - Se till att våra första Use Cases fungerar bra MED TESTNING!!! (Search, Show Details)
+                - Lägg till fler Use Cases (High Priority)
+                - Testning: Code Coverage, Junit
+    d.  *   Vi återkommer om detta i nästa vecka.
+            Vi lägger upp ett dokument i Google Drive på saker att göra i Påsk.
+
+4.  Uppgifter
+
+    c.  *   Alla kollar igenom SDD-mallen
+
+5.  Sammanfattning
+
+    NA
