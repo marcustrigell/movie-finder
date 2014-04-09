@@ -1,4 +1,4 @@
-package se.chalmers.tda367.bluejava;
+package se.chalmers.tda367.bluejava.test;
 
 import junit.framework.TestCase;
 import org.json.JSONObject;
