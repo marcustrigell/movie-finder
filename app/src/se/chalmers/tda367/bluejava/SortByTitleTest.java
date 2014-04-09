@@ -2,6 +2,8 @@ package se.chalmers.tda367.bluejava;
 
 import junit.framework.TestCase;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileReader;
 
@@ -24,15 +26,17 @@ public class SortByTitleTest extends TestCase {
 
         //List<Movie> list = Movie.jsonToListOfMovies(json);
 
+        //List<String> titles = new ArrayList<String>();
         //for(Movie movie : list) {
-        //    ; //stuff here
+        //    titles.add(movie.getTitle()); // TODO
         //}
 
         //ISort sortMethod = new SortByTitle();
-        //sortMethod.sort(list);
+        //list = sortMethod.sort(list);
 
+        //int index = 0;
         //for(Movie movie : list) {
-        //    ; //stuff here too
+        //    assertTrue(movie.getTitle.equals(titles[index])); // TODO
         //}
 
     }

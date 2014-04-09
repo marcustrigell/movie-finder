@@ -6,6 +6,11 @@ import junit.framework.TestCase;
  * Created by marcus on 2014-04-02.
  */
 public class MovieTest extends TestCase {
+
+    public void before(){
+        
+    }
+
     public void testToString() throws Exception {
 
     }
