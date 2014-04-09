@@ -48,7 +48,9 @@ public class Movie implements Parcelable {
     }
 
     public String getReleaseYear() {
-        return releaseYear.substring(0,4);
+        /* Crashar */
+        /* return releaseYear.substring(0,4); */
+        return releaseYear;
     }
 
     public String getPopularity() { return popularity; }

@@ -4,7 +4,9 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -58,6 +60,8 @@ public class DisplayResultsActivity extends ListActivity {
             return;
         }
 
+        Log.v("hej", json);
+
         /**
          * Take the string and make a lot of movies from it
          */
@@ -66,7 +70,7 @@ public class DisplayResultsActivity extends ListActivity {
         /**
          * Give the user som feedback on their search
          */
-        String toastMessage = (movies.size() > 0)
+        String toastMessage = (movies != null)
                 ? "Yeey! I found " + movies.size() + " movies."
                 : "Sorry! You must be a united fan.";
         showToast(toastMessage);
@@ -80,9 +84,14 @@ public class DisplayResultsActivity extends ListActivity {
      * https://github.com/thecodepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
      */
     public void displayMovies(List<Movie> movies) {
-        DisplayResultsArrayAdapter arrayAdapter = new DisplayResultsArrayAdapter(this,
-                R.layout.display_results_list_item, movies, movieApi);
-        setListAdapter(arrayAdapter);
+        if (movies == null) {
+            TextView textView = (TextView) findViewById(R.id.sort_label);
+            textView.setText("Sök igen");
+        } else {
+            DisplayResultsArrayAdapter arrayAdapter = new DisplayResultsArrayAdapter(this,
+                    R.layout.display_results_list_item, movies, movieApi);
+            setListAdapter(arrayAdapter);
+        }
     }
 
     public void findMovies(String title) {
