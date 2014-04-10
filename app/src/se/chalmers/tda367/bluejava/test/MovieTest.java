@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import se.chalmers.tda367.bluejava.*;
 
+import java.io.FileReader;
+import java.util.Scanner;
+
 /**
  * Created by marcus on 2014-04-02.
  */
@@ -68,19 +71,29 @@ public class MovieTest extends TestCase {
         assertEquals(voteCount, movie.getVoteCount());
     }
 
-    public void testGetPosterPath() throws Exception {
 
+    public void testGetPosterPath() throws Exception {
+        String posterPath = "/6WBIzCgmDCYrqh64yDREGeDk9d3.jpg";
+        assertEquals(posterPath, movie.getPosterPath());
     }
 
     public void testJsonToListOfMovies() throws Exception {
 
+        Scanner in = new Scanner(new FileReader("json.txt"));
+        String json = "";
+        while(in.hasNext()) {
+            json = json + "\n" + in.nextLine();
+        }
+
+        assertTrue(Movie.jsonToListOfMovies(json) != null);
+
     }
 
-    public void testDescribeContents() throws Exception {
+/*    public void testDescribeContents() throws Exception {
 
     }
 
     public void testWriteToParcel() throws Exception {
 
-    }
+    }*/
 }

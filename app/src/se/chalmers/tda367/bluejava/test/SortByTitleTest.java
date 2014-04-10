@@ -24,6 +24,9 @@ public class SortByTitleTest extends TestCase {
 
     public void testSort() throws Exception {
 
+        /*
+         * Creating a json String to create a List of movies from.
+         */
         Scanner in = new Scanner(new FileReader("json.txt"));
         String json = "";
         while(in.hasNext()) {
@@ -32,6 +35,9 @@ public class SortByTitleTest extends TestCase {
 
         List<Movie> list = Movie.jsonToListOfMovies(json);
 
+        /*
+         * Create a list of the movie titles to use when comparing later.
+         */
         List<String> titles = new ArrayList<String>();
         for(Movie movie : list) {
             titles.add(movie.getTitle()); // TODO
@@ -40,9 +46,12 @@ public class SortByTitleTest extends TestCase {
         ISort sortMethod = new SortByTitle();
         list = sortMethod.sort(list);
 
+        /*
+         * Check if object
+         */
         int index = 0;
         for(Movie movie : list) {
-            assertTrue(movie.getTitle().equals(titles.get(index))); // TODO
+            assertTrue(!(movie.getTitle().equals(titles.get(index)))); // TODO
         }
 
     }
