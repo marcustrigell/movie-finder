@@ -1,4 +1,4 @@
-package se.chalmers.tda367.bluejava.test;
+package se.chalmers.tda367.bluejava;
 
 import junit.framework.TestCase;
 
