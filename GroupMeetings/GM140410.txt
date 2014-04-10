@@ -1,0 +1,41 @@
+Mötesagenda 140410
+
+Date:
+140410
+
+Facilitator:
+Marcus Trigell
+
+Participants:
+Marcus Trigell
+Tobias Andersen (Supervisor)
+Axel Niklasson (Writer)
+David Bergström (Previous meeting agenda)
+
+1.  Mötespunkter
+
+    a.  Påsklovet
+    b.  Efter påsklovet
+    c.  Programmering
+	* Stående punkt?
+	* Vem gör vad?
+
+2.  Från förra mötet
+
+    * Use Case Search Function skulle vara klart idag samt ett sekvensdiagram. Vi har gjort det vi skulle göra, testningen blev inte riktigt klar, men kom en bra bit. Idag ska vi prata om påsken (se mötespunkter).
+
+3.  Diskussion
+
+    a.  Fritt fram att implementera. Utnyttja branches, kör på bara. Vill man koda, gör det. Vi ska göra ett dokument idag med vad som kan göras under påsklovet, finns i Drive. Tobbe och David fixar ett dokument efter mötet.
+    b.  Tobbe kommer inte vara här den veckan. Föreläsning kommunikation kl 10 måndagen, behöver boka in ett möte den måndagen med. 
+    c.  Ska vara en stående punkt varje vecka. Vad har vi gjort? Frågor? Stopp på vägen?
+	Alla ska ha ett program som ska gå att köra när vi går härifrån. Alla ska skriva vad de gör i påsklovsdokumentet. 
+Vi går igenom efter mötet så att biblioteken fungerar, så att alla kan köra programmet. Lib support v4 bråkar just nu. Vi ska börja använda oss av @rev för att hålla koll på vem som ändrar i en given metod.
+
+4.  Uppgifter
+
+    *   Följa påsklovsmallen
+
+5.  Sammanfattning
+
+    NA
