@@ -4,7 +4,6 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,8 +58,6 @@ public class DisplayResultsActivity extends ListActivity {
         if (json == null) {
             return;
         }
-
-        Log.v("hej", json);
 
         /**
          * Take the string and make a lot of movies from it

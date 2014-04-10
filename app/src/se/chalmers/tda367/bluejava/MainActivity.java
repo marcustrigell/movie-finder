@@ -15,6 +15,7 @@ import android.widget.EditText;
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
     public final static String EXTRA_MESSAGE = "se.chalmers.tda367.bluejava.MESSAGE";
+
     private ViewPager viewPager;
     private TabsAdapter tabsAdapter;
 
