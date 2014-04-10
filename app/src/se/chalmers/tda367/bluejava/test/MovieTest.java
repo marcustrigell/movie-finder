@@ -2,14 +2,19 @@ package se.chalmers.tda367.bluejava.test;
 
 import junit.framework.TestCase;
 import org.json.JSONException;
-import org.json.JSONObject;
+import org.junit.Before;
+import org.junit.Test;
+import se.chalmers.tda367.bluejava.*;
+
+import java.io.FileReader;
+import java.util.Scanner;
 
 /**
  * Created by marcus on 2014-04-02.
  */
 public class MovieTest extends TestCase {
 
-	private String id, title, releaseYear, popularity, rating, voteCount, posterPath;
+    private Movie movie;
 
 	private String json = "{\"page\":1,\"results\":[{\"adult\":false,\"backdrop_path\":\"" +
 			"/5vZw7ltCKI0JiOYTtRxaIC3DX0e.jpg\",\"id\":98,\"original_title\":\"Gladiator\"," +
@@ -17,62 +22,78 @@ public class MovieTest extends TestCase {
 			",\"popularity\":8.40221519445413,\"title\":\"Gladiator\",\"vote_average\":7.2,\"vote_count\"" +
 			":1901}],\"total_pages\":1,\"total_results\": 1}";
 
-	public void fromJsonToString(JSONObject jsonObject) {
-		try {
-			id = jsonObject.getString("id");
-			title = jsonObject.getString("title");
-			releaseYear = jsonObject.getString("release_date");
-			popularity = jsonObject.getString("popularity");
-			rating = jsonObject.getString("vote_average");
-			voteCount = jsonObject.getString("vote_count");
-			posterPath = jsonObject.getString("poster_path");
-		}
-		catch (JSONException e) {
-			throw new RuntimeException("JSON parsing in Movie.java error!!");
-		}
-	}
+    @Before
+    public void initialize() {
+        try {
+            movie = new Movie(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 	public void testToString() throws Exception {
 
     }
 
+    @Test
     public void testGetID() throws Exception {
-
+        String id = "98";
+        assertEquals(id, movie.getID());
     }
 
+    @Test
     public void testGetTitle() throws Exception {
-
+        String title = "Gladiator";
+        assertEquals(title, movie.getTitle());
     }
 
+    @Test
     public void testGetReleaseYear() throws Exception {
-
+        String releaseYear = "2000-05-01";
+        assertEquals(releaseYear, movie.getReleaseYear());
     }
 
+    @Test
     public void testGetPopularity() throws Exception {
-
+        String popularity = "8.40221519445413";
+        assertEquals(popularity, movie.getPopularity());
     }
 
+    @Test
     public void testGetRating() throws Exception {
-
+        String rating = "7.2";
+        assertEquals(rating, movie.getRating());
     }
 
+    @Test
     public void testGetVoteCount() throws Exception {
-
+        String voteCount = "1901";
+        assertEquals(voteCount, movie.getVoteCount());
     }
+
 
     public void testGetPosterPath() throws Exception {
-
+        String posterPath = "/6WBIzCgmDCYrqh64yDREGeDk9d3.jpg";
+        assertEquals(posterPath, movie.getPosterPath());
     }
 
     public void testJsonToListOfMovies() throws Exception {
 
+        Scanner in = new Scanner(new FileReader("json.txt"));
+        String json = "";
+        while(in.hasNext()) {
+            json = json + "\n" + in.nextLine();
+        }
+
+        assertTrue(Movie.jsonToListOfMovies(json) != null);
+
     }
 
-    public void testDescribeContents() throws Exception {
+/*    public void testDescribeContents() throws Exception {
 
     }
 
     public void testWriteToParcel() throws Exception {
 
-    }
+    }*/
 }

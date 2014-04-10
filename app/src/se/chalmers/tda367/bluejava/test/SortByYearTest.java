@@ -7,6 +7,22 @@ import junit.framework.TestCase;
  */
 public class SortByYearTest extends TestCase {
     public void testSort() throws Exception {
+        //Scanner in = new Scanner(new FileReader("json.txt"));
+        //String json = in.nextLine();
 
+        //List<Movie> list = Movie.jsonToListOfMovies(json);
+
+        //List<String> titles = new ArrayList<String>();
+        //for(Movie movie : list) {
+        //    titles.add(movie.getTitle()); // TODO
+        //}
+
+        //ISort sortMethod = new SortByTitle();
+        //list = sortMethod.sort(list);
+
+        //int index = 0;
+        //for(Movie movie : list) {
+        //    assertTrue(movie.getTitle.equals(titles[index])); // TODO
+        //}
     }
 }
