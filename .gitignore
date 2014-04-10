@@ -6,20 +6,18 @@
 
 # IntelliJ
 .idea/
-app/*.apk
-app/*.iml
-app/*.ipr
-app/*.iws
-app/.idea/
-app/local.properties
+*.apk
+*.iml
+*.ipr
+*.iws
+
+local.properties
+project.properties
 
 # Generic Android ignores
-app/bin/
-app/target
-app/gen/
+bin/
+target/
+gen/
+out/
 
-app/out/
-app/project.properties
-app/local.properties
 
-/out
