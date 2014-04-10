@@ -21,13 +21,13 @@ public class SortByTitle implements ISort {
      * order by the movies title.
      * @param list The list to be sorted.
      */
+    @Override
     public List<Movie> sort(List<Movie> list) {
 
         if(list == null || list.size() == 0) {
             throw new IllegalArgumentException();
         }
 
-        /* Create a TreeMap for sorting the movies by title */
         Map<String, Movie> map = new TreeMap<String, Movie>();
 
         for (Movie movie : list) {
@@ -36,7 +36,7 @@ public class SortByTitle implements ISort {
 
             /*
             * Using the title as key will naturally sort
-            * the following Collection by title when
+            * the later used collection by title when
             * we call map.values later.
             */
             map.put(title, movie);

@@ -17,9 +17,10 @@ public class SortByYear implements ISort {
 
     /**
      * The method sorts the Movie-objects in ascending
-     * order by release-year.
+     * order by release-date.
      * @param list The list to be sorted.
      */
+    @Override
     public List<Movie> sort(List<Movie> list) {
 
         if(list == null || list.size() == 0) {
