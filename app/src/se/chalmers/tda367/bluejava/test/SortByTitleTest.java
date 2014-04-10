@@ -40,18 +40,19 @@ public class SortByTitleTest extends TestCase {
          */
         List<String> titles = new ArrayList<String>();
         for(Movie movie : list) {
-            titles.add(movie.getTitle()); // TODO
+            titles.add(movie.getTitle());
         }
 
         ISort sortMethod = new SortByTitle();
         list = sortMethod.sort(list);
 
         /*
-         * Check if object
+         * Check if lists are sorted by titles by comparing the title-list
+         * and the now sorted Movie-list.
          */
         int index = 0;
         for(Movie movie : list) {
-            assertTrue(!(movie.getTitle().equals(titles.get(index)))); // TODO
+            assertTrue(!(movie.getTitle().equals(titles.get(index))));
         }
 
     }
