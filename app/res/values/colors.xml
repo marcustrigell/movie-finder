@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Navigation Drawer Colors -->
+    <color name="list_background">#555555</color>
+    <color name="list_background_pressed">#222222</color>
+    <color name="list_item_title">#FFFFFF</color>
+
+</resources>

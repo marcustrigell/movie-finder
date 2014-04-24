@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Skriv strängarna i bokstavsordning -->
+
 <resources>
+    <string name="action_search">Search</string>
     <string name="app_name">BlueJava</string>
     <string name="menu_button_text">Menu</string>
     <string name="search_button_text">Search</string>
