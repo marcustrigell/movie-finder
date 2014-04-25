@@ -9,7 +9,7 @@
         <item>Movies</item>
     </string-array>
 
-    <!-- Icons -->
+    <!-- Icons -->                              <!-- TODO: Get the right icons! -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_drawer</item>
         <item>@drawable/ic_drawer</item>

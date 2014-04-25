@@ -1,8 +1,8 @@
 package se.chalmers.tda367.bluejava;
 
-import android.app.ActionBar;
+import android.app.*;
 import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -11,12 +11,15 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -122,7 +125,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// Movies
 		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[1], navDrawerIcons.getResourceId(1, -1)));
 
-		// Give back the typed array for later re-use
+		// Recycle the typed array for later re-use (necessary for some reason)
 		navDrawerIcons.recycle();
 
 		// Set the navigation drawer list adapter
@@ -141,19 +144,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			public void onDrawerClosed(View view) {
 				getActionBar().setTitle(appTitle);
 
-				// calling onPrepareOptionsMenu() to show action bar icons
+				// Calling onPrepareOptionsMenu() to show action bar icons
 				invalidateOptionsMenu();
 			}
 
 			public void onDrawerOpened(View drawerView) {
 				getActionBar().setTitle(navDrawerTitle);
 
-				// calling onPrepareOptionsMenu() to hide action bar icons
+				// Calling onPrepareOptionsMenu() to hide action bar icons
 				invalidateOptionsMenu();
 			}
 		};
 		navDrawerLayout.setDrawerListener(navDrawerToggle);
-
+		navDrawerList.setOnItemClickListener(new NavigationDrawerClickListener());
 	}
 
     @Override
@@ -166,6 +169,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_activity_actions, menu);
+
+		/*
+		Associate the searchable configuration with the SearchView by calling setSearchableInfo(SearchableInfo)
+
+		The call to getSearchableInfo() obtains a SearchableInfo object that is created from
+		the searchable configuration XML file. When the searchable configuration is correctly
+		associated with your SearchView, the SearchView starts an activity with the
+		ACTION_SEARCH intent when a user submits a query.
+		*/
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -201,7 +217,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	/**
 	 * On selecting items in Action Bar
-	 * */
+	 */
+
+	// Not in use at the moment
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Toggle navigation drawer on selecting action bar app icon/title
@@ -213,13 +232,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			case R.id.action_search:
 				// search action
 				return true;
-			/*case R.id.action_browse:
-				// location found
-				LocationFound();
-				return true;
-			case R.id.action_refresh:
-				// refresh
-				return true;*/
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -244,7 +256,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	/**
 	 * When using the ActionBarDrawerToggle, you must call it during
-	 * onPostCreate() and onConfigurationChanged()...
+	 * onPostCreate() and onConfigurationChanged()
 	 */
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -258,5 +270,52 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		super.onConfigurationChanged(newConfig);
 		// Pass any configuration change to the drawer toggles
 		navDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	/**
+	 * Navigation drawer item click listener
+	 * */
+	private class NavigationDrawerClickListener implements
+			ListView.OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+								long id) {
+			// Display view for selected nav drawer item
+			displayView(position);
+		}
+	}
+
+	/**
+	 * Displaying fragment view for selected navigation drawer list item
+	 */
+
+	// Using this for testing purposes.
+
+	private void displayView(int position) {
+		// Update the main content by replacing fragments
+		Fragment fragment = null;
+		switch (position) {
+			case 0:
+				fragment = new HomeFragment();
+				break;
+
+			default:
+				break;
+		}
+
+		if (fragment != null) {
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame_container, fragment).commit();
+
+			// Update selected item and title, then close the drawer
+			navDrawerList.setItemChecked(position, true);
+			navDrawerList.setSelection(position);
+			setTitle(navDrawerTitles[position]);
+			navDrawerLayout.closeDrawer(navDrawerList);
+		} else {
+			// Error in creating fragment
+			Log.e("MainActivity", "Error in creating fragment");
+		}
 	}
 }

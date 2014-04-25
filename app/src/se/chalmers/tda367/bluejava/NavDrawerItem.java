@@ -2,6 +2,10 @@ package se.chalmers.tda367.bluejava;
 
 /**
  * Created by iDavid on 2014-04-24.
+ *
+ * Represents an object in the navigation drawer list.
+ *
+ * A NavDrawerItem has a Title and an Icon in front of it
  */
 public class NavDrawerItem {
 

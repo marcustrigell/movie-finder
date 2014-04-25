@@ -40,22 +40,22 @@ public class NavDrawerListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View view, ViewGroup viewGroup) {
+	public View getView(int position, View convertView, ViewGroup viewGroup) {
 
 		// Null check
-		if (view == null) {
+		if (convertView == null) {
 			LayoutInflater mInflater = (LayoutInflater)
 					context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-			view = mInflater.inflate(R.layout.nav_drawer_list_item, null);
+			convertView = mInflater.inflate(R.layout.nav_drawer_list_item, null);
 		}
 
 		//
-		ImageView imgIcon = (ImageView) view.findViewById(R.id.icon);
-		TextView textTitle = (TextView) view.findViewById(R.id.title);
+		ImageView imgIcon = (ImageView) convertView.findViewById(R.id.icon);
+		TextView textTitle = (TextView) convertView.findViewById(R.id.title);
 
 		imgIcon.setImageResource(navDrawerItems.get(position).getIcon());
 		textTitle.setText(navDrawerItems.get(position).getTitle());
 
-		return view;
+		return convertView;
 	}
 }

@@ -5,10 +5,9 @@
     <!-- Search button -->
     <item android:id="@+id/action_search"
           android:actionViewClass="android.widget.SearchView"
-          android:hint="Search movie"
           android:icon="@drawable/ic_action_search"
           android:showAsAction="collapseActionView|ifRoom"
-          android:title="@string/action_search" />
+          android:title="@string/search_title" />
 
     <!-- Browse menu -->
 
