@@ -8,8 +8,10 @@
     <string name="menu_button_text">Menu</string>
     <string name="search_button_text">Search</string>
     <string name="search_hint">Search movie</string>
+    <string name="search_label">Search</string>
     <string name="search_title">Search</string>
     <string name="title_activity_display_results">Results</string>
     <string name="title_activity_display_movie">Movie</string>
     <string name="title_activity_search_results">Search Results</string>
+    <string name="title_nav_drawer">Menu</string>
 </resources>

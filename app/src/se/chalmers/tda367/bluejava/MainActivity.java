@@ -33,8 +33,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private DrawerLayout navDrawerLayout;
 	private ListView navDrawerList;
 	private ActionBarDrawerToggle navDrawerToggle;
-	private ArrayList<NavDrawerItem> navDrawerItems;
-	private NavDrawerListAdapter navDrawerAdapter;
+	private ArrayList<INavDrawerItem> navDrawerItems;
+	private NavDrawerAdapter navDrawerAdapter;
 
 	/* -- Navigation Drawer Title -- */
 	private CharSequence navDrawerTitle;
@@ -106,7 +106,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		/* -- Navigation Drawer -- */
 
 		// Set title for navigation drawer
-		navDrawerTitle = getTitle();
+		navDrawerTitle = getResources().getString(R.string.title_nav_drawer);
 
 		// Get titles for navigation drawer items
 		navDrawerTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -117,19 +117,44 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		navDrawerList = (ListView) findViewById(R.id.nav_drawer);
 
-		navDrawerItems = new ArrayList<NavDrawerItem>();
+		navDrawerItems = new ArrayList<INavDrawerItem>();
 
-		// Fill array with navDrawerItems
+/* ------------------------------------------------------------------------------------------------------------ */
+
+		/* This part should be implemented smarter */
+
+		// Fill array with navDrawerItems and navDrawerSections
 		// Home
 		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
-		// Movies
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[1], navDrawerIcons.getResourceId(1, -1)));
+
+		// Section - Browse Movies
+		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
+
+		// Latest
+		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
+
+		// Top Rated
+		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
+
+		// Recommended
+		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
+
+		// Section - Your Profile
+		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
+
+		// Favorites
+		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+
+		// Seen
+		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
+
+/* ------------------------------------------------------------------------------------------------------------ */
 
 		// Recycle the typed array for later re-use (necessary for some reason)
 		navDrawerIcons.recycle();
 
 		// Set the navigation drawer list adapter
-		navDrawerAdapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
+		navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), navDrawerItems);
 		navDrawerList.setAdapter(navDrawerAdapter);
 
 		// Enabling action bar app icon and behaving it as toggle button
@@ -294,14 +319,44 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private void displayView(int position) {
 		// Update the main content by replacing fragments
 		Fragment fragment = null;
-		switch (position) {
-			case 0:
-				fragment = new HomeFragment();
-				break;
 
-			default:
-				break;
+		if (position == 0) {
+			fragment = new HomeFragment();
+		} else if (position == 1) {
+			;
+		} else if (position == 2) {
+			fragment = new TempLatestFragment();
+		} else if (position == 3) {
+			fragment = new TempPopularFragment();
+		} else if (position == 4) {
+			fragment = new TempRatedFragment();
+		} else {
+			// For now...
+			fragment = new HomeFragment();
 		}
+
+		/* ------------- I tried this ------------- */
+
+		// I tried making a query, but didn't succeed... ;)
+		// My thought is working with "discover" in themoviedb-API somehow.
+
+		/*Intent intent = new Intent(this, DisplayResultsActivity.class);
+
+		if (position == 0) {
+			fragment = new HomeFragment();
+		} else if (position == 1) {
+			;
+		} else if (position == 2) {
+			intent.putExtra(EXTRA_MESSAGE, "latest");
+		} else if (position == 3) {
+			intent.putExtra(EXTRA_MESSAGE, "popular");
+		} else if (position == 4) {
+			intent.putExtra(EXTRA_MESSAGE, "rated");
+		}
+
+		startActivity(intent);*/
+
+		/* ------------- up to here ------------- */
 
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();

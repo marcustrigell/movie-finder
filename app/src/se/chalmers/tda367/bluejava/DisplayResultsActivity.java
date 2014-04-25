@@ -110,8 +110,13 @@ public class DisplayResultsActivity extends ListActivity {
         }
     }
 
-    public void findMovies(String title) {
-        httpHandler.get(movieApi.createMovieQuery(title), this);
+    public void findMovies(String type, String title) {
+        if (type.equals("discover")) {
+			httpHandler.get(movieApi.createDiscoverMovieQuery(title), this);
+		} else {
+			httpHandler.get(movieApi.createMovieQuery(title), this);
+		}
+
     }
 
     private void showToast(String message) {
@@ -139,17 +144,20 @@ public class DisplayResultsActivity extends ListActivity {
 	 * Handling intent data
 	 */
 	private void handleIntent(Intent intent) {
-		String query;
+		String type, query;
 
 		// Check if query comes from search field in activity bar
 		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 			query = intent.getStringExtra(SearchManager.QUERY);
+			type = "search";
 		}
 
 		// Otherwise it comes from navigation drawer browsing
 		else {
-			query = ""; // TODO
+			query = "latest"; // intent.getStringExtra("EXTRA_MESSAGE");
+			type = "discover";
 		}
-		findMovies(query);
+		
+		findMovies(type, query);
 	}
 }

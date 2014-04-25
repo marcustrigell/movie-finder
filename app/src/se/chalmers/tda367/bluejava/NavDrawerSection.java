@@ -1,27 +1,23 @@
 package se.chalmers.tda367.bluejava;
 
-import android.content.Context;
-
 /**
- * Created by iDavid on 2014-04-24.
+ * Created by iDavid on 2014-04-25.
  *
- * Represents an object in the navigation drawer list.
+ * Represents a header of a section in the navigation drawer list.
  */
-public class NavDrawerItem implements INavDrawerItem {
+public class NavDrawerSection implements INavDrawerItem {
 
-	public static final int ITEM_TYPE = 1 ;
-
+	public static final int SECTION_TYPE = 0;
 	private String label;
-	private int icon;
+	private int icon = -1;
 
-	public NavDrawerItem(String label, int icon) {
+	public NavDrawerSection(String label) {
 		this.label = label;
-		this.icon = icon;
 	}
 
 	@Override
 	public int getType() {
-		return ITEM_TYPE;
+		return SECTION_TYPE;
 	}
 
 	public String getLabel() {
