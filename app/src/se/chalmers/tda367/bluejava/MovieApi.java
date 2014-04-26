@@ -23,6 +23,24 @@ public class MovieApi {
         return query;
     }
 
+	/**
+	 * Creates a query with an argument for discovering different movies
+	 */
+	public String createDiscoverMovieQuery(String sortBy) {
+		String sorting = "";
+
+		if (sortBy.equals("latest")) {
+			sorting = "release_date.desc";
+		} else if (sortBy.equals("popular")) {
+			sorting = "popularity.desc";
+		} else if (sortBy.equals("rated")) {
+			sorting = "vote_average.desc";
+		}
+
+		String query = baseUrl + "discover/movie?query=" + sorting + "&" + apiKey;
+		return query;
+	}
+
     public String getThumbnailURL(String posterPath) {
         return imageBaseUrl + posterSizes[0] + posterPath;
     }

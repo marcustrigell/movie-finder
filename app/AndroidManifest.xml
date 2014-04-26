@@ -10,16 +10,20 @@
             android:label="@string/app_name"
             android:icon="@drawable/ic_launcher"
             android:name="BlueJava">
+
+        <!-- Main Activity -->
         <activity android:name="MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                       android:resource="@xml/searchable" />
+            <meta-data
+                    android:name="android.app.default_searchable"
+                    android:value=".DisplayResultsActivity" />
         </activity>
 
+        <!-- Display Results Activity -->
         <activity android:name=".DisplayResultsActivity"
                   android:label="@string/title_activity_display_results"
                   android:parentActivityName="se.chalmers.tda367.bluejava.MainActivity" >
@@ -27,15 +31,20 @@
                        android:value="se.chalmers.tda367.bluejava.MainActivity" />
             <meta-data android:name="android.app.searchable"
                        android:resource="@xml/searchable" />
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
         </activity>
 
+        <!-- Display Movie Activity -->
         <activity android:name=".DisplayMovieActivity"
                   android:label="@string/title_activity_display_movie"
-                  android:parentActivityName="se.chalmers.tda367.bluejava.DisplayMovieActivity" >
+                  android:parentActivityName="se.chalmers.tda367.bluejava.DisplayResultsActivity" >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value="se.chalmers.tda367.bluejava.MainActivity" />
             <meta-data android:name="android.app.searchable"
                        android:resource="@xml/searchable" />
         </activity>
+
     </application>
 </manifest>

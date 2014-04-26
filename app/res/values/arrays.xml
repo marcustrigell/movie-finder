@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Navigation Drawer -->
+
+    <!-- Titles -->
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Browse Movies</item>
+        <item>Latest</item>
+        <item>Most Popular</item>
+        <item>Top Rated</item>
+        <item>Your Profile</item>
+        <item>Favorites</item>
+        <item>Seen</item>
+    </string-array>
+
+    <!-- Icons -->                              <!-- TODO: Get the right icons! -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+    </array>
+
+</resources>
