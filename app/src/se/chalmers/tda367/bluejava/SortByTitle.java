@@ -1,6 +1,5 @@
 package se.chalmers.tda367.bluejava;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,7 @@ import java.util.TreeMap;
  * @author Marcus Trigell
  *
  */
-public class SortByTitle implements ISort {
+public class SortByTitle implements SortMethod {
 
     /**
      * The method sorts the objects in ascending alphabetical

@@ -11,7 +11,7 @@ import java.util.List;
  * @author Marcus Trigell
  *
  */
-public interface ISort {
+public interface SortMethod {
 
     /**
      * Method for sorting a list of Movie-objects.

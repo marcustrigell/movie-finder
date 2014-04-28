@@ -17,7 +17,7 @@ public class SortByYearTest extends TestCase {
         //    titles.add(movie.getTitle()); // TODO
         //}
 
-        //ISort sortMethod = new SortByTitle();
+        //SortMethod sortMethod = new SortByTitle();
         //list = sortMethod.sort(list);
 
         //int index = 0;

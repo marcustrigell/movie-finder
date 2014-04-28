@@ -27,7 +27,7 @@ public class DisplayResultsActivity extends ListActivity {
 
     private List<Movie> movies;
 
-    private ISort sortMethod;
+    private SortMethod sortMethod;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

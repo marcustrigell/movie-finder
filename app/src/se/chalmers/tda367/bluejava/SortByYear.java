@@ -13,7 +13,7 @@ import java.util.TreeMap;
  * @author Marcus Trigell
  *
  */
-public class SortByYear implements ISort {
+public class SortByYear implements SortMethod {
 
     /**
      * The method sorts the Movie-objects in ascending
@@ -28,16 +28,18 @@ public class SortByYear implements ISort {
         }
 
         // @see SortByTitle for more info about the following code.
-        Map<Integer, Movie> map = new TreeMap<Integer, Movie>();
+        Map<String, Movie> map = new TreeMap<String, Movie>();
 
         for(Movie movie : list) {
 
-            Integer releaseYear;
+            String releaseYear = movie.getReleaseYear();
+
+            /*Integer releaseYear;
             try {
                 releaseYear = Integer.parseInt(movie.getReleaseYear());
             } catch (NumberFormatException e) {
                 releaseYear = 0;
-            }
+            }*/
 
             map.put(releaseYear, movie);
 
