@@ -19,8 +19,8 @@ public class HttpHandler {
         this.httpClient = httpClient;
     }
 
-    public void get(String url, DisplayResultsActivity displayResultsActivity) {
-        getMoviesAsyncTask = new GetMoviesAsyncTask(url, displayResultsActivity).
+    public void get(String url, JSONResultHandler jsonResultHandler) {
+        getMoviesAsyncTask = new GetMoviesAsyncTask(url, jsonResultHandler).
                 executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
@@ -45,11 +45,11 @@ public class HttpHandler {
 
     private class GetMoviesAsyncTask extends AsyncTask<Void, Integer, String> {
         private final String url;
-        private final DisplayResultsActivity displayResultsActivity;
+        private final JSONResultHandler jsonResultHandler;
 
-        public GetMoviesAsyncTask(String url, DisplayResultsActivity displayResultsActivity) {
+        public GetMoviesAsyncTask(String url, JSONResultHandler jsonResultHandler) {
             this.url = url;
-            this.displayResultsActivity = displayResultsActivity;
+            this.jsonResultHandler = jsonResultHandler;
         }
 
         @Override
@@ -59,8 +59,8 @@ public class HttpHandler {
 
         @Override
         protected void onPostExecute(String result) {
-            if (displayResultsActivity != null) {
-                displayResultsActivity.handleSearchResults(result);
+            if (jsonResultHandler != null) {
+                jsonResultHandler.handleJSONResult(result);
             }
         }
     }

@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
-public class DisplayResultsActivity extends ListActivity {
+public class DisplayResultsActivity extends ListActivity implements JSONResultHandler {
 
     private AndroidHttpClient httpClient;
 
@@ -72,7 +72,9 @@ public class DisplayResultsActivity extends ListActivity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-    public void handleSearchResults(String json) {
+
+    @Override
+    public void handleJSONResult(String json) {
 
         if (json == null) {
             return;
