@@ -2,6 +2,7 @@ package se.chalmers.tda367.bluejava;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -10,18 +11,49 @@ import com.squareup.picasso.Picasso;
 
 public class DisplayMovieActivity extends Activity {
 
-    private Movie movie;
+    private AndroidHttpClient httpClient;
+
+    private HttpHandler httpHandler;
+
     private MovieApi movieApi;
+
+    private Movie movie;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.display_movie_activity);
 
-        Intent intent = getIntent();
-        movie = (Movie)intent.getParcelableExtra("key1");
         movieApi = new MovieApi();
 
+        httpClient = HttpHandler.getAndroidHttpClient(this);
+
+        httpHandler = new HttpHandler(httpClient);
+
+        Intent intent = getIntent();
+
+        movie = intent.getParcelableExtra("key1");
+
+        handleIntent(intent);
+
         loadInfo();
+    }
+
+    /**
+     * Handling intent data
+     * @param intent The intention of this activity
+     */
+    private void handleIntent(Intent intent) {
+        intent.getAction();
+        getMovieDetails();
+    }
+
+    /**
+     * Get all info about or movie
+     */
+    private void getMovieDetails() {
+        String query = movieApi.getMovieDetailsQuery(movie.getID());
+        /*httpHandler.get(query, this);*/
+        /*movie.addDetails();*/
     }
 
     public void loadInfo() {

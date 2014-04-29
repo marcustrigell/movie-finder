@@ -112,9 +112,9 @@ public class DisplayResultsActivity extends ListActivity {
 
     public void findMovies(String type, String title) {
         if (type.equals("discover")) {
-			httpHandler.get(movieApi.createDiscoverMovieQuery(title), this);
+			httpHandler.get(movieApi.getDiscoverMovieQuery(title), this);
 		} else {
-			httpHandler.get(movieApi.createMovieQuery(title), this);
+			httpHandler.get(movieApi.getSearchMovieQuery(title), this);
 		}
 
     }
