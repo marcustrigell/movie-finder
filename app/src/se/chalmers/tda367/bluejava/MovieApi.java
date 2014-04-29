@@ -18,15 +18,30 @@ public class MovieApi {
         posterSizes = new String[]{"w92", "w154", "w185", "w342", "w500", "w780", "original"};
     }
 
-    public String createMovieQuery(String title) {
-        String query = baseUrl + "search/movie?query=" + title + "&" + apiKey;
-        return query;
+    public String getSearchMovieQuery(String title) {
+        return finalizeMovieQuery("search/movie?query=" + title);
+    }
+
+    public String getMovieDetailsQuery(String id) {
+        return finalizeMovieQuery("movie/" + id);
+    }
+
+    public String getMovieCreditsQuery(String id) {
+        return finalizeMovieQuery("movie/" + id + "/credits");
+    }
+
+    public String getMovieImagesQuery(String id) {
+        return finalizeMovieQuery("movie/" + id + "/images");
+    }
+
+    public String getMovieVideosQuery(String id) {
+        return finalizeMovieQuery("movie/" + id + "/videos");
     }
 
 	/**
 	 * Creates a query with an argument for discovering different movies
 	 */
-	public String createDiscoverMovieQuery(String sortBy) {
+	public String getDiscoverMovieQuery(String sortBy) {
 		String sorting = "";
 
 		if (sortBy.equals("latest")) {
@@ -37,9 +52,15 @@ public class MovieApi {
 			sorting = "vote_average.desc";
 		}
 
-		String query = baseUrl + "discover/movie?query=" + sorting + "&" + apiKey;
-		return query;
+        return finalizeMovieQuery("discover/movie?query=" + sorting);
 	}
+
+    /**
+     * Adds beginning and ending to the query before returning it
+     */
+    public String finalizeMovieQuery(String query) {
+        return baseUrl + query + "&" + apiKey;
+    }
 
     public String getThumbnailURL(String posterPath) {
         return imageBaseUrl + posterSizes[0] + posterPath;
