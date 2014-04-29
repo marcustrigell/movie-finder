@@ -10,14 +10,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import java.util.List;
 
 
-public class DisplayResultsActivity extends ListActivity {
+public class DisplayResultsActivity extends ListActivity implements AdapterView.OnItemSelectedListener {
 
     private AndroidHttpClient httpClient;
 
@@ -33,6 +31,18 @@ public class DisplayResultsActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_results_activity);
+
+        // Following block is used to populate the sort-spinner with choices
+        Spinner spinner = (Spinner) findViewById(R.id.sort_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.sort_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        // Set listener to the spinner
+        spinner.setOnItemSelectedListener(this);
 
 		// Get the action bar
 		ActionBar actionBar = getActionBar();
@@ -54,7 +64,7 @@ public class DisplayResultsActivity extends ListActivity {
         httpHandler = new HttpHandler(httpClient);
 
         /* Set default sort method to sort by title in ascending order. */
-        sortMethod = new SortByTitle();
+        sortMethod = new SortByNothing();
 
 		handleIntent(getIntent());
     }
@@ -101,8 +111,10 @@ public class DisplayResultsActivity extends ListActivity {
      */
     public void displayMovies(List<Movie> movies) {
         if (movies == null) {
-            TextView textView = (TextView) findViewById(R.id.sort_label);
-            textView.setText("Sök igen");
+            showToast("No Hits\n" + "Search again");
+            // This doesn't work anymore when spinner was added instead of textfield
+/*            TextView textView = (TextView) findViewById(R.id.sort_label);
+            textView.setText("Sök igen");*/
         } else {
             DisplayResultsArrayAdapter arrayAdapter = new DisplayResultsArrayAdapter(this,
                     R.layout.display_results_list_item, movies, movieApi);
@@ -123,15 +135,13 @@ public class DisplayResultsActivity extends ListActivity {
         Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    /*public void sortMovies(View view) {
-        // Sortera
-        showToast("Sorterar!!!");
-    }*/
-
     public void sortMovies(View view) {
-        // Sortera
-        showToast("Sorterar!");
-        displayMovies(sortMethod.sort(movies));
+        if(sortMethod instanceof SortByNothing) {
+            showToast("Choose sort method");
+        } else {
+            showToast("Sorting");
+            displayMovies(sortMethod.sort(movies));
+        }
     }
 
 	@Override
@@ -160,4 +170,24 @@ public class DisplayResultsActivity extends ListActivity {
 		
 		findMovies(type, query);
 	}
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        if (pos == 1) {
+            sortMethod = new SortByTitle();
+        } else if (pos == 2) {
+            sortMethod = new SortByYear();
+        } else if (pos == 3) {
+            sortMethod = new SortByRating();
+        } else if (pos == 4) {
+            sortMethod = new SortByVoteCount();
+        } else if (pos == 5) {
+            sortMethod = new SortByPopularity();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        ;
+    }
 }
