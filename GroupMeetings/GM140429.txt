@@ -1,0 +1,43 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 M\'f6tesagenda 140429\
+\
+Date:\
+140429\
+\
+Facilitator:\
+Marcus Trigell\
+\
+Participants:\
+Marcus Trigell\
+Tobias Andersen (Supervisor)\
+Axel Niklasson (Writer)\
+\
+1.  M\'f6tespunkter\
+\
+    a. Vart st\'e5r vi? \
+    b. Programmering\
+    c. Testning\
+\
+2.  Fr\'e5n f\'f6rra m\'f6tet\
+\
+    Axel har jobbat med Settings och lagt in funktionalitet f\'f6r att anv\'e4nda settings i appen. Marcus har jobbat med sortering och Tobbe har styrt upp Movie-klassen med mer instansvariabler och funktionalitet.\
+\
+3.  Diskussion\
+\
+    a. Alla jobbar med sitt, fungerar bra. Inte h\'e4nt s\'e5 mycket sen ig\'e5r.\
+    b. Forts\'e4tter implementera UC, bara plocka. H\'f6g prio f\'f6rst, bygga p\'e5 funktionaliteten.\
+    c. Unit-testning k\'f6r vi som vanligt, mer android-specifika tester f\'e5r v\'e4nta d\'e5 det \'e4r otroligt invecklat.\
+\
+4.  Uppgifter\
+\
+    Marcus b\'f6rjar jobba med trailer f\'f6r video, Tobbe g\'f6r klart Movie och Axel arbetar vidare med settings och n\'e4r man blir klar \'e4r det bara att k\'f6ra vidare med UC. Strukturera in klasserna i paket, s\'e5 \'f6verblicken blir b\'e4ttre. G\'f6rs p\'e5 m\'e5ndag.\
+\
+5.  Sammanfattning\
+\
+    NA\
+}
