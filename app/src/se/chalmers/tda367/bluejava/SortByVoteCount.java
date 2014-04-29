@@ -6,15 +6,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by marcus on 2014-04-10.
+ * Created by marcus on 2014-04-28.
  */
-public class SortByPopularity implements SortMethod {
+public class SortByVoteCount implements SortMethod {
 
-    /**
-     *
-     * @param list The list to be sorted.
-     * @return
-     */
     @Override
     public List<Movie> sort(List<Movie> list) {
 
@@ -27,9 +22,9 @@ public class SortByPopularity implements SortMethod {
 
         for(Movie movie : list) {
 
-            String popularity = movie.getPopularity();
+            String voteCount = movie.getVoteCount();
 
-            map.put(popularity, movie);
+            map.put(voteCount, movie);
 
         }
 

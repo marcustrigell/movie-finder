@@ -3,6 +3,7 @@ package se.chalmers.tda367.bluejava;
 import junit.framework.TestCase;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileReader;
@@ -21,23 +22,29 @@ public class SortByTitleTest extends TestCase {
 
     public void testSort() throws Exception {
 
-        //Scanner in = new Scanner(new FileReader("json.txt"));
-        //String json = in.nextLine();
+ /*       try {
+            Scanner in = new Scanner(new FileReader("json.txt"));
+            String json = in.nextLine();
 
-        //List<Movie> list = Movie.jsonToListOfMovies(json);
+            List<Movie> list = Movie.jsonToListOfMovies(json);
 
-        //List<String> titles = new ArrayList<String>();
-        //for(Movie movie : list) {
-        //    titles.add(movie.getTitle()); // TODO
-        //}
+            List<String> titles = new ArrayList<String>();
+            for (Movie movie : list) {
+                titles.add(movie.getTitle());
+            }
 
-        //ISort sortMethod = new SortByTitle();
-        //list = sortMethod.sort(list);
+            SortMethod sortMethod = new SortByTitle();
+            list = sortMethod.sort(list);
 
-        //int index = 0;
-        //for(Movie movie : list) {
-        //    assertTrue(movie.getTitle.equals(titles[index])); // TODO
-        //}
+            int index = 0;
+            for (Movie movie : list) {
+                assertTrue(movie.getTitle().equals(titles.get(index))); // TODO check titles
+            }
+        } catch (IOException e) {
+            ;
+        } finally {
+            ;
+        }*/
 
     }
 }

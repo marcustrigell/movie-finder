@@ -6,18 +6,22 @@
             android:id="@+id/top_bar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
-        <TextView
-            android:id="@+id/sort_label"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Sort by name"/>
 
+        <Spinner
+                android:id="@+id/sort_spinner"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"/>
         <Button
                 android:id="@+id/button"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:onClick="sortMovies"
                 android:text="Sort"/>
+<!--        <TextView
+            android:id="@+id/sort_label"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Sort by name"/>-->
 
     </LinearLayout>
     <ListView

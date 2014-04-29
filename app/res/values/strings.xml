@@ -12,4 +12,5 @@
     <string name="title_activity_display_movie">Movie</string>
     <string name="title_activity_search_results">Search Results</string>
     <string name="title_nav_drawer">Menu</string>
+    <string name="settings_title">Settings</string>
 </resources>

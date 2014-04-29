@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:title="Use English as main language"
+        android:key="main_language"
+        android:defaultValue="true"
+        android:summary="Change main language."
+    ></CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:title="Play sound when login"
+        android:key="login_sound"
+        android:defaultValue="true"
+        android:summary="Change login sound."
+    ></CheckBoxPreference>
+
+</PreferenceScreen>

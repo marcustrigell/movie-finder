@@ -46,5 +46,10 @@
                        android:resource="@xml/searchable" />
         </activity>
 
+        <!-- Settings Activity -->
+        <activity android:name=".SettingsActivity"
+                  android:label="@string/settings_title"
+        ></activity>
+
     </application>
 </manifest>
