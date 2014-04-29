@@ -34,13 +34,6 @@ public class SortByYear implements SortMethod {
 
             String releaseYear = movie.getReleaseYear();
 
-            /*Integer releaseYear;
-            try {
-                releaseYear = Integer.parseInt(movie.getReleaseYear());
-            } catch (NumberFormatException e) {
-                releaseYear = 0;
-            }*/
-
             map.put(releaseYear, movie);
 
         }
