@@ -72,7 +72,6 @@ public class DisplayResultsActivity extends ListActivity implements JSONResultHa
 		return super.onCreateOptionsMenu(menu);
 	}
 
-
     @Override
     public void handleJSONResult(String json) {
 

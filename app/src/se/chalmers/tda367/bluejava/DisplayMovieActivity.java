@@ -9,7 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
-public class DisplayMovieActivity extends Activity {
+public class DisplayMovieActivity extends Activity implements JSONResultHandler {
 
     private AndroidHttpClient httpClient;
 
@@ -33,27 +33,26 @@ public class DisplayMovieActivity extends Activity {
 
         movie = intent.getParcelableExtra("key1");
 
-        handleIntent(intent);
+        getMovieDetails(movie.getID());
 
         loadInfo();
     }
 
     /**
-     * Handling intent data
-     * @param intent The intention of this activity
+     * Get all info about our movie
      */
-    private void handleIntent(Intent intent) {
-        intent.getAction();
-        getMovieDetails();
+    private void getMovieDetails(String id) {
+        httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
     }
 
-    /**
-     * Get all info about or movie
-     */
-    private void getMovieDetails() {
-        String query = movieApi.getMovieDetailsQuery(movie.getID());
-        /*httpHandler.get(query, this);*/
-        /*movie.addDetails();*/
+    @Override
+    public void handleJSONResult(String json) {
+
+        if (json == null) {
+            return;
+        }
+
+        /*movie.addDetails(json);*/
     }
 
     public void loadInfo() {

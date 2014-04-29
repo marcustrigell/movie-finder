@@ -10,10 +10,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Movie implements Parcelable {
-    private String id, title, releaseYear, popularity, rating, voteCount, posterPath;
 
-    public Movie(JSONObject jsonObject) {
-        try {
+    private String id, title, releaseYear, popularity, rating, voteCount,
+            posterPath, imdbID, budget, overview, tagline, runtime, revenue;
+
+    private JSONArray genres;
+
+    public static class Builder {
+
+        // Required
+        private final String id, title, releaseYear, popularity, rating, voteCount, posterPath;
+
+        // Might be added later
+        private JSONArray genres;
+        private String imdbID, budget, overview, tagline, runtime, revenue;
+
+        public Builder(JSONObject jsonObject) throws JSONException {
             id = jsonObject.getString("id");
             title = jsonObject.getString("title");
             releaseYear = jsonObject.getString("release_date");
@@ -22,13 +34,39 @@ public class Movie implements Parcelable {
             voteCount = jsonObject.getString("vote_count");
             posterPath = jsonObject.getString("poster_path");
         }
-        catch (JSONException e) {
-            throw new RuntimeException("JSON parsing in Movie.java error!!");
+
+        public Builder details(JSONObject jsonObject) throws JSONException {
+            genres = new JSONArray(jsonObject.getJSONArray("genres"));
+            imdbID = jsonObject.getString("imdb_id");
+            budget = jsonObject.getString("budget");
+            overview = jsonObject.getString("overview");
+            tagline = jsonObject.getString("tagline");
+            runtime = jsonObject.getString("runtime");
+            revenue = jsonObject.getString("revenue");
+
+            return this;
+        }
+
+        public Movie build() {
+            return new Movie(this);
         }
     }
 
-    public Movie(String json) throws JSONException {
-        this(new JSONObject(json));
+    private Movie(Builder builder) {
+        id = builder.id;
+        title = builder.title;
+        releaseYear = builder.releaseYear;
+        popularity = builder.popularity;
+        rating = builder.rating;
+        voteCount = builder.voteCount;
+        posterPath = builder.posterPath;
+        genres = builder.genres;
+        imdbID = builder.imdbID;
+        budget = builder.budget;
+        overview = builder.overview;
+        tagline = builder.tagline;
+        runtime = builder.runtime;
+        revenue = builder.revenue;
     }
 
     /* Used when restoring object from parcel. */
@@ -76,7 +114,7 @@ public class Movie implements Parcelable {
 
             for (int i = 0; i < movieArray.length(); ++i) {
                 JSONObject movieJSON = movieArray.getJSONObject(i);
-                Movie movie = new Movie(movieJSON);
+                Movie movie = new Builder(movieJSON).build();
                 movies.add(movie);
             }
 
