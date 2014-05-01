@@ -2,14 +2,17 @@ package se.chalmers.tda367.bluejava;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
-public class DisplayMovieActivity extends Activity implements JSONResultHandler {
+public class DisplayMovieActivity extends Activity implements JSONResultHandler, View.OnClickListener {
 
     private AndroidHttpClient httpClient;
 
@@ -19,9 +22,15 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler 
 
     private Movie movie;
 
+    private String youtubeAddr;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.display_movie_activity);
+
+        // Set the trailer-buttons listener
+        Button button = (Button) findViewById(R.id.trailer);
+        button.setOnClickListener(this);
 
         movieApi = new MovieApi();
 
@@ -32,6 +41,9 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler 
         Intent intent = getIntent();
 
         movie = intent.getParcelableExtra("key1");
+
+        // This should be changed to a address which is stored in the movie object
+        youtubeAddr = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
         getMovieDetails(movie.getID());
 
@@ -80,5 +92,11 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler 
         descriptionTextView.setText("[Tagline]");
         releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
         popularityTextView.setText("Popularity: " + popularityRounded);
+    }
+
+    // Used when user clicks on movie trailer button
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
     }
 }
