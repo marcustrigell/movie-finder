@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.*;
 
+import java.util.Collections;
 import java.util.List;
 
 public class DisplayResultsActivity extends ListActivity
@@ -26,6 +27,8 @@ public class DisplayResultsActivity extends ListActivity
     private List<Movie> movies;
 
     private SortMethod sortMethod;
+
+    private boolean movieListAscending;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,9 @@ public class DisplayResultsActivity extends ListActivity
 
         /* Set default sort method to sort by title in ascending order. */
         sortMethod = new SortByNothing();
+
+        /* Set the order to sort the movie list */
+        movieListAscending = true;
 
 		handleIntent(getIntent());
     }
@@ -141,7 +147,26 @@ public class DisplayResultsActivity extends ListActivity
             showToast("Choose sort method");
         } else {
             showToast("Sorting");
-            displayMovies(sortMethod.sort(movies));
+            if(movieListAscending) {
+                displayMovies(sortMethod.sort(movies));
+            } else {
+                List<Movie> tmp = sortMethod.sort(movies);
+                Collections.reverse(tmp);
+                displayMovies(tmp);
+            }
+
+        }
+    }
+
+    public void changeSortOrder(View view) {
+        Button button = (Button) view.findViewById(R.id.ascending);
+        if(movieListAscending) {
+            movieListAscending = false;
+            button.setText("Descending");
+
+        } else {
+            movieListAscending = true;
+            button.setText("Ascending");
         }
     }
 

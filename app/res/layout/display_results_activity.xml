@@ -5,16 +5,23 @@
     <LinearLayout
             android:id="@+id/top_bar"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent" android:weightSum="1">
 
         <Spinner
                 android:id="@+id/sort_spinner"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"/>
         <Button
-                android:id="@+id/button"
-                android:layout_height="wrap_content"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Ascending"
+                android:onClick="changeSortOrder"
+                android:id="@+id/ascending"/>
+        <Button
+                android:id="@+id/button"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
                 android:onClick="sortMovies"
                 android:text="Sort"/>
 <!--        <TextView
