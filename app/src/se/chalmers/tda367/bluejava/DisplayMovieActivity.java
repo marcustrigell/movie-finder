@@ -69,12 +69,12 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler,
 
     public void loadInfo() {
         //Finding the fields that is to be set to values
-        TextView titleTextView = (TextView) findViewById(R.id.title);
         ImageView posterImageView = (ImageView) findViewById(R.id.posterImageView);
-        TextView descriptionTextView = (TextView) findViewById(R.id.description);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        TextView titleTextView = (TextView) findViewById(R.id.title);
+        TextView tagLineTextView = (TextView) findViewById(R.id.tagline);
         TextView releaseYearTextView = (TextView) findViewById(R.id.release_year);
         TextView popularityTextView = (TextView) findViewById(R.id.popularity);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         //Inserting the image in the poster image view
         String url = movieApi.getThumbnailURL(movie.getPosterPath());
@@ -89,9 +89,9 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler,
 
         //Setting the strings to values
         titleTextView.setText(movie.getTitle());
-        descriptionTextView.setText("[Tagline]");
-        releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
-        popularityTextView.setText("Popularity: " + popularityRounded);
+        tagLineTextView.setText("[Tagline]");
+        releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
+        popularityTextView.setText("" + popularityRounded);
     }
 
     // Used when user clicks on movie trailer button

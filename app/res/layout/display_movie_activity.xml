@@ -9,26 +9,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:weightSum="1" android:layout_marginTop="15dp">
         <ImageView
-                android:layout_width="151dp"
-                android:layout_height="201dp"
+                android:layout_width="158dp"
+                android:layout_height="262dp"
                 android:id="@+id/posterImageView" android:layout_gravity="left" android:background="@drawable/ic_launcher"
-                android:adjustViewBounds="false"/>
+                android:adjustViewBounds="false" android:layout_weight="0.73"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent">
-            <TextView
+                android:layout_height="fill_parent" android:weightSum="1">
+            <se.chalmers.tda367.bluejava.AutoResizeTextView
                     android:id="@+id/title"
-                    android:layout_width="250dp"
-                    android:layout_height="90dp"
+                    android:text="[Title]"
+                    android:layout_width="172dp"
+                    android:layout_height="53dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="50dp"
-                    android:text="[Title]" android:layout_marginLeft="15dp"/>
-            <TextView
-                    android:layout_width="230dp"
-                    android:layout_height="match_parent"
-                    android:textSize="30dp" android:gravity="center_vertical" android:layout_gravity="center"
-                    android:id="@+id/description" android:layout_marginLeft="15dp" android:text="[Tagline]"/>
+                    android:maxWidth="198dp" android:gravity="center_vertical|center_horizontal"/>
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            <se.chalmers.tda367.bluejava.AutoResizeTextView
+                    android:id="@+id/tagline"
+                    android:text="[Tagline]"
+                    android:textStyle="italic"
+                    android:layout_width="172dp"
+                    android:layout_height="53dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:maxWidth="198dp"/>
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            <se.chalmers.tda367.bluejava.AutoResizeTextView
+                    android:id="@+id/release_year"
+                    android:text="[Release year]"
+                    android:layout_width="172dp"
+                    android:layout_height="53dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:maxWidth="198dp"/>
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            <se.chalmers.tda367.bluejava.AutoResizeTextView
+                    android:id="@+id/popularity"
+                    android:text="[Popularity]"
+                    android:layout_width="172dp"
+                    android:layout_height="53dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:maxWidth="198dp"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -48,24 +80,12 @@
                 android:orientation="horizontal"
                 android:layout_width="347dp"
                 android:layout_height="49dp">
-            <TextView
-                    android:layout_width="177dp"
+            <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:gravity="bottom" android:id="@+id/release_year"
-                    android:text="[Release year]"/>
-            <TextView
-                    android:layout_width="201dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/popularity" android:gravity="bottom"
-                    android:text="[Popularity]"/>
+                    android:text="Trailer"
+                    android:id="@+id/trailer"
+                    android:layout_weight="0.00"/>
         </LinearLayout>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Watch Trailer"
-                android:id="@+id/trailer"
-                android:layout_weight="0.13"/>
     </LinearLayout>
 </LinearLayout>
