@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Movie implements Parcelable {
     private String id, title, releaseYear, popularity, rating, voteCount,
             posterPath, imdbID, budget, overview, tagline, runtime, revenue;
 
-    private JSONArray genres;
+    private List<String> genres;
 
     public static class Builder {
 
@@ -22,7 +23,7 @@ public class Movie implements Parcelable {
         private final String id, title, releaseYear, popularity, rating, voteCount, posterPath;
 
         // Might be added later
-        private JSONArray genres;
+        private List<String> genres;
         private String imdbID, budget, overview, tagline, runtime, revenue;
 
         public Builder(JSONObject jsonObject) throws JSONException {
@@ -36,13 +37,19 @@ public class Movie implements Parcelable {
         }
 
         public Builder details(JSONObject jsonObject) throws JSONException {
-            genres = new JSONArray(jsonObject.getJSONArray("genres"));
             imdbID = jsonObject.getString("imdb_id");
             budget = jsonObject.getString("budget");
             overview = jsonObject.getString("overview");
             tagline = jsonObject.getString("tagline");
             runtime = jsonObject.getString("runtime");
             revenue = jsonObject.getString("revenue");
+
+            genres = new ArrayList<String>();
+            JSONArray genresJson = jsonObject.getJSONArray("genres");
+
+            for (int i = 0; i < genresJson.length(); i++) {
+                genres.add(genresJson.get(i).toString());
+            }
 
             return this;
         }
@@ -99,6 +106,34 @@ public class Movie implements Parcelable {
 
     public String getPosterPath() {
         return posterPath;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public String getBudget() {
+        return budget;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public String getRevenue() {
+        return revenue;
     }
 
     public static List<Movie> jsonToListOfMovies(String json) {

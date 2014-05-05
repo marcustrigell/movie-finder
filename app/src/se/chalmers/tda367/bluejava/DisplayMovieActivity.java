@@ -8,8 +8,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class DisplayMovieActivity extends Activity implements JSONResultHandler {
+
+    private static final String TAG = "DisplayMovieActivity";
 
     private AndroidHttpClient httpClient;
 
@@ -34,8 +38,6 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler 
         movie = intent.getParcelableExtra("key1");
 
         getMovieDetails(movie.getID());
-
-        loadInfo();
     }
 
     /**
@@ -52,7 +54,14 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler 
             return;
         }
 
-        /*movie.addDetails(json);*/
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            movie = new Movie.Builder(jsonObject).details(jsonObject).build();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        loadInfo();
     }
 
     public void loadInfo() {
@@ -77,7 +86,7 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler 
 
         //Setting the strings to values
         titleTextView.setText(movie.getTitle());
-        descriptionTextView.setText("[Tagline]");
+        descriptionTextView.setText(movie.getTagline());
         releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
         popularityTextView.setText("Popularity: " + popularityRounded);
     }
