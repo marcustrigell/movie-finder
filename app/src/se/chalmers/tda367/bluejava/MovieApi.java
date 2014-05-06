@@ -59,7 +59,7 @@ public class MovieApi {
      * Adds beginning and ending to the query before returning it
      */
     public String finalizeMovieQuery(String query) {
-        return baseUrl + query + "&" + apiKey;
+        return baseUrl + query + (query.contains("?") ? "&" : "?") + apiKey;
     }
 
     public String getThumbnailURL(String posterPath) {

@@ -11,8 +11,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class DisplayMovieActivity extends Activity implements JSONResultHandler, View.OnClickListener {
+
+    private static final String TAG = "DisplayMovieActivity";
 
     private AndroidHttpClient httpClient;
 
@@ -46,8 +50,6 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler,
         youtubeAddr = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
         getMovieDetails(movie.getID());
-
-        loadInfo();
     }
 
     /**
@@ -64,17 +66,24 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler,
             return;
         }
 
-        /*movie.addDetails(json);*/
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            movie = new Movie.Builder(jsonObject).details(jsonObject).build();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        loadInfo();
     }
 
     public void loadInfo() {
         //Finding the fields that is to be set to values
-        TextView titleTextView = (TextView) findViewById(R.id.title);
         ImageView posterImageView = (ImageView) findViewById(R.id.posterImageView);
-        TextView descriptionTextView = (TextView) findViewById(R.id.description);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        TextView titleTextView = (TextView) findViewById(R.id.title);
+        TextView tagLineTextView = (TextView) findViewById(R.id.tagline);
         TextView releaseYearTextView = (TextView) findViewById(R.id.release_year);
         TextView popularityTextView = (TextView) findViewById(R.id.popularity);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         //Inserting the image in the poster image view
         String url = movieApi.getThumbnailURL(movie.getPosterPath());
@@ -89,9 +98,10 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler,
 
         //Setting the strings to values
         titleTextView.setText(movie.getTitle());
-        descriptionTextView.setText("[Tagline]");
-        releaseYearTextView.setText("Release year: " + movie.getReleaseYear());
-        popularityTextView.setText("Popularity: " + popularityRounded);
+
+        tagLineTextView.setText(movie.getTagline());
+        releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
+        popularityTextView.setText("" + popularityRounded);
     }
 
     // Used when user clicks on movie trailer button
