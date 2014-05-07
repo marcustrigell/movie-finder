@@ -26,10 +26,11 @@ public class Movie implements Parcelable {
     private String runtime;
     private String revenue;
     private List<String> genres;
+    private Credits credits;
 
     public static class Builder {
 
-        // Required
+        // Required basic movie info
         private final String id;
         private final String title;
         private final String releaseYear;
@@ -38,7 +39,7 @@ public class Movie implements Parcelable {
         private final String voteCount;
         private final String posterPath;
 
-        // Might be added later
+        // Additional movie info (optional)
         private List<String> genres;
         private String imdbID;
         private String budget;
@@ -46,6 +47,9 @@ public class Movie implements Parcelable {
         private String tagline;
         private String runtime;
         private String revenue;
+
+        // Movie credits (optional)
+        private Credits credits;
 
         public Builder(JSONObject jsonObject) throws JSONException {
             id = jsonObject.getString("id");
@@ -55,6 +59,16 @@ public class Movie implements Parcelable {
             rating = jsonObject.getString("vote_average");
             voteCount = jsonObject.getString("vote_count");
             posterPath = jsonObject.getString("poster_path");
+        }
+
+        public Builder(Movie movie) {
+            id = movie.getID();
+            title = movie.getTitle();
+            releaseYear = movie.getReleaseYear();
+            popularity = movie.getPopularity();
+            rating = movie.getRating();
+            voteCount = movie.getVoteCount();
+            posterPath = movie.getPosterPath();
         }
 
         public Builder details(JSONObject jsonObject) throws JSONException {
@@ -71,6 +85,12 @@ public class Movie implements Parcelable {
             for (int i = 0; i < genresJson.length(); i++) {
                 genres.add(genresJson.get(i).toString());
             }
+
+            return this;
+        }
+
+        public Builder credits(Credits credits) {
+            this.credits = credits;
 
             return this;
         }
@@ -95,6 +115,7 @@ public class Movie implements Parcelable {
         tagline = builder.tagline;
         runtime = builder.runtime;
         revenue = builder.revenue;
+        credits = builder.credits;
     }
 
     /* Used when restoring object from parcel. */
@@ -155,6 +176,10 @@ public class Movie implements Parcelable {
 
     public String getRevenue() {
         return revenue;
+    }
+
+    public Credits getCredits() {
+        return credits;
     }
 
     public static List<Movie> jsonToListOfMovies(String json) {

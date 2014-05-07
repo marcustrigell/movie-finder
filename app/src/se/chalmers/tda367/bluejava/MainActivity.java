@@ -3,7 +3,6 @@ package se.chalmers.tda367.bluejava;
 import android.app.*;
 import android.app.ActionBar.Tab;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -56,10 +54,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+        setupLayout();
+
+        // setupTabs();
+
 		appTitle = getTitle();
+	}
 
-
-		/* ------------------ Tobbe: I get exceptions with this code active  ------------------
+    private void setupTabs() {
+        /* ------------------ Tobbe: I get exceptions with this code active  ------------------
 
         viewPager = new ViewPager(this);
         viewPager.setId(R.id.pager);
@@ -101,88 +104,90 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         });
 
         ------------------------------------------------------------------------------------ */
+    }
 
+    private void setupLayout() {
 
-		/* -- Navigation Drawer -- */
+        /* -- Navigation Drawer -- */
 
-		// Set title for navigation drawer
-		navDrawerTitle = getResources().getString(R.string.title_nav_drawer);
+        // Set title for navigation drawer
+        navDrawerTitle = getResources().getString(R.string.title_nav_drawer);
 
-		// Get titles for navigation drawer items
-		navDrawerTitles = getResources().getStringArray(R.array.nav_drawer_items);
+        // Get titles for navigation drawer items
+        navDrawerTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
-		// Get icons for navigation drawer items
-		navDrawerIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        // Get icons for navigation drawer items
+        navDrawerIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
-		navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		navDrawerList = (ListView) findViewById(R.id.nav_drawer);
+        navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navDrawerList = (ListView) findViewById(R.id.nav_drawer);
 
-		navDrawerItems = new ArrayList<INavDrawerItem>();
+        navDrawerItems = new ArrayList<INavDrawerItem>();
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
 		/* This part should be implemented smarter */
 
-		// Fill array with navDrawerItems and navDrawerSections
-		// Home
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
+        // Fill array with navDrawerItems and navDrawerSections
+        // Home
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
 
-		// Section - Browse Movies
-		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
+        // Section - Browse Movies
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
 
-		// Latest
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
+        // Latest
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
 
-		// Top Rated
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
+        // Top Rated
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
 
-		// Recommended
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
+        // Recommended
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
 
-		// Section - Your Profile
-		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
+        // Section - Your Profile
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
 
-		// Favorites
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+        // Favorites
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
 
-		// Seen
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
+        // Seen
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
-		// Recycle the typed array for later re-use (necessary for some reason)
-		navDrawerIcons.recycle();
+        // Recycle the typed array for later re-use (necessary for some reason)
+        navDrawerIcons.recycle();
 
-		// Set the navigation drawer list adapter
-		navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), navDrawerItems);
-		navDrawerList.setAdapter(navDrawerAdapter);
+        // Set the navigation drawer list adapter
+        navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), navDrawerItems);
+        navDrawerList.setAdapter(navDrawerAdapter);
 
-		// Enabling action bar app icon and behaving it as toggle button
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
+        // Enabling action bar app icon and behaving it as toggle button
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
-		navDrawerToggle = new ActionBarDrawerToggle(this, navDrawerLayout,
-				R.drawable.ic_drawer, //nav menu toggle icon
-				R.string.app_name, // nav drawer open - description for accessibility
-				R.string.app_name // nav drawer close - description for accessibility
-		){
-			public void onDrawerClosed(View view) {
-				getActionBar().setTitle(appTitle);
+        navDrawerToggle = new ActionBarDrawerToggle(this, navDrawerLayout,
+                R.drawable.ic_drawer, //nav menu toggle icon
+                R.string.app_name, // nav drawer open - description for accessibility
+                R.string.app_name // nav drawer close - description for accessibility
+        ){
+            public void onDrawerClosed(View view) {
+                getActionBar().setTitle(appTitle);
 
-				// Calling onPrepareOptionsMenu() to show action bar icons
-				invalidateOptionsMenu();
-			}
+                // Calling onPrepareOptionsMenu() to show action bar icons
+                invalidateOptionsMenu();
+            }
 
-			public void onDrawerOpened(View drawerView) {
-				getActionBar().setTitle(navDrawerTitle);
+            public void onDrawerOpened(View drawerView) {
+                getActionBar().setTitle(navDrawerTitle);
 
-				// Calling onPrepareOptionsMenu() to hide action bar icons
-				invalidateOptionsMenu();
-			}
-		};
-		navDrawerLayout.setDrawerListener(navDrawerToggle);
-		navDrawerList.setOnItemClickListener(new NavigationDrawerClickListener());
-	}
+                // Calling onPrepareOptionsMenu() to hide action bar icons
+                invalidateOptionsMenu();
+            }
+        };
+        navDrawerLayout.setDrawerListener(navDrawerToggle);
+        navDrawerList.setOnItemClickListener(new NavigationDrawerClickListener());
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -225,7 +230,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     }
 
-	public void searchMovies(View view) {
+	/*public void searchMovies(View view) {
         Intent intent = new Intent(this, DisplayResultsActivity.class);
         EditText searchField = (EditText) findViewById(R.id.search_field);
 
@@ -238,7 +243,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 
         startActivity(intent);
-	}
+	}*/
 
 	/**
 	 * On selecting items in Action Bar
