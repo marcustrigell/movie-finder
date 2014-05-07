@@ -1,12 +1,6 @@
 package se.chalmers.tda367.bluejava;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.net.http.AndroidHttpClient;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,16 +8,7 @@ import org.json.JSONObject;
 public class MovieCastFragment extends MovieFragment {
 
     public MovieCastFragment(Activity activity, Movie movie) {
-        super(activity, movie);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_movie_cast, container, false);
-
-        getAdditionalInfo(movie.getID());
-
-        return rootView;
+        super(activity, movie, R.layout.fragment_movie_cast);
     }
 
     /**
@@ -33,10 +18,6 @@ public class MovieCastFragment extends MovieFragment {
      */
     @Override
     protected void getAdditionalInfo(String id) {
-        AndroidHttpClient httpClient = HttpHandler.getAndroidHttpClient(activity);
-
-        HttpHandler httpHandler = new HttpHandler(httpClient);
-
         httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
     }
 
@@ -68,6 +49,5 @@ public class MovieCastFragment extends MovieFragment {
     public void setupLayout() {
         TextView creditsIDTextView = (TextView) getView().findViewById(R.id.creditsID);
         creditsIDTextView.setText(movie.getCredits().getCreditsID());
-        creditsIDTextView.setTextColor(Color.RED);
     }
 }

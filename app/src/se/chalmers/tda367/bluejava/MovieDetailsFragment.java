@@ -3,12 +3,8 @@ package se.chalmers.tda367.bluejava;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.net.http.AndroidHttpClient;
-import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -18,18 +14,7 @@ import org.json.JSONObject;
 public class MovieDetailsFragment extends MovieFragment implements View.OnClickListener {
 
     public MovieDetailsFragment(Activity activity, Movie movie) {
-        super(activity, movie);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_movie_details, container, false);
-
-        getAdditionalInfo(movie.getID());
-
-        return rootView;
+        super(activity, movie, R.layout.fragment_movie_details);
     }
 
     /**
@@ -39,11 +24,6 @@ public class MovieDetailsFragment extends MovieFragment implements View.OnClickL
      */
     @Override
     protected void getAdditionalInfo(String id) {
-
-        AndroidHttpClient httpClient = HttpHandler.getAndroidHttpClient(activity);
-
-        HttpHandler httpHandler = new HttpHandler(httpClient);
-
         httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
     }
 

@@ -1,14 +1,14 @@
 package se.chalmers.tda367.bluejava;
 
-import android.app.*;
-import android.app.ActionBar.Tab;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -21,7 +21,7 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class MainActivity extends FragmentActivity {
 
     public final static String EXTRA_MESSAGE = "se.chalmers.tda367.bluejava.MESSAGE";
 
@@ -41,10 +41,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private String[] navDrawerTitles;
 	private TypedArray navDrawerIcons;
 
-	/* -- View Pager -- */
-    private ViewPager viewPager;
-    private TabsAdapter tabsAdapter;
-    private String[] tabs = { "Recommended", "Top Rated", "Latest" };
 
     /**
      * Called when the activity is first created.
@@ -56,55 +52,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         setupLayout();
 
-        // setupTabs();
-
 		appTitle = getTitle();
 	}
-
-    private void setupTabs() {
-        /* ------------------ Tobbe: I get exceptions with this code active  ------------------
-
-        viewPager = new ViewPager(this);
-        viewPager.setId(R.id.pager);
-        setContentView(viewPager);
-
-        final ActionBar bar = getActionBar();
-        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-
-        tabsAdapter = new TabsAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(tabsAdapter);
-
-        for (String tab_name : tabs) {
-            bar.addTab(bar.newTab().setText(tab_name)
-                    .setTabListener(this));
-        }
-
-        if (savedInstanceState != null) {
-            bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
-        }
-
-        *//**
-         * on swiping the viewpager make respective tab selected
-         * *//*
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                bar.setSelectedNavigationItem(position);
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int arg0) {
-            }
-        });
-
-        ------------------------------------------------------------------------------------ */
-    }
 
     private void setupLayout() {
 
@@ -214,36 +163,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		return super.onCreateOptionsMenu(menu);
 	}
-
-    @Override
-    public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
-        viewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-	/*public void searchMovies(View view) {
-        Intent intent = new Intent(this, DisplayResultsActivity.class);
-        EditText searchField = (EditText) findViewById(R.id.search_field);
-
-		try {
-			String message = searchField.getText().toString();
-			intent.putExtra(EXTRA_MESSAGE, message);
-
-		} catch (NullPointerException e) {
-
-		}
-
-        startActivity(intent);
-	}*/
 
 	/**
 	 * On selecting items in Action Bar

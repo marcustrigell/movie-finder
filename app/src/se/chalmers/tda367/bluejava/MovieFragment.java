@@ -1,6 +1,7 @@
 package se.chalmers.tda367.bluejava;
 
 import android.app.Activity;
+import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,18 +15,35 @@ public abstract class MovieFragment extends Fragment implements JSONResultHandle
 
     protected MovieApi movieApi;
 
-    public MovieFragment(Activity activity, Movie movie) {
+    protected int layoutID;
+
+    protected AndroidHttpClient httpClient;
+
+    protected HttpHandler httpHandler;
+
+    public MovieFragment(Activity activity, Movie movie, int layoutID) {
 
         this.movie = movie;
 
         this.activity = activity;
 
+        this.layoutID = layoutID;
+
+        httpClient = HttpHandler.getAndroidHttpClient(activity);
+
+        httpHandler = new HttpHandler(httpClient);
+
         movieApi = new MovieApi();
     }
 
     @Override
-    public abstract View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(layoutID, container, false);
+
+        getAdditionalInfo(movie.getID());
+
+        return rootView;
+    }
 
     /**
      * Get more info about our movie

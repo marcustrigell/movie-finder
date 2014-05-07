@@ -32,7 +32,7 @@ public class TabsAdapter extends FragmentPagerAdapter
             case 1:
                 return new MovieCastFragment(activity, movie);
             case 2:
-                return new LatestFragment();
+                return new MovieCrewFragment(activity, movie);
         }
 
         return null;
