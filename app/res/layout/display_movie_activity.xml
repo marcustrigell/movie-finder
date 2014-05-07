@@ -9,10 +9,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:weightSum="1" android:layout_marginTop="15dp">
         <ImageView
-                android:layout_width="158dp"
-                android:layout_height="262dp"
-                android:id="@+id/posterImageView" android:layout_gravity="left" android:background="@drawable/ic_launcher"
-                android:adjustViewBounds="false" android:layout_weight="0.73"/>
+                android:layout_width="183dp"
+                android:layout_height="259dp"
+                android:id="@+id/posterImageView" android:layout_gravity="left"
+                android:adjustViewBounds="false" android:layout_weight="0.40"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -61,12 +61,32 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:gravity="center_vertical|center_horizontal"
                     android:maxWidth="198dp"/>
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:background="@android:color/darker_gray"/>
+            <Button
+                    android:layout_width="111dp"
+                    android:layout_height="wrap_content"
+                    android:text="Trailer"
+                    android:id="@+id/trailer"
+                    android:layout_gravity="center_horizontal"
+                    />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" android:weightSum="1">
+        <se.chalmers.tda367.bluejava.AutoResizeTextView
+            android:id="@+id/overview"
+            android:text="[Overview]"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:maxLines="10"
+            android:scrollbars = "vertical"
+                />
         <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,12 +100,6 @@
                 android:orientation="horizontal"
                 android:layout_width="347dp"
                 android:layout_height="49dp">
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Trailer"
-                    android:id="@+id/trailer"
-                    android:layout_weight="0.00"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -79,10 +80,11 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler,
     public void loadInfo() {
         //Finding the fields that is to be set to values
         ImageView posterImageView = (ImageView) findViewById(R.id.posterImageView);
-        TextView titleTextView = (TextView) findViewById(R.id.title);
-        TextView tagLineTextView = (TextView) findViewById(R.id.tagline);
-        TextView releaseYearTextView = (TextView) findViewById(R.id.release_year);
-        TextView popularityTextView = (TextView) findViewById(R.id.popularity);
+        AutoResizeTextView titleTextView = (AutoResizeTextView) findViewById(R.id.title);
+        AutoResizeTextView tagLineTextView = (AutoResizeTextView) findViewById(R.id.tagline);
+        AutoResizeTextView releaseYearTextView = (AutoResizeTextView) findViewById(R.id.release_year);
+        AutoResizeTextView popularityTextView = (AutoResizeTextView) findViewById(R.id.popularity);
+        AutoResizeTextView overviewTextView = (AutoResizeTextView) findViewById(R.id.overview);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         //Inserting the image in the poster image view
@@ -98,10 +100,12 @@ public class DisplayMovieActivity extends Activity implements JSONResultHandler,
 
         //Setting the strings to values
         titleTextView.setText(movie.getTitle());
-
         tagLineTextView.setText(movie.getTagline());
         releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
         popularityTextView.setText("" + popularityRounded);
+        overviewTextView.setText(movie.getOverview());
+        overviewTextView.setMovementMethod(new ScrollingMovementMethod());
+
     }
 
     // Used when user clicks on movie trailer button
