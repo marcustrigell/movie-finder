@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,7 +70,7 @@ public class MovieDetailsFragment extends MovieFragment implements View.OnClickL
 
         //Inserting the image in the poster image view
         String url = movieApi.getThumbnailURL(movie.getPosterPath());
-        //Picasso.with(this).load(url).into(posterImageView);
+        Picasso.with(BlueJava.getContext()).load(url).into(posterImageView);
 
         //Setting the rating to the rating bar
         ratingBar.setRating(Float.parseFloat(movie.getRating()) / 2);
