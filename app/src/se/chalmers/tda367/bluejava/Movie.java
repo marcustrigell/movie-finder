@@ -12,19 +12,40 @@ import java.util.List;
 
 public class Movie implements Parcelable {
 
-    private String id, title, releaseYear, popularity, rating, voteCount,
-            posterPath, imdbID, budget, overview, tagline, runtime, revenue;
-
+    private String id;
+    private String title;
+    private String releaseYear;
+    private String popularity;
+    private String rating;
+    private String voteCount;
+    private String posterPath;
+    private String imdbID;
+    private String budget;
+    private String overview;
+    private String tagline;
+    private String runtime;
+    private String revenue;
     private List<String> genres;
 
     public static class Builder {
 
         // Required
-        private final String id, title, releaseYear, popularity, rating, voteCount, posterPath;
+        private final String id;
+        private final String title;
+        private final String releaseYear;
+        private final String popularity;
+        private final String rating;
+        private final String voteCount;
+        private final String posterPath;
 
         // Might be added later
         private List<String> genres;
-        private String imdbID, budget, overview, tagline, runtime, revenue;
+        private String imdbID;
+        private String budget;
+        private String overview;
+        private String tagline;
+        private String runtime;
+        private String revenue;
 
         public Builder(JSONObject jsonObject) throws JSONException {
             id = jsonObject.getString("id");
