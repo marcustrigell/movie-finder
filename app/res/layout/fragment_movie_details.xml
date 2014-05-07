@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:weightSum="1" android:orientation="vertical">
+     <LinearLayout
+             android:orientation="horizontal"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" android:weightSum="1" android:layout_marginTop="15dp">
+         <ImageView
+                 android:layout_width="183dp"
+                 android:layout_height="259dp"
+                 android:id="@+id/posterImageView" android:layout_gravity="left"
+                 android:adjustViewBounds="false" android:layout_weight="0.40"/>
+         <LinearLayout
+                 android:orientation="vertical"
+                 android:layout_width="wrap_content"
+                 android:layout_height="fill_parent" android:weightSum="1">
+             <se.chalmers.tda367.bluejava.AutoResizeTextView
+                     android:id="@+id/title"
+                     android:text="[Title]"
+                     android:layout_width="172dp"
+                     android:layout_height="53dp"
+                     android:textAppearance="?android:attr/textAppearanceLarge"
+                     android:maxWidth="198dp" android:gravity="center_vertical|center_horizontal"/>
+             <View
+                     android:layout_width="fill_parent"
+                     android:layout_height="1dp"
+                     android:background="@android:color/darker_gray"/>
+             <se.chalmers.tda367.bluejava.AutoResizeTextView
+                     android:id="@+id/tagline"
+                     android:text="[Tagline]"
+                     android:textStyle="italic"
+                     android:layout_width="172dp"
+                     android:layout_height="53dp"
+                     android:textAppearance="?android:attr/textAppearanceLarge"
+                     android:gravity="center_vertical|center_horizontal"
+                     android:maxWidth="198dp"/>
+             <View
+                     android:layout_width="fill_parent"
+                     android:layout_height="1dp"
+                     android:background="@android:color/darker_gray"/>
+             <se.chalmers.tda367.bluejava.AutoResizeTextView
+                     android:id="@+id/release_year"
+                     android:text="[Release year]"
+                     android:layout_width="172dp"
+                     android:layout_height="53dp"
+                     android:textAppearance="?android:attr/textAppearanceLarge"
+                     android:gravity="center_vertical|center_horizontal"
+                     android:maxWidth="198dp"/>
+             <View
+                     android:layout_width="fill_parent"
+                     android:layout_height="1dp"
+                     android:background="@android:color/darker_gray"/>
+             <se.chalmers.tda367.bluejava.AutoResizeTextView
+                     android:id="@+id/popularity"
+                     android:text="[Popularity]"
+                     android:layout_width="172dp"
+                     android:layout_height="53dp"
+                     android:textAppearance="?android:attr/textAppearanceLarge"
+                     android:gravity="center_vertical|center_horizontal"
+                     android:maxWidth="198dp"/>
+             <View
+                     android:layout_width="fill_parent"
+                     android:layout_height="1dp"
+                     android:gravity="center_vertical|center_horizontal"
+                     android:background="@android:color/darker_gray"/>
+             <Button
+                     android:layout_width="111dp"
+                     android:layout_height="wrap_content"
+                     android:text="Trailer"
+                     android:id="@+id/trailer"
+                     android:layout_gravity="center_horizontal"
+                     />
+         </LinearLayout>
+     </LinearLayout>
+     <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent" android:weightSum="1">
+         <se.chalmers.tda367.bluejava.AutoResizeTextView
+                 android:id="@+id/overview"
+                 android:text="[Overview]"
+                 android:layout_width="match_parent"
+                 android:layout_height="81dp"
+                 android:maxLines="10"
+                 android:scrollbars = "vertical"
+                 />
+         <RatingBar
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:clickable="false"
+                 android:focusableInTouchMode="false"
+                 android:isIndicator="true"
+                 android:focusable="false"
+                 android:id="@+id/ratingBar" android:layout_weight="0.13" android:numStars="5"
+                 android:layout_marginTop="15dp"/>
+         <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_width="347dp"
+                 android:layout_height="49dp">
+         </LinearLayout>
+     </LinearLayout>
+ </LinearLayout>
