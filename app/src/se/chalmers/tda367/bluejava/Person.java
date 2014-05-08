@@ -11,31 +11,24 @@ import org.json.JSONObject;
  */
 public abstract class Person {
 
-    private final String name, id, profilePath;
+    private final String NAME, ID, PROFILE_PATH;
 
     /** Constructor when a JSONObject is used */
     public Person(JSONObject jsonObject) throws JSONException {
-        this.name = jsonObject.getString("name");
-        this.id = jsonObject.getString("id");
-        this.profilePath = jsonObject.getString("profile_path");
+        this.NAME = jsonObject.getString("name");
+        this.ID = jsonObject.getString("id");
+        this.PROFILE_PATH = jsonObject.getString("profile_path");
     }
 
-/*    *//** Constructor when JSONObject is not avaailable *//*
-    public Person(String name, String id, String profilePath) {
-        this.name = name;
-        this.id = id;
-        this.profilePath = profilePath;
-    }*/
-
     public String getName() {
-        return this.name;
+        return this.NAME;
     }
 
     public String getId() {
-        return this.id;
+        return this.ID;
     }
 
     public String getProfilePath() {
-        return this.profilePath;
+        return this.PROFILE_PATH;
     }
 }

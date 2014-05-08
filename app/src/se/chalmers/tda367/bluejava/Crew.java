@@ -11,24 +11,24 @@ import org.json.JSONObject;
  */
 public class Crew extends Person {
 
-    private String creditID, department, job;
+    private final String CREDIT_ID, DEPARTMENT, JOB;
 
     public Crew(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
-        this.creditID = jsonObject.getString("credit_id");
-        this.department = jsonObject.getString("department");
-        this.job = jsonObject.getString("job");
+        this.CREDIT_ID = jsonObject.getString("credit_id");
+        this.DEPARTMENT = jsonObject.getString("DEPARTMENT");
+        this.JOB = jsonObject.getString("JOB");
     }
 
     public String getCreditID() {
-        return this.creditID;
+        return this.CREDIT_ID;
     }
 
     public String getDepartment() {
-        return this.department;
+        return this.DEPARTMENT;
     }
 
-    public String getJob() {
-        return this.job;
+    public String getJOB() {
+        return this.JOB;
     }
 }

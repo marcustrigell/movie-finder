@@ -10,29 +10,29 @@ import org.json.JSONObject;
  */
 public class Actor extends Person {
 
-    private String castID, character, creditID, order;
+    private final String CAST_ID, CHARACTER, CREDIT_ID, ORDER;
 
     public Actor(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
-        this.castID = jsonObject.getString("cast_id");
-        this.character = jsonObject.getString("character");
-        this.creditID = jsonObject.getString("credit_id");
-        this.order = jsonObject.getString("order");
+        this.CAST_ID = jsonObject.getString("cast_id");
+        this.CHARACTER = jsonObject.getString("CHARACTER");
+        this.CREDIT_ID = jsonObject.getString("credit_id");
+        this.ORDER = jsonObject.getString("ORDER");
     }
 
     public String getCastID() {
-        return this.castID;
+        return this.CAST_ID;
     }
 
     public String getCharacter() {
-        return this.character;
+        return this.CHARACTER;
     }
 
     public String getCreditID() {
-        return this.creditID;
+        return this.CREDIT_ID;
     }
 
     public String getOrder() {
-        return this.order;
+        return this.ORDER;
     }
 }
