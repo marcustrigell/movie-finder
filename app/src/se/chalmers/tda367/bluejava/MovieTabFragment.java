@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class MovieTabFragment extends Fragment implements JSONResultHandler {
+
     protected Activity activity;
 
     protected Movie movie;
