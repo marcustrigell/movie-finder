@@ -11,8 +11,6 @@ import java.util.List;
 
 public class MainPopularFragment extends MainTabFragment {
 
-    private GridView gridView;
-
     private final Activity activity;
 
     public MainPopularFragment(Activity activity) {
@@ -25,8 +23,6 @@ public class MainPopularFragment extends MainTabFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_main_popular, container, false);
-
-        gridView = (GridView) view.findViewById(R.id.popularGridview);
 
         getMovies();
 
@@ -53,6 +49,8 @@ public class MainPopularFragment extends MainTabFragment {
          * Take the string and make a lot of movies from it
          */
         List<Movie> movies = Movie.jsonToListOfMovies(json);
+
+        GridView gridView = (GridView) getView().findViewById(R.id.popularGridview);
 
         gridView.setAdapter(new ImageAdapter(getView().getContext(), activity, movies));
     }

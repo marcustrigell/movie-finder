@@ -32,27 +32,29 @@ public class ImageAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-
-        double width = displaymetrics.widthPixels;
-
-        int coverWidth = (int) Math.round(width / 3);
-        int coverHeight = (int) Math.round(coverWidth * 1.5);
-
         ImageView imageView;
 
         if (convertView == null) {
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(coverWidth,
-                    coverHeight));
+
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+
+            double width = displaymetrics.widthPixels;
+
+            int coverWidth = (int) Math.round(width / 3);
+            int coverHeight = (int) Math.round(coverWidth * 1.5);
+
+            GridView.LayoutParams imageViewSize = new GridView.LayoutParams(coverWidth, coverHeight);
+
+            imageView.setLayoutParams(imageViewSize);
 
         } else {
             imageView = (ImageView) convertView;
         }
 
-        // Get the image URL for the current position.
         MovieApi movieApi = new MovieApi();
+
         String url = movieApi.getCoverURL(getItem(position));
 
         // Trigger the download of the URL asynchronously into the image view.
