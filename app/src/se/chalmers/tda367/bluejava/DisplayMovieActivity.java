@@ -1,116 +1,89 @@
 package se.chalmers.tda367.bluejava;
 
-import android.app.Activity;
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.net.Uri;
-import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import com.squareup.picasso.Picasso;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 
-public class DisplayMovieActivity extends Activity implements JSONResultHandler, View.OnClickListener {
+public class DisplayMovieActivity extends FragmentActivity implements ActionBar.TabListener {
 
     private static final String TAG = "DisplayMovieActivity";
 
-    private AndroidHttpClient httpClient;
-
-    private HttpHandler httpHandler;
-
-    private MovieApi movieApi;
-
     private Movie movie;
 
-    private String youtubeAddr;
+    private ViewPager viewPager;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         this.setContentView(R.layout.display_movie_activity);
-
-        // Set the trailer-buttons listener
-        Button button = (Button) findViewById(R.id.trailer);
-        button.setOnClickListener(this);
-
-        movieApi = new MovieApi();
-
-        httpClient = HttpHandler.getAndroidHttpClient(this);
-
-        httpHandler = new HttpHandler(httpClient);
 
         Intent intent = getIntent();
 
         movie = intent.getParcelableExtra("key1");
 
-        // This should be changed to a address which is stored in the movie object
-        youtubeAddr = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-
-        getMovieDetails(movie.getID());
+        setupTabs(savedInstanceState);
     }
 
-    /**
-     * Get all info about our movie
-     */
-    private void getMovieDetails(String id) {
-        httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
-    }
+    private void setupTabs(Bundle savedInstanceState) {
 
-    @Override
-    public void handleJSONResult(String json) {
+        final ActionBar actionBar = getActionBar();
 
-        if (json == null) {
+        if (actionBar == null) {
             return;
         }
 
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            movie = new Movie.Builder(jsonObject).details(jsonObject).build();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        TabsAdapter tabsAdapter = new TabsAdapter(getSupportFragmentManager(), this, movie);
+        viewPager.setAdapter(tabsAdapter);
+
+        String[] tabs = { "Details", "Cast", "Crew" };
+
+        for (String tab : tabs) {
+            actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));
         }
 
-        loadInfo();
+        if (savedInstanceState != null) {
+            actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
+        }
+
+        /**
+          * Make respective tab selected when swiping the viewpager
+          */
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                actionBar.setSelectedNavigationItem(position);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
     }
 
-    public void loadInfo() {
-        //Finding the fields that is to be set to values
-        ImageView posterImageView = (ImageView) findViewById(R.id.posterImageView);
-        AutoResizeTextView titleTextView = (AutoResizeTextView) findViewById(R.id.title);
-        AutoResizeTextView tagLineTextView = (AutoResizeTextView) findViewById(R.id.tagline);
-        AutoResizeTextView releaseYearTextView = (AutoResizeTextView) findViewById(R.id.release_year);
-        AutoResizeTextView popularityTextView = (AutoResizeTextView) findViewById(R.id.popularity);
-        AutoResizeTextView overviewTextView = (AutoResizeTextView) findViewById(R.id.overview);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-
-        //Inserting the image in the poster image view
-        String url = movieApi.getThumbnailURL(movie.getPosterPath());
-        Picasso.with(this).load(url).into(posterImageView);
-
-        //Setting the rating to the rating bar
-        ratingBar.setRating(Float.parseFloat(movie.getRating()) / 2);
-
-        //Rounding the popularity
-        double popularityRounded = Double.parseDouble(movie.getPopularity());
-        popularityRounded = Math.round(popularityRounded);
-
-        //Setting the strings to values
-        titleTextView.setText(movie.getTitle());
-        tagLineTextView.setText(movie.getTagline());
-        releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
-        popularityTextView.setText("" + popularityRounded);
-        overviewTextView.setText(movie.getOverview());
-        overviewTextView.setMovementMethod(new ScrollingMovementMethod());
-
-    }
-
-    // Used when user clicks on movie trailer button
     @Override
-    public void onClick(View view) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
     }
 }

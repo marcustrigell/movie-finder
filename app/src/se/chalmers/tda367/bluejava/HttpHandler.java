@@ -14,14 +14,13 @@ import java.io.IOException;
 public class HttpHandler {
     private static final String TAG = "HttpHandler";
     private final AndroidHttpClient httpClient;
-    private AsyncTask getMoviesAsyncTask;
 
     public HttpHandler(AndroidHttpClient httpClient) {
         this.httpClient = httpClient;
     }
 
     public void get(String url, JSONResultHandler jsonResultHandler) {
-        getMoviesAsyncTask = new GetMoviesAsyncTask(url, jsonResultHandler).
+        AsyncTask getMoviesAsyncTask = new GetMoviesAsyncTask(url, jsonResultHandler).
                 executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 

@@ -1,15 +1,14 @@
 package se.chalmers.tda367.bluejava;
 
-import android.app.*;
-import android.app.ActionBar.Tab;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -17,13 +16,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class MainActivity extends FragmentActivity {
 
     public final static String EXTRA_MESSAGE = "se.chalmers.tda367.bluejava.MESSAGE";
 
@@ -43,10 +41,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private String[] navDrawerTitles;
 	private TypedArray navDrawerIcons;
 
-	/* -- View Pager -- */
-    private ViewPager viewPager;
-    private TabsAdapter tabsAdapter;
-    private String[] tabs = { "Recommended", "Top Rated", "Latest" };
 
     /**
      * Called when the activity is first created.
@@ -56,133 +50,93 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+        setupLayout();
+
 		appTitle = getTitle();
+	}
 
+    private void setupLayout() {
 
-		/* ------------------ Tobbe: I get exceptions with this code active  ------------------
+        /* -- Navigation Drawer -- */
 
-        viewPager = new ViewPager(this);
-        viewPager.setId(R.id.pager);
-        setContentView(viewPager);
+        // Set title for navigation drawer
+        navDrawerTitle = getResources().getString(R.string.title_nav_drawer);
 
-        final ActionBar bar = getActionBar();
-        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+        // Get titles for navigation drawer items
+        navDrawerTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
-        tabsAdapter = new TabsAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(tabsAdapter);
+        // Get icons for navigation drawer items
+        navDrawerIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
-        for (String tab_name : tabs) {
-            bar.addTab(bar.newTab().setText(tab_name)
-                    .setTabListener(this));
-        }
+        navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navDrawerList = (ListView) findViewById(R.id.nav_drawer);
 
-        if (savedInstanceState != null) {
-            bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
-        }
-
-        *//**
-         * on swiping the viewpager make respective tab selected
-         * *//*
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                bar.setSelectedNavigationItem(position);
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int arg0) {
-            }
-        });
-
-        ------------------------------------------------------------------------------------ */
-
-
-		/* -- Navigation Drawer -- */
-
-		// Set title for navigation drawer
-		navDrawerTitle = getResources().getString(R.string.title_nav_drawer);
-
-		// Get titles for navigation drawer items
-		navDrawerTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
-		// Get icons for navigation drawer items
-		navDrawerIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
-
-		navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		navDrawerList = (ListView) findViewById(R.id.nav_drawer);
-
-		navDrawerItems = new ArrayList<INavDrawerItem>();
+        navDrawerItems = new ArrayList<INavDrawerItem>();
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
 		/* This part should be implemented smarter */
 
-		// Fill array with navDrawerItems and navDrawerSections
-		// Home
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
+        // Fill array with navDrawerItems and navDrawerSections
+        // Home
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
 
-		// Section - Browse Movies
-		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
+        // Section - Browse Movies
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
 
-		// Latest
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
+        // Latest
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
 
-		// Top Rated
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
+        // Top Rated
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
 
-		// Recommended
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
+        // Recommended
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
 
-		// Section - Your Profile
-		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
+        // Section - Your Profile
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
 
-		// Favorites
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+        // Favorites
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
 
-		// Seen
-		navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
+        // Seen
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
-		// Recycle the typed array for later re-use (necessary for some reason)
-		navDrawerIcons.recycle();
+        // Recycle the typed array for later re-use (necessary for some reason)
+        navDrawerIcons.recycle();
 
-		// Set the navigation drawer list adapter
-		navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), navDrawerItems);
-		navDrawerList.setAdapter(navDrawerAdapter);
+        // Set the navigation drawer list adapter
+        navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), navDrawerItems);
+        navDrawerList.setAdapter(navDrawerAdapter);
 
-		// Enabling action bar app icon and behaving it as toggle button
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
+        // Enabling action bar app icon and behaving it as toggle button
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
-		navDrawerToggle = new ActionBarDrawerToggle(this, navDrawerLayout,
-				R.drawable.ic_drawer, //nav menu toggle icon
-				R.string.app_name, // nav drawer open - description for accessibility
-				R.string.app_name // nav drawer close - description for accessibility
-		){
-			public void onDrawerClosed(View view) {
-				getActionBar().setTitle(appTitle);
+        navDrawerToggle = new ActionBarDrawerToggle(this, navDrawerLayout,
+                R.drawable.ic_drawer, //nav menu toggle icon
+                R.string.app_name, // nav drawer open - description for accessibility
+                R.string.app_name // nav drawer close - description for accessibility
+        ){
+            public void onDrawerClosed(View view) {
+                getActionBar().setTitle(appTitle);
 
-				// Calling onPrepareOptionsMenu() to show action bar icons
-				invalidateOptionsMenu();
-			}
+                // Calling onPrepareOptionsMenu() to show action bar icons
+                invalidateOptionsMenu();
+            }
 
-			public void onDrawerOpened(View drawerView) {
-				getActionBar().setTitle(navDrawerTitle);
+            public void onDrawerOpened(View drawerView) {
+                getActionBar().setTitle(navDrawerTitle);
 
-				// Calling onPrepareOptionsMenu() to hide action bar icons
-				invalidateOptionsMenu();
-			}
-		};
-		navDrawerLayout.setDrawerListener(navDrawerToggle);
-		navDrawerList.setOnItemClickListener(new NavigationDrawerClickListener());
-	}
+                // Calling onPrepareOptionsMenu() to hide action bar icons
+                invalidateOptionsMenu();
+            }
+        };
+        navDrawerLayout.setDrawerListener(navDrawerToggle);
+        navDrawerList.setOnItemClickListener(new NavigationDrawerClickListener());
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -208,36 +162,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
 		return super.onCreateOptionsMenu(menu);
-	}
-
-    @Override
-    public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
-        viewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-	public void searchMovies(View view) {
-        Intent intent = new Intent(this, DisplayResultsActivity.class);
-        EditText searchField = (EditText) findViewById(R.id.search_field);
-
-		try {
-			String message = searchField.getText().toString();
-			intent.putExtra(EXTRA_MESSAGE, message);
-
-		} catch (NullPointerException e) {
-
-		}
-
-        startActivity(intent);
 	}
 
 	/**

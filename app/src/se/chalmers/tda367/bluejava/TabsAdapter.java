@@ -1,6 +1,7 @@
 package se.chalmers.tda367.bluejava;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,8 +11,16 @@ import android.support.v4.view.ViewPager;
 public class TabsAdapter extends FragmentPagerAdapter
         implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
 
-    public TabsAdapter(FragmentManager fragmentManager) {
+    private Movie movie;
+
+    private Activity activity;
+
+    public TabsAdapter(FragmentManager fragmentManager, Activity activity, Movie movie) {
         super(fragmentManager);
+
+        this.activity = activity;
+
+        this.movie = movie;
     }
 
     @Override
@@ -19,11 +28,11 @@ public class TabsAdapter extends FragmentPagerAdapter
 
         switch (index) {
             case 0:
-                return new RecommendedFragment();
+                return new MovieDetailsFragment(activity, movie);
             case 1:
-                return new TopRatedFragment();
+                return new MovieCastFragment(activity, movie);
             case 2:
-                return new LatestFragment();
+                return new MovieCrewFragment(activity, movie);
         }
 
         return null;
