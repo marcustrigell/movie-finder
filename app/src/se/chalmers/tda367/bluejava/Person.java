@@ -20,14 +20,18 @@ public abstract class Person implements Parcelable {
     public Person(JSONObject jsonObject) throws JSONException {
         this.NAME = jsonObject.getString("name");
         this.ID = jsonObject.getInt("id");
-        this.PROFILE_PATH = jsonObject.getString("profile_path");
+        if(jsonObject.isNull("profile_path")) {
+            this.PROFILE_PATH = null;
+        } else {
+            this.PROFILE_PATH = jsonObject.getString("profile_path");
+        }
     }
 
     public String getName() {
         return this.NAME;
     }
 
-    public int getId() {
+    public int getID() {
         return this.ID;
     }
 

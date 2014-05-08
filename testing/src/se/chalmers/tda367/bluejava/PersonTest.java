@@ -13,11 +13,12 @@ public class PersonTest extends TestCase {
 
     private static Person person;
     private final String NAME = "Markus Redmond";
-    private final String ID = "1226835";
+    private final int ID = 1226835;
     private final String PROFILE_PATH = "/yxMbPCGa8rMSrquc8v4UN7QLlWX.jpg";
 
-    @BeforeClass
-    public static void initialize() throws Exception {
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
         String json = "";
         Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/person.txt"));
         while(sc.hasNextLine()) {
@@ -32,7 +33,7 @@ public class PersonTest extends TestCase {
     }
 
     public void testGetID() {
-        assertEquals(ID, person.getId());
+        assertEquals(ID, person.getID());
     }
 
     public void testGetProfilePath() {

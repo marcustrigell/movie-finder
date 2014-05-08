@@ -18,8 +18,9 @@ public class CrewMemberTest extends TestCase {
     private final String DEPARTMENT = "Writing";
     private final String JOB = "Author";
 
-    @BeforeClass
-    public static void initialize() throws Exception {
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
         String json = "";
         Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/crew_member.txt"));
         while(sc.hasNextLine()) {

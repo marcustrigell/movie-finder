@@ -13,20 +13,20 @@ import java.util.List;
  */
 public class Credits implements Parcelable {
 
-    private final int creditsID;
+    private final int ID;
 
     private final List<Actor> cast;
 
     private final List<CrewMember> crew;
 
     public Credits(JSONObject jsonObject) throws JSONException {
-        creditsID = jsonObject.getInt("id");
+        ID = jsonObject.getInt("id");
         cast = Actor.jsonToListOfActors(jsonObject);
         crew = CrewMember.jsonToListOfCrewMembers(jsonObject);
     }
 
     public int getID() {
-        return creditsID;
+        return ID;
     }
 
     public List<Actor> getCast() {
@@ -38,7 +38,7 @@ public class Credits implements Parcelable {
     }
 
     protected Credits(Parcel in) {
-        creditsID = in.readInt();
+        ID = in.readInt();
 
         cast = new ArrayList<Actor>();
         in.readTypedList(cast, Actor.CREATOR);
@@ -54,7 +54,7 @@ public class Credits implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(creditsID);
+        dest.writeInt(ID);
         dest.writeTypedList(cast);
         dest.writeList(crew);
     }
