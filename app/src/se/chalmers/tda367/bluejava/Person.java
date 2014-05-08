@@ -18,7 +18,11 @@ public abstract class Person {
     public Person(JSONObject jsonObject) throws JSONException {
         this.NAME = jsonObject.getString("name");
         this.ID = jsonObject.getInt("id");
-        this.PROFILE_PATH = jsonObject.getString("profile_path");
+        if(jsonObject.isNull("profile_path")) {
+            this.PROFILE_PATH = null;
+        } else {
+            this.PROFILE_PATH = jsonObject.getString("profile_path");
+        }
     }
 
     public String getName() {
