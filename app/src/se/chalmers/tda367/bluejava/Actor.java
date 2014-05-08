@@ -14,17 +14,18 @@ import java.util.List;
  */
 public class Actor extends Person {
 
-    private final String CAST_ID, CHARACTER, CREDIT_ID, ORDER;
+    private final String CHARACTER, CREDIT_ID;
+    private final int CAST_ID, ORDER;
 
     public Actor(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
-        this.CAST_ID = jsonObject.getString("cast_id");
+        this.CAST_ID = jsonObject.getInt("cast_id");
         this.CHARACTER = jsonObject.getString("character");
         this.CREDIT_ID = jsonObject.getString("credit_id");
-        this.ORDER = jsonObject.getString("order");
+        this.ORDER = jsonObject.getInt("order");
     }
 
-    public String getCastID() {
+    public int getCastID() {
         return this.CAST_ID;
     }
 
@@ -36,7 +37,7 @@ public class Actor extends Person {
         return this.CREDIT_ID;
     }
 
-    public String getOrder() {
+    public int getOrder() {
         return this.ORDER;
     }
 
