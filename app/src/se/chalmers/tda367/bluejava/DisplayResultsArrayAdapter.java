@@ -54,7 +54,7 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
-                    String message = movie.getID();
+                    String movieID = movie.getID();
                     intent.putExtra("movie", movie);
                     displayResultsActivity.startActivity(intent);
                 }
