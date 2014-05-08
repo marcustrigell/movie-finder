@@ -31,4 +31,6 @@ public abstract class Person {
     public String getProfilePath() {
         return this.PROFILE_PATH;
     }
+
+
 }

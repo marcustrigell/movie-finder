@@ -1,7 +1,11 @@
 package se.chalmers.tda367.bluejava;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Used to describe an actor in a movie.
@@ -34,5 +38,23 @@ public class Actor extends Person {
 
     public String getOrder() {
         return this.ORDER;
+    }
+
+    public static List<Actor> jsonToListOfActors(JSONObject jsonObject) {
+        try {
+
+            JSONArray castArray = jsonObject.getJSONArray("cast");
+            List<Actor> cast = new LinkedList<Actor>();
+
+            for (int i = 0; i < castArray.length(); ++i) {
+                JSONObject actorJSON = castArray.getJSONObject(i);
+                Actor actor = new Actor(actorJSON);
+                cast.add(actor);
+            }
+
+            return cast;
+        } catch (JSONException e) {
+            throw new RuntimeException("Actor.java jsonToListOfActors error");
+        }
     }
 }

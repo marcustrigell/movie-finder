@@ -42,7 +42,7 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
         MovieTabsAdapter movieTabsAdapter = new MovieTabsAdapter(getSupportFragmentManager(), this, movie);
         viewPager.setAdapter(movieTabsAdapter);
 
-        String[] tabs = { "Details", "Cast", "Crew" };
+        String[] tabs = { "Details", "Cast", "CrewMember" };
 
         for (String tab : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));
