@@ -29,7 +29,7 @@ public abstract class Person {
         return this.NAME;
     }
 
-    public int getId() {
+    public int getID() {
         return this.ID;
     }
 

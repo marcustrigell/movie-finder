@@ -1,8 +1,8 @@
 package se.chalmers.tda367.bluejava;
 
 import junit.framework.TestCase;
+import org.json.JSONObject;
 import org.junit.*;
-
 import java.io.FileReader;
 import java.util.Scanner;
 
@@ -12,39 +12,39 @@ import java.util.Scanner;
 public class ActorTest extends TestCase {
 
     private static Actor actor;
-    private final String CAST_ID = "4";
+    private final int CAST_ID = 4;
     private final String CHARACTER = "The Narrator";
     private final String CREDIT_ID = "52fe4250c3a36847f80149f3";
-    private final String ORDER = "0";
+    private final int ORDER = 0;
 
-    @BeforeClass
-    public static void initialize() throws Exception {
+    @Override
+    public void setUp() throws Exception{
+        super.setUp();
         String json = "";
         Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/actor.txt"));
         while(sc.hasNextLine()) {
             json += sc.nextLine();
         }
-        actor = new Actor(new org.json.JSONObject(json));
+        actor = new Actor(new JSONObject(json));
     }
 
     @Test
-    public void testGetCastID() {
+    public void testGetCastID() throws Exception {
         assertEquals(CAST_ID, actor.getCastID());
     }
 
     @Test
-    public void testGetCharacter() {
+    public void testGetCharacter() throws Exception {
         assertEquals(CHARACTER, actor.getCharacter());
     }
 
     @Test
-    public void testGetCreditID() {
+    public void testGetCreditID() throws Exception {
         assertEquals(CREDIT_ID, actor.getCreditID());
     }
 
     @Test
-    public void testGetOrder() {
+    public void testGetOrder() throws Exception {
         assertEquals(ORDER, actor.getOrder());
     }
-
 }

@@ -10,19 +10,19 @@ import java.util.List;
  */
 public class Credits {
 
-    private final String creditsID;
+    private final int creditsID;
 
     private final List<Actor> cast;
 
     private final List<CrewMember> crew;
 
     public Credits(JSONObject jsonObject) throws JSONException {
-        creditsID = jsonObject.getString("id");
+        creditsID = jsonObject.getInt("id");
         cast = Actor.jsonToListOfActors(jsonObject);
         crew = CrewMember.jsonToListOfCrewMembers(jsonObject);
     }
 
-    public String getCreditsID() {
+    public int getCreditsID() {
         return creditsID;
     }
 

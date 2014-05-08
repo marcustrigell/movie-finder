@@ -1,10 +1,10 @@
 package se.chalmers.tda367.bluejava;
 
-import java.io.BufferedReader;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -12,27 +12,17 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static void main(String[] main) {
-        String correct = "", unsorted = "";
-        try {
-            Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/title_unsorted.txt"));
-            while(sc.hasNextLine()) {
-                unsorted += sc.nextLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public static void main(String[] main) throws FileNotFoundException, JSONException {
+        String json = "";
+        Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/credits.txt"));
+        while(sc.hasNextLine()) {
+            json += sc.nextLine();
         }
-
-        try {
-            Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/title_sorted.txt"));
-            while(sc.hasNextLine()) {
-                correct += sc.nextLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        Credits credits = new Credits(new JSONObject(json));
+        System.out.println(credits.getCreditsID());
+        for(Actor actor : credits.getCast()) {
+            System.out.println(actor.getName());
         }
-        List<Movie> list = Movie.jsonToListOfMovies(correct);
-        System.out.println(list.size());
     }
 
 }

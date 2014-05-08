@@ -32,7 +32,7 @@ public class PersonTest extends TestCase {
     }
 
     public void testGetID() {
-        assertEquals(ID, person.getId());
+        assertEquals(ID, person.getID());
     }
 
     public void testGetProfilePath() {
