@@ -39,7 +39,7 @@ public class CrewMember extends Person {
     public static List<CrewMember> jsonToListOfCrewMembers(JSONObject jsonObject) {
         try {
 
-            JSONArray crewArrray = jsonObject.getJSONArray("crew"); //TODO denna verkar strula?
+            JSONArray crewArrray = jsonObject.getJSONArray("crew");
             List<CrewMember> crew = new LinkedList<CrewMember>();
 
             for (int i = 0; i < crewArrray.length(); ++i) {
