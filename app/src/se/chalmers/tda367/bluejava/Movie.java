@@ -10,6 +10,17 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Representing a movie
+ *
+ * By implementing the Parcelable interface,
+ * a movie object can be passed along with intents
+ * to start new activities.
+ *
+ * Using the builder pattern we are able to partially build
+ * immutable objects. It allows us to create different
+ * representations of a movie, using the same construction process.
+ */
 public class Movie implements Parcelable {
 
     private int id;
@@ -51,6 +62,12 @@ public class Movie implements Parcelable {
         // Movie credits (optional)
         private Credits credits;
 
+        /**
+         * This is the most basic movie and
+         * and movies must hold this information.
+         * @param jsonObject A JSON object containing a movie
+         * @throws JSONException
+         */
         public Builder(JSONObject jsonObject) throws JSONException {
             id = jsonObject.getInt("id");
             title = jsonObject.getString("title");
@@ -61,6 +78,11 @@ public class Movie implements Parcelable {
             posterPath = jsonObject.getString("poster_path");
         }
 
+        /**
+         * This is the most basic movie and
+         * and movies must hold this information.
+         * @param movie A Movie object that wants additional info
+         */
         public Builder(Movie movie) {
             id = movie.getID();
             title = movie.getTitle();
@@ -71,6 +93,12 @@ public class Movie implements Parcelable {
             posterPath = movie.getPosterPath();
         }
 
+        /**
+         * A builder method that adds additional info about a movie
+         * @param jsonObject a JSON object holding movie details
+         * @return itself
+         * @throws JSONException
+         */
         public Builder details(JSONObject jsonObject) throws JSONException {
             imdbID = jsonObject.getString("imdb_id");
             budget = jsonObject.getString("budget");
@@ -85,17 +113,30 @@ public class Movie implements Parcelable {
             return this;
         }
 
+        /**
+         * A builder method that adds info about crew and actors
+         * @param credits a Credits object holding crew and actors
+         * @return itself
+         */
         public Builder credits(Credits credits) {
             this.credits = credits;
 
             return this;
         }
 
+        /**
+         * The main builder.
+         * This is where a movie gets actually created.
+         */
         public Movie build() {
             return new Movie(this);
         }
     }
 
+    /**
+     * A complete movie holding all possible info
+     * @param builder Object used to partially build the movie
+     */
     private Movie(Builder builder) {
         id = builder.id;
         title = builder.title;
@@ -128,8 +169,6 @@ public class Movie implements Parcelable {
     }
 
     public String getReleaseYear() {
-        /* Crashar */
-        /* return releaseYear.substring(0,4); */
         return releaseYear;
     }
 
@@ -175,6 +214,11 @@ public class Movie implements Parcelable {
         return credits;
     }
 
+    /**
+     * Creates a list of movies and returns it
+     * @param json A JSON object with movies
+     * @return list of movies
+     */
     public static List<Movie> jsonToListOfMovies(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);

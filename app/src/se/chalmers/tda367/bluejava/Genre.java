@@ -9,6 +9,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Representing a movie genre
+ */
 public class Genre implements Parcelable {
 
     private final int ID;
@@ -28,6 +32,11 @@ public class Genre implements Parcelable {
         return name;
     }
 
+    /**
+     * Creates a list of genres and returns it
+     * @param jsonArray A JSON array with genres
+     * @return list of genres
+     */
     public static List<Genre> jsonToListOfGenres(JSONArray jsonArray) {
 
         try {
