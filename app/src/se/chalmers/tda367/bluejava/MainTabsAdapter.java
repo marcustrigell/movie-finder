@@ -8,40 +8,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class TabsAdapter extends FragmentPagerAdapter
-        implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
-
-    private Movie movie;
+public class MainTabsAdapter extends FragmentPagerAdapter
+        implements ActionBar.TabListener, ViewPager.OnPageChangeListener  {
 
     private Activity activity;
 
-    public TabsAdapter(FragmentManager fragmentManager, Activity activity, Movie movie) {
+    public MainTabsAdapter(FragmentManager fragmentManager, Activity activity) {
         super(fragmentManager);
 
         this.activity = activity;
-
-        this.movie = movie;
     }
 
     @Override
     public Fragment getItem(int index) {
-
         switch (index) {
             case 0:
-                return new MovieDetailsFragment(activity, movie);
+                return new MainPopularFragment(activity);
             case 1:
-                return new MovieCastFragment(activity, movie);
-            case 2:
-                return new MovieCrewFragment(activity, movie);
+                return new MainLatestFragment();
         }
 
         return null;
-    }
-
-    @Override
-    public int getCount() {
-        // Equal to number of tabs
-        return 3;
     }
 
     @Override
@@ -57,6 +44,12 @@ public class TabsAdapter extends FragmentPagerAdapter
     @Override
     public void onPageScrollStateChanged(int i) {
 
+    }
+
+    @Override
+    public int getCount() {
+        // number of tabs
+        return 2;
     }
 
     @Override

@@ -30,6 +30,10 @@ public class MovieApi {
         return finalizeMovieQuery("movie/" + id + "/credits");
     }
 
+    public String getTopRatedMoviesQuery() {
+        return finalizeMovieQuery("movie/top_rated");
+    }
+
     public String getMovieImagesQuery(String id) {
         return finalizeMovieQuery("movie/" + id + "/images");
     }

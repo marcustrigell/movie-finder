@@ -12,9 +12,9 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MovieDetailsFragment extends MovieFragment implements View.OnClickListener {
+public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
-    public MovieDetailsFragment(Activity activity, Movie movie) {
+    public MovieDetailsTabFragment(Activity activity, Movie movie) {
         super(activity, movie, R.layout.fragment_movie_details);
     }
 

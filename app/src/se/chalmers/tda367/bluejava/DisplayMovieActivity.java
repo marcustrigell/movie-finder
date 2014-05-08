@@ -39,8 +39,8 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
-        TabsAdapter tabsAdapter = new TabsAdapter(getSupportFragmentManager(), this, movie);
-        viewPager.setAdapter(tabsAdapter);
+        MovieTabsAdapter movieTabsAdapter = new MovieTabsAdapter(getSupportFragmentManager(), this, movie);
+        viewPager.setAdapter(movieTabsAdapter);
 
         String[] tabs = { "Details", "Cast", "Crew" };
 

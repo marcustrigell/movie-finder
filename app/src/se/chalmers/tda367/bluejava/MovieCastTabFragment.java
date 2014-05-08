@@ -5,10 +5,10 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MovieCrewFragment extends MovieFragment {
+public class MovieCastTabFragment extends MovieTabFragment {
 
-    public MovieCrewFragment(Activity activity, Movie movie) {
-        super(activity, movie, R.layout.fragment_movie_crew);
+    public MovieCastTabFragment(Activity activity, Movie movie) {
+        super(activity, movie, R.layout.fragment_movie_cast);
     }
 
     /**
@@ -43,8 +43,11 @@ public class MovieCrewFragment extends MovieFragment {
         setupLayout();
     }
 
+    /**
+     * Builds the screen's layout
+     */
     public void setupLayout() {
-        TextView creditsTestTextView = (TextView) getView().findViewById(R.id.crewTest);
-        creditsTestTextView.setText(movie.getCredits().getCreditsID());
+        TextView creditsIDTextView = (TextView) getView().findViewById(R.id.creditsID);
+        creditsIDTextView.setText(movie.getCredits().getCreditsID());
     }
 }

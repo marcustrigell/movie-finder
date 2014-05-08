@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class MovieFragment extends Fragment implements JSONResultHandler {
+public abstract class MovieTabFragment extends Fragment implements JSONResultHandler {
     protected Activity activity;
 
     protected Movie movie;
@@ -21,7 +21,7 @@ public abstract class MovieFragment extends Fragment implements JSONResultHandle
 
     protected HttpHandler httpHandler;
 
-    public MovieFragment(Activity activity, Movie movie, int layoutID) {
+    public MovieTabFragment(Activity activity, Movie movie, int layoutID) {
 
         this.movie = movie;
 
