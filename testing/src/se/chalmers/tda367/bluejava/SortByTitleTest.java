@@ -17,23 +17,15 @@ public class SortByTitleTest extends TestCase {
     private String correct, unsorted;
 
     @Test
-    public void testSort() {
-        try {
-            Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/title_unsorted.txt"));
-            while(sc.hasNextLine()) {
-                unsorted += sc.nextLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public void testSort() throws Exception {
+        Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/title_unsorted.txt"));
+        while(sc.hasNextLine()) {
+            unsorted += sc.nextLine();
         }
         unsortedList = Movie.jsonToListOfMovies(unsorted);
-        try {
-            Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/title_sorted.txt"));
-            while(sc.hasNextLine()) {
-                correct += sc.nextLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/title_sorted.txt"));
+        while(sc.hasNextLine()) {
+            correct += sc.nextLine();
         }
         correctList = Movie.jsonToListOfMovies(correct);
         sortMethod = new SortByTitle();
@@ -42,6 +34,4 @@ public class SortByTitleTest extends TestCase {
             assertEquals(correctList, sortedList);
         }
     }
-
-
 }
