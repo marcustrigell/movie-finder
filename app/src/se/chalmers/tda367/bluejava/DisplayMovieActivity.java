@@ -22,7 +22,7 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
         Intent intent = getIntent();
 
-        movie = intent.getParcelableExtra("key1");
+        movie = intent.getParcelableExtra("movie");
 
         setupTabs(savedInstanceState);
     }

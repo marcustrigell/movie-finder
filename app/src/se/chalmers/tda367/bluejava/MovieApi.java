@@ -34,6 +34,14 @@ public class MovieApi {
         return finalizeMovieQuery("movie/top_rated");
     }
 
+    public String getPopularMoviesQuery() {
+        return finalizeMovieQuery("movie/popular");
+    }
+
+    public String getUpcomingMoviesQuery() {
+        return finalizeMovieQuery("movie/upcoming");
+    }
+
     public String getMovieImagesQuery(String id) {
         return finalizeMovieQuery("movie/" + id + "/images");
     }

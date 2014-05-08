@@ -23,9 +23,9 @@ public class MainTabsAdapter extends FragmentPagerAdapter
     public Fragment getItem(int index) {
         switch (index) {
             case 0:
-                return new MainPopularFragment(activity);
+                return new MainPopularFragment(activity, R.layout.fragment_main_gridview);
             case 1:
-                return new MainLatestFragment();
+                return new MainUpcomingFragment(activity, R.layout.fragment_main_gridview);
         }
 
         return null;

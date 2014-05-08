@@ -2,6 +2,7 @@ package se.chalmers.tda367.bluejava;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,9 @@ public class ImageAdapter extends BaseAdapter {
 
         MovieApi movieApi = new MovieApi();
 
-        String url = movieApi.getCoverURL(getItem(position));
+        final Movie movie = getItem(position);
+
+        String url = movieApi.getCoverURL(movie.getPosterPath());
 
         // Trigger the download of the URL asynchronously into the image view.
         Picasso.with(context)
@@ -65,18 +68,31 @@ public class ImageAdapter extends BaseAdapter {
                 .fit()
                 .into(imageView);
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, DisplayMovieActivity.class);
+                String message = movie.getID();
+                intent.putExtra("movie", movie);
+                activity.startActivity(intent);
+            }
+        });
+
         return imageView;
     }
 
-    @Override public int getCount() {
+    @Override
+    public int getCount() {
         return movies.size();
     }
 
-    @Override public String getItem(int position) {
-        return movies.get(position).getPosterPath();
+    @Override
+    public Movie getItem(int position) {
+        return movies.get(position);
     }
 
-    @Override public long getItemId(int position) {
+    @Override
+    public long getItemId(int position) {
         return 0;
     }
 }

@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RemoteViews;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -57,7 +55,7 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
                 public void onClick(View view) {
                     Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
                     String message = movie.getID();
-                    intent.putExtra("key1", movie);
+                    intent.putExtra("movie", movie);
                     displayResultsActivity.startActivity(intent);
                 }
             });

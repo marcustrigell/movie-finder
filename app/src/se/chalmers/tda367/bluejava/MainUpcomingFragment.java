@@ -9,14 +9,13 @@ import android.widget.GridView;
 
 import java.util.List;
 
-public class MainPopularFragment extends MainTabFragment {
+public class MainUpcomingFragment extends MainTabFragment {
 
     private final Activity activity;
 
     private final int layoutID;
 
-    public MainPopularFragment(Activity activity, int layoutID) {
-
+    public MainUpcomingFragment(Activity activity, int layoutID) {
         super(activity, layoutID);
 
         this.activity = activity;
@@ -33,9 +32,8 @@ public class MainPopularFragment extends MainTabFragment {
 
         return view;
     }
-
     protected void getMovies() {
-        httpHandler.get(movieApi.getPopularMoviesQuery(), this);
+        httpHandler.get(movieApi.getUpcomingMoviesQuery(), this);
     }
 
     /**

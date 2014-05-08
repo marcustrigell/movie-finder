@@ -72,7 +72,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         MainTabsAdapter mainTabsAdapter = new MainTabsAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(mainTabsAdapter);
 
-        String[] tabs = { "Popular", "Latest" };
+        String[] tabs = { "Popular", "Upcoming" };
 
         for (String tab : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));
