@@ -19,9 +19,9 @@ public class Actor extends Person {
     public Actor(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
         this.CAST_ID = jsonObject.getString("cast_id");
-        this.CHARACTER = jsonObject.getString("CHARACTER");
+        this.CHARACTER = jsonObject.getString("character");
         this.CREDIT_ID = jsonObject.getString("credit_id");
-        this.ORDER = jsonObject.getString("ORDER");
+        this.ORDER = jsonObject.getString("order");
     }
 
     public String getCastID() {

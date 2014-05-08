@@ -20,8 +20,8 @@ public class CrewMember extends Person {
     public CrewMember(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
         this.CREDIT_ID = jsonObject.getString("credit_id");
-        this.DEPARTMENT = jsonObject.getString("DEPARTMENT");
-        this.JOB = jsonObject.getString("JOB");
+        this.DEPARTMENT = jsonObject.getString("department");
+        this.JOB = jsonObject.getString("job");
     }
 
     public String getCreditID() {
