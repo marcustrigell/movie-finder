@@ -43,7 +43,7 @@ public class Actor extends Person {
     public static List<Actor> jsonToListOfActors(JSONObject jsonObject) {
         try {
 
-            JSONArray castArray = jsonObject.getJSONArray("cast");
+            JSONArray castArray = jsonObject.getJSONArray("cast"); //TODO denna verkar strula?
             List<Actor> cast = new LinkedList<Actor>();
 
             for (int i = 0; i < castArray.length(); ++i) {
