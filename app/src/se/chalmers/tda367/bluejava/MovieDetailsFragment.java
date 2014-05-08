@@ -54,8 +54,8 @@ public class MovieDetailsFragment extends MovieFragment implements View.OnClickL
      * Builds the screen's layout
      */
     public void setupLayout() {
-        // Set the trailer-buttons listener
 
+        // Set the trailer-buttons listener
         Button button = (Button) getView().findViewById(R.id.trailer);
         button.setOnClickListener(this);
 
@@ -69,7 +69,7 @@ public class MovieDetailsFragment extends MovieFragment implements View.OnClickL
         RatingBar ratingBar = (RatingBar) getView().findViewById(R.id.ratingBar);
 
         //Inserting the image in the poster image view
-        String url = movieApi.getThumbnailURL(movie.getPosterPath());
+        String url = movieApi.getCoverURL(movie.getPosterPath());
         Picasso.with(BlueJava.getContext()).load(url).into(posterImageView);
 
         //Setting the rating to the rating bar
