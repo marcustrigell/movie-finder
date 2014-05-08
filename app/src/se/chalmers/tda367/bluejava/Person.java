@@ -1,5 +1,7 @@
 package se.chalmers.tda367.bluejava;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,7 +11,7 @@ import org.json.JSONObject;
  * Created by marcus on 2014-05-07.
  *
  */
-public abstract class Person {
+public abstract class Person implements Parcelable {
 
     private final String NAME, PROFILE_PATH;
     private final int ID;
@@ -33,5 +35,16 @@ public abstract class Person {
         return this.PROFILE_PATH;
     }
 
+    protected Person(Parcel in) {
+        NAME = in.readString();
+        PROFILE_PATH = in.readString();
+        ID = in.readInt();
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(NAME);
+        dest.writeValue(PROFILE_PATH);
+        dest.writeInt(ID);
+    }
 }

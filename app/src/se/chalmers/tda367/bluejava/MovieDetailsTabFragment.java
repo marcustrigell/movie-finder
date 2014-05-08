@@ -24,7 +24,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
      * @param id The ID of the movie we want to add info to
      */
     @Override
-    protected void getAdditionalInfo(String id) {
+    protected void getAdditionalInfo(int id) {
         httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
     }
 

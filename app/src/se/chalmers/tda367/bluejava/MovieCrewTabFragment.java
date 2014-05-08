@@ -17,7 +17,7 @@ public class MovieCrewTabFragment extends MovieTabFragment {
      * @param id The ID of the movie we want to search for
      */
     @Override
-    protected void getAdditionalInfo(String id) {
+    protected void getAdditionalInfo(int id) {
         httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
     }
 
@@ -45,6 +45,7 @@ public class MovieCrewTabFragment extends MovieTabFragment {
 
     public void setupLayout() {
         TextView creditsTestTextView = (TextView) getView().findViewById(R.id.crewTest);
-        creditsTestTextView.setText(movie.getCredits().getCreditsID());
+        String id = Integer.toString(movie.getCredits().getID());
+        creditsTestTextView.setText(id);
     }
 }

@@ -22,11 +22,11 @@ public class MovieApi {
         return finalizeMovieQuery("search/movie?query=" + title);
     }
 
-    public String getMovieDetailsQuery(String id) {
+    public String getMovieDetailsQuery(int id) {
         return finalizeMovieQuery("movie/" + id);
     }
 
-    public String getMovieCreditsQuery(String id) {
+    public String getMovieCreditsQuery(int id) {
         return finalizeMovieQuery("movie/" + id + "/credits");
     }
 
@@ -42,11 +42,11 @@ public class MovieApi {
         return finalizeMovieQuery("movie/upcoming");
     }
 
-    public String getMovieImagesQuery(String id) {
+    public String getMovieImagesQuery(int id) {
         return finalizeMovieQuery("movie/" + id + "/images");
     }
 
-    public String getMovieVideosQuery(String id) {
+    public String getMovieVideosQuery(int id) {
         return finalizeMovieQuery("movie/" + id + "/videos");
     }
 

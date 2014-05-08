@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class MovieTabFragment extends Fragment implements JSONResultHandler {
-
     protected Activity activity;
 
     protected Movie movie;
@@ -51,7 +50,7 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
      *
      * @param id The ID of the movie we want to add info to
      */
-    protected abstract void getAdditionalInfo(String id);
+    protected abstract void getAdditionalInfo(int id);
 
 
     /**

@@ -14,17 +14,25 @@ import java.util.List;
 
 public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
 
-    private List<Movie> movies;
-    private DisplayResultsActivity displayResultsActivity;
-    private int textViewResourceId;
-    private MovieApi movieApi;
+    private final List<Movie> movies;
+
+    private final DisplayResultsActivity displayResultsActivity;
+
+    private final int textViewResourceId;
+
+    private final MovieApi movieApi;
 
     public DisplayResultsArrayAdapter(DisplayResultsActivity displayResultsActivity,
                                       int textViewResourceId, List<Movie> movies, MovieApi movieApi) {
+
         super(displayResultsActivity, textViewResourceId, movies);
+
         this.displayResultsActivity = displayResultsActivity;
+
         this.textViewResourceId = textViewResourceId;
+
         this.movies = movies;
+
         this.movieApi = movieApi;
     }
 
@@ -54,7 +62,7 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
-                    String movieID = movie.getID();
+
                     intent.putExtra("movie", movie);
                     displayResultsActivity.startActivity(intent);
                 }

@@ -1,5 +1,7 @@
 package se.chalmers.tda367.bluejava;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,4 +55,35 @@ public class CrewMember extends Person {
             throw new RuntimeException("CrewMember.java jsonToListOfCrewMembers error");
         }
     }
+
+    protected CrewMember(Parcel in) {
+        super(in);
+        CREDIT_ID = in.readString();
+        DEPARTMENT = in.readString();
+        JOB = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(CREDIT_ID);
+        dest.writeString(DEPARTMENT);
+        dest.writeString(JOB);
+    }
+
+    public static final Parcelable.Creator<CrewMember> CREATOR = new Parcelable.Creator<CrewMember>() {
+        @Override
+        public CrewMember createFromParcel(Parcel in) {
+            return new CrewMember(in);
+        }
+
+        @Override
+        public CrewMember[] newArray(int size) {
+            return new CrewMember[size];
+        }
+    };
 }

@@ -72,7 +72,6 @@ public class ImageAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, DisplayMovieActivity.class);
-                String message = movie.getID();
                 intent.putExtra("movie", movie);
                 activity.startActivity(intent);
             }

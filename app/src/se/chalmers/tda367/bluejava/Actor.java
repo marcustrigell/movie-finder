@@ -1,5 +1,7 @@
 package se.chalmers.tda367.bluejava;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,4 +60,37 @@ public class Actor extends Person {
             throw new RuntimeException("Actor.java jsonToListOfActors error");
         }
     }
+
+    protected Actor(Parcel in) {
+        super(in);
+        CHARACTER = in.readString();
+        CREDIT_ID = in.readString();
+        CAST_ID = in.readInt();
+        ORDER = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(CHARACTER);
+        dest.writeString(CREDIT_ID);
+        dest.writeInt(CAST_ID);
+        dest.writeInt(ORDER);
+    }
+
+    public static final Parcelable.Creator<Actor> CREATOR = new Parcelable.Creator<Actor>() {
+        @Override
+        public Actor createFromParcel(Parcel in) {
+            return new Actor(in);
+        }
+
+        @Override
+        public Actor[] newArray(int size) {
+            return new Actor[size];
+        }
+    };
 }

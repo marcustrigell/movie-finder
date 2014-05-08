@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Movie implements Parcelable {
 
-    private String id;
+    private int id;
     private String title;
     private String releaseYear;
     private String popularity;
@@ -25,13 +25,13 @@ public class Movie implements Parcelable {
     private String tagline;
     private String runtime;
     private String revenue;
-    private List<String> genres;
+    private List<Genre> genres;
     private Credits credits;
 
     public static class Builder {
 
         // Required basic movie info
-        private final String id;
+        private final int id;
         private final String title;
         private final String releaseYear;
         private final String popularity;
@@ -40,7 +40,7 @@ public class Movie implements Parcelable {
         private final String posterPath;
 
         // Additional movie info (optional)
-        private List<String> genres;
+        private List<Genre> genres;
         private String imdbID;
         private String budget;
         private String overview;
@@ -52,7 +52,7 @@ public class Movie implements Parcelable {
         private Credits credits;
 
         public Builder(JSONObject jsonObject) throws JSONException {
-            id = jsonObject.getString("id");
+            id = jsonObject.getInt("id");
             title = jsonObject.getString("title");
             releaseYear = jsonObject.getString("release_date");
             popularity = jsonObject.getString("popularity");
@@ -79,12 +79,8 @@ public class Movie implements Parcelable {
             runtime = jsonObject.getString("runtime");
             revenue = jsonObject.getString("revenue");
 
-            genres = new ArrayList<String>();
             JSONArray genresJson = jsonObject.getJSONArray("genres");
-
-            for (int i = 0; i < genresJson.length(); i++) {
-                genres.add(genresJson.get(i).toString());
-            }
+            genres = Genre.jsonToListOfGenres(genresJson);
 
             return this;
         }
@@ -118,15 +114,12 @@ public class Movie implements Parcelable {
         credits = builder.credits;
     }
 
-    /* Used when restoring object from parcel. */
-    public Movie(Parcel in) { readFromParcel(in); }
-
     @Override
     public String toString() {
         return title + " (" + getReleaseYear() + ") - " + rating;
     }
 
-    public String getID() {
+    public int getID() {
         return id;
     }
 
@@ -150,7 +143,7 @@ public class Movie implements Parcelable {
         return posterPath;
     }
 
-    public List<String> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
@@ -205,6 +198,9 @@ public class Movie implements Parcelable {
         }
     }
 
+    /* Used when restoring object from parcel. */
+    public Movie(Parcel in) { readFromParcel(in); }
+
     @Override
     public int describeContents() {
         return 0;
@@ -212,23 +208,42 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeInt(id);
         dest.writeString(title);
         dest.writeString(posterPath);
         dest.writeString(releaseYear);
         dest.writeString(popularity);
         dest.writeString(rating);
         dest.writeString(voteCount);
+        dest.writeTypedList(genres);
+        dest.writeString(imdbID);
+        dest.writeString(budget);
+        dest.writeString(overview);
+        dest.writeString(tagline);
+        dest.writeString(runtime);
+        dest.writeString(revenue);
+        dest.writeParcelable(credits, flags);
     }
 
     private void readFromParcel(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         title = in.readString();
         posterPath = in.readString();
         releaseYear = in.readString();
         popularity = in.readString();
         rating = in.readString();
         voteCount = in.readString();
+        if (genres == null) {
+            genres = new ArrayList<Genre>();
+        }
+        in.readTypedList(genres, Genre.CREATOR);
+        imdbID = in.readString();
+        budget = in.readString();
+        overview = in.readString();
+        tagline = in.readString();
+        runtime = in.readString();
+        revenue = in.readString();
+        credits = in.readParcelable(Credits.class.getClassLoader());
     }
 
     public static final Parcelable.Creator CREATOR =
