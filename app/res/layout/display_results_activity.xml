@@ -24,12 +24,6 @@
                 android:layout_width="match_parent"
                 android:onClick="sortMovies"
                 android:text="Sort"/>
-<!--        <TextView
-            android:id="@+id/sort_label"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Sort by name"/>-->
-
     </LinearLayout>
     <ListView
             android:drawSelectorOnTop="false"
