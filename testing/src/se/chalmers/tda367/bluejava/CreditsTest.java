@@ -33,7 +33,7 @@ public class CreditsTest extends TestCase {
 
     @Test
     public void testGetCreditsID() {
-        assertEquals(CREDITS_ID, credits.getCreditsID());
+        assertEquals(CREDITS_ID, credits.getID());
     }
 
     @Test
