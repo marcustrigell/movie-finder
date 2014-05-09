@@ -41,7 +41,7 @@ public class Movie implements Parcelable {
 
     public static class Builder {
 
-        // Basic movie info (required)
+        // Required basic movie info
         private final int id;
         private final String title;
         private final String releaseYear;
