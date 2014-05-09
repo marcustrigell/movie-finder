@@ -4,6 +4,9 @@ import junit.framework.TestCase;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
+import se.chalmers.tda367.bluejava.models.Actor;
+import se.chalmers.tda367.bluejava.models.Credits;
+import se.chalmers.tda367.bluejava.models.CrewMember;
 
 import java.io.FileReader;
 import java.util.List;

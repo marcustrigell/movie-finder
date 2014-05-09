@@ -2,8 +2,8 @@ package se.chalmers.tda367.bluejava;
 
 import junit.framework.TestCase;
 import org.json.JSONObject;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import se.chalmers.tda367.bluejava.models.CrewMember;
 
 import java.io.FileReader;
 import java.util.Scanner;
