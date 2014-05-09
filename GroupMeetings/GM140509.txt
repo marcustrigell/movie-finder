@@ -1,0 +1,85 @@
+Meeting Agenda - 140509
+
+Date:
+140509
+
+Facilitator:
+Axel Niklasson
+
+Participants:
+Axel Niklasson 
+Tobias Andersen (Reports)
+Marcus Trigell (Writer)
+
+1.  Objectives (5 min) 
+	
+	a. Programmering
+		i. Vad har vi gjort?
+		ii. Var är vi?
+		iii. Vad ska vi göra?
+	b. Strukturera projektet i paket
+	c. Dokument
+		i. RAD
+		ii. SDD
+	d. Code coverage
+
+2.  Reports (15 min) 
+     
+	- Uppgifterna i programmering avklarade sen föregående möte
+	- RAD & SDD behöver skrivas mer på
+	- Ej strukturerat i paket ännu
+	- Ej något “att göra” dokument ännu
+
+3.  Discussion items (35 min) 
+
+	a.
+		i. 
+Ny modul i testning (ej någon android specifik)
+		Mer testning i allmänhet
+		Klasser för att representera personer inom film
+		Framsidan ny
+		“Tabbar” i en movie där man kan växla mellan actors och info osv
+		Gjort några klasser parcelable
+		ii. 
+		Vi har en någorlunda färdig produkt, behöver finslipas endast
+		iii.
+		Tobbe gör dokumentet med “att göra”-uppgifter
+		Fylla på grafiskt med “cast” och “crew” i tabbarna i Movie-vyn
+		Vi skjuter upp “menyn” i första vyn åt David när han är tillbaka (Måndag)
+		Testa parcelable
+		Sorteringstester behöver implementeras
+		Twitter, hur gör vi? (även Facebook)
+		Profil, Favoriter osv
+	b. 
+Försöker följa android best-practice om möjligt
+	Activities i eget paket
+	Adapters i eget paket
+	Authenticators i eget paket
+	Fragments i eget paket
+	Interfaces i eget paket
+	Models i eget paket
+	Preferences/Settings i eget paket
+	Rest(-api) i eget paket
+	Helper (typ sortering) i eget paket
+	Görs direkt efter mötet!
+	c.
+		i.
+		Skjuts upp tills David är med igen
+		ii.
+		Skjuts upp tills David är med igen
+	d.
+	Måste sätta upp en miljö för att kolla hur mycket av koden vi testar
+ 
+4.  Outcomes and assignments (5 min) 
+
+	Tobbe: “att göra”-dokument, Kolla/Implementera Twitter samt Facebook
+
+	Axel: parcelable-testning, code coverage, inmatningstestning
+
+	Marcus: sorterings-testning, fylla på grafisk med cast och crew
+
+5.  Wrap up 
+
+	Vi har en ok produkt som innehar den grundläggande funktionalitet som behövs
+	Alla har uppgifter att göra fortsatt
+	Paketstruktur och “att göra” dokument görs direkt efter mötet

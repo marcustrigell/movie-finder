@@ -1,7 +1,8 @@
 package se.chalmers.tda367.bluejava;
 
 import junit.framework.TestCase;
-import org.junit.BeforeClass;
+import se.chalmers.tda367.bluejava.models.Actor;
+import se.chalmers.tda367.bluejava.models.Person;
 
 import java.io.FileReader;
 import java.util.Scanner;

@@ -3,6 +3,8 @@ package se.chalmers.tda367.bluejava;
 import junit.framework.TestCase;
 import org.json.JSONObject;
 import org.junit.*;
+import se.chalmers.tda367.bluejava.models.Actor;
+
 import java.io.FileReader;
 import java.util.Scanner;
 

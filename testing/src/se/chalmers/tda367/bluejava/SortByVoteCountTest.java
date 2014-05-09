@@ -2,6 +2,9 @@ package se.chalmers.tda367.bluejava;
 
 import junit.framework.TestCase;
 import org.junit.Test;
+import se.chalmers.tda367.bluejava.helpers.SortByTitle;
+import se.chalmers.tda367.bluejava.interfaces.SortMethod;
+import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.io.FileReader;
 import java.util.List;
