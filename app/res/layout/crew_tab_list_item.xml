@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:background="@android:color/white"
+                android:background="@android:color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -24,7 +24,7 @@
                 android:maxLines="1"
                 android:paddingLeft="3dp"
                 android:paddingTop="12dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
         <TextView
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:paddingLeft="3dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="13sp" />
     </LinearLayout>
     <View

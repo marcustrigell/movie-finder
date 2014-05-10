@@ -2,7 +2,7 @@
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
           android:drawSelectorOnTop="false"
           android:dividerHeight="1dp"
-          android:background="@android:color/white"
+          android:background="@android:color/black"
           android:id="@+id/castList"
           android:layout_below="@+id/top_bar"
           android:layout_height="match_parent"

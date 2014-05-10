@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayMovieActivity;
@@ -57,17 +54,26 @@ public class CastTabArrayAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        final Actor actor = (Actor)getItem(position);
+        final Actor actor = (Actor) getItem(position);
 
-        ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-        TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
-        TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
+        if(convertView == null) {
 
-        String url = "https://image.tmdb.org/t/p/" + actor.getProfilePath();
-        Picasso.with(context).load(url).into(coverImageView);
+            final LayoutInflater inflater =
+                    (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        nameTextView.setText(actor.getName());
-        characterTextView.setText(actor.getCharacter());
+            convertView = inflater.inflate(R.layout.cast_tab_list_item, null);
+
+            ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+            TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
+            TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
+
+            String url = "https://image.tmdb.org/t/p/" + actor.getProfilePath();
+            Picasso.with(context).load(url).into(coverImageView);
+
+            nameTextView.setText(actor.getName());
+            characterTextView.setText(actor.getCharacter());
+
+        }
 
         return convertView;
     }
