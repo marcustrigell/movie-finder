@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#ffffff" >
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:drawSelectorOnTop="false"
+          android:dividerHeight="1dp"
+          android:background="@android:color/white"
+          android:id="@+id/castList"
+          android:layout_below="@+id/top_bar"
+          android:layout_height="match_parent"
+          android:layout_width="match_parent"/>
 
-<!--    <TextView android:id="@+id/creditsID"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center"
-              android:text="Most Popular"
-              android:textSize="20dp"
-              android:layout_centerInParent="true"/>-->
-    <ListView
-            android:drawSelectorOnTop="false"
-            android:dividerHeight="1dp"
-            android:background="@android:color/white"
-            android:id="@android:id/list"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/top_bar"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
-
-</RelativeLayout>

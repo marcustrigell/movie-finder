@@ -1,11 +1,13 @@
 package se.chalmers.tda367.bluejava.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
@@ -20,59 +22,52 @@ import java.util.List;
  *
  * Created by marcus on 2014-05-10.
  */
-public class CastTabArrayAdapter extends ArrayAdapter<Actor> {
+public class CastTabArrayAdapter extends BaseAdapter {
+
+    private final Context context;
 
     private final List<Actor> cast;
 
-    private final DisplayMovieActivity displayMovieActivity;
+    private final Activity activity;
 
-    private final int textViewResourceId;
+    public CastTabArrayAdapter(Context context, Activity activity, List<Actor> cast) {
 
-    public CastTabArrayAdapter(DisplayMovieActivity displayMovieActivity,
-                                      int textViewResourceId, List<Actor> cast) {
+        this.activity = activity;
 
-        super(displayMovieActivity, textViewResourceId, cast);
-
-        this.displayMovieActivity = displayMovieActivity;
-
-        this.textViewResourceId = textViewResourceId;
+        this.context = context;
 
         this.cast = cast;
    }
 
     @Override
+    public int getCount() {
+        return cast.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return cast.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return cast.get(position).getID();
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(textViewResourceId, null);
-        }
+        final Actor actor = (Actor)getItem(position);
 
-        final Actor actor = cast.get(position);
+        ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+        TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
+        TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
 
-        if (convertView != null) {
-            ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-            TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
-            TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
+        String url = "https://image.tmdb.org/t/p/" + actor.getProfilePath();
+        Picasso.with(context).load(url).into(coverImageView);
 
-            String url = "https://image.tmdb.org/t/p/" + actor.getProfilePath();
-            Picasso.with(displayMovieActivity).load(url).into(coverImageView);
-
-            nameTextView.setText(actor.getName());
-            characterTextView.setText(actor.getCharacter());
-
-            // This is not used right now, can be used if you want an individual actor page.
-            /*convertView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(displayMovieActivity, DisplayMovieActivity.class);
-
-                    intent.putExtra("actor", actor);
-                    displayMovieActivity.startActivity(intent);
-                }
-            });*/
-        }
+        nameTextView.setText(actor.getName());
+        characterTextView.setText(actor.getCharacter());
 
         return convertView;
     }

@@ -1,9 +1,11 @@
 package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
+import android.widget.ListView;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
+import se.chalmers.tda367.bluejava.adapters.CastTabArrayAdapter;
 import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.Credits;
 import se.chalmers.tda367.bluejava.models.Movie;
@@ -60,7 +62,9 @@ public class MovieCastTabFragment extends MovieTabFragment {
         Credits credits = movie.getCredits();
         List<Actor> cast = credits.getCast();
 
+        ListView listView = (ListView) getView().findViewById(R.id.castList);
 
+        listView.setAdapter(new CastTabArrayAdapter(getView().getContext(), activity, cast));
 
     }
 }
