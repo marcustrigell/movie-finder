@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
+import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.Credits;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.R;
+
+import java.util.List;
 
 public class MovieCastTabFragment extends MovieTabFragment {
 
@@ -50,8 +53,13 @@ public class MovieCastTabFragment extends MovieTabFragment {
      * Builds the screen's layout
      */
     public void setupLayout() {
-        TextView creditsIDTextView = (TextView) getView().findViewById(R.id.creditsID);
+/*        TextView creditsIDTextView = (TextView) getView().findViewById(R.id.creditsID);
         String id = Integer.toString(movie.getCredits().getID());
-        creditsIDTextView.setText(id);
+        creditsIDTextView.setText(id);*/
+
+        Credits credits = movie.getCredits();
+        List<Actor> cast = credits.getCast();
+
+
     }
 }
