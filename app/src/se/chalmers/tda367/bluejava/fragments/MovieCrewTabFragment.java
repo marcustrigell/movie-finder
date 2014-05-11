@@ -53,6 +53,9 @@ public class MovieCrewTabFragment extends MovieTabFragment {
         setupLayout();
     }
 
+    /**
+     * Builds the screens layout.
+     */
     public void setupLayout() {
 
         Credits credits = movie.getCredits();

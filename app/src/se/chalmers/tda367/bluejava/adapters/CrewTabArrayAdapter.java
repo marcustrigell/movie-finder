@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayMovieActivity;
+import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.CrewMember;
 
@@ -37,6 +38,7 @@ public class CrewTabArrayAdapter extends BaseAdapter {
         this.activity = activity;
 
         this.crew = crew;
+
     }
 
     @Override
@@ -54,6 +56,13 @@ public class CrewTabArrayAdapter extends BaseAdapter {
         return crew.get(position).getID();
     }
 
+    /**
+     * Converts an old view in a parent view to a new one.
+     * @param position The position of the view in the parent.
+     * @param convertView The view which is to be converted.
+     * @param parent The parent view.
+     * @return The view which is to be used.
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -66,13 +75,17 @@ public class CrewTabArrayAdapter extends BaseAdapter {
 
             convertView = inflater.inflate(R.layout.crew_tab_list_item, null);
 
+            /* Find the right view pieces to change. */
             ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
             TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
             TextView jobTextView = (TextView) convertView.findViewById(R.id.job);
 
-            String url = "https://image.tmdb.org/t/p/" + crewMember.getProfilePath();
+            /* Load the picture into the image view. */
+            MovieApi movieApi = new MovieApi();
+            String url = movieApi.getCoverURL(crewMember.getProfilePath());
             Picasso.with(context).load(url).into(coverImageView);
 
+            /* Set the correct text to the text fields. */
             nameTextView.setText(crewMember.getName());
             jobTextView.setText(crewMember.getJOB());
 
