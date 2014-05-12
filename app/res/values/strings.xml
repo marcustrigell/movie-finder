@@ -3,6 +3,7 @@
 <resources>
     <string name="action_search">Search</string>
     <string name="app_name">BlueJava</string>
+    <string name="app_id">727335667289591</string>
     <string name="menu_button_text">Menu</string>
     <string name="search_button_text">Search</string>
     <string name="search_hint">Search movie</string>
@@ -13,4 +14,6 @@
     <string name="title_activity_search_results">Search Results</string>
     <string name="title_nav_drawer">Menu</string>
     <string name="settings_title">Settings</string>
+    <string name="fb_logged_in">Logged in</string>
+    <string name="fb_logged_out">Logged out</string>
 </resources>

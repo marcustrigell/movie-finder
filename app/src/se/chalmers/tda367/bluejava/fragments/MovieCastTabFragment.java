@@ -2,16 +2,13 @@ package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
 import android.widget.ListView;
-import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
+import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.CastTabArrayAdapter;
-import se.chalmers.tda367.bluejava.adapters.CrewTabArrayAdapter;
 import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.Credits;
-import se.chalmers.tda367.bluejava.models.CrewMember;
 import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.R;
 
 import java.util.List;
 

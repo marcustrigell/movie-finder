@@ -8,11 +8,21 @@ public class BlueJava extends Application {
 
     private static Context context;
 
+    private String userFBAuthToken;
+
     private AndroidHttpClient androidHttpClient;
 
     public void onCreate() {
         super.onCreate();
         BlueJava.context = getApplicationContext();
+    }
+
+    public String getUserFBAuthToken() {
+        return userFBAuthToken;
+    }
+
+    public void setUserFBAuthToken(String userFBAuthToken) {
+        this.userFBAuthToken = userFBAuthToken;
     }
 
     public static Context getContext() {
@@ -25,5 +35,7 @@ public class BlueJava extends Application {
         }
         return androidHttpClient;
     }
+
+
 
 }

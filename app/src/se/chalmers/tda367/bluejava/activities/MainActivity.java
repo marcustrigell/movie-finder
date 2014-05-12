@@ -17,7 +17,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import se.chalmers.tda367.bluejava.*;
+import android.widget.Toast;
+import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.MainTabsAdapter;
 import se.chalmers.tda367.bluejava.adapters.NavDrawerAdapter;
 import se.chalmers.tda367.bluejava.fragments.HomeFragment;
@@ -25,6 +26,7 @@ import se.chalmers.tda367.bluejava.fragments.TempLatestFragment;
 import se.chalmers.tda367.bluejava.fragments.TempPopularFragment;
 import se.chalmers.tda367.bluejava.fragments.TempRatedFragment;
 import se.chalmers.tda367.bluejava.interfaces.INavDrawerItem;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.NavDrawerItem;
 import se.chalmers.tda367.bluejava.models.NavDrawerSection;
 
@@ -52,6 +54,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     private ViewPager viewPager;
 
+    private boolean hasLoggedIn;
+
+    private String fbAccessToken;
+
+    private LoginFragment loginFragment;
+
 
     /**
      * Called when the activity is first created.
@@ -62,6 +70,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		setContentView(R.layout.main);
 
         setupTabs(savedInstanceState);
+
+        if (savedInstanceState == null) {
+            loginFragment = new LoginFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, loginFragment)
+                    .commit();
+        } else {
+            loginFragment = (LoginFragment) getSupportFragmentManager()
+                    .findFragmentById(android.R.id.content);
+        }
+
         setupLayout();
 
 		appTitle = getTitle();
@@ -112,6 +132,26 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         });
     }
 
+    public void hasLoggedIn(String FBaccessToken) {
+        this.fbAccessToken = FBaccessToken;
+
+        if (!hasLoggedIn) {
+            invalidateOptionsMenu();
+            BlueJava blueJavaApplication = (BlueJava) getApplication();
+            blueJavaApplication.setUserFBAuthToken(FBaccessToken);
+            Toast.makeText(this, getString(R.string.fb_logged_in), Toast.LENGTH_SHORT).show();
+            hasLoggedIn = true;
+        }
+    }
+
+    public void hasLoggedOut() {
+        invalidateOptionsMenu();
+        fbAccessToken = null;
+        BlueJava blueJavaApplication = (BlueJava) getApplication();
+        blueJavaApplication.setUserFBAuthToken(null);
+        Toast.makeText(this, getString(R.string.fb_logged_out), Toast.LENGTH_SHORT).show();
+        hasLoggedIn = false;
+    }
 
 
     @Override
