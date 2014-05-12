@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="credits"
+            >{
+        "id": 550,
+        "cast": [
+        {
+        "cast_id": 4,
+        "character": \"The Narrator\",
+        "credit_id": \"52fe4250c3a36847f80149f3\",
+        "id": 819,
+        "name": \"Edward Norton\",
+        "order": 0,
+        "profile_path": \"/iUiePUAQKN4GY6jorH9m23cbVli.jpg\"
+        }
+        ],
+        "crew": [
+        {
+        "credit_id": \"52fe4250c3a36847f80149ef\",
+        "department": \"Writing\",
+        "id": 7469,
+        "job": \"Author\",
+        "name": \"Jim Uhls\",
+        "profile_path": null
+        }
+        ]
+        }</string>
+</resources>

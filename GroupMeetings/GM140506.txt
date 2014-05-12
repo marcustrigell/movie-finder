@@ -1,0 +1,55 @@
+Meeting Agenda - 140506
+
+Date:
+140506
+
+Facilitator:
+Tobias Andersen
+
+Participants:
+Marcus Trigell (Writer)
+Axel Niklasson (Previous agenda)
+Tobias Andersen (Supervisor)
+
+1.  Objectives (5 min) 
+
+    a. Programmering!
+	i. Vad har alla gjort?
+	ii. Vad ska alla göra?
+	iii. Problemområden?
+    b. Dokument
+	i. SDD
+	ii. RAD (?)
+
+2.  Reports (15 min) 
+     
+     - Strukturera i paket
+     - Olika uppdrag från föregående vecka avklarade! (Trailers, Movie-klassen, Settings)
+
+3.  Discussion items (35 min) 
+
+    a. Ta tag i att göra ett dokument för “extra” uppgifter (dvs uppgifter utöver ordinare planerade uppgifter på möten)
+	i. Uppgifterna från förra veckan avklarade (Se punkt i reports)
+	ii. Test - Axel tar detta
+    Design skjuts upp till näst sista arbetsveckan
+    Show Actors & Movie-klassen - Marcus & Tobbe tar detta
+    Tobbe fixar ett “extra-uppgifts-dokument”
+iii. Testning med android, knepigt och otydligt.
+    Axel kollar extra på unit-testning och vi tar upp testning i allmänhet på handledarmötet imorgon.
+
+     b. i. ii. Fortsätta skriva allt eftersom i dokumenten, kolla lite på RAD:en om det går att förbättra/förnya
+	
+
+
+
+4.  Outcomes and assignments (5 min) 
+
+- Göra de individuella uppdragen i programmering, skriva SDD samt RAD allt eftersom kodningen fortskrider.
+	- Strukturera projektet i paket
+	- Skriva samt lägga upp tillgängligt för alla ett dokument med uppgifter “att göra”
+	- Ta upp android-testning samt testning överlag ytterligare en gång med handledare
+
+5.  Wrap up 
+
+	Måste strukturera och få färdigt mycket av koden samt skriva SDD & RAD kontinuerligt
+	Behövs ett färdigt dokument med uppgifter att göra för att inte “sitta fast” för länge

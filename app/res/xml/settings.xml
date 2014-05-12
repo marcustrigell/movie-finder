@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="GENERAL SETTINGS"
+        android:key="general_settings">
+
+        <CheckBoxPreference
+            android:title="Use English as main language"
+            android:key="main_language"
+            android:defaultValue="true"
+            android:summary="Change main language."
+        ></CheckBoxPreference>
+
+        <CheckBoxPreference
+            android:title="Play sound when login"
+            android:key="login_sound"
+            android:defaultValue="true"
+            android:summary="Change login sound."
+        ></CheckBoxPreference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="API SETTINGS"
+        android:key="api_settings" >
+
+        <Preference
+                android:title="Change user"
+                android:key="change_user"
+                android:summary="Change the logged in user."
+        ></Preference>
+
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -27,4 +27,16 @@
         <item>@drawable/ic_drawer</item>
     </array>
 
+    <!-- Sort spinner -->
+
+    <!-- Spinner items -->
+    <string-array name="sort_array">
+        <item>Sort by:</item>
+        <item>Title</item>
+        <item>Release Year</item>
+        <item>Rating</item>
+        <item>Vote Count</item>
+        <item>Popularity</item>
+    </string-array>
+
 </resources>
