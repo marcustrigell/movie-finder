@@ -1,8 +1,7 @@
-package se.chalmers.tda367.bluejava;
+package se.chalmers.tda367.bluejava.helpers;
 
 import junit.framework.TestCase;
-import org.junit.*;
-import se.chalmers.tda367.bluejava.helpers.SortByTitle;
+import org.junit.Test;
 import se.chalmers.tda367.bluejava.interfaces.SortMethod;
 import se.chalmers.tda367.bluejava.models.Movie;
 

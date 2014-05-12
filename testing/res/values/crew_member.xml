@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="crew_member"
+            >{
+        \"credit_id\": \"52fe4250c3a36847f80149ef\",
+        \"department\": \"Writing\",
+        \"id\": 7469,
+        \"job\": \"Author\",
+        \"name\": \"Jim Uhls\",
+        \"profile_path\": null
+        }</string>
+</resources>

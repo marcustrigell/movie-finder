@@ -1,12 +1,19 @@
 package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
+import android.widget.ListView;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
+import se.chalmers.tda367.bluejava.adapters.CastTabArrayAdapter;
+import se.chalmers.tda367.bluejava.adapters.CrewTabArrayAdapter;
+import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.Credits;
+import se.chalmers.tda367.bluejava.models.CrewMember;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.R;
+
+import java.util.List;
 
 public class MovieCrewTabFragment extends MovieTabFragment {
 
@@ -46,9 +53,16 @@ public class MovieCrewTabFragment extends MovieTabFragment {
         setupLayout();
     }
 
+    /**
+     * Builds the screens layout.
+     */
     public void setupLayout() {
-        TextView creditsTestTextView = (TextView) getView().findViewById(R.id.crewTest);
-        String id = Integer.toString(movie.getCredits().getID());
-        creditsTestTextView.setText(id);
+
+        Credits credits = movie.getCredits();
+        List<CrewMember> crew = credits.getCrew();
+
+        ListView listView = (ListView) getView().findViewById(R.id.crewList);
+
+        listView.setAdapter(new CrewTabArrayAdapter(getView().getContext(), activity, crew));
     }
 }

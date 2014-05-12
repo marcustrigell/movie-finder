@@ -1,19 +1,18 @@
-package se.chalmers.tda367.bluejava;
+package se.chalmers.tda367.bluejava.models;
 
-import junit.framework.TestCase;
+import android.content.Context;
+import android.os.Parcel;
+import android.test.InstrumentationTestCase;
 import org.json.JSONObject;
-import org.junit.*;
-import se.chalmers.tda367.bluejava.models.Actor;
-
-import java.io.FileReader;
-import java.util.Scanner;
+import org.junit.Test;
+import se.chalmers.tda367.bluejava.tests.R;
 
 /**
  * Created by axelniklasson on 2014-05-08.
  */
-public class ActorTest extends TestCase {
+public class ActorTest extends InstrumentationTestCase {
 
-    private static Actor actor;
+    private Actor actor, actorFromParcel;
     private final int CAST_ID = 4;
     private final String CHARACTER = "The Narrator";
     private final String CREDIT_ID = "52fe4250c3a36847f80149f3";
@@ -22,12 +21,18 @@ public class ActorTest extends TestCase {
     @Override
     public void setUp() throws Exception{
         super.setUp();
-        String json = "";
-        Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/actor.txt"));
-        while(sc.hasNextLine()) {
-            json += sc.nextLine();
-        }
+        Context context = getInstrumentation().getContext();
+        String json = context.getString(R.string.actors);
         actor = new Actor(new JSONObject(json));
+        Parcel parcel = Parcel.obtain();
+        actor.writeToParcel(parcel, 0);
+        parcel.setDataPosition(0);
+        actorFromParcel = Actor.CREATOR.createFromParcel(parcel);
+    }
+
+    @Test
+    public void testParcelable() {
+        assertEquals(actor.describeContents(), actorFromParcel.describeContents());
     }
 
     @Test
