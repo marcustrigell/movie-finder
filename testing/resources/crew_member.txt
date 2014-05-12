@@ -1,8 +1,0 @@
-{
-      "credit_id": "52fe4250c3a36847f80149ef",
-      "department": "Writing",
-      "id": 7469,
-      "job": "Author",
-      "name": "Jim Uhls",
-      "profile_path": null
-}
