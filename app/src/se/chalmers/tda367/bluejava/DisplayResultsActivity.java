@@ -157,7 +157,7 @@ public class DisplayResultsActivity extends ListActivity {
 			query = "latest"; // intent.getStringExtra("EXTRA_MESSAGE");
 			type = "discover";
 		}
-		
+
 		findMovies(type, query);
 	}
 }
