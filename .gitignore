@@ -21,3 +21,6 @@ gen/
 out/
 
 
+# Facebook Android SDK
+app/libs/acebook-android-sdk
+
