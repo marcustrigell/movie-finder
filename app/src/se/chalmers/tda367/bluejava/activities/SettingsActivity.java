@@ -1,30 +1,40 @@
 package se.chalmers.tda367.bluejava.activities;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.view.MenuItem;
 import se.chalmers.tda367.bluejava.R;
 
-/**
- * Created by axelniklasson on 2014-04-28.
- */
 public class SettingsActivity extends PreferenceActivity {
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
-	}
 
-	public static class MyPreferenceFragment extends PreferenceFragment
-	{
+        getFragmentManager()
+                .beginTransaction()
+                .replace(android.R.id.content, new SettingsFragment())
+                .commit();
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+	public static class SettingsFragment extends PreferenceFragment {
 		@Override
-		public void onCreate(final Bundle savedInstanceState)
-		{
+		public void onCreate(final Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.settings);
 		}
 	}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

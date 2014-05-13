@@ -25,7 +25,7 @@ public class LoginFragment extends Fragment {
 
     private UiLifecycleHelper uiHelper;
 
-    private MainActivity mainActivity;
+    private DisplayProfileActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -51,9 +51,9 @@ public class LoginFragment extends Fragment {
         final TextView userInfoTextView = (TextView) getView().findViewById(R.id.userInfoTextView);
 
         if (state.isOpened()) {
-            if (mainActivity == null) {
+            if (activity == null) {
 
-                mainActivity = (MainActivity) getActivity();
+                activity = (DisplayProfileActivity) getActivity();
 
                 userInfoTextView.setVisibility(View.VISIBLE);
 
@@ -64,14 +64,14 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onCompleted(GraphUser user, Response response) {
                         if (user != null) {
-                            userInfoTextView.setText(buildUserInfoDisplay(user));
+                                userInfoTextView.setText(buildUserInfoDisplay(user));
                         }
                     }
                 }).executeAsync();
             }
 
-            if (mainActivity != null) {
-                mainActivity.hasLoggedIn(session.getAccessToken());
+            if (activity != null) {
+                activity.hasLoggedIn(session.getAccessToken());
 
             }
         } else if (state.isClosed()) {
@@ -117,7 +117,7 @@ public class LoginFragment extends Fragment {
         uiHelper.onSaveInstanceState(outState);
     }
 
-    void logout() {
+    public void logout() {
         Session session = Session.getActiveSession();
         if (session != null) {
             session.closeAndClearTokenInformation();
@@ -126,8 +126,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void tellMainActivityLogout() {
-        if (mainActivity != null) {
-            mainActivity.hasLoggedOut();
+        if (activity != null) {
+            activity.hasLoggedOut();
         }
     }
 
@@ -145,7 +145,6 @@ public class LoginFragment extends Fragment {
 
         userInfo.append(String.format("Locale: %s\n\n",
                 user.getProperty("locale")));
-
 
         return userInfo.toString();
     }

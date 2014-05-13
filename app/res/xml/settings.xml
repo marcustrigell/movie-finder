@@ -11,14 +11,14 @@
             android:key="main_language"
             android:defaultValue="true"
             android:summary="Change main language."
-        ></CheckBoxPreference>
+        />
 
         <CheckBoxPreference
             android:title="Play sound when login"
             android:key="login_sound"
             android:defaultValue="true"
             android:summary="Change login sound."
-        ></CheckBoxPreference>
+        />
 
     </PreferenceCategory>
 
@@ -30,7 +30,7 @@
                 android:title="Change user"
                 android:key="change_user"
                 android:summary="Change the logged in user."
-        ></Preference>
+        />
 
     </PreferenceCategory>
 </PreferenceScreen>
