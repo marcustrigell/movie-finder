@@ -1,11 +1,15 @@
-package se.chalmers.tda367.bluejava.models;
+package se.chalmers.tda367.bluejava.notworking;
 
 import android.content.Context;
 import android.os.Parcel;
 import android.test.InstrumentationTestCase;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import se.chalmers.tda367.bluejava.models.Credits;
+import se.chalmers.tda367.bluejava.models.Genre;
+import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.tests.R;
 
 import java.util.List;
@@ -16,32 +20,44 @@ import java.util.List;
 public class MovieTest extends InstrumentationTestCase {
 
     private Movie movie, movieFromParcel;
-    private final int ID = 0;
-    private final String TITLE = "";
-    private final String RELEASE_YEAR = "";
-    private final String POPULARITY = "";
-    private final String RATING = "";
-    private final String VOTE_COUNT = "";
-    private final String POSTER_PATH = "";
-    private final String IMDB_ID = "";
-    private final String BUDGET = "";
-    private final String OVERVIEW = "";
-    private final String TAGLINE = "";
-    private final String RUNTIME = "";
-    private final String REVENUE = "";
+    private final int ID = 550;
+    private final String TITLE = "Fight Club";
+    private final String RELEASE_YEAR = "1999-10-15";
+    private final String POPULARITY = "61151.745000000003";
+    private final String RATING = "9.0999999999999996";
+    private final String VOTE_COUNT = "174";
+    private final String POSTER_PATH = "/2lECpi35Hnbpa4y46JX0aY3AWTy.jpg";
+    private final String IMDB_ID = "tt0137523";
+    private final String BUDGET = "63000000";
+    private final String OVERVIEW = "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male " +
+            "aggression into a shocking new form of therapy. Their concept catches on, with underground " +
+            "\\\"fight clubs\\\" forming in every town, until an eccentric gets in the way and ignites " +
+            "an out-of-control spiral toward oblivion.";
+    private final String TAGLINE = "How much can you know about yourself if you've never been in a fight?";
+    private final String RUNTIME = "139";
+    private final String REVENUE = "100853753";
     private List<Genre> genres;
-    private Credits CREDITS;
+    private Credits credits;
+
+    private String basicJSON, detailsJSON, creditsJSON, genresJSON;
 
     @Before
     public void setUp() throws Exception {
         super.setUp();
         Context context = getInstrumentation().getContext();
-        String json = context.getString(R.string.movie); //TODO: save correct info in movie.xml
-        movie = new Movie.Builder(new JSONObject(json)).build();
+
+        basicJSON = context.getString(R.string.movie_basic);
+        detailsJSON = context.getString(R.string.movie_details);
+        creditsJSON = context.getString(R.string.credits);
+        genresJSON = context.getString(R.string.genres);
+
+        Movie.Builder builder = new Movie.Builder(new JSONObject(basicJSON));
+        movie = builder.details(new JSONObject(detailsJSON)).credits(new Credits(new JSONObject(creditsJSON))).build();
+
         Parcel parcel = Parcel.obtain();
         movie.writeToParcel(parcel, 0);
         parcel.setDataPosition(0);
-        movieFromParcel = (Movie)Movie.CREATOR.createFromParcel(parcel); //TODO: casting needed?
+        movieFromParcel = (Movie)Movie.CREATOR.createFromParcel(parcel); //TODO: should casting really be needed?
     }
 
     @Test
@@ -86,7 +102,10 @@ public class MovieTest extends InstrumentationTestCase {
 
     @Test
     public void testGetGenres() throws Exception {
-        //TODO: implement
+        genres = Genre.jsonToListOfGenres(new JSONArray(genresJSON));
+        for(int i = 0; i < genres.size(); i++) {
+            assertEquals(genres.get(i), movie.getGenres().get(i));
+        }
     }
 
     @Test
@@ -111,7 +130,7 @@ public class MovieTest extends InstrumentationTestCase {
 
     @Test
     public void testGetRuntime() throws Exception {
-        assertEquals(TAGLINE, movie.getTagline());
+        assertEquals(RUNTIME, movie.getRuntime());
     }
 
     @Test
@@ -121,6 +140,9 @@ public class MovieTest extends InstrumentationTestCase {
 
     @Test
     public void testGetCredits() throws Exception {
-        //TODO: implement
+        credits = new Credits(new JSONObject(creditsJSON));
+        assertEquals(credits, movie.getCredits());
     }
+
+    //TODO: implement test for Movie.jsonToListOfMovies
 }

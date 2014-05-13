@@ -54,4 +54,6 @@ public class ActorTest extends InstrumentationTestCase {
     public void testGetOrder() throws Exception {
         assertEquals(ORDER, actor.getOrder());
     }
+
+    //TODO: implement test for Actor.jsonToListOfActors
 }
