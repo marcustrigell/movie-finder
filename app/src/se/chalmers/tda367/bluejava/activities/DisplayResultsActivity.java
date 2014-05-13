@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -22,7 +23,6 @@ import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
 import se.chalmers.tda367.bluejava.interfaces.SortMethod;
 import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.models.Person;
 
 import java.util.Collections;
 import java.util.List;
@@ -108,6 +108,8 @@ public class DisplayResultsActivity extends ListActivity
         if (json == null) {
             return;
         } else if (json.contains("profile_path")) {
+
+            Log.i("JSON", json);
 			try {
 				JSONObject jsonObject = new JSONObject(json);
 				people = Actor.jsonToListOfActors(jsonObject);

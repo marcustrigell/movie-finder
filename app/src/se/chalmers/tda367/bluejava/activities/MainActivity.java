@@ -174,11 +174,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // Section - Your Profile
         navDrawerItems.add(new NavDrawerSection(navDrawerTitles[8]));
 
-        // Favorites
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
-
-        // Seen
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
+            // Profile
+            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[9], navDrawerIcons.getResourceId(9, -1)));
 
 
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -352,6 +349,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				intent.putExtra(EXTRA_MESSAGE, "latest_people");
 				startActivity(intent);
 				break;
+            case 9 :
+                intent = new Intent(this, DisplayProfileActivity.class);
+                startActivity(intent);
+                break;
             default:
                 //else
                 break;
