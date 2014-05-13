@@ -1,7 +1,10 @@
 package se.chalmers.tda367.bluejava.activities;
 
-import android.app.*;
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -9,7 +12,6 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,10 +23,6 @@ import android.widget.Toast;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.MainTabsAdapter;
 import se.chalmers.tda367.bluejava.adapters.NavDrawerAdapter;
-import se.chalmers.tda367.bluejava.fragments.HomeFragment;
-import se.chalmers.tda367.bluejava.fragments.TempLatestFragment;
-import se.chalmers.tda367.bluejava.fragments.TempPopularFragment;
-import se.chalmers.tda367.bluejava.fragments.TempRatedFragment;
 import se.chalmers.tda367.bluejava.interfaces.INavDrawerItem;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.NavDrawerItem;
@@ -54,7 +52,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     private ViewPager viewPager;
 
-    private boolean hasLoggedIn;
+    private boolean isLoggedIn;
 
     private String fbAccessToken;
 
@@ -135,12 +133,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void hasLoggedIn(String FBaccessToken) {
         this.fbAccessToken = FBaccessToken;
 
-        if (!hasLoggedIn) {
+        if (!isLoggedIn) {
             invalidateOptionsMenu();
             BlueJava blueJavaApplication = (BlueJava) getApplication();
             blueJavaApplication.setUserFBAuthToken(FBaccessToken);
             Toast.makeText(this, getString(R.string.fb_logged_in), Toast.LENGTH_SHORT).show();
-            hasLoggedIn = true;
+            isLoggedIn = true;
         }
     }
 
@@ -150,7 +148,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         BlueJava blueJavaApplication = (BlueJava) getApplication();
         blueJavaApplication.setUserFBAuthToken(null);
         Toast.makeText(this, getString(R.string.fb_logged_out), Toast.LENGTH_SHORT).show();
-        hasLoggedIn = false;
+        isLoggedIn = false;
     }
 
 
@@ -210,11 +208,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // Section - Your Profile
         navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
 
-        // Favorites
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+        if (isLoggedIn) {
+            // Favorites
+            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
 
-        // Seen
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
+            // Seen
+            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
+        }
+
+
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
@@ -354,9 +356,34 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	// Using this for testing purposes.
 
-	private void displayView(int position) {
+    private void displayView(int position) {
+
+        Intent intent = new Intent(this, DisplayResultsActivity.class);
+
+        navDrawerList.setItemChecked(position, true);
+        navDrawerList.setSelection(position);
+        setTitle(navDrawerTitles[position]);
+        navDrawerLayout.closeDrawer(navDrawerList);
+
+        switch(position) {
+            case 2 :
+                intent.putExtra(EXTRA_MESSAGE, "upcoming");
+                startActivity(intent);
+                break;
+            case 3 :
+                intent.putExtra(EXTRA_MESSAGE, "popular");
+                startActivity(intent);
+                break;
+            case 4 :
+                intent.putExtra(EXTRA_MESSAGE, "top_rated");
+                startActivity(intent);
+                break;
+            default:
+                //else
+                break;
+        }
 		// Update the main content by replacing fragments
-		Fragment fragment = null;
+		/*Fragment fragment = null;
 
 		if (position == 0) {
 			fragment = new HomeFragment();
@@ -372,7 +399,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			// For now...
 			fragment = new HomeFragment();
 		}
-
+*/
 		/* ------------- I tried this ------------- */
 
 		// I tried making a query, but didn't succeed... ;)
@@ -396,19 +423,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		/* ------------- up to here ------------- */
 
-		if (fragment != null) {
+		/*if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, fragment).commit();
 
-			// Update selected item and title, then close the drawer
-			navDrawerList.setItemChecked(position, true);
-			navDrawerList.setSelection(position);
-			setTitle(navDrawerTitles[position]);
-			navDrawerLayout.closeDrawer(navDrawerList);
+
 		} else {
 			// Error in creating fragment
 			Log.e("MainActivity", "Error in creating fragment");
 		}
+*/
+        // Update selected item and title, then close the drawer
+
 	}
 }

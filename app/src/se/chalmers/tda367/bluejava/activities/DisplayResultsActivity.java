@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.*;
-import se.chalmers.tda367.bluejava.*;
+import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.DisplayResultsArrayAdapter;
 import se.chalmers.tda367.bluejava.apis.HttpHandler;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
@@ -137,15 +137,6 @@ public class DisplayResultsActivity extends ListActivity
         }
     }
 
-    public void findMovies(String type, String title) {
-        if (type.equals("discover")) {
-			httpHandler.get(movieApi.getDiscoverMovieQuery(title), this);
-		} else {
-			httpHandler.get(movieApi.getSearchMovieQuery(title), this);
-		}
-
-    }
-
     private void showToast(String message) {
         Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
     }
@@ -162,7 +153,6 @@ public class DisplayResultsActivity extends ListActivity
                 Collections.reverse(tmp);
                 displayMovies(tmp);
             }
-
         }
     }
 
@@ -188,22 +178,32 @@ public class DisplayResultsActivity extends ListActivity
 	 * Handling intent data
 	 */
 	private void handleIntent(Intent intent) {
-		String type, query;
+        String query;
 
 		// Check if query comes from search field in activity bar
 		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 			query = intent.getStringExtra(SearchManager.QUERY);
-			type = "search";
 		}
 
 		// Otherwise it comes from navigation drawer browsing
 		else {
-			query = "latest"; // intent.getStringExtra("EXTRA_MESSAGE");
-			type = "discover";
+            query = intent.getStringExtra("se.chalmers.tda367.bluejava.MESSAGE");
 		}
 
-		findMovies(type, query);
+		findMovies(query);
 	}
+
+    public void findMovies(String query) {
+        if (query.equals("upcoming")) {
+            httpHandler.get(movieApi.getUpcomingMoviesQuery(), this);
+        } else if (query.equals("popular")) {
+            httpHandler.get(movieApi.getPopularMoviesQuery(), this);
+        }  else if (query.equals("top_rated")) {
+            httpHandler.get(movieApi.getTopRatedMoviesQuery(), this);
+        } else {
+            httpHandler.get(movieApi.getSearchMovieQuery(query), this);
+        }
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
