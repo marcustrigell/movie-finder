@@ -4,6 +4,7 @@
 
 <resources>
     <string name="action_search">Search</string>
+    <string name="action_settings">Search</string>
     <string name="app_name">BlueJava</string>
     <string name="app_id">727335667289591</string>
     <string name="menu_button_text">Menu</string>

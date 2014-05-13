@@ -1,7 +1,9 @@
 package se.chalmers.tda367.bluejava.activities;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import se.chalmers.tda367.bluejava.R;
 
 /**
@@ -9,11 +11,20 @@ import se.chalmers.tda367.bluejava.R;
  */
 public class SettingsActivity extends PreferenceActivity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	@Override
+	protected void onCreate(final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+	}
 
-        //Loading the settings from the XML file
-        addPreferencesFromResource(R.xml.settings);
-    }
+	public static class MyPreferenceFragment extends PreferenceFragment
+	{
+		@Override
+		public void onCreate(final Bundle savedInstanceState)
+		{
+			super.onCreate(savedInstanceState);
+			addPreferencesFromResource(R.xml.settings);
+		}
+	}
 }
