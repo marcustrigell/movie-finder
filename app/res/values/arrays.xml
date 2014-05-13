@@ -10,13 +10,19 @@
         <item>Latest</item>
         <item>Most Popular</item>
         <item>Top Rated</item>
+        <item>People</item>
+        <item>Popular</item>
+        <item>Latest</item>
         <item>Your Profile</item>
-        <item>Favorites</item>
+        <item>Recommended</item>
         <item>Seen</item>
     </string-array>
 
     <!-- Icons -->                              <!-- TODO: Get the right icons! -->
     <array name="nav_drawer_icons">
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_drawer</item>
         <item>@drawable/ic_drawer</item>
         <item>@drawable/ic_drawer</item>
         <item>@drawable/ic_drawer</item>

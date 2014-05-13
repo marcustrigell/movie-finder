@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.DisplayResultsArrayAdapter;
 import se.chalmers.tda367.bluejava.apis.HttpHandler;
@@ -18,7 +20,9 @@ import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.helpers.*;
 import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
 import se.chalmers.tda367.bluejava.interfaces.SortMethod;
+import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.models.Person;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +37,8 @@ public class DisplayResultsActivity extends ListActivity
     private MovieApi movieApi;
 
     private List<Movie> movies;
+	private List<Actor> people;
+	private List<?> results;
 
     private SortMethod sortMethod;
 
@@ -101,7 +107,20 @@ public class DisplayResultsActivity extends ListActivity
 
         if (json == null) {
             return;
-        }
+        } else if (json.contains("profile_path")) {
+			try {
+				JSONObject jsonObject = new JSONObject(json);
+				people = Actor.jsonToListOfActors(jsonObject);
+
+				String toastMessage = (people.get(0) instanceof Actor)
+						? "An Actor found!!"
+						: "Sorry! You must be a united fan.";
+				showToast(toastMessage);
+
+				displayResults(people);
+			} catch (JSONException e) {
+			}
+		} else {
 
         /*
          * Take the string and make a lot of movies from it
@@ -116,7 +135,9 @@ public class DisplayResultsActivity extends ListActivity
                 : "Sorry! You must be a united fan.";
         showToast(toastMessage);
 
-        displayMovies(movies);
+        displayResults(movies);
+
+		}
     }
 
     /**
@@ -124,15 +145,15 @@ public class DisplayResultsActivity extends ListActivity
      * Read more:
      * https://github.com/thecodepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
      */
-    public void displayMovies(List<Movie> movies) {
-        if (movies == null) {
+    public void displayResults(List<?> results) {
+        if (results == null) {
             showToast("No Hits\n" + "Search again");
             // This doesn't work anymore when spinner was added instead of textfield
 /*            TextView textView = (TextView) findViewById(R.id.sort_label);
             textView.setText("Sök igen");*/
         } else {
             DisplayResultsArrayAdapter arrayAdapter = new DisplayResultsArrayAdapter(this,
-                    R.layout.display_results_list_item, movies, movieApi);
+                    R.layout.display_results_list_item, results, movieApi);
             setListAdapter(arrayAdapter);
         }
     }
@@ -147,11 +168,11 @@ public class DisplayResultsActivity extends ListActivity
         } else {
             showToast("Sorting");
             if(movieListAscending) {
-                displayMovies(sortMethod.sort(movies));
+                displayResults(sortMethod.sort(movies));
             } else {
                 List<Movie> tmp = sortMethod.sort(movies);
                 Collections.reverse(tmp);
-                displayMovies(tmp);
+                displayResults(tmp);
             }
         }
     }
@@ -190,17 +211,21 @@ public class DisplayResultsActivity extends ListActivity
             query = intent.getStringExtra("se.chalmers.tda367.bluejava.MESSAGE");
 		}
 
-		findMovies(query);
+		sendQuery(query);
 	}
 
-    public void findMovies(String query) {
+    public void sendQuery(String query) {
         if (query.equals("upcoming")) {
             httpHandler.get(movieApi.getUpcomingMoviesQuery(), this);
         } else if (query.equals("popular")) {
             httpHandler.get(movieApi.getPopularMoviesQuery(), this);
         }  else if (query.equals("top_rated")) {
             httpHandler.get(movieApi.getTopRatedMoviesQuery(), this);
-        } else {
+        } else if (query.equals("popular_people")) {
+			httpHandler.get(movieApi.getPopularPeopleQuery(), this);
+		} else if (query.equals("latest_people")) {
+			httpHandler.get(movieApi.getLatestPeopleQuery(), this);
+		} else {
             httpHandler.get(movieApi.getSearchMovieQuery(query), this);
         }
     }

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
+import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.R;
@@ -17,9 +18,9 @@ import se.chalmers.tda367.bluejava.activities.DisplayResultsActivity;
 
 import java.util.List;
 
-public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
+public class DisplayResultsArrayAdapter extends ArrayAdapter {
 
-    private final List<Movie> movies;
+    private final List<?> results;
 
     private final DisplayResultsActivity displayResultsActivity;
 
@@ -28,15 +29,15 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
     private final MovieApi movieApi;
 
     public DisplayResultsArrayAdapter(DisplayResultsActivity displayResultsActivity,
-                                      int textViewResourceId, List<Movie> movies, MovieApi movieApi) {
+                                      int textViewResourceId, List<?> results, MovieApi movieApi) {
 
-        super(displayResultsActivity, textViewResourceId, movies);
+        super(displayResultsActivity, textViewResourceId, results);
 
         this.displayResultsActivity = displayResultsActivity;
 
         this.textViewResourceId = textViewResourceId;
 
-        this.movies = movies;
+        this.results = results;
 
         this.movieApi = movieApi;
     }
@@ -49,30 +50,54 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter<Movie> {
             convertView = layoutInflater.inflate(textViewResourceId, null);
         }
 
-        final Movie movie = movies.get(position);
+		if (results.get(0) instanceof Movie) {
 
-        if (convertView != null) {
-            ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-            TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
-            TextView taglineTextView = (TextView) convertView.findViewById(R.id.tagline);
+			final Movie movie = (Movie)results.get(position);
 
-            String url = movieApi.getThumbnailURL(movie.getPosterPath());
-            Picasso.with(displayResultsActivity).load(url).into(coverImageView);
+			if (convertView != null) {
+				ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+				TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
 
-            titleTextView.setText(movie.toString());
-            taglineTextView.setText("This movie is so awesome");
+				String url = movieApi.getThumbnailURL(movie.getPosterPath());
+				Picasso.with(displayResultsActivity).load(url).into(coverImageView);
 
-            convertView.setOnClickListener(new View.OnClickListener() {
+				titleTextView.setText(movie.toString());
 
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
+				convertView.setOnClickListener(new View.OnClickListener() {
 
-                    intent.putExtra("movie", movie);
-                    displayResultsActivity.startActivity(intent);
-                }
-            });
-        }
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
+
+						intent.putExtra("movie", movie);
+						displayResultsActivity.startActivity(intent);
+					}
+				});
+			}
+		} else {
+			final Actor actor = (Actor)results.get(position);
+
+			if (convertView != null) {
+				ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+				TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
+
+				String url = movieApi.getThumbnailURL(actor.getProfilePath());
+				Picasso.with(displayResultsActivity).load(url).into(coverImageView);
+
+				titleTextView.setText(actor.getName());
+
+				// convertView.setOnClickListener(new View.OnClickListener() {
+
+				/*	@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
+
+						intent.putExtra("movie", movie);
+						displayResultsActivity.startActivity(intent);
+					}
+				});*/
+			}
+		}
 
         return convertView;
     }

@@ -93,4 +93,9 @@ public class Actor extends Person {
             return new Actor[size];
         }
     };
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

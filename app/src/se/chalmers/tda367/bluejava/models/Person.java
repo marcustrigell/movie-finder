@@ -51,4 +51,9 @@ public abstract class Person implements Parcelable {
         dest.writeValue(PROFILE_PATH);
         dest.writeInt(ID);
     }
+
+	@Override
+	public String toString() {
+		return NAME;
+	}
 }

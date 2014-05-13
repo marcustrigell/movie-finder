@@ -8,7 +8,6 @@ public class MovieApi {
 
     public MovieApi() {
 
-        // Maybe this one shouldn't be public?
         apiKey = "api_key=cc6a7faf3b05d8dbe33b9140b16841bd";
 
         baseUrl = "https://api.themoviedb.org/3/";
@@ -50,21 +49,12 @@ public class MovieApi {
         return finalizeMovieQuery("movie/" + id + "/videos");
     }
 
-	/**
-	 * Creates a query with an argument for discovering different movies
-	 */
-	public String getDiscoverMovieQuery(String sortBy) {
-		String sorting = "";
+	public String getPopularPeopleQuery() {
+		return finalizeMovieQuery("people/popular");
+	}
 
-		if (sortBy.equals("latest")) {
-			sorting = "release_date.desc";
-		} else if (sortBy.equals("popular")) {
-			sorting = "popularity.desc";
-		} else if (sortBy.equals("rated")) {
-			sorting = "vote_average.desc";
-		}
-
-        return finalizeMovieQuery("discover/movie?query=" + sorting);
+	public String getLatestPeopleQuery() {
+		return finalizeMovieQuery("people/latest");
 	}
 
     /**

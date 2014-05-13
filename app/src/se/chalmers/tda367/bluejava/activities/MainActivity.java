@@ -187,35 +187,42 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
-		/* This part should be implemented smarter */
-
         // Fill array with navDrawerItems and navDrawerSections
+
         // Home
         navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
 
-        // Section - Browse Movies
+        // Section - Movies
         navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
 
-        // Latest
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
+			// Latest
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
 
-        // Top Rated
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
+			// Top Rated
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
 
-        // Recommended
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
+			// Recommended
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
+
+		// Section - People
+		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
+
+			// Popular
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+
+			// Latest
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
 
         // Section - Your Profile
-        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[8]));
 
         if (isLoggedIn) {
             // Favorites
-            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[9], navDrawerIcons.getResourceId(9, -1)));
 
             // Seen
-            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
+            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[10], navDrawerIcons.getResourceId(10, -1)));
         }
-
 
 
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -359,9 +366,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	/**
 	 * Displaying fragment view for selected navigation drawer list item
 	 */
-
-	// Using this for testing purposes.
-
     private void displayView(int position) {
 
         Intent intent = new Intent(this, DisplayResultsActivity.class);
@@ -384,63 +388,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 intent.putExtra(EXTRA_MESSAGE, "top_rated");
                 startActivity(intent);
                 break;
+			case 6 :
+				intent.putExtra(EXTRA_MESSAGE, "popular_people");
+				startActivity(intent);
+				break;
+			case 7 :
+				intent.putExtra(EXTRA_MESSAGE, "latest_people");
+				startActivity(intent);
+				break;
             default:
                 //else
                 break;
         }
-		// Update the main content by replacing fragments
-		/*Fragment fragment = null;
-
-		if (position == 0) {
-			fragment = new HomeFragment();
-		} else if (position == 1) {
-			;
-		} else if (position == 2) {
-			fragment = new TempLatestFragment();
-		} else if (position == 3) {
-			fragment = new TempPopularFragment();
-		} else if (position == 4) {
-			fragment = new TempRatedFragment();
-		} else {
-			// For now...
-			fragment = new HomeFragment();
-		}
-*/
-		/* ------------- I tried this ------------- */
-
-		// I tried making a query, but didn't succeed... ;)
-		// My thought is working with "discover" in themoviedb-API somehow.
-
-		/*Intent intent = new Intent(this, DisplayResultsActivity.class);
-
-		if (position == 0) {
-			fragment = new HomeFragment();
-		} else if (position == 1) {
-			;
-		} else if (position == 2) {
-			intent.putExtra(EXTRA_MESSAGE, "latest");
-		} else if (position == 3) {
-			intent.putExtra(EXTRA_MESSAGE, "popular");
-		} else if (position == 4) {
-			intent.putExtra(EXTRA_MESSAGE, "rated");
-		}
-
-		startActivity(intent);*/
-
-		/* ------------- up to here ------------- */
-
-		/*if (fragment != null) {
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-
-
-		} else {
-			// Error in creating fragment
-			Log.e("MainActivity", "Error in creating fragment");
-		}
-*/
-        // Update selected item and title, then close the drawer
-
 	}
 }
