@@ -9,8 +9,11 @@
           android:showAsAction="collapseActionView|ifRoom"
           android:title="@string/search_title" />
 
-    <!-- Browse menu -->
-
+    <!-- Settings button -->
+    <item android:id="@+id/action_settings"
+          android:icon="@drawable/ic_action_settings"
+          android:showAsAction="collapseActionView|ifRoom"
+          android:title="@string/action_settings" />
 
 
 </menu>

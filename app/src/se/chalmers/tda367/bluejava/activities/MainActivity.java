@@ -283,9 +283,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	/**
 	 * On selecting items in Action Bar
 	 */
-
-	// Not in use at the moment
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Toggle navigation drawer on selecting action bar app icon/title
@@ -294,12 +291,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 		// Handle action bar actions click
 		switch (item.getItemId()) {
-			case R.id.action_search:
-				// search action
+			case R.id.action_settings:
+				openSettings();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	/**
+	 * Called when settings button is clicked.
+	 * Starts SettingsActivity.
+	 */
+	public void openSettings() {
+		Intent intent = new Intent(this, SettingsActivity.class);
+		startActivity(intent);
 	}
 
 	/**
