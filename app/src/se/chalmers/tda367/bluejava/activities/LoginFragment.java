@@ -11,6 +11,7 @@ import com.facebook.*;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
 
 import java.util.Arrays;
 
@@ -25,7 +26,7 @@ public class LoginFragment extends Fragment {
 
     private UiLifecycleHelper uiHelper;
 
-    private DisplayProfileActivity activity;
+    private FBAuthenticator fbAuthenticator;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -51,9 +52,9 @@ public class LoginFragment extends Fragment {
         final TextView userInfoTextView = (TextView) getView().findViewById(R.id.userInfoTextView);
 
         if (state.isOpened()) {
-            if (activity == null) {
+            if (fbAuthenticator == null) {
 
-                activity = (DisplayProfileActivity) getActivity();
+                fbAuthenticator = (FBAuthenticator) getActivity();
 
                 userInfoTextView.setVisibility(View.VISIBLE);
 
@@ -70,13 +71,13 @@ public class LoginFragment extends Fragment {
                 }).executeAsync();
             }
 
-            if (activity != null) {
-                activity.hasLoggedIn(session.getAccessToken());
+            if (fbAuthenticator != null) {
+                fbAuthenticator.hasLoggedIn(session.getAccessToken());
 
             }
         } else if (state.isClosed()) {
             userInfoTextView.setVisibility(View.INVISIBLE);
-            tellMainActivityLogout();
+            tellFBAuthenticatorLogout();
         }
     }
 
@@ -121,13 +122,13 @@ public class LoginFragment extends Fragment {
         Session session = Session.getActiveSession();
         if (session != null) {
             session.closeAndClearTokenInformation();
-            tellMainActivityLogout();
+            tellFBAuthenticatorLogout();
         }
     }
 
-    private void tellMainActivityLogout() {
-        if (activity != null) {
-            activity.hasLoggedOut();
+    private void tellFBAuthenticatorLogout() {
+        if (fbAuthenticator != null) {
+            fbAuthenticator.hasLoggedOut();
         }
     }
 
