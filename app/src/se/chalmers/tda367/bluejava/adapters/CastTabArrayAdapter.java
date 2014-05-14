@@ -2,6 +2,7 @@ package se.chalmers.tda367.bluejava.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.activities.DisplayMovieActivity;
+import se.chalmers.tda367.bluejava.activities.DisplayPersonActivity;
+import se.chalmers.tda367.bluejava.activities.DisplayProfileActivity;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.models.Actor;
 
@@ -84,6 +88,18 @@ public class CastTabArrayAdapter extends BaseAdapter {
             /* Set the correct text to the text fields. */
             nameTextView.setText(actor.getName());
             characterTextView.setText(actor.getCharacter());
+
+            /* Show person details when clicked. */
+            convertView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(activity, DisplayPersonActivity.class);
+
+                    intent.putExtra("person", actor);
+                    activity.startActivity(intent);
+                }
+            });
 
         }
 
