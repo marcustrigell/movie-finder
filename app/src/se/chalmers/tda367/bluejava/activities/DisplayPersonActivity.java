@@ -1,7 +1,6 @@
 package se.chalmers.tda367.bluejava.activities;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import se.chalmers.tda367.bluejava.R;
@@ -24,6 +23,20 @@ public class DisplayPersonActivity extends Activity {
         Intent intent = getIntent();
 
         person = intent.getParcelableExtra("person");
+
+        setupLayout();
+    }
+
+    /**
+     * Sets the different attributes of the person to the view.
+     */
+    public void setupLayout() {
+        if(person == null) {
+            throw new RuntimeException("Error in DisplayPersonActivity, no person found");
+        } else {
+           /* The persons attributes is going to be set to the view here
+            * when the getters and such in the class Person is implemented. */
+        }
     }
 
 }
