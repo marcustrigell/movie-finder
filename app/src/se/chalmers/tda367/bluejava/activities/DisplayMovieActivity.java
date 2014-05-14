@@ -2,24 +2,15 @@ package se.chalmers.tda367.bluejava.activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.widget.Toast;
-import se.chalmers.tda367.bluejava.adapters.CastTabArrayAdapter;
-import se.chalmers.tda367.bluejava.adapters.DisplayResultsArrayAdapter;
-import se.chalmers.tda367.bluejava.models.Actor;
-import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.adapters.MovieTabsAdapter;
 import se.chalmers.tda367.bluejava.R;
-
-import java.util.List;
+import se.chalmers.tda367.bluejava.adapters.MovieTabsAdapter;
+import se.chalmers.tda367.bluejava.models.Movie;
 
 public class DisplayMovieActivity extends FragmentActivity implements ActionBar.TabListener {
-
-    private static final String TAG = "DisplayMovieActivity";
 
     private Movie movie;
 

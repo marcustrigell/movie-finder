@@ -1,4 +1,4 @@
-package se.chalmers.tda367.bluejava.models;
+package se.chalmers.tda367.bluejava.sqlite;
 
 import android.provider.BaseColumns;
 
@@ -6,7 +6,7 @@ public final class MovieContract {
 
     public static final int DATABASE_VERSION = 1;
 
-    public static final String DATABASE_NAME = "MovieFavoritesDb";
+    public static final String DATABASE_NAME = "Movies";
 
     private static final String TEXT_TYPE = " TEXT";
 
@@ -17,12 +17,12 @@ public final class MovieContract {
     public MovieContract() {}
 
     // Inner class that defines the table contents
-    public static abstract class MovieTable implements BaseColumns {
+    public static abstract class FavoriteTable implements BaseColumns {
 
         // Do not allow this class to be instantiated
-        private MovieTable() {}
+        private FavoriteTable() {}
 
-        public static final String TABLE_NAME = "movies";
+        public static final String TABLE_NAME = "movie_favorites";
         public static final String KEY_MOVIE_ID = "id";
         public static final String KEY_TITLE = "title";
         public static final String KEY_RELEASE_YEAR = "release_year";
@@ -31,7 +31,7 @@ public final class MovieContract {
         public static final String KEY_VOTE_COUNT = "vote_count";
         public static final String KEY_POSTER_PATH = "poster_path";
 
-        public final static String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
+        public final static String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( " +
                 _ID + " INTEGER PRIMARY KEY," +
                 KEY_MOVIE_ID + TEXT_TYPE + COMMA_SEP +
                 KEY_TITLE + TEXT_TYPE + COMMA_SEP +
@@ -39,7 +39,7 @@ public final class MovieContract {
                 KEY_POPULARITY + TEXT_TYPE + COMMA_SEP +
                 KEY_RATING + TEXT_TYPE + COMMA_SEP +
                 KEY_VOTE_COUNT + TEXT_TYPE + COMMA_SEP +
-                KEY_POSTER_PATH + TEXT_TYPE + COMMA_SEP + " )";
+                KEY_POSTER_PATH + TEXT_TYPE + " )";
 
         public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 

@@ -5,29 +5,26 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import org.json.JSONException;
 import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.models.MovieContract;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class MovieDbHelper extends SQLiteOpenHelper {
+public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
 
-
-    public MovieDbHelper(Context context) {
+    public MovieFavoritesDbHelper(Context context) {
         super(context, MovieContract.DATABASE_NAME, null, MovieContract.DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(MovieContract.MovieTable.CREATE_TABLE);
+        db.execSQL(MovieContract.FavoriteTable.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(MovieContract.MovieTable.DELETE_TABLE);
+        db.execSQL(MovieContract.FavoriteTable.DELETE_TABLE);
         onCreate(db);
     }
 
@@ -37,7 +34,6 @@ public class MovieDbHelper extends SQLiteOpenHelper {
     }
 
     public void addMovie(Movie movie){
-        Log.d("addMovie", movie.toString());
 
         // Gets the data repository in write mode
         SQLiteDatabase db = getWritableDatabase();
@@ -45,7 +41,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         ContentValues values = getContentValues(movie);
 
         db.insert(
-                MovieContract.MovieTable.TABLE_NAME,
+                MovieContract.FavoriteTable.TABLE_NAME,
                 null,
                 values);
 
@@ -57,13 +53,13 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         // Gets the data repository in read mode
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String sortOrder = MovieContract.MovieTable.KEY_POPULARITY + " DESC";
+        String sortOrder = MovieContract.FavoriteTable.KEY_POPULARITY + " DESC";
         String[] selectionArgs = new String[] {String.valueOf(id)};
 
         // Build query
         Cursor cursor = db.query(
-                MovieContract.MovieTable.TABLE_NAME,
-                MovieContract.MovieTable.KEY_ARRAY,
+                MovieContract.FavoriteTable.TABLE_NAME,
+                MovieContract.FavoriteTable.KEY_ARRAY,
                 " id = ?",
                 selectionArgs,
                 null,
@@ -78,8 +74,6 @@ public class MovieDbHelper extends SQLiteOpenHelper {
 
         Movie movie = cursorToMovie(cursor);
 
-        Log.d("getMovie("+id+")", movie.toString());
-
         return movie;
     }
 
@@ -87,7 +81,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         List<Movie> movies = new LinkedList<Movie>();
 
         // Build the query
-        String query = "SELECT * FROM " + MovieContract.MovieTable.TABLE_NAME;
+        String query = "SELECT * FROM " + MovieContract.FavoriteTable.TABLE_NAME;
 
         // Gets the data repository in read mode
         SQLiteDatabase db = this.getReadableDatabase();
@@ -100,8 +94,6 @@ public class MovieDbHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        Log.d("getAllMovies()", movies.toString());
-
         return movies;
     }
 
@@ -112,14 +104,11 @@ public class MovieDbHelper extends SQLiteOpenHelper {
 
         String[] selectionsArgs = new String[] { String.valueOf(movie.getID())};
 
-        db.delete(MovieContract.MovieTable.TABLE_NAME,
-                MovieContract.MovieTable.KEY_MOVIE_ID + " = ?",
+        db.delete(MovieContract.FavoriteTable.TABLE_NAME,
+                MovieContract.FavoriteTable.KEY_MOVIE_ID + " = ?",
                 selectionsArgs);
 
         db.close();
-
-        Log.d("deleteMovie", movie.toString());
-
     }
 
     /**
@@ -129,13 +118,14 @@ public class MovieDbHelper extends SQLiteOpenHelper {
      */
     private ContentValues getContentValues(Movie movie) {
         ContentValues values = new ContentValues();
-        values.put(MovieContract.MovieTable.KEY_MOVIE_ID, movie.getID());
-        values.put(MovieContract.MovieTable.KEY_TITLE, movie.getTitle());
-        values.put(MovieContract.MovieTable.KEY_RELEASE_YEAR, movie.getReleaseYear());
-        values.put(MovieContract.MovieTable.KEY_POPULARITY, movie.getPopularity());
-        values.put(MovieContract.MovieTable.KEY_RATING, movie.getRating());
-        values.put(MovieContract.MovieTable.KEY_VOTE_COUNT, movie.getVoteCount());
-        values.put(MovieContract.MovieTable.KEY_POSTER_PATH, movie.getPosterPath());
+
+        values.put(MovieContract.FavoriteTable.KEY_MOVIE_ID, movie.getID());
+        values.put(MovieContract.FavoriteTable.KEY_TITLE, movie.getTitle());
+        values.put(MovieContract.FavoriteTable.KEY_RELEASE_YEAR, movie.getReleaseYear());
+        values.put(MovieContract.FavoriteTable.KEY_POPULARITY, movie.getPopularity());
+        values.put(MovieContract.FavoriteTable.KEY_RATING, movie.getRating());
+        values.put(MovieContract.FavoriteTable.KEY_VOTE_COUNT, movie.getVoteCount());
+        values.put(MovieContract.FavoriteTable.KEY_POSTER_PATH, movie.getPosterPath());
 
         return values;
     }
@@ -146,10 +136,10 @@ public class MovieDbHelper extends SQLiteOpenHelper {
      * @return A new movie object
      */
     private Movie cursorToMovie(Cursor cursor) {
-        int keyArraySize = MovieContract.MovieTable.KEY_ARRAY.length;
+        int keyArraySize = MovieContract.FavoriteTable.KEY_ARRAY.length;
         String[] keys = new String[keyArraySize];
 
-        for (int i = 1; i < keyArraySize; ++i) {
+        for (int i = 0; i < keyArraySize; ++i) {
             keys[i] = cursor.getString(i);
         }
 
