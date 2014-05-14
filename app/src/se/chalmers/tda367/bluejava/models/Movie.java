@@ -62,9 +62,26 @@ public class Movie implements Parcelable {
         // Movie credits (optional)
         private Credits credits;
 
+
         /**
-         * This is the most basic movie and
-         * and movies must hold this information.
+         * This is the most basic movie,
+         * all movies must hold this information.
+         *
+         * @param keys Table columns from db (declared in MovieContract)
+         */
+        public Builder(String[] keys) {
+            id = Integer.parseInt(keys[0]);
+            title = keys[1];
+            releaseYear = keys[2];
+            popularity = keys[3];
+            rating = keys[4];
+            voteCount = keys[5];
+            posterPath = keys[6];
+        }
+
+        /**
+         * This is the most basic movie,
+         * all movies must hold this information.
          * @param jsonObject A JSON object containing a movie
          * @throws JSONException
          */
@@ -79,8 +96,8 @@ public class Movie implements Parcelable {
         }
 
         /**
-         * This is the most basic movie and
-         * and movies must hold this information.
+         * This is the most basic movie,
+         * all movies must hold this information.
          * @param movie A Movie object that wants additional info
          */
         public Builder(Movie movie) {

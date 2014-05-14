@@ -3,6 +3,7 @@ package se.chalmers.tda367.bluejava.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ public class LoginFragment extends Fragment {
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
+            Log.i("SESSION", "call");
+
             onSessionStateChange(session, state, exception);
         }
     };
@@ -28,18 +31,7 @@ public class LoginFragment extends Fragment {
 
     private FBAuthenticator fbAuthenticator;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.login_fragment, container, false);
-
-        LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
-        authButton.setFragment(this);
-        authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes"));
-
-        return view;
-    }
+    private LoginButton authButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,10 +40,27 @@ public class LoginFragment extends Fragment {
         uiHelper.onCreate(savedInstanceState);
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        authButton = (LoginButton) view.findViewById(R.id.authButton);
+
+        authButton.setFragment(this);
+        authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes"));
+
+        return view;
+    }
+
     private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
         final TextView userInfoTextView = (TextView) getView().findViewById(R.id.userInfoTextView);
 
         if (state.isOpened()) {
+
+            authButton.setVisibility(View.GONE);
+
             if (fbAuthenticator == null) {
 
                 fbAuthenticator = (FBAuthenticator) getActivity();
@@ -61,7 +70,7 @@ public class LoginFragment extends Fragment {
                 // Request user data and show the results
                 Request.newMeRequest(session, new Request.GraphUserCallback() {
 
-                    // callback after Graph API response with user object
+                        // callback after Graph API response with user object
                     @Override
                     public void onCompleted(GraphUser user, Response response) {
                         if (user != null) {
@@ -69,16 +78,19 @@ public class LoginFragment extends Fragment {
                         }
                     }
                 }).executeAsync();
-            }
 
-            if (fbAuthenticator != null) {
+            } else {
                 fbAuthenticator.hasLoggedIn(session.getAccessToken());
-
             }
         } else if (state.isClosed()) {
-            userInfoTextView.setVisibility(View.INVISIBLE);
+            userInfoTextView.setVisibility(View.GONE);
             tellFBAuthenticatorLogout();
         }
+    }
+
+    public boolean isLoggedIn() {
+        Session session = Session.getActiveSession();
+        return session != null && session.isOpened();
     }
 
     @Override

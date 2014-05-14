@@ -18,7 +18,7 @@ public class DisplayProfileActivity extends FragmentActivity implements FBAuthen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        //setContentView(R.layout.activity_display_profile);
 
         if (savedInstanceState == null) {
             loginFragment = new LoginFragment();
@@ -37,8 +37,8 @@ public class DisplayProfileActivity extends FragmentActivity implements FBAuthen
 
         if (!isLoggedIn) {
             invalidateOptionsMenu();
-            BlueJava blueJavaApplication = (BlueJava) getApplication();
-            blueJavaApplication.setUserFBAuthToken(FBaccessToken);
+            BlueJava app = (BlueJava) getApplication();
+            app.setUserFBAuthToken(FBaccessToken);
             Toast.makeText(this, getString(R.string.fb_logged_in), Toast.LENGTH_SHORT).show();
             isLoggedIn = true;
         }
