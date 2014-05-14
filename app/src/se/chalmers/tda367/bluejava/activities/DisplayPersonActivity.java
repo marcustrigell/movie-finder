@@ -1,5 +1,6 @@
 package se.chalmers.tda367.bluejava.activities;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import se.chalmers.tda367.bluejava.models.Person;
  *
  * Created by marcus on 2014-05-13.
  */
-public class DisplayPersonActivity extends ListActivity {
+public class DisplayPersonActivity extends Activity {
 
     private Person person;
 
