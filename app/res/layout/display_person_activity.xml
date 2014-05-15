@@ -17,7 +17,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent" android:weightSum="1">
             <se.chalmers.tda367.bluejava.helpers.AutoResizeTextView
-                    android:id="@+id/name"
+                    android:id="@+id/person_name"
                     android:text="[Name]"
                     android:layout_width="172dp"
                     android:layout_height="53dp"
@@ -100,6 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ListView
+                        android:id="@+id/appearences_list"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         </ListView>
