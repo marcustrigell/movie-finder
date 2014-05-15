@@ -3,7 +3,9 @@ package se.chalmers.tda367.bluejava.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.Person;
 
 /**
@@ -36,6 +38,10 @@ public class DisplayPersonActivity extends Activity {
         } else {
            /* The persons attributes is going to be set to the view here
             * when the getters and such in the class Person is implemented. */
+            /*ImageView imageView = (ImageView) findViewById(R.id.posterImageView);
+            AutoResizeTextView nameView = (AutoResizeTextView) findViewById(R.id.name);
+            AutoResizeTextView placeOfBirthView = (AutoResizeTextView) findViewById(R.id.placeOfBirth);*/
+
         }
     }
 
