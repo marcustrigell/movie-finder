@@ -3,7 +3,6 @@ package se.chalmers.tda367.bluejava.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,10 +10,10 @@ import android.widget.RatingBar;
 import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
+import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.R;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
@@ -71,6 +70,9 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         AutoResizeTextView popularityTextView = (AutoResizeTextView) getView().findViewById(R.id.popularity);
         AutoResizeTextView overviewTextView = (AutoResizeTextView) getView().findViewById(R.id.overview);
         RatingBar ratingBar = (RatingBar) getView().findViewById(R.id.ratingBar);
+        AutoResizeTextView budgetTextView = (AutoResizeTextView) getView().findViewById(R.id.budget);
+        AutoResizeTextView revenueTextView = (AutoResizeTextView) getView().findViewById(R.id.revenue);
+        AutoResizeTextView runTimeTextView = (AutoResizeTextView) getView().findViewById(R.id.runtime);
 
         //Inserting the image in the poster image view
         String url = movieApi.getCoverURL(movie.getPosterPath());
@@ -85,11 +87,15 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
         //Setting the strings to values
         titleTextView.setText(movie.getTitle());
+        titleTextView.resizeText();
         tagLineTextView.setText(movie.getTagline());
+        tagLineTextView.resizeText();
         releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
         popularityTextView.setText("" + popularityRounded);
         overviewTextView.setText(movie.getOverview());
-        overviewTextView.setMovementMethod(new ScrollingMovementMethod());
+        budgetTextView.setText("Budget: " + movie.getBudget() + " $");
+        revenueTextView.setText("Revenue: " + movie.getRevenue() + " $");
+        runTimeTextView.setText("Runtime: " + movie.getRuntime() + " min");
     }
 
 
