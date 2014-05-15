@@ -34,14 +34,17 @@ public class PersonTest extends InstrumentationTestCase {
         assertEquals(person.describeContents(), personFromParcel.describeContents());
     }
 
+    @Test
     public void testGetName() {
         assertEquals(NAME, person.getName());
     }
 
+    @Test
     public void testGetID() {
         assertEquals(ID, person.getID());
     }
 
+    @Test
     public void testGetProfilePath() {
         assertEquals(PROFILE_PATH, person.getProfilePath());
     }
