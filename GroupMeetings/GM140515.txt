@@ -1,0 +1,60 @@
+Meeting Agenda - 140515
+
+Date:
+140515
+
+Participants:
+David Bergström
+Axel Niklasson 
+Tobias Andersen
+Marcus Trigell
+
+1.  Objectives (5 min) 
+	
+	a. Programmering
+		i. Vad gör vi? (Vad har vi gjort?)
+		ii. Vad ska göras?
+		iii. Maven
+	b. Dokument
+	c. Presentation
+
+2.  Reports (15 min) 
+     
+	SDD & RAD är (så gott som) klara, fattas vissa UML-diagram osv
+	Programmeringen har fortskridit enligt plan
+
+3.  Discussion items (35 min) 
+
+	a.
+		i. 
+Testningen har kommit framåt men behöver läggas ytterligare tid på
+		Viss funktionalitet är begränsad till vad moviedb-API:t erbjuder, bl.a. sökfunktionen är förhindrad till vissa typer av sökningar.
+		Facebook samt profilsida fungerar och ska finslipas lite.
+		Personers profilsida finns men är inte kopplad till själva individen än så länge.
+		ii.
+		“Bakåtknappen” uppe i vänstra hörnet skall tas bort.
+		Marcus tar sorteringstestning.
+		David tar allt med persons sidor att göra.
+		Axel gör klart inmatningstest, fortsätter med design och XML.
+		Tobbe gör klart Facebook osv som tidigare nämnt.
+		När allt detta är klart skall inga nya funktioner implementeras utan fokus skall ligga på att rätta till och göra iordning kod samt design.
+		Man tar ansvar för sin egen kod när det gäller tydlighet och kommentarer.
+		iii.
+		Axel testar att försöka göra om till Maven för att underlätta struktur och dependencie-hantering etc.
+		Vi kollar paketeringen av projektet INNAN torsdag.
+	b.
+	Vi är, så gott som, färdiga med dokumenten som behöver skrivas. Olof skall kolla igenom dessa innan nästa handledarmöte.
+	Paketstruktur UML skall göras snarast.
+	c.
+	Vi börjar med presentation nästa vecka.
+	Preliminära slides till presentationen skall vara klara torsdag.
+	Vi behöver “repa” på presentationen inför varandra.
+ 
+4.  Outcomes and assignments (5 min) 
+
+	Följ punkt a.ii. samt b. och c.
+
+5.  Wrap up 
+
+	Projektet är så gott som klart, skall finslipas och testas lite hårdare.
+	Presentation skall göras samt dokumentation skall färdigställas.
