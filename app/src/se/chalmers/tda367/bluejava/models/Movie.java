@@ -38,6 +38,7 @@ public class Movie implements Parcelable {
     private String revenue;
     private List<Genre> genres;
     private Credits credits;
+    private String youtubeID = "SUXWAEX2jlg"; //TODO change to correct adress
 
     public static class Builder {
 
@@ -229,6 +230,10 @@ public class Movie implements Parcelable {
 
     public Credits getCredits() {
         return credits;
+    }
+
+    public String getYoutubeID() {
+        return youtubeID;
     }
 
     /**
