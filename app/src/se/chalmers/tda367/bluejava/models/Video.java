@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class Video implements Parcelable {
 
-    private final int ID;
+    private final String ID;
 
     private final String language;
 
@@ -32,16 +32,16 @@ public class Video implements Parcelable {
     private final String type;
 
     public Video(JSONObject jsonObject) throws JSONException {
-        ID = jsonObject.getInt("id");
+        ID = jsonObject.getString("id");
         language = jsonObject.getString("iso_639_1");
         key = jsonObject.getString("key");
         name = jsonObject.getString("name");
         site = jsonObject.getString("site");
-        resolution = jsonObject.getInt("resolution");
+        resolution = jsonObject.getInt("size");
         type = jsonObject.getString("type");
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
@@ -88,7 +88,7 @@ public class Video implements Parcelable {
     }
 
     protected Video(Parcel in) {
-        ID = in.readInt();
+        ID = in.readString();
         language = in.readString();
         key = in.readString();
         name = in.readString();
@@ -104,7 +104,7 @@ public class Video implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(ID);
+        dest.writeString(ID);
         dest.writeString(language);
         dest.writeString(key);
         dest.writeString(name);
