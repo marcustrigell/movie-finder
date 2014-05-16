@@ -35,6 +35,7 @@ public class CrewTabArrayAdapter extends BaseAdapter {
 
         this.context = context;
         this.activity = activity;
+
         this.crew = crew;
 
     }

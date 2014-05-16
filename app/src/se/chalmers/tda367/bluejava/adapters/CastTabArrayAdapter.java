@@ -27,17 +27,12 @@ import java.util.List;
 public class CastTabArrayAdapter extends BaseAdapter {
 
     private final Context context;
-
     private final List<Actor> cast;
-
     private final Activity activity;
 
     public CastTabArrayAdapter(Context context, Activity activity, List<Actor> cast) {
-
         this.activity = activity;
-
         this.context = context;
-
         this.cast = cast;
    }
 

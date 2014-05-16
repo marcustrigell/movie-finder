@@ -13,9 +13,9 @@ import se.chalmers.tda367.bluejava.tests.R;
 public class CrewMemberTest extends InstrumentationTestCase {
 
     private CrewMember crewMember, crewMemberFromParcel;
-    private final String CREDIT_ID = "52fe4250c3a36847f80149ef";
-    private final String DEPARTMENT = "Writing";
-    private final String JOB = "Author";
+    private final String creditId = "52fe4250c3a36847f80149ef";
+    private final String department = "Writing";
+    private final String job = "Author";
 
     @Override
     public void setUp() throws Exception {
@@ -36,17 +36,17 @@ public class CrewMemberTest extends InstrumentationTestCase {
 
     @Test
     public void testGetCreditID() {
-        assertEquals(CREDIT_ID, crewMember.getCreditID());
+        assertEquals(creditId, crewMember.getCreditID());
     }
 
     @Test
     public void testGetDepartment() {
-        assertEquals(DEPARTMENT, crewMember.getDepartment());
+        assertEquals(department, crewMember.getDepartment());
     }
 
     @Test
     public void testGetJob() {
-        assertEquals(JOB, crewMember.getJOB());
+        assertEquals(job, crewMember.getJOB());
     }
 
     //TODO: implement test for CrewMember.jsonToListOfCrewMembers

@@ -2,14 +2,19 @@ package se.chalmers.tda367.bluejava.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import com.squareup.picasso.Picasso;
+import org.json.JSONException;
+import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.apis.HttpHandler;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
+import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.models.Person;
@@ -19,20 +24,26 @@ import se.chalmers.tda367.bluejava.models.Person;
  *
  * Created by marcus on 2014-05-13.
  */
-public class DisplayPersonActivity extends Activity {
+public class DisplayPersonActivity extends Activity implements JSONResultHandler {
 
     private Person person;
+	private AndroidHttpClient httpClient;
+	private HttpHandler httpHandler;
+	private MovieApi movieApi;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.display_person_activity);
 
-        Intent intent = getIntent();
+		movieApi = new MovieApi();
+		httpClient = HttpHandler.getAndroidHttpClient(this);
+		httpHandler = new HttpHandler(httpClient);
 
-        person = intent.getParcelableExtra("person");
+        person = getIntent().getParcelableExtra("person");
 
-        setupLayout();
+		getPersonDetails(person.getID());
+
     }
 
     /**
@@ -48,22 +59,19 @@ public class DisplayPersonActivity extends Activity {
             AutoResizeTextView placeOfBirthView = (AutoResizeTextView) findViewById(R.id.placeOfBirth);
             AutoResizeTextView birthdayView = (AutoResizeTextView) findViewById(R.id.birthday);
             AutoResizeTextView deathdayView = (AutoResizeTextView) findViewById(R.id.deathday);
-            AutoResizeTextView homepageView = (AutoResizeTextView) findViewById(R.id.homepage);
             AutoResizeTextView biographyView = (AutoResizeTextView) findViewById(R.id.biography);
             ListView appearences = (ListView) findViewById(R.id.appearences_list);
 
             /* Finding the image url. */
-            MovieApi movieApi = new MovieApi();
             String url = movieApi.getCoverURL(person.getProfilePath());
             Picasso.with(BlueJava.getContext()).load(url).into(imageView);
 
             /* Assign the correct values to the views. */
             nameView.setText(person.getName());
-            /*placeOfBirthView.setText(person.getPlaceOfBirth());*/ //TODO doesn't work until person is complete
-            /*birthdayView.setText(person.getBirthday());*/ //TODO
-            /*deathdayView.setText(person.getDeathday());*/ //TODO
-            /*homepageView.setText(person.getHomepage());*/ //TODO
-            /*biographyView.setText(person.getBiography());*/ //TODO
+            placeOfBirthView.setText(person.getPlaceOfBirth());
+            birthdayView.setText(person.getBirthday());
+            deathdayView.setText(person.getDeathday());
+            biographyView.setText(person.getBiography());
 
             /* Set the listviews arrayadapter. */
             /*ArrayAdapter<Movie> arrayAdapter = new ArrayAdapter<Movie>
@@ -73,4 +81,24 @@ public class DisplayPersonActivity extends Activity {
         }
     }
 
+	public void getPersonDetails(int id) {
+		httpHandler.get(movieApi.getPersonDetailsQuery(id), this);
+	}
+
+	@Override
+	public void handleJSONResult(String json) {
+
+		if (json == null) {
+			return;
+		}
+
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			person = new Person(jsonObject);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		setupLayout();
+	}
 }
