@@ -13,10 +13,10 @@ import se.chalmers.tda367.bluejava.tests.R;
 public class ActorTest extends InstrumentationTestCase {
 
     private Actor actor, actorFromParcel;
-    private final int CAST_ID = 4;
-    private final String CHARACTER = "The Narrator";
-    private final String CREDIT_ID = "52fe4250c3a36847f80149f3";
-    private final int ORDER = 0;
+    private final int castId = 4;
+    private final String character = "The Narrator";
+    private final String creditId = "52fe4250c3a36847f80149f3";
+    private final int order = 0;
 
     @Override
     public void setUp() throws Exception{
@@ -37,22 +37,22 @@ public class ActorTest extends InstrumentationTestCase {
 
     @Test
     public void testGetCastID() throws Exception {
-        assertEquals(CAST_ID, actor.getCastID());
+        assertEquals(castId, actor.getCastId());
     }
 
     @Test
     public void testGetCharacter() throws Exception {
-        assertEquals(CHARACTER, actor.getCharacter());
+        assertEquals(character, actor.getCharacter());
     }
 
     @Test
     public void testGetCreditID() throws Exception {
-        assertEquals(CREDIT_ID, actor.getCreditID());
+        assertEquals(creditId, actor.getCreditId());
     }
 
     @Test
     public void testGetOrder() throws Exception {
-        assertEquals(ORDER, actor.getOrder());
+        assertEquals(order, actor.getOrder());
     }
 
     //TODO: implement test for Actor.jsonToListOfActors

@@ -65,14 +65,6 @@
                     android:layout_height="1dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:background="@android:color/darker_gray"/>
-            <se.chalmers.tda367.bluejava.helpers.AutoResizeTextView
-                    android:id="@+id/homepage"
-                    android:text="[Homepage]"
-                    android:layout_width="172dp"
-                    android:layout_height="53dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:maxWidth="198dp"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
