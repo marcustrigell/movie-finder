@@ -32,6 +32,16 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     }
 
     /**
+     * Get videos of our movie
+     *
+     * @param id The ID of the movie we want to add info to
+     */
+    @Override
+    protected void getMovieVideos(int id) {
+        httpHandler.get(movieApi.getMovieVideosQuery(id), this);
+    }
+
+    /**
      * Handles the callback from the API
      *
      * @param json The JSON result from the API
@@ -45,7 +55,12 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            movie = new Movie.Builder(movie).details(jsonObject).build();
+            // Check if the json-string is a details or video-query.
+            if(jsonObject.has("key")) {
+                movie = new Movie.Builder(movie).videos(jsonObject).build();
+            } else {
+                movie = new Movie.Builder(movie).details(jsonObject).build();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

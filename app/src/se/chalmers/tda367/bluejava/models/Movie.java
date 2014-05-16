@@ -38,7 +38,8 @@ public class Movie implements Parcelable {
     private String revenue;
     private List<Genre> genres;
     private Credits credits;
-    private String youtubeID = "SUXWAEX2jlg"; //TODO change to correct adress
+    private List<Video> videos;
+    private String youtubeID = "SUXWAEX2jlg"; //TODO change to videos
 
     public static class Builder {
 
@@ -63,6 +64,8 @@ public class Movie implements Parcelable {
         // Movie credits (optional)
         private Credits credits;
 
+        // Movie videos, trailers etc (optional)
+        private List<Video> videos;
 
         /**
          * This is the most basic movie,
@@ -131,6 +134,13 @@ public class Movie implements Parcelable {
             return this;
         }
 
+        public Builder videos(JSONObject jsonObject) throws JSONException {
+            JSONArray videosJson = jsonObject.getJSONArray("results");
+            videos = Video.jsonToListOfVideos(videosJson);
+
+            return this;
+        }
+
         /**
          * A builder method that adds info about crew and actors
          * @param credits a Credits object holding crew and actors
@@ -171,6 +181,7 @@ public class Movie implements Parcelable {
         runtime = builder.runtime;
         revenue = builder.revenue;
         credits = builder.credits;
+        videos = builder.videos;
     }
 
     @Override
