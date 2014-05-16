@@ -64,11 +64,6 @@ public class Person implements Parcelable {
 		}
     }
 
-	@Override
-	public String toString() {
-		return name;
-	}
-
 	public int getID() {
 		return this.id;
 	}

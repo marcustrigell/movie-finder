@@ -44,6 +44,10 @@ public class Actor extends Person {
         return this.order;
     }
 
+	public int getCastId() {
+		return this.castId;
+	}
+
     public static List<Actor> jsonToListOfActors(JSONObject jsonObject) {
         try {
 
