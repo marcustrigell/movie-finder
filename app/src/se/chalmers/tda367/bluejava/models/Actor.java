@@ -16,31 +16,32 @@ import java.util.List;
  */
 public class Actor extends Person {
 
-    private final String CHARACTER, CREDIT_ID;
-    private final int CAST_ID, ORDER;
+    private final String character;
+	private final String creditId;
+    private final int castId;
+	private final int order;
 
+	/**
+	 * This is the type of Actor visible in movie details
+	 */
     public Actor(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
-        this.CAST_ID = jsonObject.getInt("cast_id");
-        this.CHARACTER = jsonObject.getString("character");
-        this.CREDIT_ID = jsonObject.getString("credit_id");
-        this.ORDER = jsonObject.getInt("order");
-    }
-
-    public int getCastID() {
-        return this.CAST_ID;
+        this.castId = jsonObject.getInt("cast_id");
+        this.character = jsonObject.getString("character");
+        this.creditId = jsonObject.getString("credit_id");
+        this.order = jsonObject.getInt("order");
     }
 
     public String getCharacter() {
-        return this.CHARACTER;
+        return this.character;
     }
 
-    public String getCreditID() {
-        return this.CREDIT_ID;
+    public String getCreditId() {
+        return this.creditId;
     }
 
     public int getOrder() {
-        return this.ORDER;
+        return this.order;
     }
 
     public static List<Actor> jsonToListOfActors(JSONObject jsonObject) {
@@ -63,10 +64,10 @@ public class Actor extends Person {
 
     protected Actor(Parcel in) {
         super(in);
-        CHARACTER = in.readString();
-        CREDIT_ID = in.readString();
-        CAST_ID = in.readInt();
-        ORDER = in.readInt();
+        character = in.readString();
+        creditId = in.readString();
+        castId = in.readInt();
+        order = in.readInt();
     }
 
     @Override
@@ -76,10 +77,10 @@ public class Actor extends Person {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(CHARACTER);
-        dest.writeString(CREDIT_ID);
-        dest.writeInt(CAST_ID);
-        dest.writeInt(ORDER);
+        dest.writeString(character);
+        dest.writeString(creditId);
+        dest.writeInt(castId);
+        dest.writeInt(order);
     }
 
     public static final Parcelable.Creator<Actor> CREATOR = new Parcelable.Creator<Actor>() {
@@ -94,8 +95,4 @@ public class Actor extends Person {
         }
     };
 
-	@Override
-	public String toString() {
-		return super.toString();
-	}
 }

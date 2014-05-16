@@ -53,8 +53,8 @@ public class MovieApi {
 		return finalizeMovieQuery("person/popular");
 	}
 
-	public String getLatestPeopleQuery() {
-		return finalizeMovieQuery("person/latest");
+	public String getSearchPeopleQuery(String name) {
+		return finalizeMovieQuery("search/person?query=" + name);
 	}
 
     /**

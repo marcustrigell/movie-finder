@@ -13,38 +13,36 @@ import java.util.List;
  */
 public class Credits implements Parcelable {
 
-    private final int ID;
-
-    private final List<Actor> CAST;
-
-    private final List<CrewMember> CREW;
+    private final int id;
+	private final List<Actor> cast;
+	private final List<CrewMember> crew;
 
     public Credits(JSONObject jsonObject) throws JSONException {
-        ID = jsonObject.getInt("id");
-        CAST = Actor.jsonToListOfActors(jsonObject);
-        CREW = CrewMember.jsonToListOfCrewMembers(jsonObject);
+        id = jsonObject.getInt("id");
+        cast = Actor.jsonToListOfActors(jsonObject);
+        crew = CrewMember.jsonToListOfCrewMembers(jsonObject);
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public List<Actor> getCast() {
-        return CAST;
+        return cast;
     }
 
     public List<CrewMember> getCrew() {
-        return CREW;
+        return crew;
     }
 
     protected Credits(Parcel in) {
-        ID = in.readInt();
+        id = in.readInt();
 
-        CAST = new ArrayList<Actor>();
-        in.readTypedList(CAST, Actor.CREATOR);
+        cast = new ArrayList<Actor>();
+        in.readTypedList(cast, Actor.CREATOR);
 
-        CREW = new ArrayList<CrewMember>();
-        in.readTypedList(CREW, CrewMember.CREATOR);
+        crew = new ArrayList<CrewMember>();
+        in.readTypedList(crew, CrewMember.CREATOR);
     }
 
     @Override
@@ -54,9 +52,9 @@ public class Credits implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(ID);
-        dest.writeTypedList(CAST);
-        dest.writeList(CREW);
+        dest.writeInt(id);
+        dest.writeTypedList(cast);
+        dest.writeList(crew);
     }
 
     public static final Parcelable.Creator<Credits> CREATOR = new Parcelable.Creator<Credits>() {
