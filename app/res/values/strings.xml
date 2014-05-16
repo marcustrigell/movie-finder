@@ -23,4 +23,7 @@
     <string name="profile_welcome_message">This is your personal profile. Connect to Facebook and unleash the power.</string>
     <string name="profile_welcome_title">Your Profile</string>
     <string name="title_activity_display_person">Personal details</string>
+    <string name="overview_label">Overview</string>
+    <string name="additional_info_label">Additional info</string>
+    <string name="rating_label">Rating</string>
 </resources>
