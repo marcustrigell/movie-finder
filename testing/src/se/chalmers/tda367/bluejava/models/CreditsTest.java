@@ -17,7 +17,7 @@ import java.util.List;
 public class CreditsTest extends InstrumentationTestCase {
 
     private Credits credits, creditsFromParcel;
-    private final int CREDITS_ID = 550;
+    private final int creditsId = 550;
     private List<Actor> cast;
     private List<CrewMember> crew;
 
@@ -45,7 +45,7 @@ public class CreditsTest extends InstrumentationTestCase {
 
     @Test
     public void testGetCreditsID() {
-        assertEquals(CREDITS_ID, credits.getID());
+        assertEquals(creditsId, credits.getID());
     }
 
     @Test

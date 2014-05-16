@@ -162,20 +162,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			// Recommended
 			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
 
-		// Section - People
-		navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
-
-			// Popular
-			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
-
-			// Latest
-			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[7], navDrawerIcons.getResourceId(7, -1)));
-
         // Section - Your Profile
-        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[8]));
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
 
             // Profile
-            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[9], navDrawerIcons.getResourceId(9, -1)));
+            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
 
 
 /* ------------------------------------------------------------------------------------------------------------ */

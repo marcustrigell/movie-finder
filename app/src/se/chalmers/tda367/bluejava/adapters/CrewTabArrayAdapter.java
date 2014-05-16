@@ -28,15 +28,12 @@ import java.util.List;
 public class CrewTabArrayAdapter extends BaseAdapter {
 
     private final List<CrewMember> crew;
-
     private final Context context;
-
     private final Activity activity;
 
     public CrewTabArrayAdapter(Context context,Activity activity ,List<CrewMember> crew) {
 
         this.context = context;
-
         this.activity = activity;
 
         this.crew = crew;

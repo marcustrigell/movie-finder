@@ -32,6 +32,16 @@ public class MovieCrewTabFragment extends MovieTabFragment {
     }
 
     /**
+     * Get videos of our movie
+     *
+     * @param id The ID of the movie we want to add info to
+     */
+    @Override
+    protected void getMovieVideos(int id) {
+        httpHandler.get(movieApi.getMovieVideosQuery(id), this);
+    }
+
+    /**
      * Handles the callback from the API
      *
      * @param json The JSON result from the API

@@ -17,25 +17,27 @@ import java.util.List;
  */
 public class CrewMember extends Person {
 
-    private final String CREDIT_ID, DEPARTMENT, JOB;
+    private final String creditId;
+	private final String department;
+	private final String job;
 
     public CrewMember(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
-        this.CREDIT_ID = jsonObject.getString("credit_id");
-        this.DEPARTMENT = jsonObject.getString("department");
-        this.JOB = jsonObject.getString("job");
+        this.creditId = jsonObject.getString("credit_id");
+        this.department = jsonObject.getString("department");
+        this.job = jsonObject.getString("job");
     }
 
     public String getCreditID() {
-        return this.CREDIT_ID;
+        return this.creditId;
     }
 
     public String getDepartment() {
-        return this.DEPARTMENT;
+        return this.department;
     }
 
     public String getJOB() {
-        return this.JOB;
+        return this.job;
     }
 
     public static List<CrewMember> jsonToListOfCrewMembers(JSONObject jsonObject) {
@@ -58,9 +60,9 @@ public class CrewMember extends Person {
 
     protected CrewMember(Parcel in) {
         super(in);
-        CREDIT_ID = in.readString();
-        DEPARTMENT = in.readString();
-        JOB = in.readString();
+        creditId = in.readString();
+        department = in.readString();
+        job = in.readString();
     }
 
     @Override
@@ -70,9 +72,9 @@ public class CrewMember extends Person {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(CREDIT_ID);
-        dest.writeString(DEPARTMENT);
-        dest.writeString(JOB);
+        dest.writeString(creditId);
+        dest.writeString(department);
+        dest.writeString(job);
     }
 
     public static final Parcelable.Creator<CrewMember> CREATOR = new Parcelable.Creator<CrewMember>() {

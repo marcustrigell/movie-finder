@@ -52,8 +52,10 @@ public class DisplayResultsActivity extends ListActivity
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.sort_array, android.R.layout.simple_spinner_item);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
 
         spinner.setAdapter(adapter);
 
@@ -215,10 +217,8 @@ public class DisplayResultsActivity extends ListActivity
             httpHandler.get(movieApi.getPopularMoviesQuery(), this);
         }  else if (query.equals("top_rated")) {
             httpHandler.get(movieApi.getTopRatedMoviesQuery(), this);
-        } else if (query.equals("popular_people")) {
-			httpHandler.get(movieApi.getPopularPeopleQuery(), this);
-		} else if (query.equals("latest_people")) {
-			httpHandler.get(movieApi.getLatestPeopleQuery(), this);
+		} else if (query.equals("search_people")) {
+			httpHandler.get(movieApi.getSearchPeopleQuery("Brad Pitt"), this); //TODO should not be "Brad Pitt"
 		} else {
             httpHandler.get(movieApi.getSearchMovieQuery(query), this);
         }
