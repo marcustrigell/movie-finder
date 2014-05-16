@@ -39,7 +39,6 @@ public class Movie implements Parcelable {
     private List<Genre> genres;
     private Credits credits;
     private List<Video> videos;
-    private String youtubeID = "SUXWAEX2jlg"; //TODO change to videos
 
     public static class Builder {
 
@@ -134,6 +133,12 @@ public class Movie implements Parcelable {
             return this;
         }
 
+        /**
+         * A builder method that adds associated videos to a movie.
+         * @param jsonObject a JSON object holding movie details
+         * @return itsef
+         * @throws JSONException
+         */
         public Builder videos(JSONObject jsonObject) throws JSONException {
             JSONArray videosJson = jsonObject.getJSONArray("results");
             videos = Video.jsonToListOfVideos(videosJson);
@@ -243,8 +248,8 @@ public class Movie implements Parcelable {
         return credits;
     }
 
-    public String getYoutubeID() {
-        return youtubeID;
+    public List<Video> getVideos() {
+        return videos;
     }
 
     /**
@@ -300,6 +305,7 @@ public class Movie implements Parcelable {
         dest.writeString(runtime);
         dest.writeString(revenue);
         dest.writeParcelable(credits, flags);
+        dest.writeTypedList(videos);
     }
 
     private void readFromParcel(Parcel in) {
@@ -321,6 +327,10 @@ public class Movie implements Parcelable {
         runtime = in.readString();
         revenue = in.readString();
         credits = in.readParcelable(Credits.class.getClassLoader());
+        if (videos == null) {
+            videos = new ArrayList<Video>();
+        }
+        in.readTypedList(videos, Video.CREATOR);
     }
 
     public static final Parcelable.Creator CREATOR =

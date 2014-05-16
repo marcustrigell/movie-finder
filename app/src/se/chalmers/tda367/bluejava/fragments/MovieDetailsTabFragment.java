@@ -14,6 +14,9 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.models.Video;
+
+import java.util.List;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
@@ -116,7 +119,22 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     @Override
     public void onClick(View view) {
-        String youtubeAddr = movieApi.getYoutubeURL(movie.getYoutubeID());
+        List<Video> videos = movie.getVideos();
+
+        int position = 0;
+        boolean noTrailer = true;
+        Video video;
+        String youtubeID = "_O1hM-k3aUY";
+        while(position < videos.size() || noTrailer) {
+            video = videos.get(position);
+            if(video.getType().equals("Trailer")) {
+                youtubeID = videos.get(position).getKey();
+                noTrailer = false;
+            } else {
+                position++;
+            }
+        }
+        String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
     }
 }
