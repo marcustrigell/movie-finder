@@ -1,8 +1,6 @@
 package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,9 +12,6 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.models.Video;
-
-import java.util.List;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
@@ -119,7 +114,26 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     @Override
     public void onClick(View view) {
-        List<Video> videos = movie.getVideos();
+<<<<<<< HEAD
+//        List<Video> videos = movie.getVideos();
+//
+//        int position = 0;
+//        boolean noTrailer = true;
+//        Video video;
+//        String youtubeID = "_O1hM-k3aUY";
+//        while(position < videos.size() || noTrailer) {
+//            video = videos.get(position);
+//            if(video.getType().equals("Trailer")) {
+//                youtubeID = videos.get(position).getKey();
+//                noTrailer = false;
+//            } else {
+//                position++;
+//            }
+//        }
+//        String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
+//        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
+=======
+        /*List<Video> videos = movie.getVideos();
 
         int position = 0;
         boolean noTrailer = true;
@@ -135,6 +149,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
             }
         }
         String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));*/
+>>>>>>> FETCH_HEAD
     }
 }

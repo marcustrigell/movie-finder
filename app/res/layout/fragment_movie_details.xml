@@ -87,7 +87,7 @@
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="0dp" android:weightSum="1" android:layout_weight="9.17">
+                android:layout_height="wrap_content" android:weightSum="1" android:layout_weight="9.17">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,7 +99,6 @@
                     android:text="[Overview]"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="10"
                     android:scrollbars = "vertical"
                     android:layout_marginTop="5dp"
                     />

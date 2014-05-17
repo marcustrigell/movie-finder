@@ -46,7 +46,11 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
 
         getAdditionalInfo(movie.getID());
 
+<<<<<<< HEAD
        // getMovieVideos(movie.getID());
+=======
+        /*getMovieVideos(movie.getID());*/
+>>>>>>> FETCH_HEAD
 
         return rootView;
     }
