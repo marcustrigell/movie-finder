@@ -1,6 +1,7 @@
 package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
@@ -77,6 +79,14 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
         //Finding the fields that is to be set to values
         ImageView posterImageView = (ImageView) getView().findViewById(R.id.posterImageView);
+        posterImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
+                intent.putExtra("movie", movie);
+                startActivity(intent);
+            }
+        });
         AutoResizeTextView titleTextView = (AutoResizeTextView) getView().findViewById(R.id.title);
         AutoResizeTextView tagLineTextView = (AutoResizeTextView) getView().findViewById(R.id.tagline);
         AutoResizeTextView releaseYearTextView = (AutoResizeTextView) getView().findViewById(R.id.release_year);
