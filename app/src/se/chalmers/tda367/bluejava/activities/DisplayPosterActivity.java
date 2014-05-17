@@ -20,7 +20,6 @@ public class DisplayPosterActivity extends Activity {
     private Movie movie;
     private MovieApi movieApi;
     private ImageView posterView;
-    private Intent showDetailsIntent;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,25 +27,23 @@ public class DisplayPosterActivity extends Activity {
 
         Intent intent = getIntent();
         movie = intent.getParcelableExtra("movie");
-
         movieApi = new MovieApi();
 
         removeActionBar();
         loadImage();
 
-        showDetailsIntent = new Intent(this, DisplayMovieActivity.class);
-
         posterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //showDetailsIntent.putExtra("movie", movie);
-                //startActivity(showDetailsIntent);
                 finish();
             }
         });
 
     }
 
+    /**
+     * Removes the action bar in order to enhance full screen experience
+     */
     private void removeActionBar() {
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -55,6 +52,9 @@ public class DisplayPosterActivity extends Activity {
         actionBar.hide();
     }
 
+    /**
+     * Loads the image and displays it in full screen
+     */
     private void loadImage() {
         posterView = (ImageView) findViewById(R.id.fullImage);
         String url = movieApi.getCoverURL(movie.getPosterPath());
