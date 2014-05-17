@@ -8,7 +8,6 @@ import org.json.JSONObject;
 /**
  * Used as template for a person in a movie-context.
  *
- * Created by marcus on 2014-05-07.
  *
  */
 public class Person implements Parcelable {
