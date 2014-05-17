@@ -1,4 +1,3 @@
-/*
 package se.chalmers.tda367.bluejava.models;
 
 import android.os.Parcel;
@@ -10,13 +9,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-*/
 /**
  * Class representing a video for a movie.
  * Could be a trailer, teaser, short clip etc.
  *
  * Created by marcus on 2014-05-16.
- *//*
+ */
+
 
 public class Video implements Parcelable {
 
@@ -128,4 +127,3 @@ public class Video implements Parcelable {
         }
     };
 }
-*/
