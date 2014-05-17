@@ -14,6 +14,9 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.models.Video;
+
+import java.util.List;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
@@ -32,6 +35,16 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     }
 
     /**
+     * Get videos of our movie
+     *
+     * @param id The ID of the movie we want to add info to
+     */
+    @Override
+    protected void getMovieVideos(int id) {
+        httpHandler.get(movieApi.getMovieVideosQuery(id), this);
+    }
+
+    /**
      * Handles the callback from the API
      *
      * @param json The JSON result from the API
@@ -45,7 +58,12 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            movie = new Movie.Builder(movie).details(jsonObject).build();
+            // Check if the json-string is a details or video-query.
+            if(jsonObject.has("key")) {
+                movie = new Movie.Builder(movie).videos(jsonObject).build();
+            } else {
+                movie = new Movie.Builder(movie).details(jsonObject).build();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -101,7 +119,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     @Override
     public void onClick(View view) {
-/*        List<Video> videos = movie.getVideos();
+        List<Video> videos = movie.getVideos();
 
         int position = 0;
         boolean noTrailer = true;
@@ -117,6 +135,6 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
             }
         }
         String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));*/
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
     }
 }

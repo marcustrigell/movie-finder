@@ -75,8 +75,8 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
 
             /* Set the listviews arrayadapter. */
             /*ArrayAdapter<Movie> arrayAdapter = new ArrayAdapter<Movie>
-                    (this, android.R.layout.simple_list_item_1, person.getMovies());*/ //TODO check array parameters
-            /*appearences.setAdapter(arrayAdapter);*/ //TODO
+                    (this, android.R.layout.simple_list_item_1, person.getMovies());*/
+            /*appearences.setAdapter(arrayAdapter);*/
 
         }
     }

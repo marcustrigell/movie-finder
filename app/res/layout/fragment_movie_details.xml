@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
     <!-- Here you put the rest of your current view-->
 
     <LinearLayout
@@ -25,10 +25,8 @@
                 <se.chalmers.tda367.bluejava.helpers.AutoResizeTextView
                         android:id="@+id/title"
                         android:text="[Title]"
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="53dp"
-                        android:ellipsize="none"
-                        android:singleLine="true"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:maxWidth="198dp" android:gravity="center_vertical|center_horizontal"/>
                 <View
@@ -39,10 +37,8 @@
                         android:id="@+id/tagline"
                         android:text="[Tagline]"
                         android:textStyle="italic"
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="53dp"
-                        android:ellipsize="none"
-                        android:singleLine="true"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:gravity="center_vertical|center_horizontal"
                         android:maxWidth="198dp"/>
@@ -87,13 +83,7 @@
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="0dp" android:weightSum="1" android:layout_weight="9.17">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/overview_label"
-                    android:id="@+id/overview_label" android:layout_marginTop="10dp" android:textStyle="bold"/>
+                android:layout_height="fill_parent" android:weightSum="1" android:layout_weight="9.17">
             <se.chalmers.tda367.bluejava.helpers.AutoResizeTextView
                     android:id="@+id/overview"
                     android:text="[Overview]"
@@ -101,14 +91,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="10"
                     android:scrollbars = "vertical"
-                    android:layout_marginTop="5dp"
                     />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/rating_label"
-                    android:id="@+id/rating_label" android:layout_marginTop="10dp" android:textStyle="bold"/>
             <RatingBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,26 +100,19 @@
                     android:isIndicator="true"
                     android:focusable="false"
                     android:id="@+id/ratingBar" android:layout_weight="0.13" android:numStars="5"
-                    android:layout_marginTop="5dp"
-                    />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/additional_info_label"
-                    android:id="@+id/additional_info" android:layout_marginTop="10dp" android:textStyle="bold"/>
+                    android:layout_marginTop="15dp"/>
             <view android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   class="se.chalmers.tda367.bluejava.helpers.AutoResizeTextView" android:id="@+id/budget"
                   android:layout_gravity="center_horizontal" android:layout_weight="3.47" android:text="[Budget]"
-                  android:textSize="20dp" android:layout_marginTop="5dp"/>
+                  android:textSize="23dp" android:layout_marginTop="10dp"/>
             <view class="se.chalmers.tda367.bluejava.helpers.AutoResizeTextView" android:layout_width="fill_parent"
                   android:layout_height="wrap_content" android:id="@+id/revenue"
                   android:layout_gravity="right" android:layout_weight="3.47" android:text="[Revenue]"
-                  android:textSize="20dp" android:layout_marginTop="10dp"/>
+                  android:textSize="23dp" android:layout_marginTop="10dp"/>
             <view class="se.chalmers.tda367.bluejava.helpers.AutoResizeTextView" android:layout_width="fill_parent"
                   android:layout_height="wrap_content" android:id="@+id/runtime" android:layout_gravity="center_horizontal"
-                  android:layout_weight="3.47" android:text="[Runtime]]" android:textSize="20dp"
+                  android:layout_weight="3.47" android:text="[Runtime]]" android:textSize="23dp"
                   android:layout_marginTop="10dp"/>
         </LinearLayout>
     </LinearLayout>
