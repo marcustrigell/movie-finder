@@ -38,7 +38,6 @@ public class Movie implements Parcelable {
     private String revenue;
     private List<Genre> genres;
     private Credits credits;
-    private List<Video> videos;
 
     public static class Builder {
 
@@ -63,8 +62,6 @@ public class Movie implements Parcelable {
         // Movie credits (optional)
         private Credits credits;
 
-        // Movie videos, trailers etc (optional)
-        private List<Video> videos;
 
         /**
          * This is the most basic movie,
@@ -134,19 +131,6 @@ public class Movie implements Parcelable {
         }
 
         /**
-         * A builder method that adds associated videos to a movie.
-         * @param jsonObject a JSON object holding movie details
-         * @return itsef
-         * @throws JSONException
-         */
-        public Builder videos(JSONObject jsonObject) throws JSONException {
-            JSONArray videosJson = jsonObject.getJSONArray("results");
-            videos = Video.jsonToListOfVideos(videosJson);
-
-            return this;
-        }
-
-        /**
          * A builder method that adds info about crew and actors
          * @param credits a Credits object holding crew and actors
          * @return itself
@@ -186,7 +170,6 @@ public class Movie implements Parcelable {
         runtime = builder.runtime;
         revenue = builder.revenue;
         credits = builder.credits;
-        videos = builder.videos;
     }
 
     @Override
@@ -248,10 +231,6 @@ public class Movie implements Parcelable {
         return credits;
     }
 
-    public List<Video> getVideos() {
-        return videos;
-    }
-
     /**
      * Creates a list of movies and returns it
      * @param json A JSON object with movies
@@ -305,7 +284,6 @@ public class Movie implements Parcelable {
         dest.writeString(runtime);
         dest.writeString(revenue);
         dest.writeParcelable(credits, flags);
-        dest.writeTypedList(videos);
     }
 
     private void readFromParcel(Parcel in) {
@@ -327,10 +305,6 @@ public class Movie implements Parcelable {
         runtime = in.readString();
         revenue = in.readString();
         credits = in.readParcelable(Credits.class.getClassLoader());
-        if (videos == null) {
-            videos = new ArrayList<Video>();
-        }
-        in.readTypedList(videos, Video.CREATOR);
     }
 
     public static final Parcelable.Creator CREATOR =
