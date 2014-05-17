@@ -101,7 +101,6 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     @Override
     public void onClick(View view) {
-<<<<<<< HEAD
 /*        List<Video> videos = movie.getVideos();
 
         int position = 0;
@@ -119,9 +118,5 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         }
         String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));*/
-=======
-        String youtubeAddr = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
->>>>>>> dbb5021d9e3159e0ffda4f46248c36edb930af61
     }
 }
