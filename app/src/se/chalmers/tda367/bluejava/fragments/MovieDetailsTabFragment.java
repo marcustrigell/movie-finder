@@ -111,8 +111,14 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         //Setting the strings to values
         titleTextView.setText(movie.getTitle());
         titleTextView.resizeText();
-        tagLineTextView.setText(movie.getTagline());
+
+        if(!movie.getTagline().equals("")) {
+            tagLineTextView.setText(movie.getTagline());
+        } else {
+            tagLineTextView.setText("No tagline");
+        }
         tagLineTextView.resizeText();
+
         releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
         popularityTextView.setText("" + popularityRounded);
         overviewTextView.setText(movie.getOverview());
