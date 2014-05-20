@@ -200,14 +200,18 @@ public class DisplayResultsActivity extends ListActivity
 		// Check if query comes from search field in activity bar
 		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 			query = intent.getStringExtra(SearchManager.QUERY);
+
+            String fixedString = query.replace(" ", "+");
+
+            sendQuery(fixedString);
+
 		}
 
 		// Otherwise it comes from navigation drawer browsing
 		else {
             query = intent.getStringExtra("se.chalmers.tda367.bluejava.MESSAGE");
+            sendQuery(query);
 		}
-
-		sendQuery(query);
 	}
 
     public void sendQuery(String query) {

@@ -2,7 +2,6 @@ package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,12 +10,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.models.Video;
-
-import java.util.List;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
@@ -82,6 +79,14 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
         //Finding the fields that is to be set to values
         ImageView posterImageView = (ImageView) getView().findViewById(R.id.posterImageView);
+        posterImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
+                intent.putExtra("movie", movie);
+                startActivity(intent);
+            }
+        });
         AutoResizeTextView titleTextView = (AutoResizeTextView) getView().findViewById(R.id.title);
         AutoResizeTextView tagLineTextView = (AutoResizeTextView) getView().findViewById(R.id.tagline);
         AutoResizeTextView releaseYearTextView = (AutoResizeTextView) getView().findViewById(R.id.release_year);
@@ -106,8 +111,14 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         //Setting the strings to values
         titleTextView.setText(movie.getTitle());
         titleTextView.resizeText();
-        tagLineTextView.setText(movie.getTagline());
+
+        if(!movie.getTagline().equals("")) {
+            tagLineTextView.setText(movie.getTagline());
+        } else {
+            tagLineTextView.setText("No tagline");
+        }
         tagLineTextView.resizeText();
+
         releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
         popularityTextView.setText("" + popularityRounded);
         overviewTextView.setText(movie.getOverview());
@@ -119,22 +130,23 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     @Override
     public void onClick(View view) {
-        List<Video> videos = movie.getVideos();
+//        List<Video> videos = movie.getVideos();
+//
+//        int position = 0;
+//        boolean noTrailer = true;
+//        Video video;
+//        String youtubeID = "_O1hM-k3aUY";
+//        while(position < videos.size() || noTrailer) {
+//            video = videos.get(position);
+//            if(video.getType().equals("Trailer")) {
+//                youtubeID = videos.get(position).getKey();
+//                noTrailer = false;
+//            } else {
+//                position++;
+//            }
+//        }
+//        String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
+//        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
 
-        int position = 0;
-        boolean noTrailer = true;
-        Video video;
-        String youtubeID = "_O1hM-k3aUY";
-        while(position < videos.size() || noTrailer) {
-            video = videos.get(position);
-            if(video.getType().equals("Trailer")) {
-                youtubeID = videos.get(position).getKey();
-                noTrailer = false;
-            } else {
-                position++;
-            }
-        }
-        String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
     }
 }
