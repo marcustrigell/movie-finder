@@ -1,0 +1,176 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 Meeting Agenda - 140520
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 Date:
+\f1\fs24 \
+
+\f0\fs30 140520
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 Participants:
+\f1\fs24 \
+
+\f0\fs30 David Bergstr\'f6m
+\f1\fs24 \
+
+\f0\fs30 Axel Niklasson 
+\f1\fs24 \
+
+\f0\fs30 Tobias Andersen
+\f1\fs24 \
+
+\f0\fs30 Marcus Trigell
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 1. \'a0Objectives (5 min) 
+\f1\fs24 \
+
+\f0\fs30 	
+\f1\fs24 \
+
+\f0\fs30 	a. Programmering
+\f1\fs24 \
+
+\f0\fs30 		i. Vad g\'f6r vi? (Vad har vi gjort?)
+\f1\fs24 \
+
+\f0\fs30 		ii. Vad ska g\'f6ras?
+\f1\fs24 \
+
+\f0\fs30 	b. Presentation
+\f1\fs24 \
+
+\f0\fs30 	c. Dokumentation (RAD & SDD)
+\f1\fs24 \
+
+\f0\fs30 	d. Saker som m\'e5ste fixas
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 2. \'a0Reports (15 min) 
+\f1\fs24 \
+
+\f0\fs30 Testningen har kommit fram\'e5t, Facebook och profilsidan fungerar. Bak\'e5tknappen uppe i v\'e4nstra h\'f6rnet st\'e5r kvar, sorteringstestningen \'e4r inte testad. Tobbe g\'f6r klart Facebook som tidigare n\'e4mnt. Projektet har fortfarande inte Maven-struktur och paketeringen av projektet ska ordnas innan torsdag (m\'f6te med Olof).
+\f1\fs24 \
+
+\f0\fs30 	
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 3. \'a0Discussion items (35 min) 
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 	a.
+\f1\fs24 \
+
+\f0\fs30 		i. B\'f6rjar dra ihop sig med tid, eftersom det \'e4r sista veckan i projektet nu. Tobbe har jobbat lite med Facebook, Axel gjort klart designen f\'f6r detailed view, Marcus f\'f6rs\'f6kt f\'e5 ordning p\'e5 trailers till videor och David har jobbat med PersonDetails.
+\f1\fs24 \
+
+\f0\fs30 		ii. * Fixa buggen som visar fel person
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* Fixa trailers (h\'e4nder ingenting just nu)
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* Ta bort bak\'e5tnavigation
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* Settings
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* Navigeringsmenyn ska kommas \'e5t \'f6verallt
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* Mera testning (sortering)		 \'a0
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* R\'e4tt siffror i NavDrawer
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* TODO
+\f1\fs24 \
+
+\f0\fs30 		 \'a0\'a0* NavDrawer Icons
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\
+\
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 	b. 
+\f1\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl340
+\ls1\ilvl0
+\f0\fs30 \cf0 {\listtext	\'95	}Anv\'e4nda RAD och SDD som mall f\'f6r presentationen\
+{\listtext	\'95	}L\'e4mna in lista med UC:s (R\'e4tta till de vi har)\
+{\listtext	\'95	}Fixa adapter inf\'f6r presentationen\
+{\listtext	\'95	}T\'e4nka igenom ev fr\'e5gor\
+{\listtext	\'95	}Self evaluation\
+\pard\pardeftab720\sl340
+\cf0 	
+\f1\fs24 \
+
+\f0\fs30 	c. Kolla p\'e5 dem igen, \'e4ndra om n\'e5gonting k\'e4nns konstigt. G\'f6rs klart efter m\'f6tet.
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 	d. David, Tobbe och Axel s\'e4tter sig imorgon eftermiddag och f\'f6rs\'f6ker fixa Person och Trailer. Presentationen ska g\'f6ras imorgon med. Marcus \'e4r med p\'e5 Skype.
+\f1\fs24 \
+
+\f0\fs30  
+\f1\fs24 \
+
+\f0\fs30 4. \'a0Outcomes and assignments (5 min) 
+\f1\fs24 \
+
+\f0\fs30 Marcus: RAD och SDD
+\f1\fs24 \
+
+\f0\fs30 Alla g\'f6r presentationen i morgon
+\f1\fs24 \
+
+\f0\fs30 	
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f0\fs30 \cf0 5. \'a0Wrap up 
+\f1\fs24 \
+
+\f0\fs30 Good meeting.
+\f1\fs24 \
+
+\f0\fs30 	
+\f1\fs24 \
+\pard\pardeftab720
+\cf0 \
+}
