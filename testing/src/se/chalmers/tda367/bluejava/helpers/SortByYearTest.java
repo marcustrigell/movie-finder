@@ -1,28 +1,39 @@
 package se.chalmers.tda367.bluejava.helpers;
 
 import junit.framework.TestCase;
+import org.junit.Test;
+import se.chalmers.tda367.bluejava.interfaces.SortMethod;
+import se.chalmers.tda367.bluejava.models.Movie;
+
+import java.io.FileReader;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by marcus on 2014-04-02.
  */
 public class SortByYearTest extends TestCase {
+
+    private List<Movie> sortedList, unsortedList, correctList;
+    private SortMethod sortMethod;
+    private String correct, unsorted;
+
+    @Test
     public void testSort() throws Exception {
-        //Scanner in = new Scanner(new FileReader("json.txt"));
-        //String json = in.nextLine();
-
-        //List<Movie> list = Movie.jsonToListOfMovies(json);
-
-        //List<String> titles = new ArrayList<String>();
-        //for(Movie movie : list) {
-        //    titles.add(movie.getTitle()); // TODO
-        //}
-
-        //SortMethod sortMethod = new SortByTitle();
-        //list = sortMethod.sort(list);
-
-        //int index = 0;
-        //for(Movie movie : list) {
-        //    assertTrue(movie.getTitle.equals(titles[index])); // TODO
-        //}
+        Scanner sc = new Scanner(new FileReader("/resources/txts/unsorted.txt"));
+        while(sc.hasNextLine()) {
+            unsorted += sc.nextLine();
+        }
+        unsortedList = Movie.jsonToListOfMovies(unsorted);
+        sc = new Scanner(new FileReader("/resources/txts/year_sorted.txt"));
+        while(sc.hasNextLine()) {
+            correct += sc.nextLine();
+        }
+        correctList = Movie.jsonToListOfMovies(correct);
+        sortMethod = new SortByTitle();
+        sortedList = sortMethod.sort(unsortedList);
+        for(Movie movie : sortedList) {
+            assertEquals(correctList, sortedList);
+        }
     }
 }
