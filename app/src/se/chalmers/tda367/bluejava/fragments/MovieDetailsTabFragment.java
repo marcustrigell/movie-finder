@@ -2,6 +2,7 @@ package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,11 +15,24 @@ import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
+    private final MovieFavoritesDbHelper movieFavoritesDbHelper;
+
+    //private Button favoriteButton;
+
+    private boolean isFavorite;
+
     public MovieDetailsTabFragment(Activity activity, Movie movie) {
         super(activity, movie, R.layout.fragment_movie_details);
+
+        movieFavoritesDbHelper = new MovieFavoritesDbHelper(activity);
+
+        isFavorite = movieFavoritesDbHelper.isFavorite(movie.getID());
+
+        // favoriteButton = (Button) getView().findViewById(R.id.favoriteButton);
     }
 
     /**
@@ -81,6 +95,13 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         favoriteButton.setOnClickListener(this);
         posterImageView.setOnClickListener(this);
 
+        if (isFavorite) {
+            favoriteButton.setBackgroundResource(R.drawable.star);
+        } else {
+            favoriteButton.setBackgroundResource(R.drawable.star_off);
+        }
+
+
         AutoResizeTextView titleTextView = (AutoResizeTextView) getView().findViewById(R.id.title);
         AutoResizeTextView tagLineTextView = (AutoResizeTextView) getView().findViewById(R.id.tagline);
         AutoResizeTextView releaseYearTextView = (AutoResizeTextView) getView().findViewById(R.id.release_year);
@@ -121,16 +142,25 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         runTimeTextView.setText("Runtime: " + movie.getRuntime() + " min");
     }
 
+    public void toggleFavoriteButton() {
+        isFavorite = !isFavorite;
+    }
+
     @Override
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.favoriteButton:
+                //movieFavoritesDbHelper.addMovie(movie);
+                //favoriteButton.setPressed(true);
+                Log.e("Movie", "Favorite: " + isFavorite);
                 break;
+
             case R.id.posterImageView:
                 Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
                 intent.putExtra("movie", movie);
                 startActivity(intent);
                 break;
+
             case R.id.trailerButton:
 
                 //        List<Video> videos = movie.getVideos();

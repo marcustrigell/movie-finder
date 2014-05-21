@@ -67,12 +67,15 @@ public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
                 sortOrder,
                 null); //limit
 
+        Movie movie = null;
+
         // If we got results get the first one
-        if (cursor != null) {
+        if (cursor.getCount() > 0) {
             cursor.moveToFirst();
+            movie = cursorToMovie(cursor);
         }
 
-        Movie movie = cursorToMovie(cursor);
+        cursor.close();
 
         return movie;
     }
@@ -94,6 +97,8 @@ public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+
         return movies;
     }
 
@@ -109,6 +114,28 @@ public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
                 selectionsArgs);
 
         db.close();
+    }
+
+    public boolean isFavorite(int id) {
+
+        // Gets the data repository in read mode
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sortOrder = MovieContract.FavoriteTable.KEY_POPULARITY + " DESC";
+        String[] selectionArgs = new String[] {String.valueOf(id)};
+
+        // Build query
+        Cursor cursor = db.query(
+                MovieContract.FavoriteTable.TABLE_NAME,
+                MovieContract.FavoriteTable.KEY_ARRAY,
+                " id = ?",
+                selectionArgs,
+                null,
+                null,
+                sortOrder,
+                null); //limit
+
+        return cursor.moveToFirst();
     }
 
     /**
