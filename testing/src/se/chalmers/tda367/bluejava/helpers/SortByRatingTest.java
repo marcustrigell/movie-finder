@@ -17,12 +17,12 @@ public class SortByRatingTest extends TestCase {
 
     @Test
     public void testSort() throws Exception {
-        Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/unsorted.txt"));
+        Scanner sc = new Scanner(new FileReader("/res/txts/unsorted.txt"));
         while(sc.hasNextLine()) {
             unsorted += sc.nextLine();
         }
         unsortedList = Movie.jsonToListOfMovies(unsorted);
-        sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/rating_sorted.txt"));
+        sc = new Scanner(new FileReader("/res/txts/rating_sorted.txt"));
         while(sc.hasNextLine()) {
             correct += sc.nextLine();
         }
