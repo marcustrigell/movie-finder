@@ -73,20 +73,14 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
      */
     public void setupLayout() {
 
-        // Set the trailer-buttons listener
-        Button button = (Button) getView().findViewById(R.id.trailer);
-        button.setOnClickListener(this);
-
-        //Finding the fields that is to be set to values
+        Button trailerButton = (Button) getView().findViewById(R.id.trailerButton);
+        Button favoriteButton = (Button) getView().findViewById(R.id.favoriteButton);
         ImageView posterImageView = (ImageView) getView().findViewById(R.id.posterImageView);
-        posterImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
-                intent.putExtra("movie", movie);
-                startActivity(intent);
-            }
-        });
+
+        trailerButton.setOnClickListener(this);
+        favoriteButton.setOnClickListener(this);
+        posterImageView.setOnClickListener(this);
+
         AutoResizeTextView titleTextView = (AutoResizeTextView) getView().findViewById(R.id.title);
         AutoResizeTextView tagLineTextView = (AutoResizeTextView) getView().findViewById(R.id.tagline);
         AutoResizeTextView releaseYearTextView = (AutoResizeTextView) getView().findViewById(R.id.release_year);
@@ -127,26 +121,39 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         runTimeTextView.setText("Runtime: " + movie.getRuntime() + " min");
     }
 
-
     @Override
     public void onClick(View view) {
-//        List<Video> videos = movie.getVideos();
-//
-//        int position = 0;
-//        boolean noTrailer = true;
-//        Video video;
-//        String youtubeID = "_O1hM-k3aUY";
-//        while(position < videos.size() || noTrailer) {
-//            video = videos.get(position);
-//            if(video.getType().equals("Trailer")) {
-//                youtubeID = videos.get(position).getKey();
-//                noTrailer = false;
-//            } else {
-//                position++;
-//            }
-//        }
-//        String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
-//        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
+        switch(view.getId()) {
+            case R.id.favoriteButton:
+                break;
+            case R.id.posterImageView:
+                Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
+                intent.putExtra("movie", movie);
+                startActivity(intent);
+                break;
+            case R.id.trailerButton:
+
+                //        List<Video> videos = movie.getVideos();
+                //
+                //        int position = 0;
+                //        boolean noTrailer = true;
+                //        Video video;
+                //        String youtubeID = "_O1hM-k3aUY";
+                //        while(position < videos.size() || noTrailer) {
+                //            video = videos.get(position);
+                //            if(video.getType().equals("Trailer")) {
+                //                youtubeID = videos.get(position).getKey();
+                //                noTrailer = false;
+                //            } else {
+                //                position++;
+                //            }
+                //        }
+                //        String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
+                //        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
+                break;
+        }
+
+
 
     }
 }
