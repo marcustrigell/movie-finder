@@ -20,12 +20,12 @@ public class SortByTitleTest extends TestCase {
 
     @Test
     public void testSort() throws Exception {
-        Scanner sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/unsorted.txt"));
+        Scanner sc = new Scanner(new FileReader("/resources/txts/unsorted.txt"));
         while(sc.hasNextLine()) {
             unsorted += sc.nextLine();
         }
         unsortedList = Movie.jsonToListOfMovies(unsorted);
-        sc = new Scanner(new FileReader("/Users/axelniklasson/dev/blue-java/testing/resources/title_sorted.txt"));
+        sc = new Scanner(new FileReader("/resources/txts/title_sorted.txt"));
         while(sc.hasNextLine()) {
             correct += sc.nextLine();
         }
