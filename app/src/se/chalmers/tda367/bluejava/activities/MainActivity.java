@@ -10,6 +10,7 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -48,7 +49,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private String[] navDrawerTitles;
 	private TypedArray navDrawerIcons;
 
-    private ViewPager viewPager;
+	private ViewPager viewPager;
 
     /**
      * Called when the activity is first created.
@@ -141,6 +142,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navDrawerList = (ListView) findViewById(R.id.nav_drawer);
 
+		// Set a custom shadow that overlays the main content when the drawer opens
+		navDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
         navDrawerItems = new ArrayList<INavDrawerItem>();
 
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -171,7 +175,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
-        // Recycle the typed array for later re-use (necessary for some reason)
+        // Recycle the typed array for later re-use
         navDrawerIcons.recycle();
 
         // Set the navigation drawer list adapter
@@ -332,15 +336,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 intent.putExtra(EXTRA_MESSAGE, "top_rated");
                 startActivity(intent);
                 break;
-			case 6 :
-				intent.putExtra(EXTRA_MESSAGE, "popular_people");
-				startActivity(intent);
-				break;
-			case 7 :
-				intent.putExtra(EXTRA_MESSAGE, "latest_people");
-				startActivity(intent);
-				break;
-            case 9 :
+            case 6 :
                 intent = new Intent(this, DisplayProfileActivity.class);
                 startActivity(intent);
                 break;
