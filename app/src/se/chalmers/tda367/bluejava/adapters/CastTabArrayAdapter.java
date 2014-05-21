@@ -11,9 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.activities.DisplayMovieActivity;
 import se.chalmers.tda367.bluejava.activities.DisplayPersonActivity;
-import se.chalmers.tda367.bluejava.activities.DisplayProfileActivity;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.models.Actor;
 
@@ -90,7 +88,6 @@ public class CastTabArrayAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(activity, DisplayPersonActivity.class);
-
                     intent.putExtra("person", actor);
                     activity.startActivity(intent);
                 }

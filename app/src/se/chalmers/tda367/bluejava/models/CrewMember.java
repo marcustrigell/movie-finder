@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class CrewMember extends Person {
 
-    private final String creditId;
-	private final String department;
-	private final String job;
+    private String creditId;
+	private String department;
+	private String job;
 
     public CrewMember(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
@@ -72,6 +72,7 @@ public class CrewMember extends Person {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
         dest.writeString(creditId);
         dest.writeString(department);
         dest.writeString(job);

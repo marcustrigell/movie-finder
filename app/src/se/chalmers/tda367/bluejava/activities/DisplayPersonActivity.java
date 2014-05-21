@@ -1,10 +1,8 @@
 package se.chalmers.tda367.bluejava.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import com.squareup.picasso.Picasso;
@@ -16,7 +14,6 @@ import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
 import se.chalmers.tda367.bluejava.models.BlueJava;
-import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.models.Person;
 
 /**
@@ -72,12 +69,6 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
             birthdayView.setText(person.getBirthday());
             deathdayView.setText(person.getDeathday());
             biographyView.setText(person.getBiography());
-
-            /* Set the listviews arrayadapter. */
-            /*ArrayAdapter<Movie> arrayAdapter = new ArrayAdapter<Movie>
-                    (this, android.R.layout.simple_list_item_1, person.getMovies());*/
-            /*appearences.setAdapter(arrayAdapter);*/
-
         }
     }
 

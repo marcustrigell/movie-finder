@@ -27,6 +27,7 @@ public class Person implements Parcelable {
     public Person(JSONObject jsonObject) throws JSONException {
         this.name = jsonObject.getString("name");
         this.id = jsonObject.getInt("id");
+
         if(jsonObject.isNull("profile_path")) {
             this.profilePath = null;
         } else {
@@ -101,15 +102,15 @@ public class Person implements Parcelable {
 	}
 
     protected Person(Parcel in) {
+        this.id = in.readInt();
         this.name = in.readString();
         this.profilePath = in.readString();
-        this.id = in.readInt();
+        this.alsoKnownAs = in.readString();
+        this.biography = in.readString();
+        this.birthday = in.readString();
+        this.deathday = in.readString();
+        this.placeOfBirth = in.readString();
 		this.popularity = in.readDouble();
-		this.placeOfBirth = in.readString();
-		this.alsoKnownAs = in.readString();
-		this.biography = in.readString();
-		this.birthday = in.readString();
-		this.deathday = in.readString();
     }
 
 	@Override
@@ -119,14 +120,14 @@ public class Person implements Parcelable {
 
 	@Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
-        dest.writeValue(this.profilePath);
         dest.writeInt(this.id);
-		dest.writeDouble(this.popularity);
-		dest.writeValue(this.placeOfBirth);
-		dest.writeValue(this.alsoKnownAs);
-		dest.writeValue(this.biography);
-		dest.writeValue(this.birthday);
-		dest.writeValue(this.deathday);
+        dest.writeString(this.name);
+        dest.writeString(this.profilePath);
+        dest.writeString(this.alsoKnownAs);
+        dest.writeString(this.biography);
+        dest.writeString(this.birthday);
+        dest.writeString(this.deathday);
+		dest.writeString(this.placeOfBirth);
+        dest.writeDouble(this.popularity);
     }
 }

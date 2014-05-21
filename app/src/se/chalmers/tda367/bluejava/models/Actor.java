@@ -26,9 +26,9 @@ public class Actor extends Person {
 	 */
     public Actor(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
-        this.castId = jsonObject.getInt("cast_id");
         this.character = jsonObject.getString("character");
         this.creditId = jsonObject.getString("credit_id");
+        this.castId = jsonObject.getInt("cast_id");
         this.order = jsonObject.getInt("order");
     }
 
@@ -81,6 +81,7 @@ public class Actor extends Person {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
         dest.writeString(character);
         dest.writeString(creditId);
         dest.writeInt(castId);
