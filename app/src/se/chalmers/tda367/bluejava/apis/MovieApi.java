@@ -51,10 +51,6 @@ public class MovieApi {
         return finalizeMovieQuery("movie/" + id + "/videos");
     }
 
-	public String getSearchPeopleQuery(String name) {
-		return finalizeMovieQuery("search/person?query=" + name);
-	}
-
 	public String getPersonDetailsQuery(int id) {
 		return finalizeMovieQuery("person/" + id);
 	}
