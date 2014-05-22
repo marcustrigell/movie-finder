@@ -2,6 +2,7 @@ package se.chalmers.tda367.bluejava.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
+import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
@@ -66,8 +67,32 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getAdditionalInfo(movie.getID());
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        // Make sure that we are currently visible
+        if (this.isVisible()) {
+
+            if (!isVisibleToUser) {
+                //Log.e("MyFragment", "Details NOT visible.");
+            }
+        }
+    }
+
+    @Override
     protected void getAdditionalInfo(int id) {
-        httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
+        if (movie.getBudget() == null) {
+            Log.e("", "get details");
+            httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
+        } else {
+            populateView();
+        }
     }
 
     @Override

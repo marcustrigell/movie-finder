@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.fragments.LoginFragment;
 import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 

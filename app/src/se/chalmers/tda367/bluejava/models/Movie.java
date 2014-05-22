@@ -69,17 +69,42 @@ public class Movie implements Parcelable {
         /**
          * This is the most basic movie,
          * all movies must hold this information.
+         */
+        public Builder(
+            int id,
+            String title,
+            String releaseYear,
+            String popularity,
+            String rating,
+            String voteCount,
+            String posterPath
+        ) {
+
+            this.id = id;
+            this.title = title;
+            this.releaseYear = releaseYear;
+            this.popularity = popularity;
+            this.rating = rating;
+            this.voteCount = voteCount;
+            this.posterPath = posterPath;
+        }
+
+        /**
+         * This is the most basic movie,
+         * all movies must hold this information.
          *
          * @param keys Table columns from db (declared in MovieContract)
          */
         public Builder(String[] keys) {
-            id = Integer.parseInt(keys[0]);
-            title = keys[1];
-            releaseYear = keys[2];
-            popularity = keys[3];
-            rating = keys[4];
-            voteCount = keys[5];
-            posterPath = keys[6];
+            this(
+                Integer.parseInt(keys[0]),
+                keys[1],
+                keys[2],
+                keys[3],
+                keys[4],
+                keys[5],
+                keys[6]
+            );
         }
 
         /**
@@ -89,13 +114,16 @@ public class Movie implements Parcelable {
          * @throws JSONException
          */
         public Builder(JSONObject jsonObject) throws JSONException {
-            id = jsonObject.getInt("id");
-            title = jsonObject.getString("title");
-            releaseYear = jsonObject.getString("release_date");
-            popularity = jsonObject.getString("popularity");
-            rating = jsonObject.getString("vote_average");
-            voteCount = jsonObject.getString("vote_count");
-            posterPath = jsonObject.getString("poster_path");
+            this(
+                jsonObject.getInt("id"),
+                jsonObject.getString("title"),
+                jsonObject.getString("release_date"),
+                jsonObject.getString("popularity"),
+                jsonObject.getString("vote_average"),
+                jsonObject.getString("vote_count"),
+                jsonObject.getString("poster_path")
+            );
+
         }
 
         /**
@@ -104,13 +132,15 @@ public class Movie implements Parcelable {
          * @param movie A Movie object that wants additional info
          */
         public Builder(Movie movie) {
-            id = movie.getID();
-            title = movie.getTitle();
-            releaseYear = movie.getReleaseYear();
-            popularity = movie.getPopularity();
-            rating = movie.getRating();
-            voteCount = movie.getVoteCount();
-            posterPath = movie.getPosterPath();
+            this(
+                movie.getID(),
+                movie.getTitle(),
+                movie.getReleaseYear(),
+                movie.getPopularity(),
+                movie.getRating(),
+                movie.getVoteCount(),
+                movie.getPosterPath()
+            );
         }
 
         /**

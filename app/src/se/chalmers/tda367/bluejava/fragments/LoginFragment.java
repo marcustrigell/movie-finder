@@ -1,4 +1,4 @@
-package se.chalmers.tda367.bluejava.activities;
+package se.chalmers.tda367.bluejava.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,15 +53,6 @@ public class LoginFragment extends Fragment {
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes"));
 
-        final MovieFavoritesDbHelper movieFavoritesDbHelper = new MovieFavoritesDbHelper(view.getContext());
-
-        List<Movie> movies = movieFavoritesDbHelper.getAllMovies();
-
-        if (movies.size() > 0) {
-            GridView favoritesGridView = (GridView) view.findViewById(R.id.profile_grid_view);
-            favoritesGridView.setAdapter(new ImageAdapter(view.getContext(), getActivity(), movies));
-        }
-
         return view;
     }
 
@@ -114,6 +105,8 @@ public class LoginFragment extends Fragment {
             onSessionStateChange(session, session.getState(), null);
         }
 
+        showFavorites();
+
         uiHelper.onResume();
     }
 
@@ -139,6 +132,17 @@ public class LoginFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         uiHelper.onSaveInstanceState(outState);
+    }
+
+    public void showFavorites() {
+        final MovieFavoritesDbHelper movieFavoritesDbHelper = new MovieFavoritesDbHelper(getView().getContext());
+
+        List<Movie> movies = movieFavoritesDbHelper.getAllMovies();
+
+        if (movies.size() > 0) {
+            GridView favoritesGridView = (GridView) getView().findViewById(R.id.profile_grid_view);
+            favoritesGridView.setAdapter(new ImageAdapter(getView().getContext(), getActivity(), movies));
+        }
     }
 
     public void logout() {
@@ -172,5 +176,4 @@ public class LoginFragment extends Fragment {
 
         return userInfo.toString();
     }
-
 }

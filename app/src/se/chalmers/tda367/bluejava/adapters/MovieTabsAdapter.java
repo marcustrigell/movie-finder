@@ -11,7 +11,7 @@ import se.chalmers.tda367.bluejava.fragments.MovieCrewTabFragment;
 import se.chalmers.tda367.bluejava.fragments.MovieDetailsTabFragment;
 import se.chalmers.tda367.bluejava.models.Movie;
 
-public class MovieTabsAdapter extends FragmentPagerAdapter
+    public class MovieTabsAdapter extends FragmentPagerAdapter
         implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
 
     private Movie movie;
