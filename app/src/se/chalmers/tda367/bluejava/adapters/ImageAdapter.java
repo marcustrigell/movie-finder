@@ -10,10 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
-import se.chalmers.tda367.bluejava.models.Movie;
-import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayMovieActivity;
+import se.chalmers.tda367.bluejava.apis.MovieApi;
+import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 

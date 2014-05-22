@@ -20,7 +20,7 @@
     <string name="fb_logged_in">Logged in</string>
     <string name="fb_logged_out">Logged out</string>
     <string name="profile_title">Profile</string>
-    <string name="profile_welcome_message">This is your personal profile. Connect to Facebook and unleash the power.</string>
+    <string name="profile_welcome_message">Here\'s all movies you\'ve marked as favorite. Connect to Facebook and unleash the power.</string>
     <string name="profile_welcome_title">Your Profile</string>
     <string name="title_activity_display_person">Personal details</string>
     <string name="overview_label">Overview</string>

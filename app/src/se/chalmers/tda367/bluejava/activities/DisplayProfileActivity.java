@@ -18,7 +18,6 @@ public class DisplayProfileActivity extends FragmentActivity implements FBAuthen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_display_profile);
 
         if (savedInstanceState == null) {
             loginFragment = new LoginFragment();

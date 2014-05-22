@@ -3,26 +3,28 @@ package se.chalmers.tda367.bluejava.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.adapters.ImageAdapter;
 import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
+import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class LoginFragment extends Fragment {
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
-            Log.i("SESSION", "call");
-
             onSessionStateChange(session, state, exception);
         }
     };
@@ -50,6 +52,15 @@ public class LoginFragment extends Fragment {
 
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes"));
+
+        final MovieFavoritesDbHelper movieFavoritesDbHelper = new MovieFavoritesDbHelper(view.getContext());
+
+        List<Movie> movies = movieFavoritesDbHelper.getAllMovies();
+
+        if (movies.size() > 0) {
+            GridView favoritesGridView = (GridView) view.findViewById(R.id.profile_grid_view);
+            favoritesGridView.setAdapter(new ImageAdapter(view.getContext(), getActivity(), movies));
+        }
 
         return view;
     }

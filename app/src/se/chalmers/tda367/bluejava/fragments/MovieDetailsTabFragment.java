@@ -2,7 +2,6 @@ package se.chalmers.tda367.bluejava.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -150,22 +149,32 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         revenueTextView.setText("Revenue: " + movie.getRevenue() + " $");
         runTimeTextView.setText("Runtime: " + movie.getRuntime() + " min");
 
-        if (isFavorite) {
-            favoriteButton.setBackgroundResource(R.drawable.star);
-        }
+        setFavoriteButtonState();
     }
 
-    public void toggleFavoriteButton() {
-        isFavorite = !isFavorite;
+    private void setFavoriteButtonState() {
+        if (isFavorite) {
+            favoriteButton.setBackgroundResource(R.drawable.star);
+        } else {
+            favoriteButton.setBackgroundResource(R.drawable.star_off);
+        }
     }
 
     @Override
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.favoriteButton:
-                //movieFavoritesDbHelper.addMovie(movie);
-                //favoriteButton.setPressed(true);
-                Log.e("Movie", "Favorite: " + isFavorite);
+
+                if (isFavorite) {
+                    movieFavoritesDbHelper.deleteMovie(movie);
+                    isFavorite = false;
+                } else {
+                    movieFavoritesDbHelper.addMovie(movie);
+                    isFavorite = true;
+                }
+
+                setFavoriteButtonState();
+
                 break;
 
             case R.id.posterImageView:

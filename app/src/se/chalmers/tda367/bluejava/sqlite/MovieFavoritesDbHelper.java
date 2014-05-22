@@ -167,7 +167,7 @@ public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
         String[] keys = new String[keyArraySize];
 
         for (int i = 0; i < keyArraySize; ++i) {
-            keys[i] = cursor.getString(i);
+            keys[i] = cursor.getString(i + 1);
         }
 
         return new Movie.Builder(keys).build();
