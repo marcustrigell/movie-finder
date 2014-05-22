@@ -1,28 +1,23 @@
 package se.chalmers.tda367.bluejava.adapters;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.fragments.MovieCastTabFragment;
 import se.chalmers.tda367.bluejava.fragments.MovieCrewTabFragment;
 import se.chalmers.tda367.bluejava.fragments.MovieDetailsTabFragment;
+import se.chalmers.tda367.bluejava.models.Movie;
 
 public class MovieTabsAdapter extends FragmentPagerAdapter
         implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
 
     private Movie movie;
 
-    private Activity activity;
-
-    public MovieTabsAdapter(FragmentManager fragmentManager, Activity activity, Movie movie) {
+    public MovieTabsAdapter(FragmentManager fragmentManager, Movie movie) {
         super(fragmentManager);
-
-        this.activity = activity;
 
         this.movie = movie;
     }
