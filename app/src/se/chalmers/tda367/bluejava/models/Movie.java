@@ -30,13 +30,7 @@ public class Movie implements Parcelable {
     private String rating;
     private String voteCount;
     private String posterPath;
-    private String imdbID;
-    private String budget;
-    private String overview;
-    private String tagline;
-    private String runtime;
-    private String revenue;
-    private List<Genre> genres;
+    private MovieDetails details;
     private Credits credits;
     private List<Video> videos;
 
@@ -52,13 +46,7 @@ public class Movie implements Parcelable {
         private final String posterPath;
 
         // Additional movie info (optional)
-        private List<Genre> genres;
-        private String imdbID;
-        private String budget;
-        private String overview;
-        private String tagline;
-        private String runtime;
-        private String revenue;
+        private MovieDetails details;
 
         // Movie credits (optional)
         private Credits credits;
@@ -145,20 +133,12 @@ public class Movie implements Parcelable {
 
         /**
          * A builder method that adds additional info about a movie
-         * @param jsonObject a JSON object holding movie details
+         * @param details a details object holding movie details
          * @return itself
          * @throws JSONException
          */
-        public Builder details(JSONObject jsonObject) throws JSONException {
-            imdbID = jsonObject.getString("imdb_id");
-            budget = jsonObject.getString("budget");
-            overview = jsonObject.getString("overview");
-            tagline = jsonObject.getString("tagline");
-            runtime = jsonObject.getString("runtime");
-            revenue = jsonObject.getString("revenue");
-
-            JSONArray genresJson = jsonObject.getJSONArray("genres");
-            genres = Genre.jsonToListOfGenres(genresJson);
+        public Builder details(MovieDetails details) throws JSONException {
+            this.details = details;
 
             return this;
         }
@@ -208,13 +188,7 @@ public class Movie implements Parcelable {
         rating = builder.rating;
         voteCount = builder.voteCount;
         posterPath = builder.posterPath;
-        genres = builder.genres;
-        imdbID = builder.imdbID;
-        budget = builder.budget;
-        overview = builder.overview;
-        tagline = builder.tagline;
-        runtime = builder.runtime;
-        revenue = builder.revenue;
+        details = builder.details;
         credits = builder.credits;
         videos = builder.videos;
     }
@@ -246,32 +220,8 @@ public class Movie implements Parcelable {
         return posterPath;
     }
 
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public String getImdbID() {
-        return imdbID;
-    }
-
-    public String getBudget() {
-        return budget;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public String getTagline() {
-        return tagline;
-    }
-
-    public String getRuntime() {
-        return runtime;
-    }
-
-    public String getRevenue() {
-        return revenue;
+    public MovieDetails getDetails() {
+        return details;
     }
 
     public Credits getCredits() {
@@ -327,13 +277,7 @@ public class Movie implements Parcelable {
         dest.writeString(popularity);
         dest.writeString(rating);
         dest.writeString(voteCount);
-        dest.writeTypedList(genres);
-        dest.writeString(imdbID);
-        dest.writeString(budget);
-        dest.writeString(overview);
-        dest.writeString(tagline);
-        dest.writeString(runtime);
-        dest.writeString(revenue);
+        dest.writeParcelable(details, flags);
         dest.writeParcelable(credits, flags);
         dest.writeTypedList(videos);
     }
@@ -346,16 +290,7 @@ public class Movie implements Parcelable {
         popularity = in.readString();
         rating = in.readString();
         voteCount = in.readString();
-        if (genres == null) {
-            genres = new ArrayList<Genre>();
-        }
-        in.readTypedList(genres, Genre.CREATOR);
-        imdbID = in.readString();
-        budget = in.readString();
-        overview = in.readString();
-        tagline = in.readString();
-        runtime = in.readString();
-        revenue = in.readString();
+        details = in.readParcelable(MovieDetails.class.getClassLoader());
         credits = in.readParcelable(Credits.class.getClassLoader());
         if (videos == null) {
             videos = new ArrayList<Video>();

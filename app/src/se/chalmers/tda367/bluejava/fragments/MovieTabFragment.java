@@ -33,10 +33,6 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
 
     protected HttpHandler httpHandler;
 
-    public MovieTabFragment(Movie movie) {
-        this.movie = movie;
-    }
-
     /**
      * This is the first point where the activity can be referenced.
      * It signifies that the Activity has attached the fragment to itself.
@@ -98,6 +94,7 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
         httpClient = HttpHandler.getAndroidHttpClient((Activity) context);
         httpHandler = new HttpHandler(httpClient);
         movieApi = new MovieApi();
+        movie = getArguments().getParcelable("movie");
     }
 
     /**

@@ -4,11 +4,17 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.MovieTabsAdapter;
+import se.chalmers.tda367.bluejava.fragments.*;
 import se.chalmers.tda367.bluejava.models.Movie;
+
+import java.util.List;
+import java.util.Vector;
 
 public class DisplayMovieActivity extends FragmentActivity implements ActionBar.TabListener {
 
@@ -16,10 +22,12 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
     private ViewPager viewPager;
 
+    private FragmentPagerAdapter pagerAdapter;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.display_movie_activity);
+        super.setContentView(R.layout.display_movie_activity);
 
         Intent intent = getIntent();
 
@@ -39,11 +47,18 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        MovieTabsAdapter movieTabsAdapter = new MovieTabsAdapter(getSupportFragmentManager(), movie);
-        viewPager.setAdapter(movieTabsAdapter);
+        String[] tabs = { "Details", "Cast", "Crew", "Videos" };
 
-        String[] tabs = { "Details", "Cast", "Crew" };
+        List<Fragment> fragments = new Vector<Fragment>();
+
+        fragments.add(MovieDetailsTabFragment.newInstance(movie));
+        fragments.add(MovieCastTabFragment.newInstance(movie));
+        fragments.add(MovieCrewTabFragment.newInstance(movie));
+        fragments.add(MovieVideosTabFragment.newInstance(movie));
+
+        pagerAdapter = new MovieTabsAdapter(super.getSupportFragmentManager(), fragments);
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(pagerAdapter);
 
         for (String tab : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));

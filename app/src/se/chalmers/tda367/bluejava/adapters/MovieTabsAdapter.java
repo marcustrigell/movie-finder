@@ -1,75 +1,35 @@
 package se.chalmers.tda367.bluejava.adapters;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import se.chalmers.tda367.bluejava.fragments.MovieCastTabFragment;
-import se.chalmers.tda367.bluejava.fragments.MovieCrewTabFragment;
-import se.chalmers.tda367.bluejava.fragments.MovieDetailsTabFragment;
-import se.chalmers.tda367.bluejava.models.Movie;
 
-    public class MovieTabsAdapter extends FragmentPagerAdapter
-        implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
+import java.util.List;
 
-    private Movie movie;
+public class MovieTabsAdapter extends FragmentPagerAdapter {
 
-    public MovieTabsAdapter(FragmentManager fragmentManager, Movie movie) {
+    private List<Fragment> fragments;
+
+    public MovieTabsAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
+
         super(fragmentManager);
 
-        this.movie = movie;
+        this.fragments = fragments;
+
     }
 
     @Override
-    public Fragment getItem(int index) {
+    public Fragment getItem(int position) {
 
-        switch (index) {
-            case 0:
-                return new MovieDetailsTabFragment(movie);
-            case 1:
-                return new MovieCastTabFragment(movie);
-            case 2:
-                return new MovieCrewTabFragment(movie);
-        }
+        return this.fragments.get(position);
 
-        return null;
     }
 
     @Override
     public int getCount() {
-        // Equal to number of tabs
-        return 3;
-    }
 
-    @Override
-    public void onPageScrolled(int i, float v, int i2) {
+        return this.fragments.size();
 
     }
 
-    @Override
-    public void onPageSelected(int i) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int i) {
-
-    }
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
 }

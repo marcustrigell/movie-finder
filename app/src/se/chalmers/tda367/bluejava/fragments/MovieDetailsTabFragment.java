@@ -14,9 +14,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
-import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.models.MovieDetails;
+import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
@@ -48,8 +49,16 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     private AutoResizeTextView runTimeTextView;
 
-    public MovieDetailsTabFragment(Movie movie) {
-        super(movie);
+
+    public static MovieDetailsTabFragment newInstance(Movie movie) {
+        MovieDetailsTabFragment tab = new MovieDetailsTabFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("movie", movie);
+
+        tab.setArguments(bundle);
+
+        return tab;
     }
 
     @Override
@@ -63,6 +72,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     public void init() {
         super.init();
         movieFavoritesDbHelper = new MovieFavoritesDbHelper(context);
+        /*movie = getArguments().getParcelable("movie");*/
         isFavorite = movieFavoritesDbHelper.isFavorite(movie.getID());
     }
 
@@ -85,9 +95,8 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         }
     }
 
-    @Override
     protected void getAdditionalInfo(int id) {
-        if (movie.getBudget() == null) {
+        if (movie.getDetails() == null) {
             Log.e("", "get details");
             httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
         } else {
@@ -104,12 +113,9 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            // Check if the json-string is a details or video-query.
-            if(jsonObject.has("key")) {
-                movie = new Movie.Builder(movie).videos(jsonObject).build();
-            } else {
-                movie = new Movie.Builder(movie).details(jsonObject).build();
-            }
+            final MovieDetails details = new MovieDetails(jsonObject);
+            movie = new Movie.Builder(movie).details(details).build();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -160,8 +166,8 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         titleTextView.setText(movie.getTitle());
         titleTextView.resizeText();
 
-        if(!movie.getTagline().equals("")) {
-            tagLineTextView.setText(movie.getTagline());
+        if(!movie.getDetails().getTagline().equals("")) {
+            tagLineTextView.setText(movie.getDetails().getTagline());
         } else {
             tagLineTextView.setText("No tagline");
         }
@@ -169,10 +175,10 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
         releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
         popularityTextView.setText("" + popularityRounded);
-        overviewTextView.setText(movie.getOverview());
-        budgetTextView.setText("Budget: " + movie.getBudget() + " $");
-        revenueTextView.setText("Revenue: " + movie.getRevenue() + " $");
-        runTimeTextView.setText("Runtime: " + movie.getRuntime() + " min");
+        overviewTextView.setText(movie.getDetails().getOverview());
+        budgetTextView.setText("Budget: " + movie.getDetails().getBudget() + " $");
+        revenueTextView.setText("Revenue: " + movie.getDetails().getRevenue() + " $");
+        runTimeTextView.setText("Runtime: " + movie.getDetails().getRuntime() + " min");
 
         setFavoriteButtonState();
     }
@@ -239,4 +245,5 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     protected void getMovieVideos(int id) {
         httpHandler.get(movieApi.getMovieVideosQuery(id), this);
     }
+
 }

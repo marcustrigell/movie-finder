@@ -15,8 +15,6 @@ public class MovieApi {
         imageBaseUrl = "https://image.tmdb.org/t/p/";
 
         posterSizes = new String[]{"w92", "w154", "w185", "w342", "w500", "w780", "original"};
-
-        youtubeBaseUrl = "https://www.youtube.com/watch?v=";
     }
 
     public String getSearchMovieQuery(String title) {
@@ -68,10 +66,6 @@ public class MovieApi {
 
     public String getCoverURL(String posterPath) {
         return imageBaseUrl + posterSizes[2] + posterPath;
-    }
-
-    public String getYoutubeURL(String id) {
-        return youtubeBaseUrl + id;
     }
 
 }

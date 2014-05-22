@@ -21,8 +21,15 @@ public class MovieCastTabFragment extends MovieTabFragment {
 
     private ListView listView;
 
-    public MovieCastTabFragment(Movie movie) {
-        super(movie);
+    public static MovieCastTabFragment newInstance(Movie movie) {
+        MovieCastTabFragment tab = new MovieCastTabFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("movie", movie);
+
+        tab.setArguments(bundle);
+
+        return tab;
     }
 
     @Override
@@ -52,7 +59,6 @@ public class MovieCastTabFragment extends MovieTabFragment {
         }
     }
 
-    @Override
     protected void getAdditionalInfo(int id) {
         if (movie.getCredits() == null) {
             Log.e("", "get cast");
