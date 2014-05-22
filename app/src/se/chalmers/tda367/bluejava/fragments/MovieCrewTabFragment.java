@@ -31,10 +31,13 @@ public class MovieCrewTabFragment extends MovieTabFragment {
         return view;
     }
 
-
     @Override
     protected void getAdditionalInfo(int id) {
-        httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
+        if (movie.getCredits() == null) {
+            httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
+        } else {
+            populateLayout();
+        }
     }
 
     @Override

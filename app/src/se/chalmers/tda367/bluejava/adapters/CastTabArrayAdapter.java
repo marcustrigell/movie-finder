@@ -61,39 +61,39 @@ public class CastTabArrayAdapter extends BaseAdapter {
 
         final Actor actor = (Actor) getItem(position);
 
-        if(convertView == null) {
+        if (convertView == null) {
 
             final LayoutInflater inflater =
                     (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             convertView = inflater.inflate(R.layout.cast_tab_list_item, null);
 
-            /* Find the right view pieces to change. */
-            ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-            TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
-            TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
-
-            /* Load the picture into the image view. */
-            MovieApi movieApi = new MovieApi();
-            String url = movieApi.getCoverURL(actor.getProfilePath());
-            Picasso.with(context).load(url).into(coverImageView);
-
-            /* Set the correct text to the text fields. */
-            nameTextView.setText(actor.getName());
-            characterTextView.setText(actor.getCharacter());
-
-            /* Show person details when clicked. */
-            convertView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(activity, DisplayPersonActivity.class);
-                    intent.putExtra("person", actor);
-                    activity.startActivity(intent);
-                }
-            });
-
         }
+
+        /* Find the right view pieces to change. */
+        ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+        TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
+        TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
+
+        /* Load the picture into the image view. */
+        MovieApi movieApi = new MovieApi();
+        String url = movieApi.getCoverURL(actor.getProfilePath());
+        Picasso.with(context).load(url).into(coverImageView);
+
+        /* Set the correct text to the text fields. */
+        nameTextView.setText(actor.getName());
+        characterTextView.setText(actor.getCharacter());
+
+        /* Show person details when clicked. */
+        convertView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, DisplayPersonActivity.class);
+                intent.putExtra("person", actor);
+                activity.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

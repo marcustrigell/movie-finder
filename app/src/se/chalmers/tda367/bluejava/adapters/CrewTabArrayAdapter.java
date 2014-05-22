@@ -6,16 +6,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.activities.DisplayMovieActivity;
 import se.chalmers.tda367.bluejava.activities.DisplayPersonActivity;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
-import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.CrewMember;
 
 import java.util.List;
@@ -31,13 +28,10 @@ public class CrewTabArrayAdapter extends BaseAdapter {
     private final Context context;
     private final Activity activity;
 
-    public CrewTabArrayAdapter(Context context,Activity activity ,List<CrewMember> crew) {
-
+    public CrewTabArrayAdapter(Context context, Activity activity, List<CrewMember> crew) {
         this.context = context;
         this.activity = activity;
-
         this.crew = crew;
-
     }
 
     @Override
@@ -67,39 +61,39 @@ public class CrewTabArrayAdapter extends BaseAdapter {
 
         final CrewMember crewMember = (CrewMember) getItem(position);
 
-        if(convertView == null) {
+        if (convertView == null) {
 
             final LayoutInflater inflater =
                     (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             convertView = inflater.inflate(R.layout.crew_tab_list_item, null);
-
-            /* Find the right view pieces to change. */
-            ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-            TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
-            TextView jobTextView = (TextView) convertView.findViewById(R.id.job);
-
-            /* Load the picture into the image view. */
-            MovieApi movieApi = new MovieApi();
-            String url = movieApi.getCoverURL(crewMember.getProfilePath());
-            Picasso.with(context).load(url).into(coverImageView);
-
-            /* Set the correct text to the text fields. */
-            nameTextView.setText(crewMember.getName());
-            jobTextView.setText(crewMember.getJOB());
-
-            /* Show person details when clicked. */
-            convertView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(activity, DisplayPersonActivity.class);
-
-                    intent.putExtra("person", crewMember);
-                    activity.startActivity(intent);
-                }
-            });
         }
+
+        /* Find the right view pieces to change. */
+        ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+        TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
+        TextView jobTextView = (TextView) convertView.findViewById(R.id.job);
+
+        /* Load the picture into the image view. */
+        MovieApi movieApi = new MovieApi();
+        String url = movieApi.getCoverURL(crewMember.getProfilePath());
+        Picasso.with(context).load(url).into(coverImageView);
+
+        /* Set the correct text to the text fields. */
+        nameTextView.setText(crewMember.getName());
+        jobTextView.setText(crewMember.getJOB());
+
+        /* Show person details when clicked. */
+        convertView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+            Intent intent = new Intent(activity, DisplayPersonActivity.class);
+
+            intent.putExtra("person", crewMember);
+            activity.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
