@@ -32,11 +32,11 @@ public class MovieTabsAdapter extends FragmentPagerAdapter
 
         switch (index) {
             case 0:
-                return new MovieDetailsTabFragment(activity, movie);
+                return new MovieDetailsTabFragment(movie);
             case 1:
-                return new MovieCastTabFragment(activity, movie);
+                return new MovieCastTabFragment(movie);
             case 2:
-                return new MovieCrewTabFragment(activity, movie);
+                return new MovieCrewTabFragment(movie);
         }
 
         return null;

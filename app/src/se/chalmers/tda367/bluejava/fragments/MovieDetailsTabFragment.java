@@ -1,9 +1,11 @@
 package se.chalmers.tda367.bluejava.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -13,53 +15,62 @@ import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
-import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
-    private final MovieFavoritesDbHelper movieFavoritesDbHelper;
-
-    //private Button favoriteButton;
+    private MovieFavoritesDbHelper movieFavoritesDbHelper;
 
     private boolean isFavorite;
 
-    public MovieDetailsTabFragment(Activity activity, Movie movie) {
-        super(activity, movie, R.layout.fragment_movie_details);
+    private Button favoriteButton;
 
-        movieFavoritesDbHelper = new MovieFavoritesDbHelper(activity);
+    private Button trailerButton;
 
-        isFavorite = movieFavoritesDbHelper.isFavorite(movie.getID());
+    private ImageView posterImageView;
 
-        // favoriteButton = (Button) getView().findViewById(R.id.favoriteButton);
+    private AutoResizeTextView titleTextView;
+
+    private AutoResizeTextView tagLineTextView;
+
+    private AutoResizeTextView releaseYearTextView;
+
+    private AutoResizeTextView popularityTextView;
+
+    private AutoResizeTextView overviewTextView;
+
+    private RatingBar ratingBar;
+
+    private AutoResizeTextView budgetTextView;
+
+    private AutoResizeTextView revenueTextView;
+
+    private AutoResizeTextView runTimeTextView;
+
+    public MovieDetailsTabFragment(Movie movie) {
+        super(movie);
     }
 
-    /**
-     * Get more info about our movie
-     *
-     * @param id The ID of the movie we want to add info to
-     */
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate( R.layout.fragment_movie_details, container, false);
+        createView(view);
+        return view;
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        movieFavoritesDbHelper = new MovieFavoritesDbHelper(context);
+        isFavorite = movieFavoritesDbHelper.isFavorite(movie.getID());
+    }
+
     @Override
     protected void getAdditionalInfo(int id) {
         httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
     }
 
-    /**
-     * Get videos of our movie
-     *
-     * @param id The ID of the movie we want to add info to
-     */
-    @Override
-    protected void getMovieVideos(int id) {
-        httpHandler.get(movieApi.getMovieVideosQuery(id), this);
-    }
-
-    /**
-     * Handles the callback from the API
-     *
-     * @param json The JSON result from the API
-     */
     @Override
     public void handleJSONResult(String json) {
 
@@ -79,42 +90,40 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
             e.printStackTrace();
         }
 
-        setupLayout();
+        populateView();
     }
 
     /**
-     * Builds the screen's layout
+     * Creates the fragment's view components
      */
-    public void setupLayout() {
-
-        Button trailerButton = (Button) getView().findViewById(R.id.trailerButton);
-        Button favoriteButton = (Button) getView().findViewById(R.id.favoriteButton);
-        ImageView posterImageView = (ImageView) getView().findViewById(R.id.posterImageView);
+    public void createView(View view) {
+        trailerButton = (Button) view.findViewById(R.id.trailerButton);
+        favoriteButton = (Button) view.findViewById(R.id.favoriteButton);
+        posterImageView = (ImageView) view.findViewById(R.id.posterImageView);
 
         trailerButton.setOnClickListener(this);
         favoriteButton.setOnClickListener(this);
         posterImageView.setOnClickListener(this);
 
-        if (isFavorite) {
-            favoriteButton.setBackgroundResource(R.drawable.star);
-        } else {
-            favoriteButton.setBackgroundResource(R.drawable.star_off);
-        }
+        titleTextView = (AutoResizeTextView) view.findViewById(R.id.title);
+        tagLineTextView = (AutoResizeTextView) view.findViewById(R.id.tagline);
+        releaseYearTextView = (AutoResizeTextView) view.findViewById(R.id.release_year);
+        popularityTextView = (AutoResizeTextView) view.findViewById(R.id.popularity);
+        overviewTextView = (AutoResizeTextView) view.findViewById(R.id.overview);
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+        budgetTextView = (AutoResizeTextView) view.findViewById(R.id.budget);
+        revenueTextView = (AutoResizeTextView) view.findViewById(R.id.revenue);
+        runTimeTextView = (AutoResizeTextView) view.findViewById(R.id.runtime);
+    }
 
-
-        AutoResizeTextView titleTextView = (AutoResizeTextView) getView().findViewById(R.id.title);
-        AutoResizeTextView tagLineTextView = (AutoResizeTextView) getView().findViewById(R.id.tagline);
-        AutoResizeTextView releaseYearTextView = (AutoResizeTextView) getView().findViewById(R.id.release_year);
-        AutoResizeTextView popularityTextView = (AutoResizeTextView) getView().findViewById(R.id.popularity);
-        AutoResizeTextView overviewTextView = (AutoResizeTextView) getView().findViewById(R.id.overview);
-        RatingBar ratingBar = (RatingBar) getView().findViewById(R.id.ratingBar);
-        AutoResizeTextView budgetTextView = (AutoResizeTextView) getView().findViewById(R.id.budget);
-        AutoResizeTextView revenueTextView = (AutoResizeTextView) getView().findViewById(R.id.revenue);
-        AutoResizeTextView runTimeTextView = (AutoResizeTextView) getView().findViewById(R.id.runtime);
+    /**
+     * Populates the fragment's view with movie information
+     */
+    public void populateView() {
 
         //Inserting the image in the poster image view
         String url = movieApi.getCoverURL(movie.getPosterPath());
-        Picasso.with(BlueJava.getContext()).load(url).into(posterImageView);
+        Picasso.with(context).load(url).into(posterImageView);
 
         //Setting the rating to the rating bar
         ratingBar.setRating(Float.parseFloat(movie.getRating()) / 2);
@@ -140,6 +149,10 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         budgetTextView.setText("Budget: " + movie.getBudget() + " $");
         revenueTextView.setText("Revenue: " + movie.getRevenue() + " $");
         runTimeTextView.setText("Runtime: " + movie.getRuntime() + " min");
+
+        if (isFavorite) {
+            favoriteButton.setBackgroundResource(R.drawable.star);
+        }
     }
 
     public void toggleFavoriteButton() {
@@ -182,8 +195,14 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
                 //        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
                 break;
         }
+    }
 
-
-
+    /**
+     * Get videos of our movie
+     *
+     * @param id The ID of the movie we want to add info to
+     */
+    protected void getMovieVideos(int id) {
+        httpHandler.get(movieApi.getMovieVideosQuery(id), this);
     }
 }

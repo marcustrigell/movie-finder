@@ -1,6 +1,10 @@
 package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,35 +18,25 @@ import java.util.List;
 
 public class MovieCastTabFragment extends MovieTabFragment {
 
-    public MovieCastTabFragment(Activity activity, Movie movie) {
-        super(activity, movie, R.layout.fragment_movie_cast);
+    private ListView listView;
+
+    public MovieCastTabFragment(Movie movie) {
+        super(movie);
     }
 
-    /**
-     * Get all info about our movie
-     *
-     * @param id The ID of the movie we want to search for
-     */
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate( R.layout.fragment_movie_cast, container, false);
+        listView = (ListView) view.findViewById(R.id.castList);
+        return view;
+    }
+
     @Override
     protected void getAdditionalInfo(int id) {
         httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
     }
 
-    /**
-     * Get videos of our movie
-     *
-     * @param id The ID of the movie we want to add info to
-     */
-    @Override
-    protected void getMovieVideos(int id) {
-        httpHandler.get(movieApi.getMovieVideosQuery(id), this);
-    }
 
-    /**
-     * Handles the callback from the API
-     *
-     * @param json The JSON result from the API
-     */
     @Override
     public void handleJSONResult(String json) {
 
@@ -57,20 +51,15 @@ public class MovieCastTabFragment extends MovieTabFragment {
             e.printStackTrace();
         }
 
-        setupLayout();
+        populateLayout();
     }
 
     /**
-     * Builds the screen's layout
+     * Populates the fragment's view with cast information
      */
-    public void setupLayout() {
-
+    public void populateLayout() {
         Credits credits = movie.getCredits();
         List<Actor> cast = credits.getCast();
-
-        ListView listView = (ListView) getView().findViewById(R.id.castList);
-
-        listView.setAdapter(new CastTabArrayAdapter(getView().getContext(), activity, cast));
-
+        listView.setAdapter(new CastTabArrayAdapter(context, (Activity) context, cast));
     }
 }
