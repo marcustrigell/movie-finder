@@ -9,11 +9,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by marcus on 2014-03-25.
  *
  * Class for sorting a list of Movie-objects by title.
- *
- * @author Marcus Trigell
  *
  */
 public class SortByTitle implements SortMethod {

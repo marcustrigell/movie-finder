@@ -9,14 +9,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by marcus on 2014-04-10.
+ * Class for sorting results by popularity.
  */
 public class SortByPopularity implements SortMethod {
 
     /**
-     *
+     * Sorts the list in ascending order by popularity.
      * @param list The list to be sorted.
-     * @return
+     * @return the sorted list.
      */
     @Override
     public List<Movie> sort(List<Movie> list) {

@@ -9,11 +9,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by marcus on 2014-03-26.
  *
  * Class for sorting Movie-objects by rating.
- *
- * @author Marcus Trigell
  *
  */
 public class SortByYear implements SortMethod {

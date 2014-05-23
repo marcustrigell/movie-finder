@@ -9,14 +9,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by marcus on 2014-04-10.
+ * Class for sorting results by rating.
  */
 public class SortByRating implements SortMethod {
 
     /**
-     *
+     * Sorts the list in ascending order by rating.
      * @param list The list to be sorted.
-     * @return
+     * @return the sorted list.
      */
     @Override
     public List<Movie> sort(List<Movie> list) {

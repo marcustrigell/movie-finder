@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Used to describe an actor in a movie.
  *
- * Created by marcus on 2014-05-07.
  */
 public class Actor extends Person {
 
