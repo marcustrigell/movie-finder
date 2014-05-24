@@ -2,7 +2,6 @@ package se.chalmers.tda367.bluejava.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +14,18 @@ import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
+import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.models.MovieDetails;
 import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
 public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
 
-    private MovieFavoritesDbHelper movieFavoritesDbHelper;
+    private MovieFavoritesDB movieFavoritesDb;
 
     private boolean isFavorite;
 
     private Button favoriteButton;
-
-    private Button trailerButton;
 
     private ImageView posterImageView;
 
@@ -71,9 +69,8 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     @Override
     public void init() {
         super.init();
-        movieFavoritesDbHelper = new MovieFavoritesDbHelper(context);
-        /*movie = getArguments().getParcelable("movie");*/
-        isFavorite = movieFavoritesDbHelper.isFavorite(movie.getID());
+        movieFavoritesDb = new MovieFavoritesDbHelper(context);
+        isFavorite = movieFavoritesDb.isFavorite(movie.getID());
     }
 
     @Override
@@ -82,22 +79,8 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         getAdditionalInfo(movie.getID());
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        // Make sure that we are currently visible
-        if (this.isVisible()) {
-
-            if (!isVisibleToUser) {
-                //Log.e("MyFragment", "Details NOT visible.");
-            }
-        }
-    }
-
     protected void getAdditionalInfo(int id) {
         if (movie.getDetails() == null) {
-            Log.e("", "get details");
             httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
         } else {
             populateView();
@@ -127,11 +110,9 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
      * Creates the fragment's view components
      */
     public void createView(View view) {
-        trailerButton = (Button) view.findViewById(R.id.trailerButton);
         favoriteButton = (Button) view.findViewById(R.id.favoriteButton);
         posterImageView = (ImageView) view.findViewById(R.id.posterImageView);
 
-        trailerButton.setOnClickListener(this);
         favoriteButton.setOnClickListener(this);
         posterImageView.setOnClickListener(this);
 
@@ -155,14 +136,11 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         String url = movieApi.getCoverURL(movie.getPosterPath());
         Picasso.with(context).load(url).into(posterImageView);
 
-        //Setting the rating to the rating bar
         ratingBar.setRating(Float.parseFloat(movie.getRating()) / 2);
 
-        //Rounding the popularity
         double popularityRounded = Double.parseDouble(movie.getPopularity());
         popularityRounded = Math.round(popularityRounded);
 
-        //Setting the strings to values
         titleTextView.setText(movie.getTitle());
         titleTextView.resizeText();
 
@@ -197,10 +175,10 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
             case R.id.favoriteButton:
 
                 if (isFavorite) {
-                    movieFavoritesDbHelper.deleteMovie(movie);
+                    movieFavoritesDb.deleteMovie(movie);
                     isFavorite = false;
                 } else {
-                    movieFavoritesDbHelper.addMovie(movie);
+                    movieFavoritesDb.addMovie(movie);
                     isFavorite = true;
                 }
 
@@ -212,27 +190,6 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
                 Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
                 intent.putExtra("movie", movie);
                 startActivity(intent);
-                break;
-
-            case R.id.trailerButton:
-
-                //        List<Video> videos = movie.getVideos();
-                //
-                //        int position = 0;
-                //        boolean noTrailer = true;
-                //        Video video;
-                //        String youtubeID = "_O1hM-k3aUY";
-                //        while(position < videos.size() || noTrailer) {
-                //            video = videos.get(position);
-                //            if(video.getType().equals("Trailer")) {
-                //                youtubeID = videos.get(position).getKey();
-                //                noTrailer = false;
-                //            } else {
-                //                position++;
-                //            }
-                //        }
-                //        String youtubeAddr = movieApi.getYoutubeURL(youtubeID);
-                //        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeAddr)));
                 break;
         }
     }

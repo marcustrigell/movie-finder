@@ -5,13 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import org.json.JSONException;
+import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
+public class MovieFavoritesDbHelper extends SQLiteOpenHelper implements MovieFavoritesDB {
 
     public MovieFavoritesDbHelper(Context context) {
         super(context, MovieContract.DATABASE_NAME, null, MovieContract.DATABASE_VERSION);
@@ -33,7 +33,7 @@ public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    public void addMovie(Movie movie){
+    public void addMovie(Movie movie) {
 
         // Gets the data repository in write mode
         SQLiteDatabase db = getWritableDatabase();
@@ -48,7 +48,7 @@ public class MovieFavoritesDbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Movie getMovie(int id) throws JSONException {
+    public Movie getMovie(int id) {
 
         // Gets the data repository in read mode
         SQLiteDatabase db = this.getReadableDatabase();

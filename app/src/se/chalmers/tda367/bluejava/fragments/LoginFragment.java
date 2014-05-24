@@ -14,6 +14,7 @@ import com.facebook.widget.LoginButton;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.ImageAdapter;
 import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
+import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
@@ -135,9 +136,9 @@ public class LoginFragment extends Fragment {
     }
 
     public void showFavorites() {
-        final MovieFavoritesDbHelper movieFavoritesDbHelper = new MovieFavoritesDbHelper(getView().getContext());
+        final MovieFavoritesDB movieFavoritesDb = new MovieFavoritesDbHelper(getView().getContext());
 
-        List<Movie> movies = movieFavoritesDbHelper.getAllMovies();
+        List<Movie> movies = movieFavoritesDb.getAllMovies();
 
         if (movies.size() > 0) {
             GridView favoritesGridView = (GridView) getView().findViewById(R.id.profile_grid_view);
