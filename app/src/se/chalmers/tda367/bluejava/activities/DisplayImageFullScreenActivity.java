@@ -11,9 +11,6 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.models.*;
 
-/**
- * Created by axelniklasson on 2014-05-17.
- */
 public class DisplayImageFullScreenActivity extends Activity {
 
     private Movie movie;
@@ -21,6 +18,7 @@ public class DisplayImageFullScreenActivity extends Activity {
     private MovieApi movieApi;
     private ImageView posterView;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.display_image_fullscreen_activity);
@@ -31,7 +29,7 @@ public class DisplayImageFullScreenActivity extends Activity {
         if(intent.hasExtra("movie")) {
             movie = intent.getParcelableExtra("movie");
             loadImage(movieApi.getCoverURL(movie.getPosterPath()));
-        } else if(intent.hasExtra("person") {
+        } else if(intent.hasExtra("person")) {
             person = intent.getParcelableExtra("person");
             loadImage(movieApi.getCoverURL(person.getProfilePath()));
         }
