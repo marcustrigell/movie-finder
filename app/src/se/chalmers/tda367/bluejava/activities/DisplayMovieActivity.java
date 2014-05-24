@@ -46,6 +46,7 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+        //actionBar.setDisplayShowHomeEnabled(false);
 
         String[] tabs = { "Details", "Cast", "Crew", "Videos" };
 
@@ -59,6 +60,8 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
         pagerAdapter = new MovieTabsAdapter(super.getSupportFragmentManager(), fragments);
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(pagerAdapter);
+
+
 
         for (String tab : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));

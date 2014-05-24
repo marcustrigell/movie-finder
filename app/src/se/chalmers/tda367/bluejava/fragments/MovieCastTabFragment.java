@@ -38,12 +38,6 @@ public class MovieCastTabFragment extends MovieTabFragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getAdditionalInfo(movie.getID());
-    }
-
     protected void getAdditionalInfo(int id) {
 
         if (movie.getCredits() == null) {

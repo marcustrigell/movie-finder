@@ -37,26 +37,6 @@ public class MovieVideosTabFragment extends MovieTabFragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getAdditionalInfo(movie.getID());
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        // Make sure that we are currently visible
-        if (this.isVisible()) {
-
-            if (!isVisibleToUser) {
-                //Log.e("MyFragment", "Cast NOT visible.");
-
-            }
-        }
-    }
-
     protected void getAdditionalInfo(int id) {
         if (movie.getVideos() == null || movie.getVideos().size() == 0) {
             httpHandler.get(movieApi.getMovieVideosQuery(id), this);

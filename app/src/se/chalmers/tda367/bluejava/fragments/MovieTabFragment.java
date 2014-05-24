@@ -83,7 +83,7 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
     @Override
     public void onResume() {
         super.onResume();
-        //getAdditionalInfo(movie.getID());
+        getAdditionalInfo(movie.getID());
     }
 
     /**

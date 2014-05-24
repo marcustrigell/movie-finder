@@ -73,12 +73,6 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         isFavorite = movieFavoritesDb.isFavorite(movie.getID());
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getAdditionalInfo(movie.getID());
-    }
-
     protected void getAdditionalInfo(int id) {
         if (movie.getDetails() == null) {
             httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
