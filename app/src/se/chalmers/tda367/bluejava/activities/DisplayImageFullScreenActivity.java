@@ -9,28 +9,34 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
-import se.chalmers.tda367.bluejava.models.BlueJava;
-import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.models.*;
 
 /**
  * Created by axelniklasson on 2014-05-17.
  */
-public class DisplayPosterActivity extends Activity {
+public class DisplayImageFullScreenActivity extends Activity {
 
     private Movie movie;
+    private Person person;
     private MovieApi movieApi;
     private ImageView posterView;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.display_poster_activity);
+        this.setContentView(R.layout.display_image_fullscreen_activity);
 
         Intent intent = getIntent();
-        movie = intent.getParcelableExtra("movie");
         movieApi = new MovieApi();
 
+        if(intent.hasExtra("movie")) {
+            movie = intent.getParcelableExtra("movie");
+            loadImage(movieApi.getCoverURL(movie.getPosterPath()));
+        } else if(intent.hasExtra("person") {
+            person = intent.getParcelableExtra("person");
+            loadImage(movieApi.getCoverURL(person.getProfilePath()));
+        }
+
         removeActionBar();
-        loadImage();
 
         posterView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +61,8 @@ public class DisplayPosterActivity extends Activity {
     /**
      * Loads the image and displays it in full screen
      */
-    private void loadImage() {
+    private void loadImage(String url) {
         posterView = (ImageView) findViewById(R.id.fullImage);
-        String url = movieApi.getCoverURL(movie.getPosterPath());
         Picasso.with(BlueJava.getContext()).load(url).into(posterView);
     }
 

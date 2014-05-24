@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
+import se.chalmers.tda367.bluejava.activities.DisplayImageFullScreenActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
 import se.chalmers.tda367.bluejava.models.Movie;
@@ -181,7 +181,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
                 break;
 
             case R.id.posterImageView:
-                Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
+                Intent intent = new Intent(getActivity(), DisplayImageFullScreenActivity.class);
                 intent.putExtra("movie", movie);
                 startActivity(intent);
                 break;
