@@ -37,9 +37,10 @@ public class MovieVideosTabFragment extends MovieTabFragment {
         return view;
     }
 
-    protected void getAdditionalInfo(int id) {
+    public void sendHttpGetRequest() {
+
         if (movie.getVideos() == null || movie.getVideos().size() == 0) {
-            httpHandler.get(movieApi.getMovieVideosQuery(id), this);
+            httpHandler.get(movieApi.getMovieVideosQuery(movie.getID()), this);
         } else {
             populateLayout();
         }

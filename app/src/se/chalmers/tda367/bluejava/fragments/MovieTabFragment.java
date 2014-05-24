@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import se.chalmers.tda367.bluejava.apis.HttpHandler;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
-import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
+import se.chalmers.tda367.bluejava.interfaces.HttpInteractor;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 /**
@@ -21,7 +21,7 @@ import se.chalmers.tda367.bluejava.models.Movie;
  * Nothing related to Activity or Context should be instantiated
  * before the Activity is fully functional.
  */
-public abstract class MovieTabFragment extends Fragment implements JSONResultHandler {
+public abstract class MovieTabFragment extends Fragment implements HttpInteractor {
 
     protected Movie movie;
 
@@ -83,7 +83,7 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
     @Override
     public void onResume() {
         super.onResume();
-        getAdditionalInfo(movie.getID());
+        sendHttpGetRequest();
     }
 
     /**
@@ -101,9 +101,10 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
      * Get more info about our movie.
      *
      * Performs a GET request to the API. When this is done
-     * the handleJSONResult() method will be called to handle the response.
+     * handleJSONResult() will be called to handle the response.
      */
-    protected abstract void getAdditionalInfo(int id);
+    public abstract void sendHttpGetRequest();
+
 
     /**
      * Handles the callback from the API.

@@ -38,10 +38,10 @@ public class MovieCrewTabFragment extends MovieTabFragment {
         return view;
     }
 
-    protected void getAdditionalInfo(int id) {
+    public void sendHttpGetRequest() {
 
         if (movie.getCredits() == null) {
-            httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
+            httpHandler.get(movieApi.getMovieCreditsQuery(movie.getID()), this);
         } else {
             populateLayout();
         }
