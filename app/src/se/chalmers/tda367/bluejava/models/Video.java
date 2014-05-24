@@ -13,7 +13,6 @@ import java.util.List;
  * Class representing a video for a movie.
  * Could be a trailer, teaser, short clip etc.
  *
- * Created by marcus on 2014-05-16.
  */
 
 

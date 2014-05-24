@@ -13,7 +13,6 @@ import java.util.List;
  * Used to describe a crew member for a movie.
  * Could be a director, producer or such.
  *
- * Created by marcus on 2014-05-07.
  */
 public class CrewMember extends Person {
 
