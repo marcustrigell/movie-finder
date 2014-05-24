@@ -7,7 +7,6 @@ import org.json.JSONObject;
 
 /**
  * Used as template for a person in a movie-context.
- *
  */
 public class Person implements Parcelable {
 
@@ -128,4 +127,15 @@ public class Person implements Parcelable {
 		dest.writeString(this.placeOfBirth);
         dest.writeDouble(this.popularity);
     }
+
+    public static final Parcelable.Creator CREATOR =
+            new Parcelable.Creator() {
+                public Person createFromParcel(Parcel in) {
+                    return new Person(in);
+                }
+
+                public Person[] newArray(int size) {
+                    return new Person[size];
+                }
+            };
 }

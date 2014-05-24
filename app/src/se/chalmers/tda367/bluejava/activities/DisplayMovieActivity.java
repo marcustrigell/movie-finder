@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.adapters.MovieTabsAdapter;
+import se.chalmers.tda367.bluejava.adapters.TabsPagerAdapter;
 import se.chalmers.tda367.bluejava.fragments.*;
 import se.chalmers.tda367.bluejava.models.Movie;
 
@@ -24,6 +24,7 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
     private FragmentPagerAdapter pagerAdapter;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -46,19 +47,22 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+        //actionBar.setDisplayShowHomeEnabled(false);
 
         String[] tabs = { "Details", "Cast", "Crew", "Videos" };
 
         List<Fragment> fragments = new Vector<Fragment>();
 
-        fragments.add(MovieDetailsTabFragment.newInstance(movie));
-        fragments.add(MovieCastTabFragment.newInstance(movie));
-        fragments.add(MovieCrewTabFragment.newInstance(movie));
-        fragments.add(MovieVideosTabFragment.newInstance(movie));
+        fragments.add(TabFragmentMovieDetails.newInstance(movie));
+        fragments.add(TabFragmentMovieCast.newInstance(movie));
+        fragments.add(TabFragmentMovieCrew.newInstance(movie));
+        fragments.add(TabFragmentMovieVideos.newInstance(movie));
 
-        pagerAdapter = new MovieTabsAdapter(super.getSupportFragmentManager(), fragments);
+        pagerAdapter = new TabsPagerAdapter(super.getSupportFragmentManager(), fragments);
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(pagerAdapter);
+
+
 
         for (String tab : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));

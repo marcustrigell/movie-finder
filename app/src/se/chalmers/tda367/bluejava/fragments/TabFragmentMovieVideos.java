@@ -15,12 +15,14 @@ import se.chalmers.tda367.bluejava.models.Video;
 
 import java.util.List;
 
-public class MovieVideosTabFragment extends MovieTabFragment {
+public class TabFragmentMovieVideos extends TabFragment {
+
+    private Movie movie;
 
     private ListView listView;
 
-    public static MovieVideosTabFragment newInstance(Movie movie) {
-        MovieVideosTabFragment tab = new MovieVideosTabFragment();
+    public static TabFragmentMovieVideos newInstance(Movie movie) {
+        TabFragmentMovieVideos tab = new TabFragmentMovieVideos();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("movie", movie);
@@ -31,35 +33,22 @@ public class MovieVideosTabFragment extends MovieTabFragment {
     }
 
     @Override
+    public void init() {
+        super.init();
+        movie = getArguments().getParcelable("movie");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_movie_cast, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie_cast, container, false);
         listView = (ListView) view.findViewById(R.id.castList);
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getAdditionalInfo(movie.getID());
-    }
+    public void sendHttpGetRequest() {
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        // Make sure that we are currently visible
-        if (this.isVisible()) {
-
-            if (!isVisibleToUser) {
-                //Log.e("MyFragment", "Cast NOT visible.");
-
-            }
-        }
-    }
-
-    protected void getAdditionalInfo(int id) {
         if (movie.getVideos() == null || movie.getVideos().size() == 0) {
-            httpHandler.get(movieApi.getMovieVideosQuery(id), this);
+            httpHandler.get(movieApi.getMovieVideosQuery(movie.getID()), this);
         } else {
             populateLayout();
         }

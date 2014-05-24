@@ -17,7 +17,7 @@ import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
-public class ImageAdapter extends BaseAdapter {
+public class MovieCoversAdapter extends BaseAdapter {
 
     private final Context context;
 
@@ -25,7 +25,7 @@ public class ImageAdapter extends BaseAdapter {
 
     private final List<Movie> movies;
 
-    public ImageAdapter(Context context, Activity activity, List<Movie> movies) {
+    public MovieCoversAdapter(Context context, Activity activity, List<Movie> movies) {
 
         this.context = context;
 

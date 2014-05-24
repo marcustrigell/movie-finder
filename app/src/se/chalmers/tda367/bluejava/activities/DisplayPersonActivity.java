@@ -1,10 +1,11 @@
 package se.chalmers.tda367.bluejava.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +14,7 @@ import se.chalmers.tda367.bluejava.apis.HttpHandler;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
+import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Person;
 
@@ -51,12 +53,12 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
         } else {
             /* Get the views that are to be changed. */
             ImageView imageView = (ImageView) findViewById(R.id.posterImageView);
+
             AutoResizeTextView nameView = (AutoResizeTextView) findViewById(R.id.person_name);
             AutoResizeTextView placeOfBirthView = (AutoResizeTextView) findViewById(R.id.placeOfBirth);
             AutoResizeTextView birthdayView = (AutoResizeTextView) findViewById(R.id.birthday);
             AutoResizeTextView deathdayView = (AutoResizeTextView) findViewById(R.id.deathday);
             AutoResizeTextView biographyView = (AutoResizeTextView) findViewById(R.id.biography);
-            ListView appearences = (ListView) findViewById(R.id.appearences_list);
 
             /* Finding the image url. */
             String url = movieApi.getCoverURL(person.getProfilePath());
@@ -68,6 +70,7 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
             birthdayView.setText(person.getBirthday());
             deathdayView.setText(person.getDeathday());
             biographyView.setText(person.getBiography());
+
         }
     }
 
@@ -95,4 +98,15 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
 
 		setupLayout();
 	}
+
+    public void showFullScreen(View view) {
+        Intent intent = new Intent(this, DisplayImageFullScreenActivity.class);
+        if(person instanceof Actor) {
+            intent.putExtra("actor", person);
+        } else {
+            intent.putExtra("crewmember", person);
+        }
+        startActivity(intent);
+    }
+
 }

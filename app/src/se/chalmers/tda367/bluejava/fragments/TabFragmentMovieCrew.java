@@ -16,12 +16,14 @@ import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
-public class MovieCrewTabFragment extends MovieTabFragment {
+public class TabFragmentMovieCrew extends TabFragment {
+
+    private Movie movie;
 
     private ListView listView;
 
-    public static MovieCrewTabFragment newInstance(Movie movie) {
-        MovieCrewTabFragment tab = new MovieCrewTabFragment();
+    public static TabFragmentMovieCrew newInstance(Movie movie) {
+        TabFragmentMovieCrew tab = new TabFragmentMovieCrew();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("movie", movie);
@@ -32,22 +34,22 @@ public class MovieCrewTabFragment extends MovieTabFragment {
     }
 
     @Override
+    public void init() {
+        super.init();
+        movie = getArguments().getParcelable("movie");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_movie_crew, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie_crew, container, false);
         listView = (ListView) view.findViewById(R.id.crewList);
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getAdditionalInfo(movie.getID());
-    }
-
-    protected void getAdditionalInfo(int id) {
+    public void sendHttpGetRequest() {
 
         if (movie.getCredits() == null) {
-            httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
+            httpHandler.get(movieApi.getMovieCreditsQuery(movie.getID()), this);
         } else {
             populateLayout();
         }

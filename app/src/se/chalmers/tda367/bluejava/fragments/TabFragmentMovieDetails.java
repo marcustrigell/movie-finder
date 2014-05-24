@@ -12,14 +12,16 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.activities.DisplayPosterActivity;
+import se.chalmers.tda367.bluejava.activities.DisplayImageFullScreenActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.models.MovieDetails;
 import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
-public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
+public class TabFragmentMovieDetails extends TabFragment implements View.OnClickListener {
+
+    private Movie movie;
 
     private MovieFavoritesDB movieFavoritesDb;
 
@@ -47,9 +49,8 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     private AutoResizeTextView runTimeTextView;
 
-
-    public static MovieDetailsTabFragment newInstance(Movie movie) {
-        MovieDetailsTabFragment tab = new MovieDetailsTabFragment();
+    public static TabFragmentMovieDetails newInstance(Movie movie) {
+        TabFragmentMovieDetails tab = new TabFragmentMovieDetails();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("movie", movie);
@@ -61,7 +62,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_movie_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie_details, container, false);
         createView(view);
         return view;
     }
@@ -70,18 +71,13 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     public void init() {
         super.init();
         movieFavoritesDb = new MovieFavoritesDbHelper(context);
+        movie = getArguments().getParcelable("movie");
         isFavorite = movieFavoritesDb.isFavorite(movie.getID());
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getAdditionalInfo(movie.getID());
-    }
-
-    protected void getAdditionalInfo(int id) {
+    public void sendHttpGetRequest() {
         if (movie.getDetails() == null) {
-            httpHandler.get(movieApi.getMovieDetailsQuery(id), this);
+            httpHandler.get(movieApi.getMovieDetailsQuery(movie.getID()), this);
         } else {
             populateView();
         }
@@ -109,7 +105,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     /**
      * Creates the fragment's view components
      */
-    public void createView(View view) {
+    protected void createView(View view) {
         favoriteButton = (Button) view.findViewById(R.id.favoriteButton);
         posterImageView = (ImageView) view.findViewById(R.id.posterImageView);
 
@@ -151,7 +147,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         }
         tagLineTextView.resizeText();
 
-        releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
+        releaseYearTextView.setText(movie.getReleaseYear());
         popularityTextView.setText("" + popularityRounded);
         overviewTextView.setText(movie.getDetails().getOverview());
         budgetTextView.setText("Budget: " + movie.getDetails().getBudget() + " $");
@@ -187,7 +183,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
                 break;
 
             case R.id.posterImageView:
-                Intent intent = new Intent(getActivity(), DisplayPosterActivity.class);
+                Intent intent = new Intent(getActivity(), DisplayImageFullScreenActivity.class);
                 intent.putExtra("movie", movie);
                 startActivity(intent);
                 break;

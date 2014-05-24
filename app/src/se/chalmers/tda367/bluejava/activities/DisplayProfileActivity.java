@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.fragments.LoginFragment;
+import se.chalmers.tda367.bluejava.fragments.ProfileFragment;
 import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 
@@ -12,7 +12,7 @@ public class DisplayProfileActivity extends FragmentActivity implements FBAuthen
 
     private String fbAccessToken;
 
-    private LoginFragment loginFragment;
+    private ProfileFragment profileFragment;
 
     private boolean isLoggedIn;
 
@@ -21,13 +21,13 @@ public class DisplayProfileActivity extends FragmentActivity implements FBAuthen
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState == null) {
-            loginFragment = new LoginFragment();
+            profileFragment = new ProfileFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(android.R.id.content, loginFragment)
+                    .add(android.R.id.content, profileFragment)
                     .commit();
         } else {
-            loginFragment = (LoginFragment) getSupportFragmentManager()
+            profileFragment = (ProfileFragment) getSupportFragmentManager()
                     .findFragmentById(android.R.id.content);
         }
     }

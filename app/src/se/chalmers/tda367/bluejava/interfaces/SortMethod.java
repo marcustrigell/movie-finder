@@ -5,10 +5,8 @@ import se.chalmers.tda367.bluejava.models.Movie;
 import java.util.List;
 
 /**
- *
  * Interface for sorting hits in the
  * DisplayResultsActivity-class.
- *
  */
 public interface SortMethod {
 

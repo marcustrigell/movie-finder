@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Used to create a list item in the cast view.
- *
+ * <p/>
  * Created by marcus on 2014-05-10.
  */
 public class VideosTabArrayAdapter extends BaseAdapter {
@@ -49,9 +49,10 @@ public class VideosTabArrayAdapter extends BaseAdapter {
 
     /**
      * Converts an old view in a parent view to a new one.
-     * @param position The position of the view in the parent.
+     *
+     * @param position    The position of the view in the parent.
      * @param convertView The view which is to be converted.
-     * @param parent The parent view.
+     * @param parent      The parent view.
      * @return The view which is to be used.
      */
     @Override

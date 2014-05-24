@@ -10,20 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import se.chalmers.tda367.bluejava.apis.HttpHandler;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
-import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
-import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.interfaces.HttpInteractor;
 
 /**
- * An abstract class representing a "movie information" tab.
+ * An abstract class representing a tab in a Pager environment.
  * Each class extending this class is responsible for fetching
  * and displaying data related to itself.
  *
  * Nothing related to Activity or Context should be instantiated
  * before the Activity is fully functional.
  */
-public abstract class MovieTabFragment extends Fragment implements JSONResultHandler {
-
-    protected Movie movie;
+public abstract class TabFragment extends Fragment implements HttpInteractor {
 
     protected MovieApi movieApi;
 
@@ -83,27 +80,27 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
     @Override
     public void onResume() {
         super.onResume();
-        //getAdditionalInfo(movie.getID());
+        sendHttpGetRequest();
     }
 
     /**
      * Initialization have to wait until the Activity is fully functional.
      * This method can be called once it is.
      */
-    public void init() {
+    protected void init() {
         httpClient = HttpHandler.getAndroidHttpClient((Activity) context);
         httpHandler = new HttpHandler(httpClient);
         movieApi = new MovieApi();
-        movie = getArguments().getParcelable("movie");
     }
 
     /**
      * Get more info about our movie.
      *
      * Performs a GET request to the API. When this is done
-     * the handleJSONResult() method will be called to handle the response.
+     * handleJSONResult() will be called to handle the response.
      */
-    protected abstract void getAdditionalInfo(int id);
+    public abstract void sendHttpGetRequest();
+
 
     /**
      * Handles the callback from the API.
@@ -114,5 +111,6 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
      *
      * @param json The JSON result from the API
      */
+    @Override
     public abstract void handleJSONResult(String json);
 }
