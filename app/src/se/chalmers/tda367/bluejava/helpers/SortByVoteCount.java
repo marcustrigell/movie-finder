@@ -9,10 +9,11 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by marcus on 2014-04-28.
+ * Class for sorting results by Vote Count.
  */
 public class SortByVoteCount implements SortMethod {
 
+    /** Sorts the results in ascending order by vote count. */
     @Override
     public List<Movie> sort(List<Movie> list) {
 

@@ -226,6 +226,9 @@ public class DisplayResultsActivity extends ListActivity
         }
     }
 
+    /**
+     * Sets approriate sorting method from chosen spinner item.
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         if (pos == 1) {

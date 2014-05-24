@@ -19,7 +19,6 @@ import se.chalmers.tda367.bluejava.models.Person;
 /**
  * Used to display a detailed view of a person.
  *
- * Created by marcus on 2014-05-13.
  */
 public class DisplayPersonActivity extends Activity implements JSONResultHandler {
 
@@ -72,6 +71,10 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
         }
     }
 
+    /**
+     * Gets additional details about a person.
+     * Details include information that wasn't requested in the first query.
+     */
 	public void getPersonDetails(int id) {
 		httpHandler.get(movieApi.getPersonDetailsQuery(id), this);
 	}
