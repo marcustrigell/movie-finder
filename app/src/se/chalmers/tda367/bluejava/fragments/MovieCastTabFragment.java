@@ -2,7 +2,6 @@ package se.chalmers.tda367.bluejava.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,23 +44,9 @@ public class MovieCastTabFragment extends MovieTabFragment {
         getAdditionalInfo(movie.getID());
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        // Make sure that we are currently visible
-        if (this.isVisible()) {
-
-            if (!isVisibleToUser) {
-                //Log.e("MyFragment", "Cast NOT visible.");
-
-            }
-        }
-    }
-
     protected void getAdditionalInfo(int id) {
+
         if (movie.getCredits() == null) {
-            Log.e("", "get cast");
             httpHandler.get(movieApi.getMovieCreditsQuery(id), this);
         } else {
             populateLayout();

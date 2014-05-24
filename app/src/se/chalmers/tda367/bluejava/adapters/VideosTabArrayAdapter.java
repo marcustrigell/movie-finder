@@ -72,26 +72,9 @@ public class VideosTabArrayAdapter extends BaseAdapter {
         TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
         TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
 
-        /* Set the correct text to the text fields. */
+        coverImageView.setBackgroundResource(R.drawable.youtube_cover);
         nameTextView.setText(video.getName());
         characterTextView.setText(video.getType());
-/*
-
-        int pos = 0;
-        boolean noTrailer = true;
-
-        String youtubeID = "_O1hM-k3aUY";
-        while(position < videos.size() || noTrailer) {
-            video = videos.get(position);
-            if(video.getType().equals("Trailer")) {
-                youtubeID = videos.get(position).getKey();
-                noTrailer = false;
-            } else {
-                position++;
-            }
-        }
-*/
-
 
         convertView.setOnClickListener(new View.OnClickListener() {
 
@@ -102,7 +85,6 @@ public class VideosTabArrayAdapter extends BaseAdapter {
                 activity.startActivity(intent);
             }
         });
-
 
         return convertView;
     }
