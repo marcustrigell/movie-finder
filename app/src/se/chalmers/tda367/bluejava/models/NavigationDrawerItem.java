@@ -5,14 +5,14 @@ package se.chalmers.tda367.bluejava.models;
  *
  * Represents an object in the navigation drawer list.
  */
-public class NavDrawerItem implements se.chalmers.tda367.bluejava.interfaces.NavDrawerItem {
+public class NavigationDrawerItem implements se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem {
 
 	public static final int ITEM_TYPE = 1 ;
 
 	private String label;
 	private int icon;
 
-	public NavDrawerItem(String label, int icon) {
+	public NavigationDrawerItem(String label, int icon) {
 		this.label = label;
 		this.icon = icon;
 	}

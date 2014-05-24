@@ -27,8 +27,8 @@ import se.chalmers.tda367.bluejava.adapters.NavDrawerAdapter;
 import se.chalmers.tda367.bluejava.adapters.TabsPagerAdapter;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMainPopular;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMainUpcoming;
-import se.chalmers.tda367.bluejava.interfaces.NavDrawerItem;
-import se.chalmers.tda367.bluejava.models.NavDrawerSection;
+import se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem;
+import se.chalmers.tda367.bluejava.models.NavigationDrawerSection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private DrawerLayout navDrawerLayout;
 	private ListView navDrawerList;
 	private ActionBarDrawerToggle navDrawerToggle;
-	private ArrayList<NavDrawerItem> navDrawerItems;
+	private ArrayList<NavigationDrawerItem> navDrawerItems;
 	private NavDrawerAdapter navDrawerAdapter;
 
 	/* -- Navigation Drawer Title -- */
@@ -158,30 +158,35 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// Set a custom shadow that overlays the main content when the drawer opens
 		navDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        navDrawerItems = new ArrayList<NavDrawerItem>();
+        navDrawerItems = new ArrayList<NavigationDrawerItem>();
 
         // Fill array with navDrawerItems and navDrawerSections
 
         // Home
-        navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
+        navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[0],
+				navDrawerIcons.getResourceId(0, -1)));
 
         // Section - Movies
-        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
+        navDrawerItems.add(new NavigationDrawerSection(navDrawerTitles[1]));
 
 			// Latest
-			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
+			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[2],
+					navDrawerIcons.getResourceId(2, -1)));
 
 			// Top Rated
-			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
+			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[3],
+					navDrawerIcons.getResourceId(3, -1)));
 
 			// Recommended
-			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
+			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[4],
+					navDrawerIcons.getResourceId(4, -1)));
 
         // Section - Your Profile
-        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
+        navDrawerItems.add(new NavigationDrawerSection(navDrawerTitles[5]));
 
             // Profile
-            navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+            navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[6],
+					navDrawerIcons.getResourceId(6, -1)));
 
 
         // Recycle the typed array for later re-use
