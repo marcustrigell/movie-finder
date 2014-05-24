@@ -26,4 +26,6 @@
     <string name="overview_label">Overview</string>
     <string name="rating_label">Rating</string>
     <string name="additional_info_label">Additional info</string>
+    <string name="biography_label">Biography</string>
+    <string name="appearances_label">Appearances</string>
 </resources>

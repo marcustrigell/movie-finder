@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.ListView;
 import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +55,6 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
             AutoResizeTextView birthdayView = (AutoResizeTextView) findViewById(R.id.birthday);
             AutoResizeTextView deathdayView = (AutoResizeTextView) findViewById(R.id.deathday);
             AutoResizeTextView biographyView = (AutoResizeTextView) findViewById(R.id.biography);
-            ListView appearences = (ListView) findViewById(R.id.appearences_list);
 
             /* Finding the image url. */
             String url = movieApi.getCoverURL(person.getProfilePath());
@@ -68,6 +66,7 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
             birthdayView.setText(person.getBirthday());
             deathdayView.setText(person.getDeathday());
             biographyView.setText(person.getBiography());
+
         }
     }
 

@@ -151,7 +151,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
         }
         tagLineTextView.resizeText();
 
-        releaseYearTextView.setText(movie.getReleaseYear().substring(0,4));
+        releaseYearTextView.setText(movie.getReleaseYear());
         popularityTextView.setText("" + popularityRounded);
         overviewTextView.setText(movie.getDetails().getOverview());
         budgetTextView.setText("Budget: " + movie.getDetails().getBudget() + " $");
