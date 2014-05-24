@@ -193,14 +193,4 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
                 break;
         }
     }
-
-    /**
-     * Get videos of our movie
-     *
-     * @param id The ID of the movie we want to add info to
-     */
-    protected void getMovieVideos(int id) {
-        httpHandler.get(movieApi.getMovieVideosQuery(id), this);
-    }
-
 }
