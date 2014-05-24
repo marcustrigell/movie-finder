@@ -1,0 +1,52 @@
+Meeting Agenda - 140524
+
+Date:
+140524
+
+Participants:
+David Bergström
+Axel Niklasson 
+Tobias Andersen
+Marcus Trigell
+
+1.  Objectives (5 min) 
+	
+	a. Programmering
+		i. Vad gör vi? (Vad har vi gjort?)
+		ii. Vad ska göras?
+	b. Presentation
+	c. Saker som måste fixas
+
+2.  Reports (15 min) 
+
+	Navigeringsmenyn går inte komma åt överallt, alla activity-klasser behöver extenda main acitivity och det är inte rimligt att fixa så här sent.
+
+3.  Discussion items (35 min) 
+
+	a.
+		i. 
+Fixat och finjusterat
+		ii.
+		Ordna settings, lös mer “settings”
+		Städa upp lite i XML (layout) etc.
+		Kolla igenom kommentarer etc.
+		Facebook verkar ha buggar, ska försöka lösa detta om möjligt.
+		Duplicerad kod, kolla och försök lösa om möjligt.
+		Fixa flikarna på startsidan, krashar vid vissa tillfällen.
+	b. 
+	Genrep på presentationen görs söndag kväll.
+	c.
+	Kolla igenom use cases etc.
+	Finjustera all form av dokumentation.
+ 
+
+4.  Outcomes and assignments (5 min) 
+
+- Städning, refaktorering
+- Skapa APK
+- Kolla igenom Use Cases
+- Göra färdigt presentation samt repa denna
+
+5.  Wrap up 
+
+Slutpill och finjusteringar annars är projektet “klart”
