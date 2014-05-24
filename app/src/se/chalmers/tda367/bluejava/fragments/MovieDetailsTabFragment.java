@@ -61,7 +61,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_movie_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie_details, container, false);
         createView(view);
         return view;
     }
@@ -103,7 +103,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     /**
      * Creates the fragment's view components
      */
-    public void createView(View view) {
+    protected void createView(View view) {
         favoriteButton = (Button) view.findViewById(R.id.favoriteButton);
         posterImageView = (ImageView) view.findViewById(R.id.posterImageView);
 

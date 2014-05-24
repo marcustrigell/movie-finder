@@ -32,7 +32,7 @@ public class MovieVideosTabFragment extends MovieTabFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_movie_cast, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie_cast, container, false);
         listView = (ListView) view.findViewById(R.id.castList);
         return view;
     }

@@ -90,7 +90,7 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
      * Initialization have to wait until the Activity is fully functional.
      * This method can be called once it is.
      */
-    public void init() {
+    protected void init() {
         httpClient = HttpHandler.getAndroidHttpClient((Activity) context);
         httpHandler = new HttpHandler(httpClient);
         movieApi = new MovieApi();
@@ -114,5 +114,6 @@ public abstract class MovieTabFragment extends Fragment implements JSONResultHan
      *
      * @param json The JSON result from the API
      */
+    @Override
     public abstract void handleJSONResult(String json);
 }
