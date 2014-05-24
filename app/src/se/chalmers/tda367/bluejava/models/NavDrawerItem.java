@@ -1,13 +1,11 @@
 package se.chalmers.tda367.bluejava.models;
 
-import se.chalmers.tda367.bluejava.interfaces.INavDrawerItem;
-
 /**
  * Created by iDavid on 2014-04-24.
  *
  * Represents an object in the navigation drawer list.
  */
-public class NavDrawerItem implements INavDrawerItem {
+public class NavDrawerItem implements se.chalmers.tda367.bluejava.interfaces.NavDrawerItem {
 
 	public static final int ITEM_TYPE = 1 ;
 

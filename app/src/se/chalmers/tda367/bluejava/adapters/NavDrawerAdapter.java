@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import se.chalmers.tda367.bluejava.interfaces.INavDrawerItem;
-import se.chalmers.tda367.bluejava.models.NavDrawerItem;
+import se.chalmers.tda367.bluejava.interfaces.NavDrawerItem;
 import se.chalmers.tda367.bluejava.R;
 
 import java.util.ArrayList;
@@ -20,9 +19,9 @@ import java.util.ArrayList;
 public class NavDrawerAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<INavDrawerItem> navDrawerItems;
+    private ArrayList<NavDrawerItem> navDrawerItems;
 
-    public NavDrawerAdapter(Context context, ArrayList<INavDrawerItem> navDrawerItems) {
+    public NavDrawerAdapter(Context context, ArrayList<NavDrawerItem> navDrawerItems) {
         this.context = context;
         this.navDrawerItems = navDrawerItems;
     }
@@ -32,10 +31,10 @@ public class NavDrawerAdapter extends BaseAdapter {
         View view = null;
 
         // Referrers to this position as a drawer item
-        INavDrawerItem drawerItem = (INavDrawerItem) this.getItem(position);
+        NavDrawerItem drawerItem = (NavDrawerItem) this.getItem(position);
 
         // Check the type of this drawer item
-        if (drawerItem.getType() == NavDrawerItem.ITEM_TYPE) {
+        if (drawerItem.getType() == se.chalmers.tda367.bluejava.models.NavDrawerItem.ITEM_TYPE) {
             view = getItemView(position, convertView, parent);
         } else {
             view = getSectionView(position, convertView, parent);

@@ -6,7 +6,7 @@ package se.chalmers.tda367.bluejava.interfaces;
  */
 public interface MovieFavoritesDB extends MovieDb {
     /**
-     * Check if a movie is already marked as favorite.
+     * Checks if a movie is already marked as favorite.
      */
     public boolean isFavorite(int id);
 }
