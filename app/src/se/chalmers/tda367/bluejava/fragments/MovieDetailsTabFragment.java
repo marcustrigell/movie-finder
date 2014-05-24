@@ -47,7 +47,6 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     private AutoResizeTextView runTimeTextView;
 
-
     public static MovieDetailsTabFragment newInstance(Movie movie) {
         MovieDetailsTabFragment tab = new MovieDetailsTabFragment();
 
