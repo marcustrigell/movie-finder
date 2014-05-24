@@ -11,19 +11,16 @@ import android.view.ViewGroup;
 import se.chalmers.tda367.bluejava.apis.HttpHandler;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.interfaces.HttpInteractor;
-import se.chalmers.tda367.bluejava.models.Movie;
 
 /**
- * An abstract class representing a "movie information" tab.
+ * An abstract class representing a tab in a Pager environment.
  * Each class extending this class is responsible for fetching
  * and displaying data related to itself.
  *
  * Nothing related to Activity or Context should be instantiated
  * before the Activity is fully functional.
  */
-public abstract class MovieTabFragment extends Fragment implements HttpInteractor {
-
-    protected Movie movie;
+public abstract class TabFragment extends Fragment implements HttpInteractor {
 
     protected MovieApi movieApi;
 
@@ -94,7 +91,6 @@ public abstract class MovieTabFragment extends Fragment implements HttpInteracto
         httpClient = HttpHandler.getAndroidHttpClient((Activity) context);
         httpHandler = new HttpHandler(httpClient);
         movieApi = new MovieApi();
-        movie = getArguments().getParcelable("movie");
     }
 
     /**

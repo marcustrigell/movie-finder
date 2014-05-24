@@ -19,7 +19,9 @@ import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.models.MovieDetails;
 import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
-public class MovieDetailsTabFragment extends MovieTabFragment implements View.OnClickListener {
+public class TabFragmentMovieDetails extends TabFragment implements View.OnClickListener {
+
+    private Movie movie;
 
     private MovieFavoritesDB movieFavoritesDb;
 
@@ -47,8 +49,8 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
 
     private AutoResizeTextView runTimeTextView;
 
-    public static MovieDetailsTabFragment newInstance(Movie movie) {
-        MovieDetailsTabFragment tab = new MovieDetailsTabFragment();
+    public static TabFragmentMovieDetails newInstance(Movie movie) {
+        TabFragmentMovieDetails tab = new TabFragmentMovieDetails();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("movie", movie);
@@ -69,6 +71,7 @@ public class MovieDetailsTabFragment extends MovieTabFragment implements View.On
     public void init() {
         super.init();
         movieFavoritesDb = new MovieFavoritesDbHelper(context);
+        movie = getArguments().getParcelable("movie");
         isFavorite = movieFavoritesDb.isFavorite(movie.getID());
     }
 

@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-public class MovieTabsAdapter extends FragmentPagerAdapter {
+public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragments;
 
-    public MovieTabsAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
+    public TabsPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
 
         super(fragmentManager);
 

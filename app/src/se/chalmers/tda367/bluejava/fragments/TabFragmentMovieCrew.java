@@ -16,12 +16,14 @@ import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
-public class MovieCrewTabFragment extends MovieTabFragment {
+public class TabFragmentMovieCrew extends TabFragment {
+
+    private Movie movie;
 
     private ListView listView;
 
-    public static MovieCrewTabFragment newInstance(Movie movie) {
-        MovieCrewTabFragment tab = new MovieCrewTabFragment();
+    public static TabFragmentMovieCrew newInstance(Movie movie) {
+        TabFragmentMovieCrew tab = new TabFragmentMovieCrew();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("movie", movie);
@@ -29,6 +31,12 @@ public class MovieCrewTabFragment extends MovieTabFragment {
         tab.setArguments(bundle);
 
         return tab;
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        movie = getArguments().getParcelable("movie");
     }
 
     @Override

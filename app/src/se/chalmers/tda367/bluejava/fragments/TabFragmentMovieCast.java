@@ -16,12 +16,14 @@ import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
-public class MovieCastTabFragment extends MovieTabFragment {
+public class TabFragmentMovieCast extends TabFragment {
+
+    private Movie movie;
 
     private ListView listView;
 
-    public static MovieCastTabFragment newInstance(Movie movie) {
-        MovieCastTabFragment tab = new MovieCastTabFragment();
+    public static TabFragmentMovieCast newInstance(Movie movie) {
+        TabFragmentMovieCast tab = new TabFragmentMovieCast();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("movie", movie);
@@ -32,12 +34,19 @@ public class MovieCastTabFragment extends MovieTabFragment {
     }
 
     @Override
+    public void init() {
+        super.init();
+        movie = getArguments().getParcelable("movie");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_cast, container, false);
         listView = (ListView) view.findViewById(R.id.castList);
         return view;
     }
 
+    @Override
     public void sendHttpGetRequest() {
 
         if (movie.getCredits() == null) {
@@ -46,7 +55,6 @@ public class MovieCastTabFragment extends MovieTabFragment {
             populateLayout();
         }
     }
-
 
     @Override
     public void handleJSONResult(String json) {

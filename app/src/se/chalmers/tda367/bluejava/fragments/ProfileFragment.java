@@ -12,7 +12,7 @@ import com.facebook.*;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.adapters.ImageAdapter;
+import se.chalmers.tda367.bluejava.adapters.MovieCoversAdapter;
 import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
 import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
 import se.chalmers.tda367.bluejava.models.Movie;
@@ -21,7 +21,7 @@ import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 import java.util.Arrays;
 import java.util.List;
 
-public class LoginFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
@@ -142,7 +142,7 @@ public class LoginFragment extends Fragment {
 
         if (movies.size() > 0) {
             GridView favoritesGridView = (GridView) getView().findViewById(R.id.profile_grid_view);
-            favoritesGridView.setAdapter(new ImageAdapter(getView().getContext(), getActivity(), movies));
+            favoritesGridView.setAdapter(new MovieCoversAdapter(getView().getContext(), getActivity(), movies));
         }
     }
 
