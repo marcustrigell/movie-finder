@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.models.NavDrawerItem;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class NavDrawerAdapter extends BaseAdapter {
         NavigationDrawerItem drawerItem = (NavigationDrawerItem) this.getItem(position);
 
         // Check the type of this drawer item
-        if (drawerItem.getType() == se.chalmers.tda367.bluejava.models.NavigationDrawerItem.ITEM_TYPE) {
+        if (drawerItem.getType() == NavDrawerItem.ITEM_TYPE) {
             view = getItemView(position, convertView, parent);
         } else {
             view = getSectionView(position, convertView, parent);
