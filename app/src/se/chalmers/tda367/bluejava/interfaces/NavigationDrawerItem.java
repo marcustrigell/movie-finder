@@ -3,7 +3,7 @@ package se.chalmers.tda367.bluejava.interfaces;
 /**
  * An interface for all items in Navigation Drawer
  */
-public interface NavDrawerItem {
+public interface NavigationDrawerItem {
 	public String getLabel();
 	public int getIcon();
 

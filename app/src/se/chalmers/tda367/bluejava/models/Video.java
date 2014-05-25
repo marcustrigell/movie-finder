@@ -19,17 +19,11 @@ import java.util.List;
 public class Video implements Parcelable {
 
     private final String ID;
-
     private final String language;
-
     private final String key;
-
     private final String name;
-
     private final String site;
-
     private final int resolution;
-
     private final String type;
 
     public Video(JSONObject jsonObject) throws JSONException {
