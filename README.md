@@ -1,5 +1,7 @@
-BlueJava – An Android application for information about movies
+BlueJava
 ===============================================================
+– An Android application for information about movies
+---------------------------------------------------------------
 
 Before you install the application
 ----------------------------------
