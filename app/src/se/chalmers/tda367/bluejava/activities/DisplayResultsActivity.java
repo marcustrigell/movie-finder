@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -97,7 +96,6 @@ public class DisplayResultsActivity extends ListActivity
             return;
         } else if (json.contains("profile_path")) {
 
-            Log.i("JSON", json);
 			try {
 				JSONObject jsonObject = new JSONObject(json);
 				people = Actor.jsonToListOfActors(jsonObject);
@@ -109,6 +107,7 @@ public class DisplayResultsActivity extends ListActivity
 
 				displayResults(people);
 			} catch (JSONException e) {
+                throw new RuntimeException(e);
 			}
 		} else {
 

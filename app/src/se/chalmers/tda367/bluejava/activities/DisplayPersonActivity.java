@@ -90,7 +90,7 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
 			JSONObject jsonObject = new JSONObject(json);
 			person = new Person(jsonObject);
 		} catch (JSONException e) {
-			e.printStackTrace();
+            throw new RuntimeException(e);
 		}
 
 		setupLayout();

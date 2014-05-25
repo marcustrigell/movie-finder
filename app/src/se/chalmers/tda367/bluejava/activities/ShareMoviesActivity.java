@@ -3,7 +3,6 @@ package se.chalmers.tda367.bluejava.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,12 +86,12 @@ public class ShareMoviesActivity extends FragmentActivity implements FbMovieShar
         uiHelper.onActivityResult(requestCode, resultCode, data, new FacebookDialog.Callback() {
             @Override
             public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
-                Log.e("Activity", String.format("Error: %s", error.toString()));
+                // Handle errors
             }
 
             @Override
             public void onComplete(FacebookDialog.PendingCall pendingCall, Bundle data) {
-                Log.e("Activity", "Success!");
+                // Handle success
             }
         });
     }
