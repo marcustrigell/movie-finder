@@ -17,7 +17,7 @@ Either make sure to navigate in to the platform-tools/ directory
 or make it available in your PATH.
 
 
-Follow this if you have an Android device:
+#### Follow this if you have an Android device:
 
 1. Make sure it's setup and connected via USB
 2. Run the following command:
@@ -25,7 +25,7 @@ Follow this if you have an Android device:
 adb -d install path/to/app.apk
 
 
-Follow this if you have an Android Emulator:
+#### Follow this if you have an Android Emulator:
 
 1. Execute the android tool with avd option:
 android avd
