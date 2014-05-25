@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
 import se.chalmers.tda367.bluejava.models.Movie;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieFavoritesDbHelper extends SQLiteOpenHelper implements MovieFavoritesDB {
@@ -81,7 +81,7 @@ public class MovieFavoritesDbHelper extends SQLiteOpenHelper implements MovieFav
     }
 
     public List<Movie> getAllMovies() {
-        List<Movie> movies = new LinkedList<Movie>();
+        List<Movie> movies = new ArrayList<Movie>();
 
         // Build the query
         String query = "SELECT * FROM " + MovieContract.FavoriteTable.TABLE_NAME;

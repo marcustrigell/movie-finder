@@ -6,20 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import se.chalmers.tda367.bluejava.R;
+import se.chalmers.tda367.bluejava.activities.ShareMoviesActivity;
 import se.chalmers.tda367.bluejava.adapters.MovieCoversAdapter;
 import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
 import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
@@ -35,6 +39,14 @@ public class ProfileFragment extends Fragment {
     private FBAuthenticator fbAuthenticator;
 
     private LoginButton authButton;
+
+    private TextView welcomeText;
+
+    private ArrayList<Movie> movies;
+
+    private String userInfo;
+
+    private static final int SHARE_BUTTON_ID = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,30 +66,32 @@ public class ProfileFragment extends Fragment {
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes"));
 
+        welcomeText = (TextView) view.findViewById(R.id.profile_welcome_message);
+
         return view;
     }
 
     private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
-        final TextView userInfoTextView = (TextView) getView().findViewById(R.id.userInfoTextView);
 
         if (state.isOpened()) {
 
-            authButton.setVisibility(View.GONE);
+            createLoggedInView();
+            //authButton.setVisibility(View.GONE);
+
+            welcomeText.setText(R.string.profile_logged_in_message);
 
             if (fbAuthenticator == null) {
 
                 fbAuthenticator = (FBAuthenticator) getActivity();
 
-                userInfoTextView.setVisibility(View.VISIBLE);
-
-                // Request user data and show the results
+                // Request user data and save the result
                 Request.newMeRequest(session, new Request.GraphUserCallback() {
 
-                        // callback after Graph API response with user object
+                    // callback after Graph API response with user object
                     @Override
                     public void onCompleted(GraphUser user, Response response) {
                         if (user != null) {
-                                userInfoTextView.setText(buildUserInfoDisplay(user));
+                            userInfo = buildUserInfoString(user);
                         }
                     }
                 }).executeAsync();
@@ -86,8 +100,8 @@ public class ProfileFragment extends Fragment {
                 fbAuthenticator.hasLoggedIn(session.getAccessToken());
             }
         } else if (state.isClosed()) {
-            userInfoTextView.setVisibility(View.GONE);
             tellFBAuthenticatorLogout();
+            removeLoggedInView();
         }
     }
 
@@ -138,7 +152,7 @@ public class ProfileFragment extends Fragment {
     public void showFavorites() {
         final MovieFavoritesDB movieFavoritesDb = new MovieFavoritesDbHelper(getView().getContext());
 
-        List<Movie> movies = movieFavoritesDb.getAllMovies();
+        movies = (ArrayList<Movie>) movieFavoritesDb.getAllMovies();
 
         if (movies.size() > 0) {
             GridView favoritesGridView = (GridView) getView().findViewById(R.id.profile_grid_view);
@@ -160,20 +174,89 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private String buildUserInfoDisplay(GraphUser user) {
-        StringBuilder userInfo = new StringBuilder("");
+    /**
+     * Creates a button that will take the user
+     * to a new Activity where they can choose a
+     * movie to share on Facebook.
+     *
+     * It will send details (fetched from Facebook)
+     * about the user aswell as a list of movies.
+     */
+    public void createLoggedInView() {
 
-        userInfo.append(String.format("Name: %s\n\n",
-                user.getName()));
+        if (!isLoggedIn()) {
+            return;
+        }
 
-        userInfo.append(String.format("Birthday: %s\n\n",
-                user.getBirthday()));
+        RelativeLayout.LayoutParams buttonTextParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
 
-        userInfo.append(String.format("Location: %s\n\n",
-                user.getLocation().getProperty("name")));
+        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
 
-        userInfo.append(String.format("Locale: %s\n\n",
-                user.getProperty("locale")));
+        buttonTextParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+        buttonTextParams.leftMargin = 380;
+        buttonTextParams.topMargin = 42;
+
+        buttonParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+        buttonParams.leftMargin = 440;
+
+        TextView buttonText = new TextView(getActivity());
+        buttonText.setTextColor(getResources().getColor(R.color.grey_dark));
+        buttonText.setText("or");
+
+        buttonText.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        Button shareButton = new Button(getActivity());
+        shareButton.setId(SHARE_BUTTON_ID);
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ShareMoviesActivity.class);
+
+                intent.putExtra(BlueJava.EXTRA_FB_USER_INFO, userInfo);
+
+                intent.putParcelableArrayListExtra(BlueJava.EXTRA_MOVIE_FAVORITES, movies);
+
+                getActivity().startActivity(intent);
+            }
+        });
+
+        shareButton.setText("Share a movie");
+        shareButton.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        RelativeLayout facebookButtonRow = (RelativeLayout) getView().findViewById(R.id.facebook_buttons_row);
+
+        facebookButtonRow.addView(buttonText, buttonTextParams);
+        facebookButtonRow.addView(shareButton, buttonParams);
+    }
+
+    private void removeLoggedInView() {
+        Button shareButton = (Button) getActivity().findViewById(SHARE_BUTTON_ID);
+        shareButton.setVisibility(View.GONE);
+    }
+
+    private String buildUserInfoString(GraphUser user) {
+        StringBuilder userInfo = new StringBuilder("Hi, ");
+
+        userInfo.append(user.getName() + "! ");
+
+        userInfo.append("Hope you're having a good time in " +
+                user.getLocation().getProperty("name") + ". " +
+                "Choose a movie below to share it to your friends!"
+        );
 
         return userInfo.toString();
     }

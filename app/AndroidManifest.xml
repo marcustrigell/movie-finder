@@ -26,10 +26,7 @@
 
         <!-- Display Results Activity -->
         <activity android:name=".activities.DisplayResultsActivity"
-                  android:label="@string/title_activity_display_results"
-                  android:parentActivityName=".activities.MainActivity" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value="se.chalmers.tda367.bluejava.MainActivity" />
+                  android:label="@string/title_activity_display_results">
             <meta-data android:name="android.app.searchable"
                        android:resource="@xml/searchable" />
             <intent-filter>
@@ -39,18 +36,18 @@
 
         <!-- Display Movie Activity -->
         <activity android:name=".activities.DisplayMovieActivity"
-                  android:label="@string/title_activity_display_movie"
-                  android:parentActivityName=".activities.DisplayResultsActivity" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value="se.chalmers.tda367.bluejava.MainActivity" />
+                  android:label="@string/title_activity_display_movie">
             <meta-data android:name="android.app.searchable"
                        android:resource="@xml/searchable" />
         </activity>
 
         <!-- Profile Activity -->
         <activity android:name=".activities.DisplayProfileActivity"
-                  android:label="@string/profile_title"
-        />
+                  android:label="@string/profile_title"/>
+
+        <!-- Facebook Share Movies Activity -->
+        <activity android:name=".activities.ShareMoviesActivity"
+                  android:label="@string/profile_title"/>
 
         <!-- Settings Activity -->
         <activity android:name=".activities.SettingsActivity"

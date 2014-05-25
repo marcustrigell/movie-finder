@@ -21,11 +21,16 @@ import se.chalmers.tda367.bluejava.helpers.*;
 import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
 import se.chalmers.tda367.bluejava.interfaces.SortMethod;
 import se.chalmers.tda367.bluejava.models.Actor;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class is responsible for showing search results in a list
+ * Pressing a result (movie) will show a detailed view in a new Activity.
+ */
 public class DisplayResultsActivity extends ListActivity
         implements JSONResultHandler, AdapterView.OnItemSelectedListener {
 
@@ -36,8 +41,8 @@ public class DisplayResultsActivity extends ListActivity
     private MovieApi movieApi;
 
     private List<Movie> movies;
+
 	private List<Actor> people;
-	private List<?> results;
 
     private SortMethod sortMethod;
 
@@ -48,36 +53,25 @@ public class DisplayResultsActivity extends ListActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_results_activity);
 
-        Spinner spinner = (Spinner) findViewById(R.id.sort_spinner);
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.sort_array, android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Spinner spinner = (Spinner) findViewById(R.id.sort_spinner);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(this);
-
-        /*
-         * Used to create appropriate URLs for our http requests
-         */
         movieApi = new MovieApi();
 
-        /*
-         * Handling all http requests and communication with our APIs
-         * Once done with a request, it'll call handleSearchResults
-         * and pass a string containing the result
-         */
         httpClient = HttpHandler.getAndroidHttpClient(this);
+
         httpHandler = new HttpHandler(httpClient);
 
-        /* Set default sort method to sort by title in ascending order. */
         sortMethod = new SortByNothing();
 
-        /* Set the order to sort the movie list */
         movieListAscending = true;
 
 		handleIntent(getIntent());
@@ -91,7 +85,7 @@ public class DisplayResultsActivity extends ListActivity
 		// Associate the searchable configuration with the SearchView
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -118,35 +112,26 @@ public class DisplayResultsActivity extends ListActivity
 			}
 		} else {
 
-        /*
-         * Take the string and make a lot of movies from it
-         */
-        movies = Movie.jsonToListOfMovies(json);
+            // Take the string and make a lot of movies from it
+            movies = Movie.jsonToListOfMovies(json);
 
-        /*
-         * Give the user som feedback on their search
-         */
-        String toastMessage = (movies != null)
-                ? "Yeey! I found " + movies.size() + " movies."
-                : "Sorry! You must be a united fan.";
-        showToast(toastMessage);
+            // Give the user som feedback on their search
+            String toastMessage = (movies != null)
+                    ? "Yeey! I found " + movies.size() + " movies."
+                    : "Sorry! You must be a united fan.";
+            showToast(toastMessage);
 
-        displayResults(movies);
+            displayResults(movies);
 
 		}
     }
 
     /**
      * Take our list with movies and display them on our listview
-     * Read more:
-     * https://github.com/thecodepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
      */
     public void displayResults(List<?> results) {
         if (results == null) {
             showToast("No Hits\n" + "Search again");
-            // This doesn't work anymore when spinner was added instead of textfield
-/*            TextView textView = (TextView) findViewById(R.id.sort_label);
-            textView.setText("Sök igen");*/
         } else {
             DisplayResultsArrayAdapter arrayAdapter = new DisplayResultsArrayAdapter(this,
                     R.layout.display_results_list_item, results, movieApi);
@@ -209,7 +194,7 @@ public class DisplayResultsActivity extends ListActivity
 
 		// Otherwise it comes from navigation drawer browsing
 		else {
-            query = intent.getStringExtra("se.chalmers.tda367.bluejava.MESSAGE");
+            query = intent.getStringExtra(BlueJava.EXTRA_MESSAGE);
             sendQuery(query);
 		}
 	}
@@ -231,16 +216,23 @@ public class DisplayResultsActivity extends ListActivity
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        if (pos == 1) {
-            sortMethod = new SortByTitle();
-        } else if (pos == 2) {
-            sortMethod = new SortByYear();
-        } else if (pos == 3) {
-            sortMethod = new SortByRating();
-        } else if (pos == 4) {
-            sortMethod = new SortByVoteCount();
-        } else if (pos == 5) {
-            sortMethod = new SortByPopularity();
+
+        switch(pos) {
+            case 1:
+                sortMethod = new SortByTitle();
+                break;
+            case 2:
+                sortMethod = new SortByYear();
+                break;
+            case 3:
+                sortMethod = new SortByRating();
+                break;
+            case 4:
+                sortMethod = new SortByVoteCount();
+                break;
+            default:
+                sortMethod = new SortByPopularity();
+                break;
         }
     }
 

@@ -10,7 +10,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.TabsPagerAdapter;
-import se.chalmers.tda367.bluejava.fragments.*;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieCast;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieCrew;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieDetails;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieVideos;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;

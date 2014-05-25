@@ -4,7 +4,23 @@ import android.app.Application;
 import android.content.Context;
 import android.net.http.AndroidHttpClient;
 
+/**
+ * This class represents the whole application
+ */
 public class BlueJava extends Application {
+
+    /**
+     * Intent keys used to send (Parcelable) extras to Activities and Fragments
+     */
+    public static String EXTRA_MOVIE = "se.chalmers.tda367.bluejava.extra.MOVIE";
+
+    public final static String EXTRA_MESSAGE = "se.chalmers.tda367.bluejava.extra.MESSAGE";
+
+    public static String EXTRA_MOVIE_FAVORITES = "se.chalmers.tda367.bluejava.extra.MOVIE_FAVORITES";
+
+    public static String EXTRA_FB_USER_INFO = "se.chalmers.tda367.bluejava.extra.FB_USER_INFO";
+
+    public static String YOUTUBE_URL = "https://www.youtube.com/watch?v=";
 
     private static Context context;
 

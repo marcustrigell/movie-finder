@@ -33,7 +33,7 @@ public class DisplayProfileActivity extends FragmentActivity implements FBAuthen
     }
 
     public void hasLoggedIn(String FBaccessToken) {
-        this.fbAccessToken = FBaccessToken;
+        fbAccessToken = FBaccessToken;
 
         if (!isLoggedIn) {
             invalidateOptionsMenu();
@@ -54,5 +54,4 @@ public class DisplayProfileActivity extends FragmentActivity implements FBAuthen
         Toast.makeText(this, getString(R.string.fb_logged_out), Toast.LENGTH_SHORT).show();
         isLoggedIn = false;
     }
-
 }

@@ -28,6 +28,7 @@ import se.chalmers.tda367.bluejava.adapters.TabsPagerAdapter;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMainPopular;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMainUpcoming;
 import se.chalmers.tda367.bluejava.interfaces.NavDrawerItem;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.NavDrawerSection;
 
 import java.util.ArrayList;
@@ -35,8 +36,6 @@ import java.util.List;
 import java.util.Vector;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
-
-    public final static String EXTRA_MESSAGE = "se.chalmers.tda367.bluejava.MESSAGE";
 
 	private CharSequence appTitle;
 
@@ -334,15 +333,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         switch(position) {
             case 2 :
-                intent.putExtra(EXTRA_MESSAGE, "upcoming");
+                intent.putExtra(BlueJava.EXTRA_MESSAGE, "upcoming");
                 startActivity(intent);
                 break;
             case 3 :
-                intent.putExtra(EXTRA_MESSAGE, "popular");
+                intent.putExtra(BlueJava.EXTRA_MESSAGE, "popular");
                 startActivity(intent);
                 break;
             case 4 :
-                intent.putExtra(EXTRA_MESSAGE, "top_rated");
+                intent.putExtra(BlueJava.EXTRA_MESSAGE, "top_rated");
                 startActivity(intent);
                 break;
             case 6 :

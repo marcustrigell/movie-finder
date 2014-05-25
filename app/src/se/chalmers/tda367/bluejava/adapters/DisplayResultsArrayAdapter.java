@@ -86,16 +86,7 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter {
 
                 titleTextView.setText(actor.getName());
 
-                // convertView.setOnClickListener(new View.OnClickListener() {
 
-				/*	@Override
-                    public void onClick(View view) {
-						Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
-
-						intent.putExtra("movie", movie);
-						displayResultsActivity.startActivity(intent);
-					}
-				});*/
             }
         }
 
