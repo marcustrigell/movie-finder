@@ -10,6 +10,6 @@ import android.test.suitebuilder.TestSuiteBuilder;
  */
 public class AllTests extends TestSuite {
     public static Test suite() {
-        return new TestSuiteBuilder(AllTests.class).includePackages("se.chalmers.tda367.bluejava.models").build();
+        return new TestSuiteBuilder(AllTests.class).includeAllPackagesUnderHere().build();
     }
 }

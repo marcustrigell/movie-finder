@@ -1,36 +1,38 @@
 package se.chalmers.tda367.bluejava.helpers;
 
-import junit.framework.TestCase;
+import android.content.Context;
+import android.test.InstrumentationTestCase;
 import org.junit.Test;
 import se.chalmers.tda367.bluejava.interfaces.SortMethod;
 import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.tests.R;
 
-import java.io.FileReader;
 import java.util.List;
-import java.util.Scanner;
 
-public class SortByPopularityTest extends TestCase {
+public class SortByPopularityTest extends InstrumentationTestCase {
 
     private List<Movie> sortedList, unsortedList, correctList;
     private SortMethod sortMethod;
-    private String correct, unsorted;
+    private String sorted, unsorted;
+
+    @Override
+    public void setUp() throws Exception{
+        super.setUp();
+        Context context = getInstrumentation().getContext();
+        unsorted = context.getString(R.string.unsorted);
+        sorted = context.getString(R.string.popularity_sorted);
+    }
 
     @Test
     public void testSort() throws Exception {
-        Scanner sc = new Scanner(new FileReader("/resources/txts/unsorted.txt"));
-        while(sc.hasNextLine()) {
-            unsorted += sc.nextLine();
-        }
         unsortedList = Movie.jsonToListOfMovies(unsorted);
-        sc = new Scanner(new FileReader("/resources/txts/popularity_sorted.txt"));
-        while(sc.hasNextLine()) {
-            correct += sc.nextLine();
-        }
-        correctList = Movie.jsonToListOfMovies(correct);
-        sortMethod = new SortByTitle();
+        correctList = Movie.jsonToListOfMovies(sorted);
+
+        sortMethod = new SortByPopularity();
         sortedList = sortMethod.sort(unsortedList);
-        for(Movie movie : sortedList) {
-            assertEquals(correctList, sortedList);
+
+        for(int i = 0; i < correctList.size(); i++) {
+            assertEquals(correctList.get(i).getPopularity(), sortedList.get(i).getPopularity());
         }
     }
 }

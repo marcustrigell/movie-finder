@@ -51,14 +51,14 @@ public class CreditsTest extends InstrumentationTestCase {
     @Test
     public void testGetCast() {
         for(int i = 0; i < cast.size(); i++) {
-            assertEquals(cast.get(i), credits.getCast().get(i));
+            assertEquals(cast.get(i).getID(), credits.getCast().get(i).getID());
         }
     }
 
     @Test
     public void testGetCrew() {
         for(int i = 0; i < crew.size(); i++) {
-            assertEquals(crew.get(i), credits.getCrew().get(i));
+            assertEquals(crew.get(i).getID(), credits.getCrew().get(i).getID());
         }
     }
 }

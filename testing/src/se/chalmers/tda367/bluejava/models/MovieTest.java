@@ -7,6 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import se.chalmers.tda367.bluejava.models.Credits;
+import se.chalmers.tda367.bluejava.models.Genre;
+import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.models.MovieDetails;
 import se.chalmers.tda367.bluejava.tests.R;
 
 import java.util.List;
