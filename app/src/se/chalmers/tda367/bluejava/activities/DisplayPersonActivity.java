@@ -14,7 +14,6 @@ import se.chalmers.tda367.bluejava.apis.HttpHandler;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.interfaces.JSONResultHandler;
-import se.chalmers.tda367.bluejava.models.Actor;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Person;
 
@@ -99,13 +98,14 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
 		setupLayout();
 	}
 
+
+    /**
+     * Launches a new activity with shows an image in full screen.
+     * @param view The current view that the activity listens to
+     */
     public void showFullScreen(View view) {
         Intent intent = new Intent(this, DisplayImageFullScreenActivity.class);
-        if(person instanceof Actor) {
-            intent.putExtra("actor", person);
-        } else {
-            intent.putExtra("crewmember", person);
-        }
+        intent.putExtra("person", person);
         startActivity(intent);
     }
 
