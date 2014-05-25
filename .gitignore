@@ -6,7 +6,6 @@
 
 # IntelliJ
 .idea/
-*.apk
 *.iml
 *.ipr
 *.iws
