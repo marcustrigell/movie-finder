@@ -3,28 +3,21 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="GENERAL SETTINGS"
+        android:title="General"
         android:key="general_settings">
 
         <CheckBoxPreference
-            android:title="Use English as main language"
+            android:title="Child-safe mode"
             android:key="main_language"
             android:defaultValue="true"
-            android:summary="Change main language."
-        />
-
-        <CheckBoxPreference
-            android:title="Play sound when login"
-            android:key="login_sound"
-            android:defaultValue="true"
-            android:summary="Change login sound."
+            android:summary="Show/don't show adult content."
         />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="API SETTINGS"
-        android:key="api_settings" >
+        android:title="Facebook"
+        android:key="facebook_settings" >
 
         <Preference
                 android:title="Change user"
@@ -33,4 +26,17 @@
         />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="Help"
+            android:key="help_settings" >
+
+        <Preference
+                android:title="Show help"
+                android:key="help"
+                android:summary="View the help documentation."
+        />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -1,6 +1,8 @@
 package se.chalmers.tda367.bluejava.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.view.MenuItem;
@@ -16,8 +18,6 @@ public class SettingsActivity extends PreferenceActivity {
                 .beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())
                 .commit();
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 	public static class SettingsFragment extends PreferenceFragment {
@@ -25,6 +25,16 @@ public class SettingsActivity extends PreferenceActivity {
 		public void onCreate(final Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.settings);
+
+            Preference pref = (Preference) findPreference("help");
+            pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(getActivity(), DisplayHelpActivity.class);
+                    startActivity(intent);
+                    return false;
+                }
+            });
 		}
 	}
 
