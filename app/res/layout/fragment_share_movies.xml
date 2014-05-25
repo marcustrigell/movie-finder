@@ -16,18 +16,18 @@
             android:baselineAligned="true">
 
         <TextView
-                android:id="@+id/profile_welcome_title"
+                android:id="@+id/share_movies_title"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:paddingBottom="5dp"
-                android:text="@string/profile_welcome_title"
+                android:text="@string/facebook_share_title"
                 android:textColor="@color/grey_dark"
                 android:textSize="20sp"
                 android:textIsSelectable="false"
                 android:textStyle="bold"/>
 
         <TextView
-                android:id="@+id/profile_welcome_message"
+                android:id="@+id/share_movies_welcome_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/profile_welcome_message"
@@ -35,40 +35,12 @@
 
     </LinearLayout>
 
-    <LinearLayout
-            android:background="@color/grey_light"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="10dp"
-            android:baselineAligned="true">
-
-        <RelativeLayout
-                android:id="@+id/facebook_buttons_row"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2">
-
-            <com.facebook.widget.LoginButton
-                    android:id="@+id/authButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
     <View android:background="#000" android:layout_width="match_parent" android:layout_height="1px"/>
 
-    <GridView
-            android:id="@+id/profile_grid_view"
+    <ListView
+            android:id="@+id/share_movies_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:numColumns="3">
-    </GridView>
+            android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

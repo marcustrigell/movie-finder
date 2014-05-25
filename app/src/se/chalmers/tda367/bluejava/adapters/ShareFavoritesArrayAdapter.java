@@ -1,44 +1,46 @@
 package se.chalmers.tda367.bluejava.adapters;
 
-import android.app.Activity;
+
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.models.BlueJava;
-import se.chalmers.tda367.bluejava.models.Video;
+import se.chalmers.tda367.bluejava.apis.MovieApi;
+import se.chalmers.tda367.bluejava.interfaces.FbMovieSharer;
+import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
 /**
  * Used to create a list item in the videos view.
  */
-public class VideosTabArrayAdapter extends BaseAdapter {
+public class ShareFavoritesArrayAdapter extends BaseAdapter {
+
+    private final List<Movie> movies;
+
+    private final FbMovieSharer fbMovieSharer;
 
     private final Context context;
-    private final List<Video> videos;
-    private final Activity activity;
 
-    public VideosTabArrayAdapter(Context context, Activity activity, List<Video> videos) {
-        this.activity = activity;
+    public ShareFavoritesArrayAdapter(FbMovieSharer fbMovieSharer, Context context, List<Movie> movies) {
+        this.fbMovieSharer = fbMovieSharer;
+        this.movies = movies;
         this.context = context;
-        this.videos = videos;
     }
 
     @Override
     public int getCount() {
-        return videos.size();
+        return movies.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return videos.get(position);
+        return movies.get(position);
     }
 
     @Override
@@ -57,35 +59,35 @@ public class VideosTabArrayAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        final Video video = (Video) getItem(position);
+        final Movie movie = (Movie) getItem(position);
 
         if (convertView == null) {
 
             final LayoutInflater inflater =
                     (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            convertView = inflater.inflate(R.layout.cast_tab_list_item, null);
-
+            convertView = inflater.inflate(R.layout.display_results_list_item, null);
         }
 
         ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-        TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
-        TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
 
-        coverImageView.setBackgroundResource(R.drawable.youtube_cover);
-        nameTextView.setText(video.getName());
-        characterTextView.setText(video.getType());
+        final MovieApi movieApi = new MovieApi();
+        String url = movieApi.getThumbnailURL(movie.getPosterPath());
+        Picasso.with(context).load(url).into(coverImageView);
+
+        titleTextView.setText(movie.toString());
 
         convertView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                String youtubeUrl = BlueJava.YOUTUBE_URL + video.getKey();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl));
-                activity.startActivity(intent);
+                fbMovieSharer.shareMovieToFB(movie);
             }
         });
 
         return convertView;
     }
+
 }
+

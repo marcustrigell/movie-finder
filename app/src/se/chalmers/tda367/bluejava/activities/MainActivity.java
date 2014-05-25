@@ -9,7 +9,9 @@ import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -21,17 +23,20 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.adapters.MainTabsAdapter;
 import se.chalmers.tda367.bluejava.adapters.NavDrawerAdapter;
-import se.chalmers.tda367.bluejava.interfaces.INavDrawerItem;
-import se.chalmers.tda367.bluejava.models.NavDrawerItem;
-import se.chalmers.tda367.bluejava.models.NavDrawerSection;
+import se.chalmers.tda367.bluejava.adapters.TabsPagerAdapter;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMainPopular;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMainUpcoming;
+import se.chalmers.tda367.bluejava.models.BlueJava;
+import se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem;
+import se.chalmers.tda367.bluejava.models.NavigationDrawerSection;
+
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
-
-    public final static String EXTRA_MESSAGE = "se.chalmers.tda367.bluejava.MESSAGE";
 
 	private CharSequence appTitle;
 
@@ -39,7 +44,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private DrawerLayout navDrawerLayout;
 	private ListView navDrawerList;
 	private ActionBarDrawerToggle navDrawerToggle;
-	private ArrayList<INavDrawerItem> navDrawerItems;
+	private ArrayList<NavigationDrawerItem> navDrawerItems;
 	private NavDrawerAdapter navDrawerAdapter;
 
 	/* -- Navigation Drawer Title -- */
@@ -51,19 +56,22 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	private ViewPager viewPager;
 
+    private FragmentPagerAdapter pagerAdapter;
+
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+
+        setContentView(R.layout.main);
+
+        appTitle = getTitle();
 
         setupTabs(savedInstanceState);
 
         setupLayout();
-
-		appTitle = getTitle();
 	}
 
     private void setupTabs(Bundle savedInstanceState) {
@@ -77,11 +85,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
-        viewPager = (ViewPager) findViewById(R.id.mainPager);
-        MainTabsAdapter mainTabsAdapter = new MainTabsAdapter(getSupportFragmentManager(), this);
-        viewPager.setAdapter(mainTabsAdapter);
-
         String[] tabs = { "Popular", "Upcoming" };
+
+        List<Fragment> fragments = new Vector<Fragment>();
+
+        fragments.add(TabFragmentMainPopular.newInstance());
+        fragments.add(TabFragmentMainUpcoming.newInstance());
+
+        pagerAdapter = new TabsPagerAdapter(super.getSupportFragmentManager(), fragments);
+        viewPager = (ViewPager) findViewById(R.id.mainPager);
+        viewPager.setAdapter(pagerAdapter);
 
         for (String tab : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));
@@ -145,35 +158,36 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// Set a custom shadow that overlays the main content when the drawer opens
 		navDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        navDrawerItems = new ArrayList<INavDrawerItem>();
-
-/* ------------------------------------------------------------------------------------------------------------ */
+        navDrawerItems = new ArrayList<NavigationDrawerItem>();
 
         // Fill array with navDrawerItems and navDrawerSections
 
         // Home
-        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0], navDrawerIcons.getResourceId(0, -1)));
+        navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[0],
+				navDrawerIcons.getResourceId(0, -1)));
 
         // Section - Movies
-        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
+        navDrawerItems.add(new NavigationDrawerSection(navDrawerTitles[1]));
 
 			// Latest
-			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2], navDrawerIcons.getResourceId(2, -1)));
+			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[2],
+					navDrawerIcons.getResourceId(2, -1)));
 
 			// Top Rated
-			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3], navDrawerIcons.getResourceId(3, -1)));
+			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[3],
+					navDrawerIcons.getResourceId(3, -1)));
 
 			// Recommended
-			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4], navDrawerIcons.getResourceId(4, -1)));
+			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[4],
+					navDrawerIcons.getResourceId(4, -1)));
 
         // Section - Your Profile
-        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
+        navDrawerItems.add(new NavigationDrawerSection(navDrawerTitles[5]));
 
             // Profile
-            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6], navDrawerIcons.getResourceId(6, -1)));
+            navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[6],
+					navDrawerIcons.getResourceId(6, -1)));
 
-
-/* ------------------------------------------------------------------------------------------------------------ */
 
         // Recycle the typed array for later re-use
         navDrawerIcons.recycle();
@@ -325,15 +339,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         switch(position) {
             case 2 :
-                intent.putExtra(EXTRA_MESSAGE, "upcoming");
+                intent.putExtra(BlueJava.EXTRA_MESSAGE, "upcoming");
                 startActivity(intent);
                 break;
             case 3 :
-                intent.putExtra(EXTRA_MESSAGE, "popular");
+                intent.putExtra(BlueJava.EXTRA_MESSAGE, "popular");
                 startActivity(intent);
                 break;
             case 4 :
-                intent.putExtra(EXTRA_MESSAGE, "top_rated");
+                intent.putExtra(BlueJava.EXTRA_MESSAGE, "top_rated");
                 startActivity(intent);
                 break;
             case 6 :

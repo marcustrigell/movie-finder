@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * Used to create a list item in the crew view.
- *
  */
 public class CrewTabArrayAdapter extends BaseAdapter {
 
@@ -50,9 +49,10 @@ public class CrewTabArrayAdapter extends BaseAdapter {
 
     /**
      * Converts a view that is located in another parent view.
-     * @param position The position of the view in the parent.
+     *
+     * @param position    The position of the view in the parent.
      * @param convertView The view which is to be converted.
-     * @param parent The parent view.
+     * @param parent      The parent view.
      * @return The view which is to be used.
      */
     @Override
@@ -87,10 +87,10 @@ public class CrewTabArrayAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View view) {
-            Intent intent = new Intent(activity, DisplayPersonActivity.class);
+                Intent intent = new Intent(activity, DisplayPersonActivity.class);
 
-            intent.putExtra("person", crewMember);
-            activity.startActivity(intent);
+                intent.putExtra("person", crewMember);
+                activity.startActivity(intent);
             }
         });
 

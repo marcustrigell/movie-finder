@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * Used to create a list item in the cast view.
- *
  */
 public class CastTabArrayAdapter extends BaseAdapter {
 
@@ -31,7 +30,7 @@ public class CastTabArrayAdapter extends BaseAdapter {
         this.activity = activity;
         this.context = context;
         this.cast = cast;
-   }
+    }
 
     @Override
     public int getCount() {
@@ -50,9 +49,10 @@ public class CastTabArrayAdapter extends BaseAdapter {
 
     /**
      * Converts a view that is located in another parent view.
-     * @param position The position of the view in the parent.
+     *
+     * @param position    The position of the view in the parent.
      * @param convertView The view which is to be converted.
-     * @param parent The parent view.
+     * @param parent      The parent view.
      * @return The view which is to be used.
      */
     @Override

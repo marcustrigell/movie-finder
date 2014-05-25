@@ -50,54 +50,45 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter {
             convertView = layoutInflater.inflate(textViewResourceId, null);
         }
 
-		if (results.get(0) instanceof Movie) {
+        if (results.get(0) instanceof Movie) {
 
-			final Movie movie = (Movie)results.get(position);
+            final Movie movie = (Movie) results.get(position);
 
-			if (convertView != null) {
-				ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-				TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
+            if (convertView != null) {
+                ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+                TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
 
-				String url = movieApi.getThumbnailURL(movie.getPosterPath());
-				Picasso.with(displayResultsActivity).load(url).into(coverImageView);
+                String url = movieApi.getThumbnailURL(movie.getPosterPath());
+                Picasso.with(displayResultsActivity).load(url).into(coverImageView);
 
-				titleTextView.setText(movie.toString());
+                titleTextView.setText(movie.toString());
 
-				convertView.setOnClickListener(new View.OnClickListener() {
+                convertView.setOnClickListener(new View.OnClickListener() {
 
-					@Override
-					public void onClick(View view) {
-						Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
 
-						intent.putExtra("movie", movie);
-						displayResultsActivity.startActivity(intent);
-					}
-				});
-			}
-		} else {
-			final Actor actor = (Actor)results.get(position);
+                        intent.putExtra("movie", movie);
+                        displayResultsActivity.startActivity(intent);
+                    }
+                });
+            }
+        } else {
+            final Actor actor = (Actor) results.get(position);
 
-			if (convertView != null) {
-				ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
-				TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
+            if (convertView != null) {
+                ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
+                TextView titleTextView = (TextView) convertView.findViewById(R.id.title);
 
-				String url = movieApi.getThumbnailURL(actor.getProfilePath());
-				Picasso.with(displayResultsActivity).load(url).into(coverImageView);
+                String url = movieApi.getThumbnailURL(actor.getProfilePath());
+                Picasso.with(displayResultsActivity).load(url).into(coverImageView);
 
-				titleTextView.setText(actor.getName());
+                titleTextView.setText(actor.getName());
 
-				// convertView.setOnClickListener(new View.OnClickListener() {
 
-				/*	@Override
-					public void onClick(View view) {
-						Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
-
-						intent.putExtra("movie", movie);
-						displayResultsActivity.startActivity(intent);
-					}
-				});*/
-			}
-		}
+            }
+        }
 
         return convertView;
     }

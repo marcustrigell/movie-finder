@@ -9,8 +9,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import se.chalmers.tda367.bluejava.R;
-import se.chalmers.tda367.bluejava.adapters.MovieTabsAdapter;
-import se.chalmers.tda367.bluejava.fragments.*;
+import se.chalmers.tda367.bluejava.adapters.TabsPagerAdapter;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieCast;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieCrew;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieDetails;
+import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieVideos;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
@@ -24,6 +27,7 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
     private FragmentPagerAdapter pagerAdapter;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -52,12 +56,12 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
         List<Fragment> fragments = new Vector<Fragment>();
 
-        fragments.add(MovieDetailsTabFragment.newInstance(movie));
-        fragments.add(MovieCastTabFragment.newInstance(movie));
-        fragments.add(MovieCrewTabFragment.newInstance(movie));
-        fragments.add(MovieVideosTabFragment.newInstance(movie));
+        fragments.add(TabFragmentMovieDetails.newInstance(movie));
+        fragments.add(TabFragmentMovieCast.newInstance(movie));
+        fragments.add(TabFragmentMovieCrew.newInstance(movie));
+        fragments.add(TabFragmentMovieVideos.newInstance(movie));
 
-        pagerAdapter = new MovieTabsAdapter(super.getSupportFragmentManager(), fragments);
+        pagerAdapter = new TabsPagerAdapter(super.getSupportFragmentManager(), fragments);
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(pagerAdapter);
 

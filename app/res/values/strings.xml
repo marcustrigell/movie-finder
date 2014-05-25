@@ -22,6 +22,9 @@
     <string name="profile_title">Profile</string>
     <string name="profile_welcome_message">Here\'s all movies you\'ve marked as favorite. Connect to Facebook and unleash the power.</string>
     <string name="profile_welcome_title">Your Profile</string>
+    <string name="profile_logged_in_message">Here\'s all movies you\'ve marked as favorite. Go ahead and show your friends what movies you like!</string>
+    <string name="facebook_share_text">Choose a movie to share it to your friends</string>
+    <string name="facebook_share_title">Share Movie</string>
     <string name="title_activity_display_person">Personal details</string>
     <string name="overview_label">Overview</string>
     <string name="rating_label">Rating</string>
