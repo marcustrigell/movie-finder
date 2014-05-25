@@ -17,14 +17,14 @@ public class SortByVoteCount implements SortMethod {
     @Override
     public List<Movie> sort(List<Movie> list) {
 
-        if(list == null || list.size() == 0) {
+        if (list == null || list.size() == 0) {
             throw new IllegalArgumentException();
         }
 
         // @see SortByTitle for more info about the following code.
         Map<String, Movie> map = new TreeMap<String, Movie>();
 
-        for(Movie movie : list) {
+        for (Movie movie : list) {
 
             String voteCount = movie.getVoteCount();
 

@@ -11,11 +11,19 @@ import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.CastTabArrayAdapter;
 import se.chalmers.tda367.bluejava.models.Actor;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Credits;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
+/**
+ * Displays a movie's cast in a list view
+ * in one of the DisplayMovieActivity's tabs.
+ *
+ * Choosing an actor in the list should show
+ * detailed information about it.
+ */
 public class TabFragmentMovieCast extends TabFragment {
 
     private Movie movie;
@@ -26,7 +34,7 @@ public class TabFragmentMovieCast extends TabFragment {
         TabFragmentMovieCast tab = new TabFragmentMovieCast();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("movie", movie);
+        bundle.putParcelable(BlueJava.EXTRA_MOVIE, movie);
 
         tab.setArguments(bundle);
 
@@ -36,7 +44,7 @@ public class TabFragmentMovieCast extends TabFragment {
     @Override
     public void init() {
         super.init();
-        movie = getArguments().getParcelable("movie");
+        movie = getArguments().getParcelable(BlueJava.EXTRA_MOVIE);
     }
 
     @Override
@@ -73,9 +81,6 @@ public class TabFragmentMovieCast extends TabFragment {
         populateLayout();
     }
 
-    /**
-     * Populates the fragment's view with cast information
-     */
     public void populateLayout() {
         Credits credits = movie.getCredits();
         List<Actor> cast = credits.getCast();

@@ -2,6 +2,15 @@ package se.chalmers.tda367.bluejava.sqlite;
 
 import android.provider.BaseColumns;
 
+/**
+ * This class explicitly specifies the layout of the
+ * SQL database schema in a systematic and self-documenting way.
+ *
+ * It acts as a container for constants to define
+ * names for URIs, tables, and columns.
+ * This class allows us to use the same constants across all
+ * the other classes in the same package.
+ */
 public final class MovieContract {
 
     public static final int DATABASE_VERSION = 1;

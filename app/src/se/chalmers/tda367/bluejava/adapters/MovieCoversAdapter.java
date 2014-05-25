@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayMovieActivity;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
@@ -76,7 +77,7 @@ public class MovieCoversAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, DisplayMovieActivity.class);
-                intent.putExtra("movie", movie);
+                intent.putExtra(BlueJava.EXTRA_MOVIE, movie);
                 activity.startActivity(intent);
             }
         });

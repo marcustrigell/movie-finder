@@ -3,8 +3,6 @@ package se.chalmers.tda367.bluejava.models;
 import se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem;
 
 /**
- * Created by iDavid on 2014-04-25.
- *
  * Represents a header of a section in the navigation drawer list.
  */
 public class NavigationDrawerSection implements NavigationDrawerItem {

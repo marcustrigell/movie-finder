@@ -3,7 +3,6 @@ package se.chalmers.tda367.bluejava.apis;
 import android.app.Activity;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
-import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -13,8 +12,18 @@ import se.chalmers.tda367.bluejava.models.BlueJava;
 
 import java.io.IOException;
 
+/**
+ * This class is responsible for all the applications HTTP
+ * calls (except calls to Facebook). It makes GET requests in the
+ * background using Android AsyncTasks.
+ *
+ * All classes using the HttpHandler should implement the
+ * JSONResultHandler interface and pass itsef to the handler.
+ *
+ * All results returned by the server is then passed to the JSONResultHandlers
+ * handleJSONResult() method.
+ */
 public class HttpHandler {
-    private static final String TAG = "HttpHandler";
     private final AndroidHttpClient httpClient;
 
     public HttpHandler(AndroidHttpClient httpClient) {
@@ -61,7 +70,7 @@ public class HttpHandler {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.v(TAG, result);
+
             if (jsonResultHandler != null) {
                 jsonResultHandler.handleJSONResult(result);
             }

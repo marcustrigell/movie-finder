@@ -8,6 +8,10 @@ import android.preference.PreferenceFragment;
 import android.view.MenuItem;
 import se.chalmers.tda367.bluejava.R;
 
+/**
+ * This class handles the applications settings
+ * It also provides a help guide for the user
+ */
 public class SettingsActivity extends PreferenceActivity {
 
 	@Override

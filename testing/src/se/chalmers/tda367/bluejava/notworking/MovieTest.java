@@ -10,6 +10,7 @@ import org.junit.Test;
 import se.chalmers.tda367.bluejava.models.Credits;
 import se.chalmers.tda367.bluejava.models.Genre;
 import se.chalmers.tda367.bluejava.models.Movie;
+import se.chalmers.tda367.bluejava.models.MovieDetails;
 import se.chalmers.tda367.bluejava.tests.R;
 
 import java.util.List;
@@ -51,8 +52,10 @@ public class MovieTest extends InstrumentationTestCase {
         creditsJSON = context.getString(R.string.credits);
         genresJSON = context.getString(R.string.genres);
 
+        MovieDetails movieDetails = new MovieDetails(new JSONObject(detailsJSON));
+
         Movie.Builder builder = new Movie.Builder(new JSONObject(basicJSON));
-        movie = builder.details(new JSONObject(detailsJSON)).credits(new Credits(new JSONObject(creditsJSON))).build();
+        movie = builder.details(movieDetails).credits(new Credits(new JSONObject(creditsJSON))).build();
 
         Parcel parcel = Parcel.obtain();
         movie.writeToParcel(parcel, 0);
@@ -104,38 +107,38 @@ public class MovieTest extends InstrumentationTestCase {
     public void testGetGenres() throws Exception {
         genres = Genre.jsonToListOfGenres(new JSONArray(genresJSON));
         for(int i = 0; i < genres.size(); i++) {
-            assertEquals(genres.get(i), movie.getGenres().get(i));
+            assertEquals(genres.get(i), movie.getDetails().getGenres().get(i));
         }
     }
 
     @Test
     public void testGetImdbID() throws Exception {
-        assertEquals(IMDB_ID, movie.getImdbID());
+        assertEquals(IMDB_ID, movie.getDetails().getImdbID());
     }
 
     @Test
     public void testGetBudget() throws Exception {
-        assertEquals(BUDGET, movie.getBudget());
+        assertEquals(BUDGET, movie.getDetails().getBudget());
     }
 
     @Test
     public void testGetOverview() throws Exception {
-        assertEquals(OVERVIEW, movie.getOverview());
+        assertEquals(OVERVIEW, movie.getDetails().getOverview());
     }
 
     @Test
     public void testGetTagline() throws Exception {
-        assertEquals(TAGLINE, movie.getTagline());
+        assertEquals(TAGLINE, movie.getDetails().getTagline());
     }
 
     @Test
     public void testGetRuntime() throws Exception {
-        assertEquals(RUNTIME, movie.getRuntime());
+        assertEquals(RUNTIME, movie.getDetails().getRuntime());
     }
 
     @Test
     public void testGetRevenue() throws Exception {
-        assertEquals(REVENUE, movie.getRevenue());
+        assertEquals(REVENUE, movie.getDetails().getRevenue());
     }
 
     @Test

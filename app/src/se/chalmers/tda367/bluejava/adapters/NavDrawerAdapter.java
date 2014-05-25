@@ -14,7 +14,8 @@ import se.chalmers.tda367.bluejava.R;
 import java.util.ArrayList;
 
 /**
- * Created by iDavid on 2014-04-24.
+ * This class represents the navigation drawer on
+ * the homescreen.
  */
 public class NavDrawerAdapter extends BaseAdapter {
 
@@ -44,7 +45,6 @@ public class NavDrawerAdapter extends BaseAdapter {
 
     public View getItemView(int position, View convertView, ViewGroup viewGroup) {
 
-        // Null check
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -62,7 +62,6 @@ public class NavDrawerAdapter extends BaseAdapter {
 
     public View getSectionView(int position, View convertView, ViewGroup viewGroup) {
 
-        // Null check
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);

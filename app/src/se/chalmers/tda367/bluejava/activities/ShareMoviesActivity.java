@@ -19,6 +19,14 @@ import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for sharing posts to Facebook.
+ * When the user picks a movie, a message will be created with
+ * the movie's cover photo, title and description.
+ * The user can also write a few words if the want to before posting.
+ *
+ * Before doing this, the user must be authenticated with Facebook.
+ */
 public class ShareMoviesActivity extends FragmentActivity implements FbMovieSharer {
 
     private UiLifecycleHelper uiHelper;
@@ -27,10 +35,13 @@ public class ShareMoviesActivity extends FragmentActivity implements FbMovieShar
 
     private ArrayList<Movie> movies;
 
-    private TextView facebookShareTitle;
-
     private TextView facebookShareText;
 
+    /**
+     * Build the view components, attach the objects received
+     * and create the Facebook UI Helper and associate it with
+     * a callback method to handle the user's Facebook session.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +59,9 @@ public class ShareMoviesActivity extends FragmentActivity implements FbMovieShar
         createView();
     }
 
+    /**
+     * Provides asynchronous notification of Session state changes.
+     */
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
@@ -55,18 +69,20 @@ public class ShareMoviesActivity extends FragmentActivity implements FbMovieShar
         }
     };
 
+    /**
+     * Create and make the view components ready for later use.
+     */
     private void createView() {
-        facebookShareTitle = (TextView) findViewById(R.id.share_movies_title);
-
         facebookShareText = (TextView) findViewById(R.id.share_movies_welcome_message);
-
     }
 
+    /**
+     * When the user has attempted to post a movie to
+     * their wall, this method will handle the callback.
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        Log.e("", "well at least I'm here!");
 
         uiHelper.onActivityResult(requestCode, resultCode, data, new FacebookDialog.Callback() {
             @Override
@@ -81,6 +97,11 @@ public class ShareMoviesActivity extends FragmentActivity implements FbMovieShar
         });
     }
 
+    /**
+     * We can now populate the view, so fill it with
+     * favorite movies ready for the user to choose
+     * and post.
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -97,6 +118,14 @@ public class ShareMoviesActivity extends FragmentActivity implements FbMovieShar
 
         uiHelper.onResume();
     }
+
+    /**
+     * When something happens with a Facebook Session
+     * it should be handled accordingly here.
+     *
+     * If they're not logged in, they should not be shown the
+     * ability to post to Facebook.
+     */
     private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
         if (state.isClosed()) {
             Intent intent = new Intent(this, DisplayProfileActivity.class);

@@ -14,6 +14,8 @@ public class BlueJava extends Application {
      */
     public static String EXTRA_MOVIE = "se.chalmers.tda367.bluejava.extra.MOVIE";
 
+    public static String EXTRA_PERSON = "se.chalmers.tda367.bluejava.extra.PERSON";
+
     public final static String EXTRA_MESSAGE = "se.chalmers.tda367.bluejava.extra.MESSAGE";
 
     public static String EXTRA_MOVIE_FAVORITES = "se.chalmers.tda367.bluejava.extra.MOVIE_FAVORITES";

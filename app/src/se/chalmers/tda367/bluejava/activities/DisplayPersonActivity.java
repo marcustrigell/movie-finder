@@ -18,8 +18,7 @@ import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Person;
 
 /**
- * Used to display a detailed view of a person.
- *
+ * Used to display a detailed view of a person (actor or crew member).
  */
 public class DisplayPersonActivity extends Activity implements JSONResultHandler {
 
@@ -37,7 +36,7 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
 		httpClient = HttpHandler.getAndroidHttpClient(this);
 		httpHandler = new HttpHandler(httpClient);
 
-        person = getIntent().getParcelableExtra("person");
+        person = getIntent().getParcelableExtra(BlueJava.EXTRA_PERSON);
 
 		getPersonDetails(person.getID());
 
@@ -69,7 +68,6 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
             birthdayView.setText(person.getBirthday());
             deathdayView.setText(person.getDeathday());
             biographyView.setText(person.getBiography());
-
         }
     }
 
@@ -105,7 +103,7 @@ public class DisplayPersonActivity extends Activity implements JSONResultHandler
      */
     public void showFullScreen(View view) {
         Intent intent = new Intent(this, DisplayImageFullScreenActivity.class);
-        intent.putExtra("person", person);
+        intent.putExtra(BlueJava.EXTRA_PERSON, person);
         startActivity(intent);
     }
 

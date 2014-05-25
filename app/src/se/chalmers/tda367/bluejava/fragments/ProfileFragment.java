@@ -1,5 +1,6 @@
 package se.chalmers.tda367.bluejava.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,14 +26,13 @@ import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This Fragment is responsible for displaying
+ * the user's personal profile.
+ *
+ * It also handles all login authentication with Facebook.
+ */
 public class ProfileFragment extends Fragment {
-
-    private Session.StatusCallback callback = new Session.StatusCallback() {
-        @Override
-        public void call(Session session, SessionState state, Exception exception) {
-            onSessionStateChange(session, state, exception);
-        }
-    };
 
     private UiLifecycleHelper uiHelper;
 
@@ -46,7 +46,19 @@ public class ProfileFragment extends Fragment {
 
     private String userInfo;
 
-    private static final int SHARE_BUTTON_ID = 1;
+    private Button shareButton;
+
+    private int shareButtonId;
+
+    /**
+     * Provides asynchronous notification of Session state changes.
+     */
+    private Session.StatusCallback callback = new Session.StatusCallback() {
+        @Override
+        public void call(Session session, SessionState state, Exception exception) {
+            onSessionStateChange(session, state, exception);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,12 +83,15 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    /**
+     * When something happens with a Facebook Session
+     * it should be handled accordingly here.
+     */
     private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
 
         if (state.isOpened()) {
 
             createLoggedInView();
-            //authButton.setVisibility(View.GONE);
 
             welcomeText.setText(R.string.profile_logged_in_message);
 
@@ -101,7 +116,6 @@ public class ProfileFragment extends Fragment {
             }
         } else if (state.isClosed()) {
             tellFBAuthenticatorLogout();
-            removeLoggedInView();
         }
     }
 
@@ -171,6 +185,7 @@ public class ProfileFragment extends Fragment {
     private void tellFBAuthenticatorLogout() {
         if (fbAuthenticator != null) {
             fbAuthenticator.hasLoggedOut();
+            removeLoggedInView();
         }
     }
 
@@ -182,6 +197,7 @@ public class ProfileFragment extends Fragment {
      * It will send details (fetched from Facebook)
      * about the user aswell as a list of movies.
      */
+    @SuppressLint("NewApi")
     public void createLoggedInView() {
 
         if (!isLoggedIn()) {
@@ -214,8 +230,11 @@ public class ProfileFragment extends Fragment {
                 ViewGroup.LayoutParams.WRAP_CONTENT
         ));
 
-        Button shareButton = new Button(getActivity());
-        shareButton.setId(SHARE_BUTTON_ID);
+        shareButtonId = View.generateViewId();
+
+        shareButton = new Button(getActivity());
+
+        shareButton.setId(shareButtonId);
 
         shareButton.setOnClickListener(new View.OnClickListener() {
 
@@ -243,11 +262,25 @@ public class ProfileFragment extends Fragment {
         facebookButtonRow.addView(shareButton, buttonParams);
     }
 
+    /**
+     * When the user logs out the
+     * Share button should disappear
+     */
     private void removeLoggedInView() {
-        Button shareButton = (Button) getActivity().findViewById(SHARE_BUTTON_ID);
-        shareButton.setVisibility(View.GONE);
+
+        if (shareButton != null) {
+            RelativeLayout facebookButtonRow = (RelativeLayout) getView().findViewById(R.id.facebook_buttons_row);
+            facebookButtonRow.removeAllViews();
+            facebookButtonRow.addView(authButton);
+        }
+
     }
 
+    /**
+     * Takes the Graph object returned by Facebook
+     * and create a String that will be used as a
+     * welcome message in the Share Movie screen.
+     */
     private String buildUserInfoString(GraphUser user) {
         StringBuilder userInfo = new StringBuilder("Hi, ");
 

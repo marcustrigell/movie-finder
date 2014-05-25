@@ -2,7 +2,7 @@ package se.chalmers.tda367.bluejava.apis;
 
 /**
  * Defines a contract with themoviedb.org's API
- * Used to build correct URI:s.
+ * Used to build and return correct URI:s to the application.
  */
 public class MovieApi {
 

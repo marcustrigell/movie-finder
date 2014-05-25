@@ -14,11 +14,15 @@ import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieCast;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieCrew;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieDetails;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMovieVideos;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 import java.util.Vector;
 
+/**
+ * Shows all information available on a movie in 4 tabs
+ */
 public class DisplayMovieActivity extends FragmentActivity implements ActionBar.TabListener {
 
     private Movie movie;
@@ -35,7 +39,7 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
 
         Intent intent = getIntent();
 
-        movie = intent.getParcelableExtra("movie");
+        movie = intent.getParcelableExtra(BlueJava.EXTRA_MOVIE);
 
         setupTabs(savedInstanceState);
     }
@@ -64,8 +68,6 @@ public class DisplayMovieActivity extends FragmentActivity implements ActionBar.
         pagerAdapter = new TabsPagerAdapter(super.getSupportFragmentManager(), fragments);
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(pagerAdapter);
-
-
 
         for (String tab : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab).setTabListener(this));

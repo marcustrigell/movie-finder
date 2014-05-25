@@ -9,9 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- *
  * Class for sorting a list of Movie-objects by title.
- *
  */
 public class SortByTitle implements SortMethod {
 
@@ -23,7 +21,7 @@ public class SortByTitle implements SortMethod {
     @Override
     public List<Movie> sort(List<Movie> list) {
 
-        if(list == null || list.size() == 0) {
+        if (list == null || list.size() == 0) {
             throw new IllegalArgumentException();
         }
 

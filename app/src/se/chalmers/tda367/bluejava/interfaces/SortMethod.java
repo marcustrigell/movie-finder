@@ -14,7 +14,6 @@ public interface SortMethod {
      * Method for sorting a list of Movie-objects.
      *
      * @param list The list to be sorted.
-     *
      */
     public List<Movie> sort(List<Movie> list);
 

@@ -11,6 +11,9 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.models.*;
 
+/**
+ * This class is used to display a movie cover in full screen
+ */
 public class DisplayImageFullScreenActivity extends Activity {
 
     private Movie movie;
@@ -26,11 +29,11 @@ public class DisplayImageFullScreenActivity extends Activity {
         Intent intent = getIntent();
         movieApi = new MovieApi();
 
-        if(intent.hasExtra("movie")) {
-            movie = intent.getParcelableExtra("movie");
+        if(intent.hasExtra(BlueJava.EXTRA_MOVIE)) {
+            movie = intent.getParcelableExtra(BlueJava.EXTRA_MOVIE);
             loadImage(movieApi.getCoverURL(movie.getPosterPath()));
-        } else if(intent.hasExtra("person")) {
-            person = intent.getParcelableExtra("person");
+        } else if(intent.hasExtra(BlueJava.EXTRA_PERSON)) {
+            person = intent.getParcelableExtra(BlueJava.EXTRA_PERSON);
             loadImage(movieApi.getCoverURL(person.getProfilePath()));
         }
 
@@ -42,7 +45,6 @@ public class DisplayImageFullScreenActivity extends Activity {
                 finish();
             }
         });
-
     }
 
     /**

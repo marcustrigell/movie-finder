@@ -30,12 +30,18 @@ import se.chalmers.tda367.bluejava.fragments.TabFragmentMainUpcoming;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem;
 import se.chalmers.tda367.bluejava.models.NavigationDrawerSection;
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+/**
+ * This is the Activity (and screen) starting with
+ * the application.
+ *
+ * It functions as the application's
+ * homescreen, and aims to let the user search for movies
+ * in a few different ways.
+ */
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
 	private CharSequence appTitle;
@@ -58,9 +64,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     private FragmentPagerAdapter pagerAdapter;
 
-    /**
-     * Called when the activity is first created.
-     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +75,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         setupTabs(savedInstanceState);
 
-        setupLayout();
+        setupNavDrawer();
 	}
 
     private void setupTabs(Bundle savedInstanceState) {
@@ -139,17 +143,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     }
 
-    private void setupLayout() {
+    private void setupNavDrawer() {
 
-        /* -- Navigation Drawer -- */
-
-        // Set title for navigation drawer
         navDrawerTitle = getResources().getString(R.string.title_nav_drawer);
 
-        // Get titles for navigation drawer items
         navDrawerTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
-        // Get icons for navigation drawer items
         navDrawerIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -249,9 +248,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/**
-	 * On selecting items in Action Bar
-	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Toggle navigation drawer on selecting action bar app icon/title
@@ -355,7 +351,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 startActivity(intent);
                 break;
             default:
-                //else
                 break;
         }
 	}

@@ -17,7 +17,9 @@ import se.chalmers.tda367.bluejava.models.Video;
 import java.util.List;
 
 /**
- * Used to create a list item in the videos view.
+ * Used to create list items in the videos ListView.
+ * Each video should be able to be play
+ * in a youtube player (provided by the phone).
  */
 public class VideosTabArrayAdapter extends BaseAdapter {
 

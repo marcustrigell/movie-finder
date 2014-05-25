@@ -1,6 +1,5 @@
 package se.chalmers.tda367.bluejava.adapters;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,14 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.interfaces.FbMovieSharer;
 import se.chalmers.tda367.bluejava.models.Movie;
-
 import java.util.List;
 
 /**
- * Used to create a list item in the videos view.
+ * This class takes a list of (favorite) movies
+ * and displays them in a ListView. When an item
+ * is pressed, the FbMovieSharer attached should be notified
+ * that a movie has been chosen and also receive the actual
+ * movie so that it can create a post message to Facebook about it.
  */
 public class ShareFavoritesArrayAdapter extends BaseAdapter {
 

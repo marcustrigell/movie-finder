@@ -9,9 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- *
  * Class for sorting Movie-objects by rating.
- *
  */
 public class SortByYear implements SortMethod {
 
@@ -23,19 +21,18 @@ public class SortByYear implements SortMethod {
     @Override
     public List<Movie> sort(List<Movie> list) {
 
-        if(list == null || list.size() == 0) {
+        if (list == null || list.size() == 0) {
             throw new IllegalArgumentException();
         }
 
         // @see SortByTitle for more info about the following code.
         Map<String, Movie> map = new TreeMap<String, Movie>();
 
-        for(Movie movie : list) {
+        for (Movie movie : list) {
 
             String releaseYear = movie.getReleaseYear();
 
             map.put(releaseYear, movie);
-
         }
 
         return new ArrayList<Movie>(map.values());

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by axelniklasson on 2014-05-25.
+ * Abstract class representing a help view.
  */
 public abstract class HelpFragment extends Fragment {
 

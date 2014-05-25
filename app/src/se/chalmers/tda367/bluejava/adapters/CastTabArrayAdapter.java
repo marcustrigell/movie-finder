@@ -14,6 +14,7 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayPersonActivity;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.models.Actor;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class CastTabArrayAdapter extends BaseAdapter {
 
         }
 
-        /* Find the right view pieces to change. */
+        /* Find the right view components to change. */
         ImageView coverImageView = (ImageView) convertView.findViewById(R.id.image);
         TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
         TextView characterTextView = (TextView) convertView.findViewById(R.id.character);
@@ -89,7 +90,7 @@ public class CastTabArrayAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, DisplayPersonActivity.class);
-                intent.putExtra("person", actor);
+                intent.putExtra(BlueJava.EXTRA_PERSON, actor);
                 activity.startActivity(intent);
             }
         });

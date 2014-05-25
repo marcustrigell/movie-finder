@@ -12,10 +12,7 @@ import java.util.List;
 /**
  * Class representing a video for a movie.
  * Could be a trailer, teaser, short clip etc.
- *
  */
-
-
 public class Video implements Parcelable {
 
     private final String ID;

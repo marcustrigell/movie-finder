@@ -15,10 +15,15 @@ import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayImageFullScreenActivity;
 import se.chalmers.tda367.bluejava.helpers.AutoResizeTextView;
 import se.chalmers.tda367.bluejava.interfaces.MovieFavoritesDB;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.models.MovieDetails;
 import se.chalmers.tda367.bluejava.sqlite.MovieFavoritesDbHelper;
 
+/**
+ * This is the tab showing all detailed information
+ * about a movie. It's also here you mark/unmark them as favorites.
+ */
 public class TabFragmentMovieDetails extends TabFragment implements View.OnClickListener {
 
     private Movie movie;
@@ -53,7 +58,7 @@ public class TabFragmentMovieDetails extends TabFragment implements View.OnClick
         TabFragmentMovieDetails tab = new TabFragmentMovieDetails();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("movie", movie);
+        bundle.putParcelable(BlueJava.EXTRA_MOVIE, movie);
 
         tab.setArguments(bundle);
 
@@ -71,7 +76,7 @@ public class TabFragmentMovieDetails extends TabFragment implements View.OnClick
     public void init() {
         super.init();
         movieFavoritesDb = new MovieFavoritesDbHelper(context);
-        movie = getArguments().getParcelable("movie");
+        movie = getArguments().getParcelable(BlueJava.EXTRA_MOVIE);
         isFavorite = movieFavoritesDb.isFavorite(movie.getID());
     }
 
@@ -102,9 +107,6 @@ public class TabFragmentMovieDetails extends TabFragment implements View.OnClick
         populateView();
     }
 
-    /**
-     * Creates the fragment's view components
-     */
     protected void createView(View view) {
         favoriteButton = (Button) view.findViewById(R.id.favoriteButton);
         posterImageView = (ImageView) view.findViewById(R.id.posterImageView);
@@ -123,9 +125,6 @@ public class TabFragmentMovieDetails extends TabFragment implements View.OnClick
         runTimeTextView = (AutoResizeTextView) view.findViewById(R.id.runtime);
     }
 
-    /**
-     * Populates the fragment's view with movie information
-     */
     public void populateView() {
 
         //Inserting the image in the poster image view
@@ -184,7 +183,7 @@ public class TabFragmentMovieDetails extends TabFragment implements View.OnClick
 
             case R.id.posterImageView:
                 Intent intent = new Intent(getActivity(), DisplayImageFullScreenActivity.class);
-                intent.putExtra("movie", movie);
+                intent.putExtra(BlueJava.EXTRA_MOVIE, movie);
                 startActivity(intent);
                 break;
         }

@@ -6,6 +6,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
+/**
+ * This class is responsible for managing a bunch of
+ * Fragments that each represent a tab (and its' page).
+ *
+ * The fragments should already be created and only managed
+ * by this class.
+ */
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragments;

@@ -15,7 +15,8 @@ import java.util.List;
  *
  * By implementing the Parcelable interface,
  * a movie object can be passed along with intents
- * to start new activities.
+ * to start new activities. All objects hold by this
+ * class should also implement the Parcelable interface.
  *
  * Using the builder pattern we are able to partially build
  * immutable objects. It allows us to create different

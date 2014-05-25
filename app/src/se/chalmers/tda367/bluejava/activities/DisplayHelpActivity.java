@@ -9,6 +9,10 @@ import android.support.v4.view.ViewPager;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.fragments.HelpFragment;
 
+/**
+ * This is the help screen found under settings
+ * It should function as a guide for the users.
+ */
 public class DisplayHelpActivity extends FragmentActivity {
 
     private static final int NUMBER_OF_PAGES = 3;

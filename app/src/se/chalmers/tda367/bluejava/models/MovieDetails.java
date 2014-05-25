@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents detailed information about movie.
+ */
 public class MovieDetails implements Parcelable {
 
     private List<Genre> genres;

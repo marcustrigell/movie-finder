@@ -10,12 +10,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.CrewTabArrayAdapter;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Credits;
 import se.chalmers.tda367.bluejava.models.CrewMember;
 import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
+/**
+ * Displays a movie's crew in a list view
+ * in one of the DisplayMovieActivity's tabs.
+ *
+ * Choosing a crew member in the list should show
+ * detailed information about it.
+ */
 public class TabFragmentMovieCrew extends TabFragment {
 
     private Movie movie;
@@ -26,7 +34,7 @@ public class TabFragmentMovieCrew extends TabFragment {
         TabFragmentMovieCrew tab = new TabFragmentMovieCrew();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("movie", movie);
+        bundle.putParcelable(BlueJava.EXTRA_MOVIE, movie);
 
         tab.setArguments(bundle);
 
@@ -36,7 +44,7 @@ public class TabFragmentMovieCrew extends TabFragment {
     @Override
     public void init() {
         super.init();
-        movie = getArguments().getParcelable("movie");
+        movie = getArguments().getParcelable(BlueJava.EXTRA_MOVIE);
     }
 
     @Override

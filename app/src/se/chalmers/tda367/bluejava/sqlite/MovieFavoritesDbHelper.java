@@ -11,6 +11,10 @@ import se.chalmers.tda367.bluejava.models.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class creates and maintains the database holding
+ * the user's favorite movies by providing basic CRUD operation.
+ */
 public class MovieFavoritesDbHelper extends SQLiteOpenHelper implements MovieFavoritesDB {
 
     public MovieFavoritesDbHelper(Context context) {

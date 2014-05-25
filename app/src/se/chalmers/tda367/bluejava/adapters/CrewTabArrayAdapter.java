@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.activities.DisplayPersonActivity;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.CrewMember;
 
 import java.util.List;
@@ -89,7 +90,7 @@ public class CrewTabArrayAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(activity, DisplayPersonActivity.class);
 
-                intent.putExtra("person", crewMember);
+                intent.putExtra(BlueJava.EXTRA_PERSON, crewMember);
                 activity.startActivity(intent);
             }
         });

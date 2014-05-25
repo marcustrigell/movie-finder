@@ -6,18 +6,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Used as template for a person in a movie-context.
+ * This class represents a person in a movie-context.
+ * It must be able to hold different values at different times.
  */
 public class Person implements Parcelable {
 
 	private final int id;
+
 	private final String name;
+
 	private final String profilePath;
+
 	private final String alsoKnownAs;
+
 	private final String biography;
+
 	private final String birthday;
+
 	private final String deathday;
+
 	private final String placeOfBirth;
+
 	private final double popularity;
 
    	/** Constructor when a JSONObject is used */
@@ -25,37 +34,43 @@ public class Person implements Parcelable {
         this.name = jsonObject.getString("name");
         this.id = jsonObject.getInt("id");
 
-        if(jsonObject.isNull("profile_path")) {
+        if (jsonObject.isNull("profile_path")) {
             this.profilePath = null;
         } else {
             this.profilePath = jsonObject.getString("profile_path");
         }
-		if(jsonObject.isNull("also_known_as")) {
+
+		if (jsonObject.isNull("also_known_as")) {
 			this.alsoKnownAs = null;
 		} else {
 			this.alsoKnownAs = jsonObject.getString("also_known_as");
 		}
-		if(jsonObject.isNull("biography")) {
+
+		if (jsonObject.isNull("biography")) {
 			this.biography = null;
 		} else {
 			this.biography = jsonObject.getString("biography");
 		}
-		if(jsonObject.isNull("birthday")) {
+
+		if (jsonObject.isNull("birthday")) {
 			this.birthday = null;
 		} else {
 			this.birthday = jsonObject.getString("birthday");
 		}
-		if(jsonObject.isNull("deathday")) {
+
+		if (jsonObject.isNull("deathday")) {
 			this.deathday = null;
 		} else {
 			this.deathday = jsonObject.getString("deathday");
 		}
-		if(jsonObject.isNull("place_of_birth")) {
+
+		if (jsonObject.isNull("place_of_birth")) {
 			this.placeOfBirth = null;
 		} else {
 			this.placeOfBirth = jsonObject.getString("place_of_birth");
 		}
-		if(jsonObject.isNull("popularity")) {
+
+		if (jsonObject.isNull("popularity")) {
 			this.popularity = 0;
 		} else {
 			this.popularity = jsonObject.getDouble("popularity");

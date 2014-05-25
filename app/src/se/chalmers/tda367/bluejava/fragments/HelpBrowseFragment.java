@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import se.chalmers.tda367.bluejava.R;
 
 /**
- * Created by axelniklasson on 2014-05-25.
+ * Represents a help view explaining how
+ * the browse feature in the applications works.
  */
 public class HelpBrowseFragment extends HelpFragment {
 

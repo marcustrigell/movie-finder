@@ -1,5 +1,8 @@
 package se.chalmers.tda367.bluejava.fragments;
 
+/**
+ * Displays upcoming movies on the homescreen
+ */
 public class TabFragmentMainUpcoming extends TabFragmentMain {
 
     public static TabFragmentMainUpcoming newInstance() {

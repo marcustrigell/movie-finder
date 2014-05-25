@@ -12,6 +12,11 @@ import se.chalmers.tda367.bluejava.models.Movie;
 
 import java.util.List;
 
+/**
+ * This is an abstract class representing a tab page
+ * on the homescreen. It's responsible for both getting
+ * and showing movie covers in a nice grid view.
+ */
 public abstract class TabFragmentMain extends TabFragment {
 
     private List<Movie> movies;
@@ -48,9 +53,6 @@ public abstract class TabFragmentMain extends TabFragment {
         populateLayout(movies);
     }
 
-    /**
-     * Populates the fragment's view with cover photos
-     */
     public void populateLayout(List<Movie> movies) {
         gridView.setAdapter(new MovieCoversAdapter(context, (Activity) context, movies));
     }

@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import se.chalmers.tda367.bluejava.R;
 
 /**
- * Created by axelniklasson on 2014-05-25.
+ * Represents a help view explaining how
+ * the homescreen in the applications works
+ * and how it should be used.
  */
 public class HelpStartFragment extends HelpFragment {
 

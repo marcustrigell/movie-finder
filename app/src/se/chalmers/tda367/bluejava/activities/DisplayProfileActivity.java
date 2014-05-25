@@ -8,6 +8,13 @@ import se.chalmers.tda367.bluejava.fragments.ProfileFragment;
 import se.chalmers.tda367.bluejava.interfaces.FBAuthenticator;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 
+/**
+ * This class represents the user's personal profile
+ * It shows the movies they've marked as favorites.
+ *
+ * If they login to Facebook, which is done here as well,
+ * they have the ability to share movies to their Facebook wall.
+ */
 public class DisplayProfileActivity extends FragmentActivity implements FBAuthenticator {
 
     private String fbAccessToken;

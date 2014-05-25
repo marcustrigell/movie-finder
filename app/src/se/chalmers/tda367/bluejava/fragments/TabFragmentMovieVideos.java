@@ -10,11 +10,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.adapters.VideosTabArrayAdapter;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.models.Video;
 
 import java.util.List;
 
+/**
+ * Displays youtube videos related to a movie in a list view
+ * in one of the DisplayMovieActivity's tabs.
+ *
+ * Choosing a video will trigger the phone to start a
+ * new application that can play the video. By default this is
+ * the native youtube app.
+ */
 public class TabFragmentMovieVideos extends TabFragment {
 
     private Movie movie;
@@ -25,7 +34,7 @@ public class TabFragmentMovieVideos extends TabFragment {
         TabFragmentMovieVideos tab = new TabFragmentMovieVideos();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("movie", movie);
+        bundle.putParcelable(BlueJava.EXTRA_MOVIE, movie);
 
         tab.setArguments(bundle);
 
@@ -35,7 +44,7 @@ public class TabFragmentMovieVideos extends TabFragment {
     @Override
     public void init() {
         super.init();
-        movie = getArguments().getParcelable("movie");
+        movie = getArguments().getParcelable(BlueJava.EXTRA_MOVIE);
     }
 
     @Override

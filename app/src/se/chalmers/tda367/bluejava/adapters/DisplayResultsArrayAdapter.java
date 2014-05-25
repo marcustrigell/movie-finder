@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import se.chalmers.tda367.bluejava.models.Actor;
+import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.models.Movie;
 import se.chalmers.tda367.bluejava.apis.MovieApi;
 import se.chalmers.tda367.bluejava.R;
@@ -18,6 +19,11 @@ import se.chalmers.tda367.bluejava.activities.DisplayResultsActivity;
 
 import java.util.List;
 
+/**
+ * This class takes a list of search results and populates
+ * a ListView with them. Pressing a result should start a new
+ * Activity showing details about it.
+ */
 public class DisplayResultsArrayAdapter extends ArrayAdapter {
 
     private final List<?> results;
@@ -69,7 +75,7 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter {
                     public void onClick(View view) {
                         Intent intent = new Intent(displayResultsActivity, DisplayMovieActivity.class);
 
-                        intent.putExtra("movie", movie);
+                        intent.putExtra(BlueJava.EXTRA_MOVIE, movie);
                         displayResultsActivity.startActivity(intent);
                     }
                 });
@@ -85,8 +91,6 @@ public class DisplayResultsArrayAdapter extends ArrayAdapter {
                 Picasso.with(displayResultsActivity).load(url).into(coverImageView);
 
                 titleTextView.setText(actor.getName());
-
-
             }
         }
 
