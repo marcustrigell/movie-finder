@@ -69,8 +69,6 @@ public class SettingsActivity extends PreferenceActivity {
 			case R.id.action_settings:
 				openSettings();
 				return true;
-			case android.R.id.home:
-				finish();
 			default:
 				return super.onOptionsItemSelected(item);
 		}
