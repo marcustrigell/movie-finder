@@ -9,8 +9,6 @@ import se.chalmers.tda367.bluejava.tests.R;
 
 import java.util.List;
 
-//TODO fix the error associated with this class and credits.xml
-
 /**
  * Created by axelniklasson on 2014-05-08.
  */

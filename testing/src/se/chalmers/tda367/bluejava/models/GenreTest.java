@@ -41,6 +41,4 @@ public class GenreTest extends InstrumentationTestCase {
     public void testGetName() throws Exception {
         assertEquals(NAME, genre.getName());
     }
-
-    //TODO: implement test for Genre.jsonToListOfGenres
 }

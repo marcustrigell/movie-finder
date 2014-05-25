@@ -48,6 +48,4 @@ public class CrewMemberTest extends InstrumentationTestCase {
     public void testGetJob() {
         assertEquals(job, crewMember.getJOB());
     }
-
-    //TODO: implement test for CrewMember.jsonToListOfCrewMembers
 }
