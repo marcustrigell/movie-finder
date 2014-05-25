@@ -29,6 +29,7 @@ public class SortByRatingTest extends InstrumentationTestCase {
         correctList = Movie.jsonToListOfMovies(sorted);
 
         sortMethod = new SortByRating();
+
         sortedList = sortMethod.sort(unsortedList);
 
         for(int i = 0; i < correctList.size(); i++) {
