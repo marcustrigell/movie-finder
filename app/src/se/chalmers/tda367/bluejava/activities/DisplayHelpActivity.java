@@ -9,9 +9,6 @@ import android.support.v4.view.ViewPager;
 import se.chalmers.tda367.bluejava.R;
 import se.chalmers.tda367.bluejava.fragments.HelpFragment;
 
-/**
- * Created by axelniklasson on 2014-05-25.
- */
 public class DisplayHelpActivity extends FragmentActivity {
 
     private static final int NUMBER_OF_PAGES = 3;
