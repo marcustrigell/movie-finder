@@ -18,6 +18,7 @@ or make it available in your PATH.
 
 
 Follow this if you have an Android device:
+
 1. Make sure it's setup and connected via USB
 2. Run the following command:
 
@@ -31,12 +32,3 @@ android avd
 2. In the Virtual Devices view, select an AVD and click Start.
 3. Install the apk from your SDK's tools/ folder:
 adb install path/to/app.apk
-
-Contribution Guides
---------------------------------------
-
-In the spirit of open source software development, jQuery always encourages community code contribution. To help you get started and before you jump into writing code, be sure to read these important contribution guidelines thoroughly:
-
-1. [Getting Involved](http://contribute.jquery.org/)
-2. [Core Style Guide](http://contribute.jquery.org/style-guide/js/)
-3. [Writing Code for jQuery Foundation Projects](http://contribute.jquery.org/code/)
