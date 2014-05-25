@@ -55,5 +55,4 @@ public class ActorTest extends InstrumentationTestCase {
         assertEquals(order, actor.getOrder());
     }
 
-    //TODO: implement test for Actor.jsonToListOfActors
 }
