@@ -32,7 +32,7 @@ public class SortByVoteCountTest extends InstrumentationTestCase {
         sortedList = sortMethod.sort(unsortedList);
 
         for(int i = 0; i < correctList.size(); i++) {
-            assertEquals(correctList.get(i).getTitle(), sortedList.get(i).getTitle());
+            assertEquals(correctList.get(i).getVoteCount(), sortedList.get(i).getVoteCount());
         }
     }
 }
