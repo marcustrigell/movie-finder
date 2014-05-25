@@ -26,7 +26,7 @@
         \"popularity\": 0.26600000000000001,
         \"title\": \"Lure: Teen Fight Club\",
         \"vote_average\": 1.0,
-        \"vote_count\": 0
+        \"vote_count\": 3
         },
         {
         \"adult\": false,
@@ -38,7 +38,7 @@
         \"popularity\": 1.7290000000000001,
         \"title\": \"Clubbed\",
         \"vote_average\": 7.7999999999999998,
-        \"vote_count\": 3
+        \"vote_count\": 4
         },
         {
         \"adult\": false,
@@ -50,7 +50,7 @@
         \"popularity\": 0.085000000000000006,
         \"title\": \"Florence Fight Club\",
         \"vote_average\": 2.0,
-        \"vote_count\": 0
+        \"vote_count\": 2
         },
         {
         \"adult\": false,
@@ -62,7 +62,7 @@
         \"popularity\": 0.059999999999999998,
         \"title\": \"Fight Club – The “I am Jack’s Laryngitis” Edit\",
         \"vote_average\": 3.0,
-        \"vote_count\": 0
+        \"vote_count\": 1
         }
         ],
         \"total_pages\": 1,
