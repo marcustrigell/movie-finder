@@ -5,13 +5,13 @@ import se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem;
 /**
  * Represents a header of a section in the navigation drawer list.
  */
-public class NavigationDrawerSection implements NavigationDrawerItem {
+public class NavDrawerSection implements NavigationDrawerItem {
 
 	public static final int SECTION_TYPE = 0;
 	private String label;
 	private int icon = -1;
 
-	public NavigationDrawerSection(String label) {
+	public NavDrawerSection(String label) {
 		this.label = label;
 	}
 

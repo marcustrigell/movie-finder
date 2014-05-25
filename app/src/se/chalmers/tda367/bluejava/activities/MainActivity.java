@@ -29,7 +29,9 @@ import se.chalmers.tda367.bluejava.fragments.TabFragmentMainPopular;
 import se.chalmers.tda367.bluejava.fragments.TabFragmentMainUpcoming;
 import se.chalmers.tda367.bluejava.models.BlueJava;
 import se.chalmers.tda367.bluejava.interfaces.NavigationDrawerItem;
-import se.chalmers.tda367.bluejava.models.NavigationDrawerSection;
+import se.chalmers.tda367.bluejava.models.NavDrawerItem;
+import se.chalmers.tda367.bluejava.models.NavDrawerSection;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -162,29 +164,29 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // Fill array with navDrawerItems and navDrawerSections
 
         // Home
-        navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[0],
+        navDrawerItems.add(new NavDrawerItem(navDrawerTitles[0],
 				navDrawerIcons.getResourceId(0, -1)));
 
         // Section - Movies
-        navDrawerItems.add(new NavigationDrawerSection(navDrawerTitles[1]));
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[1]));
 
 			// Latest
-			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[2],
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[2],
 					navDrawerIcons.getResourceId(2, -1)));
 
 			// Top Rated
-			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[3],
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[3],
 					navDrawerIcons.getResourceId(3, -1)));
 
 			// Recommended
-			navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[4],
+			navDrawerItems.add(new NavDrawerItem(navDrawerTitles[4],
 					navDrawerIcons.getResourceId(4, -1)));
 
         // Section - Your Profile
-        navDrawerItems.add(new NavigationDrawerSection(navDrawerTitles[5]));
+        navDrawerItems.add(new NavDrawerSection(navDrawerTitles[5]));
 
             // Profile
-            navDrawerItems.add(new se.chalmers.tda367.bluejava.models.NavigationDrawerItem(navDrawerTitles[6],
+            navDrawerItems.add(new NavDrawerItem(navDrawerTitles[6],
 					navDrawerIcons.getResourceId(6, -1)));
 
 
